@@ -1,0 +1,26 @@
+{
+	LocationResult: [{
+		FormattedAddress: "Koningin Elisabethlei 9, Antwerpen",
+		Location: {
+			Lat_WGS84: 51.1995058622654,
+			Lon_WGS84: 4.41136285339573,
+			X_Lambert72: 152978,
+			Y_Lambert72: 209949
+		},
+		LocationType: "crab_huisnummer_afgeleidVanStraat",
+		BoundingBox: {
+			LowerLeft: {
+				Lat_WGS84: 51.1995058622654,
+				Lon_WGS84: 4.41136285339573,
+				X_Lambert72: 152978,
+				Y_Lambert72: 209949
+			},
+			UpperRight: {
+				Lat_WGS84: 51.1995058622654,
+				Lon_WGS84: 4.41136285339573,
+				X_Lambert72: 152978,
+				Y_Lambert72: 209949
+			}
+		}
+	}]
+}

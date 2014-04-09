@@ -1,0 +1,421 @@
+{
+	"label": {
+		"term": "Count",
+		"value": "504"
+	},
+	"pois": [{
+		"id": "27552",
+		"created": "2013-11-21T13:56:00",
+		"updated": "2013-11-21T13:56:00",
+		"labels": [{
+			"term": "primary",
+			"value": "Vrije Basisschool -'t Grafiekje"
+		},
+		{
+			"term": "note",
+			"value": "hoofdzetel"
+		},
+		{
+			"term": "municipality",
+			"value": "Westerlo"
+		}],
+		"description": {
+			"value": "Tel.: 014 54 42 87<br />Fax: 014 54 23 39<br />E-mail: info@tgrafiekje.be"
+		},
+		"categories": [{
+			"type": "Thema",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Onderwijs",
+			"value": "Onderwijs"
+		},
+		{
+			"type": "Categorie",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "LagerOnderwijs",
+			"value": "Lager onderwijs"
+		},
+		{
+			"type": "Type",
+			"created": "2013-11-08T18:59:00",
+			"updated": "2013-11-08T18:59:00",
+			"term": "GewoonLagerOnderwijs",
+			"value": "Gewoon lager onderwijs"
+		}],
+		"links": [{
+			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
+			"created": "2013-11-21T13:56:00",
+			"updated": "2013-11-21T13:56:00",
+			"term": "related",
+			"value": "Dit is de link naar de schoolfiche"
+		}],
+		"location": {
+			"points": [{
+				"Point": {
+					"coordinates": [4.9141216014642213,
+					51.105598627229575],
+					"type": "Point",
+					"crs": {
+						"type": "link",
+						"properties": {
+							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
+						}
+					}
+				},
+				"author": {
+					"term": "owner",
+					"value": "CRAB"
+				},
+				"term": "center",
+				"type": "Pinpoint"
+			}],
+			"address": {
+				"value": "Abdijstraat 3<br />2260 Westerlo",
+				"created": "2013-11-21T13:56:00",
+				"updated": "2013-11-21T13:56:00",
+				"term": "crab"
+			}
+		},
+		"authors": [{
+			"term": "owner",
+			"value": "Vlaams Ministerie van Onderwijs en Vorming"
+		}],
+		"license": {
+			"term": "Gratis_Open_Data_Licentie",
+			"value": "Open Data Licentie"
+		}
+	},
+	{
+		"id": "27553",
+		"created": "2013-11-21T13:57:00",
+		"updated": "2013-11-21T13:57:00",
+		"labels": [{
+			"term": "primary",
+			"value": "Vrije Basisschool -'t Grafiekje"
+		},
+		{
+			"term": "note",
+			"value": "vestiging"
+		},
+		{
+			"term": "municipality",
+			"value": "Westerlo"
+		}],
+		"description": {
+			"value": "Tel.: 014 54 13 03"
+		},
+		"categories": [{
+			"type": "Thema",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Onderwijs",
+			"value": "Onderwijs"
+		},
+		{
+			"type": "Categorie",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Kleuteronderwijs",
+			"value": "Kleuteronderwijs"
+		},
+		{
+			"type": "Type",
+			"created": "2013-11-08T18:59:00",
+			"updated": "2013-11-08T18:59:00",
+			"term": "GewoonKleuteronderwijs",
+			"value": "Gewoon kleuteronderwijs"
+		}],
+		"links": [{
+			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
+			"created": "2013-11-21T13:57:00",
+			"updated": "2013-11-21T13:57:00",
+			"term": "related",
+			"value": "Dit is de link naar de schoolfiche"
+		}],
+		"location": {
+			"points": [{
+				"Point": {
+					"coordinates": [4.9147409779624471,
+					51.105670276863705],
+					"type": "Point",
+					"crs": {
+						"type": "link",
+						"properties": {
+							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
+						}
+					}
+				},
+				"author": {
+					"term": "owner",
+					"value": "CRAB"
+				},
+				"term": "center",
+				"type": "Pinpoint"
+			}],
+			"address": {
+				"value": "Abdijstraat 1<br />2260 Westerlo",
+				"created": "2013-11-21T13:57:00",
+				"updated": "2013-11-21T13:57:00",
+				"term": "crab"
+			}
+		},
+		"authors": [{
+			"term": "owner",
+			"value": "Vlaams Ministerie van Onderwijs en Vorming"
+		}],
+		"license": {
+			"term": "Gratis_Open_Data_Licentie",
+			"value": "Open Data Licentie"
+		}
+	},
+	{
+		"id": "27554",
+		"created": "2013-11-21T13:57:00",
+		"updated": "2013-11-21T13:57:00",
+		"labels": [{
+			"term": "primary",
+			"value": "Vrije Basisschool -'t Grafiekje"
+		},
+		{
+			"term": "note",
+			"value": "vestiging"
+		},
+		{
+			"term": "municipality",
+			"value": "Westerlo"
+		}],
+		"description": {
+			"value": "Tel.: 014 54 13 03"
+		},
+		"categories": [{
+			"type": "Thema",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Onderwijs",
+			"value": "Onderwijs"
+		},
+		{
+			"type": "Categorie",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "LagerOnderwijs",
+			"value": "Lager onderwijs"
+		},
+		{
+			"type": "Type",
+			"created": "2013-11-08T18:59:00",
+			"updated": "2013-11-08T18:59:00",
+			"term": "GewoonLagerOnderwijs",
+			"value": "Gewoon lager onderwijs"
+		}],
+		"links": [{
+			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
+			"created": "2013-11-21T13:57:00",
+			"updated": "2013-11-21T13:57:00",
+			"term": "related",
+			"value": "Dit is de link naar de schoolfiche"
+		}],
+		"location": {
+			"points": [{
+				"Point": {
+					"coordinates": [4.9147409779624471,
+					51.105670276863705],
+					"type": "Point",
+					"crs": {
+						"type": "link",
+						"properties": {
+							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
+						}
+					}
+				},
+				"author": {
+					"term": "owner",
+					"value": "CRAB"
+				},
+				"term": "center",
+				"type": "Pinpoint"
+			}],
+			"address": {
+				"value": "Abdijstraat 1<br />2260 Westerlo",
+				"created": "2013-11-21T13:57:00",
+				"updated": "2013-11-21T13:57:00",
+				"term": "crab"
+			}
+		},
+		"authors": [{
+			"term": "owner",
+			"value": "Vlaams Ministerie van Onderwijs en Vorming"
+		}],
+		"license": {
+			"term": "Gratis_Open_Data_Licentie",
+			"value": "Open Data Licentie"
+		}
+	},
+	{
+		"id": "27559",
+		"created": "2013-11-21T13:57:00",
+		"updated": "2013-11-21T13:57:00",
+		"labels": [{
+			"term": "primary",
+			"value": "CVO Strombeek - Grimbergen"
+		},
+		{
+			"term": "note",
+			"value": "vestiging"
+		},
+		{
+			"term": "municipality",
+			"value": "Grimbergen"
+		}],
+		"description": {
+			"value": ""
+		},
+		"categories": [{
+			"type": "Thema",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Onderwijs",
+			"value": "Onderwijs"
+		},
+		{
+			"type": "Categorie",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "SecundairOnderwijs",
+			"value": "Secundair onderwijs"
+		},
+		{
+			"type": "Type",
+			"created": "2013-11-08T18:59:00",
+			"updated": "2013-11-08T18:59:00",
+			"term": "SecundairVolwassenenonderwijs",
+			"value": "Secundair volwassenenonderwijs"
+		}],
+		"links": [{
+			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=33498",
+			"created": "2013-11-21T13:57:00",
+			"updated": "2013-11-21T13:57:00",
+			"term": "related",
+			"value": "Dit is de link naar de schoolfiche"
+		}],
+		"location": {
+			"points": [{
+				"Point": {
+					"coordinates": [4.3685774003084035,
+					50.934735059130183],
+					"type": "Point",
+					"crs": {
+						"type": "link",
+						"properties": {
+							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
+						}
+					}
+				},
+				"author": {
+					"term": "owner",
+					"value": "CRAB"
+				},
+				"term": "center",
+				"type": "Pinpoint"
+			}],
+			"address": {
+				"value": "OPGELET: de positie op kaart kan onnauwkeurig zijn!<br />Abdijstraat <br />1850 Grimbergen",
+				"created": "2013-11-21T13:57:00",
+				"updated": "2013-11-21T13:57:00",
+				"term": "crab"
+			}
+		},
+		"authors": [{
+			"term": "owner",
+			"value": "Vlaams Ministerie van Onderwijs en Vorming"
+		}],
+		"license": {
+			"term": "Gratis_Open_Data_Licentie",
+			"value": "Open Data Licentie"
+		}
+	},
+	{
+		"id": "27565",
+		"created": "2013-11-21T13:57:00",
+		"updated": "2013-11-21T13:57:00",
+		"labels": [{
+			"term": "primary",
+			"value": "Gemeentelijke Basisschool -'t Groentje"
+		},
+		{
+			"term": "note",
+			"value": "vestiging"
+		},
+		{
+			"term": "municipality",
+			"value": "Vilvoorde"
+		}],
+		"description": {
+			"value": "Tel.: 02 251 36 20"
+		},
+		"categories": [{
+			"type": "Thema",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Onderwijs",
+			"value": "Onderwijs"
+		},
+		{
+			"type": "Categorie",
+			"created": "2013-11-07T12:55:00",
+			"updated": "2013-11-07T12:55:00",
+			"term": "Kleuteronderwijs",
+			"value": "Kleuteronderwijs"
+		},
+		{
+			"type": "Type",
+			"created": "2013-11-08T18:59:00",
+			"updated": "2013-11-08T18:59:00",
+			"term": "GewoonKleuteronderwijs",
+			"value": "Gewoon kleuteronderwijs"
+		}],
+		"links": [{
+			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5462",
+			"created": "2013-11-21T13:57:00",
+			"updated": "2013-11-21T13:57:00",
+			"term": "related",
+			"value": "Dit is de link naar de schoolfiche"
+		}],
+		"location": {
+			"points": [{
+				"Point": {
+					"coordinates": [4.4347852480071737,
+					50.938536021373778],
+					"type": "Point",
+					"crs": {
+						"type": "link",
+						"properties": {
+							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
+						}
+					}
+				},
+				"author": {
+					"term": "owner",
+					"value": "CRAB"
+				},
+				"term": "center",
+				"type": "Pinpoint"
+			}],
+			"address": {
+				"value": "OPGELET: de positie op kaart kan onnauwkeurig zijn!<br />Abeelstraat <br />1800 Vilvoorde",
+				"created": "2013-11-21T13:57:00",
+				"updated": "2013-11-21T13:57:00",
+				"term": "crab"
+			}
+		},
+		"authors": [{
+			"term": "owner",
+			"value": "Vlaams Ministerie van Onderwijs en Vorming"
+		}],
+		"license": {
+			"term": "Gratis_Open_Data_Licentie",
+			"value": "Open Data Licentie"
+		}
+	}]
+}
