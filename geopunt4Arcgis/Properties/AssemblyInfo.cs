@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("geopunt4Arcgis")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Stad Antwerpen")]
+[assembly: AssemblyCompany("Digipolis Antwerpen")]
 [assembly: AssemblyProduct("geopunt4Arcgis")]
-[assembly: AssemblyCopyright("Copyright © Stad Antwerpen 2014")]
+[assembly: AssemblyCopyright("Copyright © Digipolis Antwerpen 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("194bec0c-c573-412e-a7a7-9b123b9d4766")]
+[assembly: Guid("9473f72a-33ce-402e-85c7-170c29b08419")]
 
 // Version information for an assembly consists of the following four values:
 //

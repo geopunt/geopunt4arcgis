@@ -1,44 +1,30 @@
-﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" 
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>Geopunt Voor Arcgis</Name>
-  <AddInID>{194bec0c-c573-412e-a7a7-9b123b9d4766}</AddInID>
-  <Description>Gebruik divesre geopunt webservices in desktop GIS. 
-  Zoek naar een adres in crab of bevraag de geopunt POI-service. </Description>
+﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>geopunt4Arcgis</Name>
+  <AddInID>{9473f72a-33ce-402e-85c7-170c29b08419}</AddInID>
+  <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in geïntegreed worden in Arcgis.</Description>
   <Version>1.0</Version>
-  <Image>Images\logogeopunt.png</Image>
-  <Author>Kay Warrie</Author>
-  <Company>Agentschap voor Geografische Informatie ism Stad Antwerpen</Company>
-  <Date>7/04/2014</Date>
+  <Image>Images\geopunt4Arcgis.png</Image>
+  <Author>kay Warrie</Author>
+  <Company>KGIS</Company>
+  <Date>14/09/2014</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
-  <AddIn language="CLR" library="geoPunt4Arcgis.dll" namespace="geoPunt4Arcgis">
+  <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>
       <Commands>
-        <Button id="Stad_Antwerpen_geoPunt_zoekAdres" class="zoekAdresCmd" 
-                message="Zoek in Crab naar een Adres" caption="Zoek" category="SSO" 
-                image="Images\zoek.png" />
-        <Tool id="Stad_Antwerpen_geoPunt_reverseZoek" class="reverseZoekCmd" 
-              message="Klik op een locatie op de kaart om het meest nabije adres te bepalen." 
-              caption="Identificeer een adres" category="SSO" cursor="Images\Precision Select.cur" 
-              image="Images\reverseZoek.png" />
-        <Button id="Stad_Antwerpen_geoPunt_poiZoek" class="poiZoekCmd" 
-                message="Zoeken naar plaatsen in de Geopunt POI-service." 
-                caption="Zoeken naar plaatsen" category="SSO" image="Images\poiZoek.png" />
-        <Button id="Stad_Antwerpen_geoPunt_instellingen" class="settingsCmd" 
-                message="Instellingen bewerken." caption="Instellingen" category="SSO" 
-                image="Images\instellingen.png" />
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" image="Images\geopuntAddressCmd.png">
+          <Help source="http://warrieka.github.io/index.html#!geopuntAddress.md" />
+        </Button>
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverse" message="Prik een locatie op de kaart om het meest nabije adres te weten." caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
+          <Help source="http://warrieka.github.io/index.html#!geopuntReverse.md" />
+        </Tool>
       </Commands>
-      <Toolbars>
-        <Toolbar id="Stad_Antwerpen_geoPlus_geoPlus_toolBar" caption="geoPlus toolBar" showInitially="true">
-          <Items>
-            <Item refID="Stad_Antwerpen_geoPunt_zoekAdres" />
-            <Item refID="Stad_Antwerpen_geoPunt_reverseZoek" />
-            <Item refID="Stad_Antwerpen_geoPunt_poiZoek" />
-            <Item refID="Stad_Antwerpen_geoPunt_instellingen" />
-          </Items>
-        </Toolbar>
-      </Toolbars>
+      <Extensions>
+        <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
+          <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in geïntegreed worden in Arcgis.</Description>
+        </Extension>
+      </Extensions>
     </ArcMap>
   </AddIn>
 </ESRI.Configuration>

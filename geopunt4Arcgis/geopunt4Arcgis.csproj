@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F561B45D-F8DE-428A-AB4A-61B2725D155E}</ProjectGuid>
+    <ProjectGuid>{247756CD-2F15-497F-B37A-D97766EDF2AE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>geoPunt4Arcgis</RootNamespace>
-    <AssemblyName>geoPunt4Arcgis</AssemblyName>
+    <RootNamespace>geopunt4Arcgis</RootNamespace>
+    <AssemblyName>geopunt4Arcgis</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -51,95 +51,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ESRI.ArcGIS.ArcMap, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ESRI.ArcGIS.Carto, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ESRI.ArcGIS.DataSourcesFile, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ESRI.ArcGIS.DataSourcesGDB, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-    </Reference>
     <Reference Include="ESRI.ArcGIS.Desktop.AddIns">
       <Private>False</Private>
     </Reference>
-    <Reference Include="ESRI.ArcGIS.Display, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="ESRI.ArcGIS.Framework">
       <Private>False</Private>
-    </Reference>
-    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="ESRI.ArcGIS.Geometry, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="ESRI.ArcGIS.System">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.4.0\lib\net35\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="boundingBox.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
-    </Compile>
-    <Compile Include="crabRest.cs" />
-    <Compile Include="geopuntHelper.cs" />
-    <Compile Include="settingsCmd.cs" />
-    <Compile Include="poiRest.cs" />
-    <Compile Include="poiZoekCmd.cs" />
-    <Compile Include="poiZoekForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="poiZoekForm.Designer.cs">
-      <DependentUpon>poiZoekForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="reverseZoekCmd.cs" />
-    <Compile Include="reverseZoekForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="reverseZoekForm.Designer.cs">
-      <DependentUpon>reverseZoekForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="settingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="settingsForm.Designer.cs">
-      <DependentUpon>settingsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="zoekAdresForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="zoekAdresForm.Designer.cs">
-      <DependentUpon>zoekAdresForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -147,12 +81,24 @@
     <AddInContent Include="Config.esriaddinx">
       <Generator>ArcGISAddInHostGenerator</Generator>
       <LastGenOutput>Config.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </AddInContent>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="zoekAdresCmd.cs" />
-    <AddInContent Include="Images\zoek.png" />
+    <AddInContent Include="Images\geopunt4Arcgis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="geopuntAddressCmd.cs" />
+    <AddInContent Include="Images\geopuntAddressCmd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="geopuntReverse.cs" />
+    <AddInContent Include="Images\geopuntReverse.png;Images\geopuntReverse.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="geopunt4arcgisExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ESRI.ArcGIS.ArcMapUI">
@@ -176,44 +122,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\DataSources\labelClass.datasource" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="poiZoekForm.resx">
-      <DependentUpon>poiZoekForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="reverseZoekForm.resx">
-      <DependentUpon>reverseZoekForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="settingsForm.resx">
-      <DependentUpon>settingsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="zoekAdresForm.resx">
-      <DependentUpon>zoekAdresForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AddInContent Include="Images\reverseZoek.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AddInContent Include="Images\Precision Select.cur" />
-    <AddInContent Include="Images\poiZoek.png" />
-    <AddInContent Include="Images\logogeopunt.png" />
-    <Content Include="Images\instellingen.ico" />
-    <AddInContent Include="Images\instellingen.png" />
-    <Content Include="Images\poiZoek.ico" />
-    <Content Include="Images\reverseZoek.ico" />
-    <Content Include="Images\Tool_tmpl.png" />
-    <Content Include="Images\zoek.ico" />
-  </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>
     <AddInTargetProduct>Desktop</AddInTargetProduct>
