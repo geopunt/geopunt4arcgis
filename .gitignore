@@ -3,6 +3,19 @@
 *.zip
 *.doc
 *.docx
+
+## bin ##
+
+*.exe 
+*.dll
+*.obj
+*.cache
+*.Cache
+*.pdb
+*.resources
+*.xml
+bin/
+obj/
 packages/
 
 #################

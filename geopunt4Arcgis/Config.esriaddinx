@@ -10,21 +10,35 @@
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
-  <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
+  <AddIn language="CLR4.0" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>
       <Commands>
-        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" image="Images\geopuntAddressCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" 
+                message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" 
+                category="geopunt" image="Images\geopuntAddressCmd.png">
           <Help source="http://warrieka.github.io/index.html#!geopuntAddress.md" />
         </Button>
-        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverse" message="Prik een locatie op de kaart om het meest nabije adres te weten." caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" 
+              message="Prik een locatie op de kaart om het meest nabije adres te weten." 
+              caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" 
+              category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
           <Help source="http://warrieka.github.io/index.html#!geopuntReverse.md" />
         </Tool>
+        
       </Commands>
       <Extensions>
         <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
           <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in geïntegreed worden in Arcgis.</Description>
         </Extension>
       </Extensions>
+      <Toolbars>
+        <Toolbar id="KGIS_geoPunt_toolBar" caption="geoPunt toolBar" showInitially="true">
+          <Items>
+            <Item refID="KGIS_geopunt4Arcgis_geopuntAddressCmd" />
+            <Item refID="KGIS_geopunt4Arcgis_geopuntReverse" />
+          </Items>
+        </Toolbar>
+      </Toolbars>
     </ArcMap>
   </AddIn>
 </ESRI.Configuration>

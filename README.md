@@ -4,7 +4,7 @@ Geopunt4Arcgis
 ####English:
 Geopunt4Arcgis is an extension for arcgis, aimed at local goverments in Flanders.
 It essentialy a port of geopunt4Qgis, to C-charp and Arcgis.
-Right now only geocoding and reverse geocoding are implemented.
+Right now only geocoding, reverse geocoding and POI are implemented.
 
 See also:
 https://github.com/warrieka/geopunt4Qgis 
