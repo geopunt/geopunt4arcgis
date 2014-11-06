@@ -116,9 +116,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
     </Compile>
-    <Compile Include="datacontract\crabLocation.cs" />
-    <Compile Include="datacontract\crabSuggestion.cs" />
+    <Compile Include="datacontract\crabLocationDC.cs" />
+    <Compile Include="datacontract\crabSuggestionDC.cs" />
+    <Compile Include="datacontract\geojsonDC.cs" />
+    <Compile Include="datacontract\gipodDC.cs" />
     <Compile Include="dataHandler\adres.cs" />
+    <Compile Include="dataHandler\gipod.cs" />
+    <Compile Include="dataHandler\gipodParam.cs" />
     <Compile Include="Form\zoekAdresForm.cs">
       <SubType>Form</SubType>
     </Compile>
