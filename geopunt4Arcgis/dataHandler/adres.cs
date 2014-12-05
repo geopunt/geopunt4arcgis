@@ -20,7 +20,8 @@ namespace geopunt4Arcgis.dataHandler
                 client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
             }
             else {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, Proxy = new System.Net.WebProxy(proxyUrl, port) };
+                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, 
+                                           Proxy = new System.Net.WebProxy(proxyUrl, port) };
             }
             client.Headers["Content-type"] = "application/json";
             client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(callback);
@@ -34,7 +35,8 @@ namespace geopunt4Arcgis.dataHandler
             }
             else
             {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, Proxy = new System.Net.WebProxy(proxyUrl, port) };
+                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, 
+                                           Proxy = new System.Net.WebProxy(proxyUrl, port) };
             }
             client.Headers["Content-type"] = "application/json";
         }

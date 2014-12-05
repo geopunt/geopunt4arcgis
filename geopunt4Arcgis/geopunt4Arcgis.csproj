@@ -52,6 +52,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.ADF.Connection.Local, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ESRI.ArcGIS.ArcMap, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -112,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="boundingBox.cs" />
+    <Compile Include="Commands\geopuntGipodCmd.cs" />
     <Compile Include="Config.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
@@ -123,6 +128,12 @@
     <Compile Include="dataHandler\adres.cs" />
     <Compile Include="dataHandler\gipod.cs" />
     <Compile Include="dataHandler\gipodParam.cs" />
+    <Compile Include="Form\gipodForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\gipodForm.designer.cs">
+      <DependentUpon>gipodForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\zoekAdresForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +196,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\gipodForm.resx">
+      <DependentUpon>gipodForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\zoekAdresForm.resx">
       <DependentUpon>zoekAdresForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Images\ArcGISAddin1.png" />
+    <AddInContent Include="Images\geopuntGipodCmd.png" />
     <Content Include="Images\gipod.ico" />
     <Content Include="Images\gipod.png" />
     <Content Include="Images\instellingen.ico" />

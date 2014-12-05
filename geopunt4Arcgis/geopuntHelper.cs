@@ -626,7 +626,7 @@ namespace geopunt4Arcgis
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="filters"> for example:
         ///       IGxObjectFilter ipFilter1 = new GxFilterFGDBFeatureClassesClass() ;
-        ///       List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { ipFilter1 });</param>
+        ///       List&lt;IGxObjectFilter&gt; gxFilterList = new List&lt;IGxObjectFilter&gt;(new IGxObjectFilter[] { ipFilter1 });</param>
         /// <param name="dialogTitle">The title of the dialog</param>
         /// <returns> the path to the file to save </returns>
         public static string ShowSaveDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
@@ -652,7 +652,17 @@ namespace geopunt4Arcgis
             string path = pGxDialog.FinalLocation.FullName + "\\" + pGxDialog.Name;
             return path;
         }
+        /// <summary> Shows dialog for saving data.</summary>
+        /// <param name="dialogTitle">The title of the dialog</param>
+        /// <returns> the path to the file to save </returns>
+        public static string ShowSaveDataDialog( string dialogTitle)
+        {
+            IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
+            IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
+            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter });
 
+            return ShowSaveDataDialog(gxFilterList, dialogTitle);
+        }
         #endregion
     }
 }

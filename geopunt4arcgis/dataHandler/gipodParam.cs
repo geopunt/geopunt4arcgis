@@ -9,6 +9,8 @@ namespace geopunt4Arcgis.dataHandler
 
     public enum gipodtype { workassignment, manifestation }
 
+    public enum gipodReferencedata { city, province, eventtype, owner }
+
     public struct gipodParam
     {
         public gipodtype gipodType;

@@ -67,15 +67,10 @@ namespace geopunt4Arcgis
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-
             if (reverseFC == null)
             {
-                IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
-                IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
-                List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter });
-
                 this.Visible = false;
-                string fcPath = geopuntHelper.ShowSaveDataDialog(gxFilterList, "Save as ..");
+                string fcPath = geopuntHelper.ShowSaveDataDialog( "Save as ..");
                 this.Visible = true;
                 if (fcPath == null) { return; }
                 createAdresFeatureClass(fcPath, view.FocusMap.SpatialReference);

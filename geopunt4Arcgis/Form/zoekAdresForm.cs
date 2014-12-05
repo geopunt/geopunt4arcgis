@@ -36,7 +36,6 @@ namespace geopunt4Arcgis
 
         public zoekAdresForm( IActiveView activeView )
         {
-
             //set global objects
             view = ArcMap.Document.ActiveView;
 
@@ -44,7 +43,6 @@ namespace geopunt4Arcgis
             System.Object obj = Activator.CreateInstance(factoryType);
             spatialReferenceFactory = obj as ISpatialReferenceFactory2;
 
-            //spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
             wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
@@ -288,12 +286,8 @@ namespace geopunt4Arcgis
             //if no adres feature class yet, create it.
             if (adresFC == null)
             {
-                IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
-                IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
-                List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter });
-
                 this.Visible = false;
-                string fcPath = geopuntHelper.ShowSaveDataDialog(gxFilterList, "Save as ..");
+                string fcPath = geopuntHelper.ShowSaveDataDialog("Save as ..");
                 this.Visible = true;
                 if (fcPath == null) { return; }
                 createAdresFeatureClass(fcPath, view.FocusMap.SpatialReference);
