@@ -84,7 +84,7 @@ namespace geopunt4Arcgis
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace + " : " + ex.Message);
+                MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
             finally {
                 base.OnMouseDown(arg);

@@ -18,7 +18,7 @@ namespace geopunt4Arcgis.datacontract
         public List<string> cities { get; set; }
     }
 
-    public class manifestation : workassignment
+    public class gipodResponse : workassignment
     {
         public string initiator { get; set; }
         public string eventType { get; set; }

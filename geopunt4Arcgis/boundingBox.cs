@@ -77,12 +77,15 @@ namespace geopunt4Arcgis
             inSRS = arcgisBbox.SpatialReference;
 
             //Set maxbounds
-            ISpatialReferenceFactory3 SpatialReferenceFactory = new SpatialReferenceEnvironmentClass();
-            ISpatialReference lam72 = SpatialReferenceFactory.CreateSpatialReference(31370);
+            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+            System.Object obj = Activator.CreateInstance(factoryType);
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+
+            ISpatialReference lam72 = spatialReferenceFactory.CreateSpatialReference(31370);
             IEnvelope maxBounds = geopuntHelper.makeExtend(17750, 23720, 297240, 245340, lam72); //not outside flanders
             IEnvelope prjBounds = geopuntHelper.Transform(maxBounds as IGeometry, inSRS) as IEnvelope;
 
-            if (arcgisBbox.XMin > prjBounds.XMin) Xmin = arcgisBbox.XMin;
+            if (arcgisBbox.XMin > prjBounds.XMin) Xmin = arcgisBbox.XMax;
             else Xmin = prjBounds.XMin;
             if (arcgisBbox.YMin > prjBounds.YMin) Ymin = arcgisBbox.YMin;
             else Ymin = prjBounds.YMin;

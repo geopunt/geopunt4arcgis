@@ -91,54 +91,58 @@ namespace geopunt4Arcgis
 
         private void saveAsShapeBtn_Click(object sender, EventArgs e)
         {
-            string shapeCreated;
-            shapeCreated = createShapeName();
-
-            //if user canceled shapeCreated is null
-            if (shapeCreated == null) return;
-
-            if (File.Exists(shapeCreated))
+            try
             {
-                //messageLbl.Text = string.Format("Kan {0} niet overschrijven.", shapeCreated);
-                //return;
-                geopuntHelper.deleteShapeFile(shapeCreated);
+                string shapeCreated;
+                shapeCreated = createShapeName();
+
+                //if user canceled shapeCreated is null
+                if (shapeCreated == null) return;
+
+                if (File.Exists(shapeCreated))
+                {
+                    geopuntHelper.deleteFeatureClass(shapeCreated);
+                }
+
+                dataHandler.gipodParam param = getGipodParam();
+
+                //disable button to prevent multiple runs and start waiting animation
+                saveAsShapeBtn.Enabled = false;
+                messageLbl.Text = "Data ophalen van GIPOD";
+                progress.MarqueeAnimationSpeed = 100;
+
+                List<datacontract.gipodResponse> gipodRecords = fetchGipod(param);
+
+                if (gipodRecords.Count > 0)
+                {
+                    messageLbl.Text = String.Format("{0} objecten gevonden in GIPOD, aan het schrijven naar shapefile", gipodRecords.Count);
+
+                    //create shapefile
+                    List<IField> gipodfields = gipodIFields(param.gipodType);
+                    IFeatureClass gipodFC = geopuntHelper.createShapeFile(shapeCreated, gipodfields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+
+                    populateGipodShape(gipodFC, gipodRecords, param.gipodType);
+
+                    geopuntHelper.addFeatureClassToMap(view, gipodFC, true);
+                    this.Close();
+                }
+                else
+                {
+                    saveAsShapeBtn.Enabled = true;
+                    progress.MarqueeAnimationSpeed = 0;
+                    messageLbl.Text = "Geen records gevonden in gipod, die voldoen aan deze parameters";
+                }
             }
-
-            gipodParam param = getGipodParam();
-
-            //disable button to prevent multiple runs and start waiting animation
-            saveAsShapeBtn.Enabled = false;
-            messageLbl.Text = "Data ophalen van GIPOD";
-            progress.MarqueeAnimationSpeed = 100;
-
-            List<gipodResponse> gipodRecords = fetchGipod(param);
-
-            if (gipodRecords.Count > 0)
+            catch (Exception ex)
             {
-                messageLbl.Text = String.Format("{0} objecten gevonden in GIPOD, aan het schrijven naar shapefile", gipodRecords.Count);
-
-                //create shapefile
-                List<IField> gipodfields = gipodIFields();
-                IFeatureClass gipodFC = geopuntHelper.createShapeFile(shapeCreated, gipodfields,
-                                            view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
-
-                populateGipodShape(gipodFC, gipodRecords);
-
-                geopuntHelper.addFeatureClassToMap(view, gipodFC, true);
-                this.Close();
-            }
-            else
-            {
-                saveAsShapeBtn.Enabled = true;
-                progress.MarqueeAnimationSpeed = 0;
-                messageLbl.Text = "Geen records gevonden in gipod";
+                MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
         }
 
         #endregion
 
         #region "private functions"
-        private List<datacontract.manifestation> fetchGipod(dataHandler.gipodParam param)
+        private List<datacontract.gipodResponse> fetchGipod(dataHandler.gipodParam param)
         {
             //get parameters form GUI
             string city = param.city;
@@ -153,37 +157,35 @@ namespace geopunt4Arcgis
             dataHandler.gipodCRS crs = param.crs;
 
             //get data from gipod
-            List<dataHandler.gipodParam> response;
+            List<datacontract.gipodResponse> response;
             if (param.bbox == null)
             {
-                if (param.gipodType == dataHandler.gipodtype.workassignment)
-                {
-                    response = gipod.allWorkassignments(startdate, enddate, city, province, owner, crs);
-                    return response;
-                }
-                else if (param.gipodType == gipodtype.manifestation)
+                if (param.gipodType == dataHandler.gipodtype.manifestation)
                 {
                     response = gipod.allManifestations(startdate, enddate, city, province, owner, eventtype, crs);
+                    return response;
+                }
+                else if (param.gipodType == dataHandler.gipodtype.workassignment)
+                {
+                    response = gipod.allWorkassignments(startdate, enddate, city, province, owner, crs);
                     return response;
                 }
                 else return null;
             }
             else
             {
-                boundingBox bbox = param.bbox;
-                if (param.gipodType == gipodtype.workassignment)
+                if (param.gipodType == dataHandler.gipodtype.manifestation)
                 {
-                    response = gipod.allWorkassignments(bbox, startdate, enddate, city, province, owner, crs);
+                    response = gipod.allManifestations(startdate, enddate, city, province, owner, eventtype, crs, param.bbox);
                     return response;
                 }
-                else if (param.gipodType == gipodtype.manifestation)
+                else if (param.gipodType == dataHandler.gipodtype.workassignment)
                 {
-                    response = gipod.allManifestations(bbox, startdate, enddate, city, province, owner, eventtype, crs);
+                    response = gipod.allWorkassignments(startdate, enddate, city, province, owner, crs, param.bbox);
                     return response;
                 }
                 else return null;
             }
-
         }
 
         /// <summary>get the filename for gipod shapefile and delete existing shape if needed </summary>
@@ -208,7 +210,7 @@ namespace geopunt4Arcgis
         }
 
         /// <summary>Create the the fields for teh gipod Shapefile</summary>
-        private List<IField> gipodIFields()
+        private List<IField> gipodIFields(dataHandler.gipodtype gtype)
         {
             List<IField> fields = new List<IField>();
 
@@ -216,11 +218,11 @@ namespace geopunt4Arcgis
             fields.Add(gipodID);
             IField eigenaar = geopuntHelper.createField("eigenaar", esriFieldType.esriFieldTypeString, 255);
             fields.Add(eigenaar);
-            IField descript = geopuntHelper.createField("descript", esriFieldType.esriFieldTypeString, 255);
+            IField descript = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 255);
             fields.Add(descript);
-            IField startDate = geopuntHelper.createField("startDate", esriFieldType.esriFieldTypeDate);
+            IField startDate = geopuntHelper.createField("start", esriFieldType.esriFieldTypeDate);
             fields.Add(startDate);
-            IField endDate = geopuntHelper.createField("endDate", esriFieldType.esriFieldTypeDate);
+            IField endDate = geopuntHelper.createField("einde", esriFieldType.esriFieldTypeDate);
             fields.Add(endDate);
             IField hinder = geopuntHelper.createField("hinder", esriFieldType.esriFieldTypeSmallInteger);
             fields.Add(hinder);
@@ -229,13 +231,21 @@ namespace geopunt4Arcgis
             IField cities = geopuntHelper.createField("cities", esriFieldType.esriFieldTypeString, 255);
             fields.Add(cities);
 
+            if (gtype == dataHandler.gipodtype.manifestation) {
+                IField initiator = geopuntHelper.createField("initiator", esriFieldType.esriFieldTypeString, 140);
+                fields.Add(initiator);
+                IField eventType = geopuntHelper.createField("eventType", esriFieldType.esriFieldTypeString, 140);
+                fields.Add(eventType);
+                IField recurrencePattern = geopuntHelper.createField("patroon", esriFieldType.esriFieldTypeString, 255);
+                fields.Add(recurrencePattern);
+            }
+
             return fields;
         }
 
-        private dataHandler.gipodParam getGipodParam()
+        /// <summary>Get the gipod parameters </summary>
+        private dataHandler.gipodParam getGipodParam( )
         {
-            ISpatialReference bboxCrs;
-
             //get parameters form GUI
             dataHandler.gipodParam param = new dataHandler.gipodParam();
             param.city = cityCombo.Text;
@@ -244,22 +254,19 @@ namespace geopunt4Arcgis
             param.startdate = startdatePicker.Value;
             param.enddate = enddatePicker.Value;
 
-            if (view.FocusMap.SpatialReference.FactoryCode == 900913 ||
-                  view.FocusMap.SpatialReference.FactoryCode == 102100)
-            {
-                param.crs = dataHandler.gipodCRS.WEBMERCATOR;
-                bboxCrs = view.FocusMap.SpatialReference;
-            }
-            else if (view.FocusMap.SpatialReference.FactoryCode == 31370)
-            {
-                param.crs = dataHandler.gipodCRS.Lambert72;
-                bboxCrs = view.FocusMap.SpatialReference;
-            }
-            else
-            {
-                param.crs = dataHandler.gipodCRS.WGS84;
-                bboxCrs = wgs;
-            }
+            param.crs = dataHandler.gipodCRS.WGS84;
+
+            //if (view.FocusMap.SpatialReference.FactoryCode == 900913 ||
+            //      view.FocusMap.SpatialReference.FactoryCode == 102100)
+            //{
+            //    param.crs = dataHandler.gipodCRS.WEBMERCATOR;
+            //    bboxCrs = view.FocusMap.SpatialReference;
+            //}
+            //else if (view.FocusMap.SpatialReference.FactoryCode == 31370)
+            //{
+            //    param.crs = dataHandler.gipodCRS.Lambert72;
+            //    bboxCrs = view.FocusMap.SpatialReference;
+            //}
 
             if (manifestationRadio.Checked)
             {
@@ -274,18 +281,18 @@ namespace geopunt4Arcgis
             //set bounds
             if (useExtendChk.Checked)
             {
-                IEnvelope arcGIsBbox = geopuntHelper.Transform(view.Extent, bboxCrs) as IEnvelope;
+                IEnvelope arcGIsBbox = geopuntHelper.Transform2WGS(view.Extent) as IEnvelope;
                 param.bbox = new boundingBox(arcGIsBbox);
             }
             else
             {
-                param.bbox = new boundingBox(bboxCrs.FactoryCode);
+                param.bbox = null;
             }
             return param;
         }
 
         /// <summary>insert the records from the GIPOD service into the shapefile </summary>
-        private void populateGipodShape(IFeatureClass gipodFC, List<datacontract.manifestation> gipodRecords)
+        private void populateGipodShape(IFeatureClass gipodFC, List<datacontract.gipodResponse> gipodRecords, dataHandler.gipodtype gtype)
         {
             //return if something is null
             if (gipodFC == null || gipodRecords == null) return;
@@ -303,13 +310,14 @@ namespace geopunt4Arcgis
                 IFeatureCursor insertCursor = gipodFC.Insert(true);
                 comReleaser.ManageLifetime(insertCursor);
 
-                foreach (datacontract.manifestation row in gipodRecords)
+                foreach (datacontract.gipodResponse row in gipodRecords)
                 {
                     Double x = row.coordinate.coordinates[0];
                     Double y = row.coordinate.coordinates[1];
-                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = srs };
+                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = wgs };
+                    IPoint toPt =  geopuntHelper.Transform(pt, srs) as IPoint;
 
-                    featureBuffer.Shape = pt;
+                    featureBuffer.Shape = toPt;
 
                     int id = row.gipodId;
                     int idIdx = gipodFC.FindField("gipodID");
@@ -320,15 +328,15 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(ownerIdx, owner);
 
                     string description = row.description;
-                    int descriptionIdx = gipodFC.FindField("descript");
+                    int descriptionIdx = gipodFC.FindField("info");
                     featureBuffer.set_Value(descriptionIdx, description);
 
                     DateTime startDate = row.startDateTime;
-                    int startDateIdx = gipodFC.FindField("startDate");
+                    int startDateIdx = gipodFC.FindField("start");
                     featureBuffer.set_Value(startDateIdx, startDate);
 
                     DateTime endDate = row.endDateTime;
-                    int endDateIdx = gipodFC.FindField("endDate");
+                    int endDateIdx = gipodFC.FindField("einde");
                     featureBuffer.set_Value(endDateIdx, endDate);
 
                     int hinder = row.importantHindrance ? 1 : 0;
@@ -343,9 +351,29 @@ namespace geopunt4Arcgis
                     int citiesIdx = gipodFC.FindField("cities");
                     featureBuffer.set_Value(citiesIdx, cities);
 
+                    if (gtype == dataHandler.gipodtype.manifestation) {
+                        string initiator = row.initiator ;
+                        if (initiator != null) {
+                            int initiatorIdx = gipodFC.FindField("initiator");
+                            featureBuffer.set_Value(initiatorIdx, initiator);
+                        }
+                        string eventType = row.eventType ;
+                        if (eventType != null) {
+                            int eventTypeIdx = gipodFC.FindField("eventType");
+                            featureBuffer.set_Value(eventTypeIdx, eventType);
+                        }
+
+                        string recurrencePattern = row.recurrencePattern ;
+                        if (recurrencePattern != null) {
+                            int recurrencePatternIdx = gipodFC.FindField("patroon");
+                            featureBuffer.set_Value(recurrencePatternIdx, recurrencePattern);
+                        }
+                    }
+
                     insertCursor.InsertFeature(featureBuffer);
                 }
                 insertCursor.Flush();
+                
             }
         }
         #endregion

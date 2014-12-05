@@ -347,7 +347,8 @@ namespace geopunt4Arcgis
             IFieldEdit fieldEdit = (IFieldEdit)field;
             fieldEdit.Name_2 = name;
             fieldEdit.Type_2 =  fieldType;
-            fieldEdit.Length_2 = len;
+            if (fieldType == esriFieldType.esriFieldTypeString ) fieldEdit.Length_2 = len;
+            fieldEdit.IsNullable_2 = true;
             return field;
         }
 
@@ -503,7 +504,7 @@ namespace geopunt4Arcgis
             {
                 try 
                 {
-                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("http://kgis.be/"); 
+                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("http://loc.api.geopunt.be/"); 
                     hwebRequest.Timeout = 5000; //5 seconds timeout to process the request.
                     HttpWebResponse hWebResponse = (HttpWebResponse)hwebRequest.GetResponse(); //Process the request.
                     if (hWebResponse.StatusCode == HttpStatusCode.OK) //Get the response.
@@ -513,7 +514,7 @@ namespace geopunt4Arcgis
                     else return false; //Else it is not.
                 }
                 catch (Exception ex) {
-                    MessageBox.Show("Geen internet connectie, misschien moet je een proxy instellen?", ex.Message);
+                    MessageBox.Show("Geen internet connectie", ex.Message);
                     return false;
                 }
             }

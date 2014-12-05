@@ -52,38 +52,101 @@ namespace geopunt4Arcgis.dataHandler
             return gipodResponse;
         }
 
-        public List<datacontract.manifestation> getManifestation( DateTime? startdate = null, DateTime? enddate = null,
+        //manifestation
+        public List<datacontract.gipodResponse> getManifestation( 
+                DateTime? startdate = null, DateTime? enddate = null,
                 string city = "", string province = "", string owner = "", string eventtype = "",
-                gipodCRS CRS = gipodCRS.WGS84, int c = 50, int offset = 0)
+                gipodCRS CRS = gipodCRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null )
         {
-            setQueryValues(startdate, enddate, city, province, owner, eventtype, CRS, c, offset);
+            setQueryValues(startdate, enddate, city, province, owner, eventtype, CRS, c, offset, bbox);
 
             client.QueryString = qryValues;
+            
             Uri gipodUri = new Uri("http://gipod.api.agiv.be/ws/v1/manifestation");
             string json = client.DownloadString(gipodUri);
-            List<datacontract.manifestation> gipodResponse = JsonConvert.DeserializeObject<List<datacontract.manifestation>>(json);
+
+            List<datacontract.gipodResponse> gipodRespons = JsonConvert.DeserializeObject<List<datacontract.gipodResponse>>(json);
             
             client.QueryString.Clear();
-            return gipodResponse;
+            return gipodRespons;
+        }
+
+        public List<datacontract.gipodResponse> allManifestations( DateTime? startdate = null, DateTime? enddate = null,
+                string city = "", string province = "", string owner = "", string eventtype = "", gipodCRS CRS = gipodCRS.WGS84, boundingBox bbox = null)
+        {
+            List<datacontract.gipodResponse> allWA = new List<datacontract.gipodResponse>();
+            List<datacontract.gipodResponse> WA = getManifestation( startdate, enddate, city, province, owner, eventtype ,CRS, 500, 0, bbox);
+
+            allWA.AddRange(WA);
+
+            int counter = 0;
+
+            while (WA.Count == 500)
+            {
+                counter += 500;
+                WA = getManifestation(startdate, enddate, city, province, owner, eventtype, CRS, 500, counter);
+                allWA.AddRange(WA);
+            }
+            return allWA;
+        }
+
+        //workassignments
+        public List<datacontract.gipodResponse> getWorkassignment(DateTime? startdate = null, DateTime? enddate = null,
+                string city = "", string province = "", string owner = "", gipodCRS CRS = gipodCRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null)
+        {
+            setQueryValues(startdate, enddate, city, province, owner, "", CRS, 500, offset, bbox);
+
+            client.QueryString = qryValues;
+
+            Uri gipodUri = new Uri("http://gipod.api.agiv.be/ws/v1/workassignment");
+            string json = client.DownloadString(gipodUri);
+
+            List<datacontract.gipodResponse> gipodRespons = JsonConvert.DeserializeObject<List<datacontract.gipodResponse>>(json);
+
+            client.QueryString.Clear();
+            return gipodRespons;
+        }
+
+        public List<datacontract.gipodResponse> allWorkassignments(DateTime? startdate = null, DateTime? enddate = null,
+                string city = "", string province = "", string owner = "", gipodCRS CRS = gipodCRS.WGS84, boundingBox bbox = null)
+        {
+            List<datacontract.gipodResponse> allWA = new List<datacontract.gipodResponse>();
+            List<datacontract.gipodResponse> WA = getWorkassignment(startdate, enddate, city, province, owner, CRS, 500, 0, bbox);
+
+            allWA.AddRange(WA);
+
+            int counter = 0;
+
+            while (WA.Count == 500)
+            {
+                counter += 500;
+                WA = getWorkassignment(startdate, enddate, city, province, owner, CRS, 500, counter);
+                allWA.AddRange(WA);
+            }
+            return allWA;
         }
 
         private void setQueryValues(DateTime? startdate, DateTime? enddate, 
-            string city, string province, string owner, string eventtype, gipodCRS CRS, int c, int offset)
+            string city, string province, string owner, string eventtype, gipodCRS CRS, int c, int offset, boundingBox bbox = null)
         {
             //counters
             qryValues.Add("offset", offset.ToString());
             qryValues.Add("limit", c.ToString());
             //string lists
-            if (city != "") qryValues.Add("city", city);
-            if (province != "") qryValues.Add("province", province);
-            if (owner != "") qryValues.Add("owner", owner);
-            if (eventtype != "") qryValues.Add("eventtype", eventtype);
+            if (city != "" || city != null) qryValues.Add("city", city);
+            if (province != "" || province != null) qryValues.Add("province", province);
+            if (owner != "" || owner != null) qryValues.Add("owner", owner);
+            if (eventtype != "" || eventtype != null) qryValues.Add("eventtype", eventtype);
             //CRS
             qryValues.Add("CRS", Convert.ToString((int)CRS));
 
             //Time
             if (startdate != null) qryValues.Add("startdate", startdate.Value.ToString("yyyy-MM-dd"));
             if (enddate != null) qryValues.Add("enddate", enddate.Value.ToString("yyyy-MM-dd"));
+
+            //bbox
+            if (bbox != null) qryValues.Add("bbox", bbox.ToBboxString(",", "|") );
+            
         }
 
     }
