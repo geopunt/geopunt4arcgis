@@ -1,5 +1,4 @@
-﻿
-using ESRI.ArcGIS.Framework;
+﻿using ESRI.ArcGIS.Framework;
 using ESRI.ArcGIS.Catalog;
 using ESRI.ArcGIS.CatalogUI;
 using ESRI.ArcGIS.DataSourcesFile;
@@ -759,10 +758,13 @@ namespace geopunt4Arcgis
             return esriPolygon;
         }
 
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI point object</param>
+        /// <returns>A geojson string</returns>
         public static string esri2geojsonPoint(IPoint esriPoint) 
         {
             int epsg;
-            if ( esriPoint.SpatialReference.FactoryCode == 900913 || esriPoint.SpatialReference.FactoryCode == 102100 )
+            if ( esriPoint.SpatialReference == null || esriPoint.SpatialReference.FactoryCode == 900913 || esriPoint.SpatialReference.FactoryCode == 102100 )
                 epsg = 3857 ;//google mercator
             else epsg = esriPoint.SpatialReference.FactoryCode;
 
@@ -782,10 +784,13 @@ namespace geopunt4Arcgis
            return JsonConvert.SerializeObject(JSpoint);
         }
 
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polyline object</param>
+        /// <returns>A geojson string</returns>
         public static string esri2geojsonLine(IPolyline esriLine)
         {
             int epsg;
-            if (esriLine.SpatialReference.FactoryCode == 900913 || esriLine.SpatialReference.FactoryCode == 102100)
+            if (esriLine.SpatialReference == null || esriLine.SpatialReference.FactoryCode == 900913 || esriLine.SpatialReference.FactoryCode == 102100)
                 epsg = 3857;//google mercator
             else epsg = esriLine.SpatialReference.FactoryCode;
 
@@ -812,10 +817,13 @@ namespace geopunt4Arcgis
             return JsonConvert.SerializeObject(JSline);
         }
 
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polygon object</param>
+        /// <returns>A geojson string</returns>
         public static string esri2geojsonPolygon(IPolygon esriPolygon)
         {
             int epsg;
-            if (esriPolygon.SpatialReference.FactoryCode == 900913 || esriPolygon.SpatialReference.FactoryCode == 102100)
+            if (esriPolygon.SpatialReference == null || esriPolygon.SpatialReference.FactoryCode == 900913 || esriPolygon.SpatialReference.FactoryCode == 102100)
                 epsg = 3857;//google mercator
             else epsg = esriPolygon.SpatialReference.FactoryCode;
 

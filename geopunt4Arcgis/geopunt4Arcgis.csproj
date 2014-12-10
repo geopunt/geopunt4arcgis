@@ -158,6 +158,7 @@
     <Compile Include="Form\reverseZoekForm.designer.cs">
       <DependentUpon>reverseZoekForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="testBtn.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -228,6 +229,7 @@
     <Content Include="Images\poiZoek.png" />
     <Content Include="Images\reverseZoek.ico" />
     <Content Include="Images\reverseZoek.png" />
+    <AddInContent Include="Images\testBtn.png" />
     <Content Include="Images\zoek.ico" />
     <Content Include="Images\zoek.png" />
   </ItemGroup>
