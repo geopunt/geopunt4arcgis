@@ -64,6 +64,10 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="ESRI.ArcGIS.CartoUI, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="ESRI.ArcGIS.Catalog, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -98,6 +102,10 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="ESRI.ArcGIS.GISClient, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="ESRI.ArcGIS.System">
       <Private>False</Private>
     </Reference>
@@ -126,8 +134,10 @@
     <Compile Include="datacontract\geojsonDC.cs" />
     <Compile Include="datacontract\gipodDC.cs" />
     <Compile Include="dataHandler\adres.cs" />
+    <Compile Include="datacontract\capakeyDC.cs" />
+    <Compile Include="dataHandler\capakey.cs" />
     <Compile Include="dataHandler\gipod.cs" />
-    <Compile Include="dataHandler\gipodParam.cs" />
+    <Compile Include="dataHandler\geopuntParam.cs" />
     <Compile Include="Form\gipodForm.cs">
       <SubType>Form</SubType>
     </Compile>

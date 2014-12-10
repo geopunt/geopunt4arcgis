@@ -56,7 +56,7 @@ namespace geopunt4Arcgis.dataHandler
         public List<datacontract.gipodResponse> getManifestation( 
                 DateTime? startdate = null, DateTime? enddate = null,
                 string city = "", string province = "", string owner = "", string eventtype = "",
-                gipodCRS CRS = gipodCRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null )
+                CRS CRS = CRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null )
         {
             setQueryValues(startdate, enddate, city, province, owner, eventtype, CRS, c, offset, bbox);
 
@@ -72,7 +72,7 @@ namespace geopunt4Arcgis.dataHandler
         }
 
         public List<datacontract.gipodResponse> allManifestations( DateTime? startdate = null, DateTime? enddate = null,
-                string city = "", string province = "", string owner = "", string eventtype = "", gipodCRS CRS = gipodCRS.WGS84, boundingBox bbox = null)
+                string city = "", string province = "", string owner = "", string eventtype = "", CRS CRS = CRS.WGS84, boundingBox bbox = null)
         {
             List<datacontract.gipodResponse> allWA = new List<datacontract.gipodResponse>();
             List<datacontract.gipodResponse> WA = getManifestation( startdate, enddate, city, province, owner, eventtype ,CRS, 500, 0, bbox);
@@ -92,7 +92,7 @@ namespace geopunt4Arcgis.dataHandler
 
         //workassignments
         public List<datacontract.gipodResponse> getWorkassignment(DateTime? startdate = null, DateTime? enddate = null,
-                string city = "", string province = "", string owner = "", gipodCRS CRS = gipodCRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null)
+                string city = "", string province = "", string owner = "", CRS CRS = CRS.WGS84, int c = 50, int offset = 0, boundingBox bbox = null)
         {
             setQueryValues(startdate, enddate, city, province, owner, "", CRS, 500, offset, bbox);
 
@@ -108,7 +108,7 @@ namespace geopunt4Arcgis.dataHandler
         }
 
         public List<datacontract.gipodResponse> allWorkassignments(DateTime? startdate = null, DateTime? enddate = null,
-                string city = "", string province = "", string owner = "", gipodCRS CRS = gipodCRS.WGS84, boundingBox bbox = null)
+                string city = "", string province = "", string owner = "", CRS CRS = CRS.WGS84, boundingBox bbox = null)
         {
             List<datacontract.gipodResponse> allWA = new List<datacontract.gipodResponse>();
             List<datacontract.gipodResponse> WA = getWorkassignment(startdate, enddate, city, province, owner, CRS, 500, 0, bbox);
@@ -127,7 +127,7 @@ namespace geopunt4Arcgis.dataHandler
         }
 
         private void setQueryValues(DateTime? startdate, DateTime? enddate, 
-            string city, string province, string owner, string eventtype, gipodCRS CRS, int c, int offset, boundingBox bbox = null)
+            string city, string province, string owner, string eventtype, CRS CRS, int c, int offset, boundingBox bbox = null)
         {
             //counters
             qryValues.Add("offset", offset.ToString());
@@ -146,7 +146,6 @@ namespace geopunt4Arcgis.dataHandler
 
             //bbox
             if (bbox != null) qryValues.Add("bbox", bbox.ToBboxString(",", "|") );
-            
         }
 
     }

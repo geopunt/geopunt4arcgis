@@ -56,32 +56,33 @@
             // 
             // cityCombo
             // 
-            this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityCombo.FormattingEnabled = true;
-            this.cityCombo.Location = new System.Drawing.Point(106, 70);
+            this.cityCombo.Location = new System.Drawing.Point(106, 100);
             this.cityCombo.Name = "cityCombo";
             this.cityCombo.Size = new System.Drawing.Size(392, 21);
             this.cityCombo.TabIndex = 0;
             // 
             // provinceCombo
             // 
-            this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.provinceCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.provinceCombo.FormattingEnabled = true;
-            this.provinceCombo.Location = new System.Drawing.Point(106, 101);
+            this.provinceCombo.Location = new System.Drawing.Point(106, 73);
             this.provinceCombo.Name = "provinceCombo";
             this.provinceCombo.Size = new System.Drawing.Size(392, 21);
             this.provinceCombo.TabIndex = 1;
+            this.provinceCombo.SelectedIndexChanged += new System.EventHandler(this.provinceCombo_SelectedIndexChanged);
             // 
             // citylbl
             // 
             this.citylbl.AutoSize = true;
-            this.citylbl.Location = new System.Drawing.Point(68, 73);
+            this.citylbl.Location = new System.Drawing.Point(68, 103);
             this.citylbl.Name = "citylbl";
             this.citylbl.Size = new System.Drawing.Size(32, 13);
             this.citylbl.TabIndex = 2;
@@ -90,7 +91,7 @@
             // provinceLbl
             // 
             this.provinceLbl.AutoSize = true;
-            this.provinceLbl.Location = new System.Drawing.Point(46, 104);
+            this.provinceLbl.Location = new System.Drawing.Point(46, 76);
             this.provinceLbl.Name = "provinceLbl";
             this.provinceLbl.Size = new System.Drawing.Size(54, 13);
             this.provinceLbl.TabIndex = 3;
@@ -98,8 +99,8 @@
             // 
             // startdatePicker
             // 
-            this.startdatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.startdatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.startdatePicker.Location = new System.Drawing.Point(106, 192);
             this.startdatePicker.Name = "startdatePicker";
             this.startdatePicker.Size = new System.Drawing.Size(392, 20);
@@ -107,8 +108,8 @@
             // 
             // enddatePicker
             // 
-            this.enddatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.enddatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.enddatePicker.Location = new System.Drawing.Point(106, 218);
             this.enddatePicker.Name = "enddatePicker";
             this.enddatePicker.Size = new System.Drawing.Size(392, 20);
@@ -117,8 +118,8 @@
             // 
             // ownerCombo
             // 
-            this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ownerCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ownerCombo.FormattingEnabled = true;
@@ -165,8 +166,8 @@
             // 
             // eventTypeCombo
             // 
-            this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.eventTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.eventTypeCombo.Enabled = false;
@@ -178,8 +179,8 @@
             // 
             // gipodTypeGroup
             // 
-            this.gipodTypeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gipodTypeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gipodTypeGroup.Controls.Add(this.manifestationRadio);
             this.gipodTypeGroup.Controls.Add(this.workassignmentRadio);
             this.gipodTypeGroup.Location = new System.Drawing.Point(10, 13);
@@ -238,9 +239,9 @@
             // 
             // messageLbl
             // 
-            this.messageLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.messageLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.messageLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.messageLbl.Name = "messageLbl";
             this.messageLbl.Size = new System.Drawing.Size(393, 17);
@@ -283,6 +284,7 @@
             this.ClientSize = new System.Drawing.Size(510, 323);
             this.Controls.Add(this.saveAsShapeBtn);
             this.Controls.Add(this.useExtendChk);
+            this.Controls.Add(this.cityCombo);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.gipodTypeGroup);
@@ -297,7 +299,6 @@
             this.Controls.Add(this.provinceCombo);
             this.Controls.Add(this.provinceLbl);
             this.Controls.Add(this.citylbl);
-            this.Controls.Add(this.cityCombo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1200, 350);
             this.MinimumSize = new System.Drawing.Size(420, 350);

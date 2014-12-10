@@ -22,7 +22,7 @@ namespace geopunt4Arcgis
 {
     public partial class zoekAdresForm : Form
     {
-        ISpatialReferenceFactory2 spatialReferenceFactory;
+        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         ISpatialReference wgs;
         IFeatureClass adresFC;
@@ -41,7 +41,7 @@ namespace geopunt4Arcgis
 
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
             System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory2;
+            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
 
             wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
 

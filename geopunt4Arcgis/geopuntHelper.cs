@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace geopunt4Arcgis
 {
@@ -36,11 +37,11 @@ namespace geopunt4Arcgis
             }
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
             System.Object obj = Activator.CreateInstance(factoryType);
-            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory2;
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
 
             if (toSrs.FactoryCode == 31370)
             {
-                IGeoTransformation geoTransformation = spatialReferenceFactory2.CreateGeoTransformation((int)
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
 
                 IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
@@ -50,7 +51,7 @@ namespace geopunt4Arcgis
             }
             if (geom.SpatialReference.FactoryCode == 31370)
             {
-                IGeoTransformation geoTransformation = spatialReferenceFactory2.CreateGeoTransformation((int)
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
 
                 IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
@@ -75,7 +76,7 @@ namespace geopunt4Arcgis
         {
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
             System.Object obj = Activator.CreateInstance(factoryType);
-            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory2;
+            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory3;
             ISpatialReference wgs = spatialReferenceFactory2.CreateGeographicCoordinateSystem(4326);
 
             if (geom.SpatialReference.FactoryCode == 4326)
@@ -111,8 +112,8 @@ namespace geopunt4Arcgis
         {
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
             System.Object obj = Activator.CreateInstance(factoryType);
-            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory2;
-            ISpatialReference lam72 = spatialReferenceFactory2.CreateSpatialReference(31370);
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+            ISpatialReference lam72 = spatialReferenceFactory.CreateSpatialReference(31370);
 
             if (geom.SpatialReference.FactoryCode == 31370)
             {
@@ -128,7 +129,7 @@ namespace geopunt4Arcgis
                     geom.SpatialReference.FactoryCode == 900913)  //= 3857
             {
 
-                IGeoTransformation geoTransformation = spatialReferenceFactory2.CreateGeoTransformation((int)
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
 
                 IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
@@ -664,6 +665,190 @@ namespace geopunt4Arcgis
 
             return ShowSaveDataDialog(gxFilterList, dialogTitle);
         }
+        #endregion
+
+        #region "geosjon converter"
+        /// <summary>Convert a GoeJSON point geometry to Arcgis Geometry </summary>
+        /// <param name="JSpoint">The deserialised GeoJson Object</param>
+        /// <param name="epsg">The EPSG-code of the spatial reference, -1 is unknown</param>
+        /// <returns>A Arcgis Point goemetry</returns>
+        public static IPoint geojson2esriPoint(datacontract.geojsonPoint JSpoint, int epsg = -1)
+        {
+            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+            System.Object obj = Activator.CreateInstance(factoryType);
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+
+            IPoint esriPnt = new PointClass() { X = JSpoint.coordinates[0], Y = JSpoint.coordinates[1] };
+
+             if (epsg != -1)
+             {
+                 ISpatialReference srs = spatialReferenceFactory.CreateSpatialReference(epsg);
+                 esriPnt.SpatialReference = srs;
+             }
+             return esriPnt;
+        }
+
+        /// <summary>Convert a GeoJSON Line geometry to Arcgis Geometry </summary>
+        /// <param name="JSpoint">The deserialised GeoJson Object</param>
+        /// <param name="epsg">The EPSG-code of the spatial reference, -1 is unknown</param>
+        /// <returns>A Arcgis PolyLine goemetry</returns>
+        public static IPolyline geojson2esriLine(datacontract.geojsonLine JSline, int epsg = -1)
+        {
+            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+            System.Object obj = Activator.CreateInstance(factoryType);
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+
+            IGeometryBridge2 pGeoBrg = new GeometryEnvironment() as IGeometryBridge2;
+
+            ESRI.ArcGIS.esriSystem.WKSPoint[] aWKSPointBuffer = new ESRI.ArcGIS.esriSystem.WKSPoint[ JSline.coordinates.Count ];
+            for (int n = 0; n < JSline.coordinates.Count; n++)
+            {
+                double[] xy = JSline.coordinates[n].ToArray();
+                aWKSPointBuffer[n].X = xy[0];
+                aWKSPointBuffer[n].Y = xy[1];
+            }
+
+            IPolyline esriLine = new PolylineClass();
+            pGeoBrg.SetWKSPoints(esriLine as IPointCollection4, aWKSPointBuffer);
+
+            if (epsg != -1)
+            {
+                ISpatialReference srs = spatialReferenceFactory.CreateSpatialReference(epsg);
+                esriLine.SpatialReference = srs;
+            }
+
+            return esriLine;
+        }
+
+        /// <summary>Convert a GeoJSON Polygon geometry to Arcgis Geometry </summary>
+        /// <param name="JSpoint">The deserialised GeoJson Object</param>
+        /// <param name="epsg">The EPSG-code of the spatial reference, -1 is unknown</param>
+        /// <returns>A Arcgis Polygon goemetry</returns>
+        public static IPolygon geojson2esriPolygon(datacontract.geojsonPolygon JSPolygon, int epsg = -1)
+        {
+            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+            System.Object obj = Activator.CreateInstance(factoryType);
+            ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+
+            IGeometryBridge2 pGeoBrg = new GeometryEnvironment() as IGeometryBridge2;
+
+            IGeometryCollection esriGeometryCol = new PolygonClass();
+
+            for (int n = 0; n < JSPolygon.coordinates.Count; n++)
+            {
+                List<List<double>> JSring = JSPolygon.coordinates[n];
+                IPointCollection4 ring = new RingClass();
+                ESRI.ArcGIS.esriSystem.WKSPoint[] aWKSPointBuffer = new ESRI.ArcGIS.esriSystem.WKSPoint[JSring.Count];
+                for (int i = 0; i < JSring.Count; i++)
+                {
+                    double[] xy = JSring[i].ToArray();
+                    aWKSPointBuffer[i].X = xy[0];
+                    aWKSPointBuffer[i].Y = xy[1];
+                }
+                pGeoBrg.SetWKSPoints(ring , aWKSPointBuffer);
+                esriGeometryCol.AddGeometry(ring as IGeometry, Type.Missing, Type.Missing);
+            }
+
+            IPolygon esriPolygon = esriGeometryCol as IPolygon;
+
+            if (epsg != -1)
+            {
+                ISpatialReference srs = spatialReferenceFactory.CreateSpatialReference(epsg);
+                esriPolygon.SpatialReference = srs;
+            }
+            return esriPolygon;
+        }
+
+        public static string esri2geojsonPoint(IPoint esriPoint) 
+        {
+            int epsg;
+            if ( esriPoint.SpatialReference.FactoryCode == 900913 || esriPoint.SpatialReference.FactoryCode == 102100 )
+                epsg = 3857 ;//google mercator
+            else epsg = esriPoint.SpatialReference.FactoryCode;
+
+            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS(){ 
+                type= "link",
+                properties = new Dictionary<string, string>() { { "href", epsgUri } }
+            };
+
+            datacontract.geojsonPoint JSpoint = new datacontract.geojsonPoint()
+            {
+                type = "Point",
+                coordinates = new List<double>() { esriPoint.X, esriPoint.Y },
+                crs = JScrs
+            };
+
+           return JsonConvert.SerializeObject(JSpoint);
+        }
+
+        public static string esri2geojsonLine(IPolyline esriLine)
+        {
+            int epsg;
+            if (esriLine.SpatialReference.FactoryCode == 900913 || esriLine.SpatialReference.FactoryCode == 102100)
+                epsg = 3857;//google mercator
+            else epsg = esriLine.SpatialReference.FactoryCode;
+
+            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS()
+            {
+                type = "link",
+                properties = new Dictionary<string, string>() { { "href", epsgUri } }
+            };
+
+            datacontract.geojsonLine JSline = new datacontract.geojsonLine() {type = "Polyline", crs = JScrs };
+            List<List<double>> coords = new List<List<double>>();
+
+            IPointCollection5 nodes = esriLine as IPointCollection5;
+
+            for (int n = 0; n < nodes.PointCount; n++)
+            {
+                IPoint node = nodes.get_Point(n);
+                List<double> pt = new List<double>() {node.X, node.Y };
+                coords.Add(pt);
+            }
+            JSline.coordinates = coords;
+
+            return JsonConvert.SerializeObject(JSline);
+        }
+
+        public static string esri2geojsonPolygon(IPolygon esriPolygon)
+        {
+            int epsg;
+            if (esriPolygon.SpatialReference.FactoryCode == 900913 || esriPolygon.SpatialReference.FactoryCode == 102100)
+                epsg = 3857;//google mercator
+            else epsg = esriPolygon.SpatialReference.FactoryCode;
+
+            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS()
+            {
+                type = "link",
+                properties = new Dictionary<string, string>() { { "href", epsgUri } }
+            };
+
+            datacontract.geojsonPolygon JSpolygon = new datacontract.geojsonPolygon() { type = "Polygon", crs = JScrs };
+            List<List<List<double>>> coords = new List<List<List<double>>>();
+
+            IGeometryCollection rings = esriPolygon as IGeometryCollection;
+            for (int n = 0; n < rings.GeometryCount; n++) 
+            {
+                IPointCollection4 ring = rings.get_Geometry(n) as IPointCollection4;
+                List<List<double>> JSring = new List<List<double>>();
+
+                for (int i = 0; i < ring.PointCount; i++)
+                {
+                   IPoint pt = ring.get_Point(i);
+                   List<double> JSpt = new List<double>() {pt.X, pt.Y };
+                   JSring.Add(JSpt);
+                }
+                coords.Add(JSring);
+
+            }
+            JSpolygon.coordinates = coords;
+
+            return JsonConvert.SerializeObject(JSpolygon);
+        }
+
         #endregion
     }
 }

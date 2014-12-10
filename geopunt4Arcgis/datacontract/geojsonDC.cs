@@ -5,26 +5,32 @@ using System.Text;
 
 namespace geopunt4Arcgis.datacontract
 {
-    public class geojsonPoint
+
+    public abstract class geojson
     {
-        public List<double> coordinates { get; set; }
-        public string type  { get; set; }
-
-        public geojsonCRS crs  { get; set; }
-     }
-
-    public class geojsonLine
-    {
-        public List<List<double>> coordinates { get; set; }
-        public string type  { get; set; }
-
-        public geojsonCRS crs  { get; set; }
+        public string type { get; set; }
+        public geojsonCRS crs { get; set; }
     }
 
-    public class geojsonCRS
+    public class geojsonPoint : geojson
+    {
+        public List<double> coordinates { get; set; }
+     }
+
+    public class geojsonLine : geojson
+    {
+        public List<List<double>> coordinates { get; set; }
+    }
+
+    public class geojsonPolygon : geojson
+    {
+        public List<List<List<double>>> coordinates { get; set; }
+    }
+
+    public class geojsonCRS 
     {
         public string type  { get; set; }
-        IDictionary<string, string> properties { get; set; }
+        public IDictionary<string, string> properties { get; set; }
     }
 
 }

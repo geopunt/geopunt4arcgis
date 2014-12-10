@@ -18,8 +18,8 @@ namespace geopunt4Arcgis.datacontract
         public List<string> cities { get; set; }
     }
 
-    public class gipodResponse : workassignment
-    {
+    public class gipodResponse : workassignment //workassignment is a subset of manifestation
+    {                                           //so manifestation is a generic response contract
         public string initiator { get; set; }
         public string eventType { get; set; }
         public string recurrencePattern { get; set; }

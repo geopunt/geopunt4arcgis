@@ -83,16 +83,18 @@ namespace geopunt4Arcgis
 
             ISpatialReference lam72 = spatialReferenceFactory.CreateSpatialReference(31370);
             IEnvelope maxBounds = geopuntHelper.makeExtend(17750, 23720, 297240, 245340, lam72); //not outside flanders
-            IEnvelope prjBounds = geopuntHelper.Transform(maxBounds as IGeometry, inSRS) as IEnvelope;
-
-            if (arcgisBbox.XMin > prjBounds.XMin) Xmin = arcgisBbox.XMax;
-            else Xmin = prjBounds.XMin;
-            if (arcgisBbox.YMin > prjBounds.YMin) Ymin = arcgisBbox.YMin;
-            else Ymin = prjBounds.YMin;
-            if (arcgisBbox.XMax < prjBounds.XMax) Xmax = arcgisBbox.XMax;
-            else Xmax = prjBounds.XMax;
-            if (arcgisBbox.YMax < prjBounds.YMax) Ymax = arcgisBbox.YMax;
-            else Ymax = prjBounds.YMax;
+            if (inSRS.FactoryCode != lam72.FactoryCode)
+            {
+                maxBounds = geopuntHelper.Transform(maxBounds as IGeometry, inSRS) as IEnvelope;
+            }
+            if (arcgisBbox.XMin > maxBounds.XMin) Xmin = arcgisBbox.XMin;
+            else Xmin = maxBounds.XMin;
+            if (arcgisBbox.YMin > maxBounds.YMin) Ymin = arcgisBbox.YMin;
+            else Ymin = maxBounds.YMin;
+            if (arcgisBbox.XMax < maxBounds.XMax) Xmax = arcgisBbox.XMax;
+            else Xmax = maxBounds.XMax;
+            if (arcgisBbox.YMax < maxBounds.YMax) Ymax = arcgisBbox.YMax;
+            else Ymax = maxBounds.YMax;
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace geopunt4Arcgis
         public string ToBboxString( string xySplit = "|" , string sep="|")
         {
             string toString, formatString;
-            formatString = "{0}" + xySplit + "{1}" + sep + "{2}" + xySplit + "{3}";
+            formatString = "{0:F4}" + xySplit + "{1:F4}" + sep + "{2:F4}" + xySplit + "{3:F4}";
             toString = string.Format( formatString , Xmin, Ymin, Xmax, Ymax);
             return toString;
         }

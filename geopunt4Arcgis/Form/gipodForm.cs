@@ -23,7 +23,10 @@ namespace geopunt4Arcgis
         ISpatialReferenceFactory spatialReferenceFactory;
         IActiveView view;
         dataHandler.gipod gipod;
+        datacontract.municipalityList municipality;
         ISpatialReference wgs;
+        ISpatialReference lam72;
+        List<string> cities;
 
         geopunt4arcgisExtension gpExtension;
 
@@ -35,9 +38,10 @@ namespace geopunt4Arcgis
 
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
             System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory2;
+            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
 
             wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
+            lam72 = spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
@@ -48,10 +52,14 @@ namespace geopunt4Arcgis
 
         private void initGUI() 
         {
-            //lists
-            List<string> cities = gipod.getReferencedata(dataHandler.gipodReferencedata.city);
-            cities.Insert(0,"");
-            List<string> provinces = gipod.getReferencedata(dataHandler.gipodReferencedata.province);
+            dataHandler.capakey capakey = new dataHandler.capakey();
+            municipality = capakey.getMunicipalities();
+            var qry = from datacontract.municipality t in municipality.municipalities select t.municipalityName;
+
+            //lists 
+            cities = qry.ToList();
+            cities.Insert(0, "");
+            List<string> provinces = new List<string>() { "Antwerpen", "Limburg", "Vlaams-Brabant", "Oost-Vlaanderen", "West-Vlaanderen" };
             provinces.Insert(0, "");
             List<string> owners = gipod.getReferencedata(dataHandler.gipodReferencedata.owner);
             owners.Insert(0, "");
@@ -68,6 +76,7 @@ namespace geopunt4Arcgis
 
             startdatePicker.Value = DateTime.Today;
             startdatePicker.MaxDate = nextMonth;
+            startdatePicker.MinDate = DateTime.Today;
             enddatePicker.Value = nextMonth;
             enddatePicker.MinDate = DateTime.Today;
         }
@@ -139,6 +148,43 @@ namespace geopunt4Arcgis
             }
         }
 
+        private void provinceCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (provinceCombo.Text)
+            {
+                case "Antwerpen":
+                    cities = (from datacontract.municipality t in municipality.municipalities 
+                              where t.municipalityCode.StartsWith("1")
+                              select t.municipalityName).ToList();
+                    break;
+                case "Limburg":
+                    cities = (from datacontract.municipality t in municipality.municipalities
+                              where t.municipalityCode.StartsWith("7")
+                              select t.municipalityName).ToList();
+                    break;
+                case "Vlaams-Brabant":
+                    cities = (from datacontract.municipality t in municipality.municipalities
+                              where t.municipalityCode.StartsWith("2")
+                              select t.municipalityName).ToList();
+                    break;
+                case "Oost-Vlaanderen":
+                    cities = (from datacontract.municipality t in municipality.municipalities
+                              where t.municipalityCode.StartsWith("4")
+                              select t.municipalityName).ToList();
+                    break;
+                case "West-Vlaanderen":
+                    cities = (from datacontract.municipality t in municipality.municipalities
+                              where t.municipalityCode.StartsWith("3")
+                              select t.municipalityName).ToList();
+                    break;
+                default:
+                    cities = (from datacontract.municipality t in municipality.municipalities
+                              select t.municipalityName).ToList();
+                    break;
+            }
+            cities.Insert(0, "");
+            cityCombo.DataSource = cities;
+        }
         #endregion
 
         #region "private functions"
@@ -154,7 +200,7 @@ namespace geopunt4Arcgis
             DateTime startdate = param.startdate;
             DateTime enddate = param.startdate;
 
-            dataHandler.gipodCRS crs = param.crs;
+            dataHandler.CRS crs = param.crs;
 
             //get data from gipod
             List<datacontract.gipodResponse> response;
@@ -254,19 +300,7 @@ namespace geopunt4Arcgis
             param.startdate = startdatePicker.Value;
             param.enddate = enddatePicker.Value;
 
-            param.crs = dataHandler.gipodCRS.WGS84;
-
-            //if (view.FocusMap.SpatialReference.FactoryCode == 900913 ||
-            //      view.FocusMap.SpatialReference.FactoryCode == 102100)
-            //{
-            //    param.crs = dataHandler.gipodCRS.WEBMERCATOR;
-            //    bboxCrs = view.FocusMap.SpatialReference;
-            //}
-            //else if (view.FocusMap.SpatialReference.FactoryCode == 31370)
-            //{
-            //    param.crs = dataHandler.gipodCRS.Lambert72;
-            //    bboxCrs = view.FocusMap.SpatialReference;
-            //}
+            param.crs = dataHandler.CRS.Lambert72;
 
             if (manifestationRadio.Checked)
             {
@@ -281,7 +315,7 @@ namespace geopunt4Arcgis
             //set bounds
             if (useExtendChk.Checked)
             {
-                IEnvelope arcGIsBbox = geopuntHelper.Transform2WGS(view.Extent) as IEnvelope;
+                IEnvelope arcGIsBbox = geopuntHelper.Transform2Lam72(view.Extent) as IEnvelope;
                 param.bbox = new boundingBox(arcGIsBbox);
             }
             else
@@ -314,7 +348,7 @@ namespace geopunt4Arcgis
                 {
                     Double x = row.coordinate.coordinates[0];
                     Double y = row.coordinate.coordinates[1];
-                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = wgs };
+                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = lam72 };
                     IPoint toPt =  geopuntHelper.Transform(pt, srs) as IPoint;
 
                     featureBuffer.Shape = toPt;

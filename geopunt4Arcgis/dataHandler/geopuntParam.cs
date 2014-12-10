@@ -5,7 +5,9 @@ using System.Text;
 
 namespace geopunt4Arcgis.dataHandler
 {
-    public enum gipodCRS { Lambert72 = 31370, WGS84 = 4326, WEBMERCATOR = 3857 }
+    public enum CRS { Lambert72 = 31370, WGS84 = 4326, WEBMERCATOR = 3857 }
+
+    public enum capakeyGeometryType { no, bbox, full }
 
     public enum gipodtype { workassignment, manifestation }
 
@@ -21,7 +23,7 @@ namespace geopunt4Arcgis.dataHandler
         public string eventtype;
         public DateTime startdate;
         public DateTime enddate;
-        public gipodCRS crs;
+        public CRS crs;
         public string shapePath;
     }
 }
