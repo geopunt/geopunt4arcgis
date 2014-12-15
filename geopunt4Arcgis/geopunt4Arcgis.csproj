@@ -111,6 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -133,6 +134,7 @@
     <Compile Include="datacontract\crabSuggestionDC.cs" />
     <Compile Include="datacontract\geojsonDC.cs" />
     <Compile Include="datacontract\gipodDC.cs" />
+    <Compile Include="datacontract\poiDC.cs" />
     <Compile Include="dataHandler\adres.cs" />
     <Compile Include="datacontract\capakeyDC.cs" />
     <Compile Include="dataHandler\capakey.cs" />

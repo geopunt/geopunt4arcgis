@@ -7,6 +7,7 @@ using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.GISClient;
 
 using System.IO;
 using System.Windows.Forms;
@@ -764,11 +765,23 @@ namespace geopunt4Arcgis
         public static string esri2geojsonPoint(IPoint esriPoint) 
         {
             int epsg;
-            if ( esriPoint.SpatialReference == null || esriPoint.SpatialReference.FactoryCode == 900913 || esriPoint.SpatialReference.FactoryCode == 102100 )
-                epsg = 3857 ;//google mercator
-            else epsg = esriPoint.SpatialReference.FactoryCode;
+            string epsgUri;
 
-            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            if (esriPoint.SpatialReference == null)
+            {
+                epsgUri = "";
+            }
+            else if (esriPoint.SpatialReference.FactoryCode == 900913 || esriPoint.SpatialReference.FactoryCode == 102100)
+            {
+                epsg = 3857;//google mercator
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
+            else
+            {
+                epsg = esriPoint.SpatialReference.FactoryCode;
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
+
             datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS(){ 
                 type= "link",
                 properties = new Dictionary<string, string>() { { "href", epsgUri } }
@@ -790,11 +803,23 @@ namespace geopunt4Arcgis
         public static string esri2geojsonLine(IPolyline esriLine)
         {
             int epsg;
-            if (esriLine.SpatialReference == null || esriLine.SpatialReference.FactoryCode == 900913 || esriLine.SpatialReference.FactoryCode == 102100)
-                epsg = 3857;//google mercator
-            else epsg = esriLine.SpatialReference.FactoryCode;
+            string epsgUri;
 
-            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            if (esriLine.SpatialReference == null)
+            {
+                epsgUri = "";
+            }
+            else if (esriLine.SpatialReference.FactoryCode == 900913 || esriLine.SpatialReference.FactoryCode == 102100)
+            {
+                epsg = 3857;//google mercator
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
+            else
+            {
+                epsg = esriLine.SpatialReference.FactoryCode;
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
+
             datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS()
             {
                 type = "link",
@@ -823,11 +848,21 @@ namespace geopunt4Arcgis
         public static string esri2geojsonPolygon(IPolygon esriPolygon)
         {
             int epsg;
-            if (esriPolygon.SpatialReference == null || esriPolygon.SpatialReference.FactoryCode == 900913 || esriPolygon.SpatialReference.FactoryCode == 102100)
+            string epsgUri;
+            
+            if (esriPolygon.SpatialReference == null) {
+                epsgUri = "";
+            }
+            else if (esriPolygon.SpatialReference.FactoryCode == 900913 || esriPolygon.SpatialReference.FactoryCode == 102100)
+            {
                 epsg = 3857;//google mercator
-            else epsg = esriPolygon.SpatialReference.FactoryCode;
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
+            else { 
+                epsg = esriPolygon.SpatialReference.FactoryCode;
+                epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
+            }
 
-            string epsgUri = string.Format("http://www.opengis.net/def/crs/EPSG/0/{0}", epsg);
             datacontract.geojsonCRS JScrs = new datacontract.geojsonCRS()
             {
                 type = "link",
@@ -855,6 +890,55 @@ namespace geopunt4Arcgis
             JSpolygon.coordinates = coords;
 
             return JsonConvert.SerializeObject(JSpolygon);
+        }
+
+        #endregion
+
+        #region "WMS handlers"
+        /// <summary>Add a WMS to the map</summary>
+        /// <param name="map">The map to add the wms to</param>
+        /// <param name="WMSurl">the url point to the WMS</param>
+        public static void addWMS2map(IMap map, string WMSurl ) 
+        {
+            IWMSGroupLayer wmsLayerGroup = new WMSMapLayerClass();
+            IWMSConnectionName WMSconnName = new WMSConnectionNameClass();
+            IWMSServiceDescription serviceDesc;
+            IDataLayer2 dataLyr;
+            ILayer lyr;
+            IActiveView view;
+            
+            IPropertySet props = new PropertySetClass();
+            props.SetProperty("URL", WMSurl);
+
+            WMSconnName.ConnectionProperties = props;
+
+            dataLyr = (IDataLayer2)wmsLayerGroup;
+            dataLyr.Connect((IName)WMSconnName);
+
+            serviceDesc = wmsLayerGroup.WMSServiceDescription;
+
+            for (int i = 0; i < serviceDesc.LayerDescriptionCount; i++)
+            {
+                IWMSLayerDescription layerDesc = serviceDesc.get_LayerDescription(i);
+                ILayer newLayer;
+
+                if (layerDesc.LayerDescriptionCount == 0) 
+                {
+                    newLayer = (ILayer) wmsLayerGroup.CreateWMSLayer(layerDesc);
+                }
+                else
+                {
+                    newLayer = (ILayer)wmsLayerGroup.CreateWMSGroupLayers(layerDesc);
+                }
+                wmsLayerGroup.InsertLayer(newLayer, 0);
+            }
+
+            lyr = (ILayer)wmsLayerGroup;
+            lyr.Name = serviceDesc.WMSTitle;
+
+            map.AddLayer(lyr);
+            view = (IActiveView)map;
+            view.Refresh();
         }
 
         #endregion
