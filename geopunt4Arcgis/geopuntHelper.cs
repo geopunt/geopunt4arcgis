@@ -900,20 +900,39 @@ namespace geopunt4Arcgis
         /// <param name="WMSurl">the url point to the WMS</param>
         public static void addWMS2map(IMap map, string WMSurl ) 
         {
+
             IWMSGroupLayer wmsLayerGroup = new WMSMapLayerClass();
             IWMSConnectionName WMSconnName = new WMSConnectionNameClass();
+            IName WMSname;
+            bool succes;
             IWMSServiceDescription serviceDesc;
-            IDataLayer2 dataLyr;
+            IDataLayer dataLyr;
             ILayer lyr;
             IActiveView view;
             
             IPropertySet props = new PropertySetClass();
             props.SetProperty("URL", WMSurl);
+           // props.SetProperty("VERSION", "1.3.0");
 
             WMSconnName.ConnectionProperties = props;
-
-            dataLyr = (IDataLayer2)wmsLayerGroup;
-            dataLyr.Connect((IName)WMSconnName);
+            dataLyr = (IDataLayer)wmsLayerGroup;
+             
+            WMSname = (IName)WMSconnName;
+            try
+            {
+                succes = dataLyr.Connect(WMSname);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error op wms: " + WMSurl +"\n"+ e.Message + ": " + e.StackTrace);
+                return;
+            }
+            
+            if (!succes) 
+            {
+                MessageBox.Show("Kan onderstaande WMS niet openen. \n" + WMSurl);
+                return;
+            }
 
             serviceDesc = wmsLayerGroup.WMSServiceDescription;
 
@@ -925,22 +944,180 @@ namespace geopunt4Arcgis
                 if (layerDesc.LayerDescriptionCount == 0) 
                 {
                     newLayer = (ILayer) wmsLayerGroup.CreateWMSLayer(layerDesc);
+                    wmsLayerGroup.InsertLayer(newLayer, 0);
                 }
                 else
                 {
-                    newLayer = (ILayer)wmsLayerGroup.CreateWMSGroupLayers(layerDesc);
+                    newLayer = (ILayer) wmsLayerGroup.CreateWMSGroupLayers(layerDesc);
+                    wmsLayerGroup.InsertLayer(newLayer, 0);
                 }
-                wmsLayerGroup.InsertLayer(newLayer, 0);
             }
 
+            wmsLayerGroup.Expanded = true;
             lyr = (ILayer)wmsLayerGroup;
             lyr.Name = serviceDesc.WMSTitle;
 
             map.AddLayer(lyr);
             view = (IActiveView)map;
-            view.Refresh();
+
+            makeCompositeLayersVisibile(lyr);
+
+            view.ContentsChanged();
         }
 
+        public static ILayer getWMSLayerByName(string WMSurl, string layerName)
+        {
+            IPropertySet propSet = new PropertySetClass();
+            IWMSConnectionName connName = new WMSConnectionNameClass();
+            IWMSGroupLayer wmsMapLayer = new WMSMapLayerClass();
+            IDataLayer dataLayer = (IDataLayer)wmsMapLayer;
+            IWMSServiceDescription serviceDesc;
+            ILayer qrylyr; ILayer wmsLyr;
+            //connect to url
+            propSet.SetProperty("URL", WMSurl);
+            connName.ConnectionProperties = propSet;
+            dataLayer.Connect((IName)connName);
+            //get service description
+            serviceDesc = wmsMapLayer.WMSServiceDescription;
+            //loop through layers
+
+            List<IWMSLayerDescription> lyrs = listWMSlayers(serviceDesc);
+            //query layers
+            List<IWMSLayerDescription> qry = (
+                from IWMSLayerDescription q in lyrs 
+                where q.Name == layerName select q).ToList<IWMSLayerDescription>() ;
+
+            //nothing found
+            if ( qry.Count == 0 ) return null;
+
+            //else
+            IWMSLayerDescription layerDesc = qry[0];
+            //clear allready loaded contents
+            wmsMapLayer.Clear();
+
+            if (layerDesc.LayerDescriptionCount == 0)
+            {
+                qrylyr = (ILayer)wmsMapLayer.CreateWMSLayer(layerDesc);
+                wmsMapLayer.InsertLayer(qrylyr, 0);
+            }
+            else
+            {
+                qrylyr = (ILayer)wmsMapLayer.CreateWMSGroupLayers(layerDesc);
+                wmsMapLayer.InsertLayer(qrylyr, 0);
+            }
+            makeCompositeLayersVisibile(qrylyr, false);
+
+            wmsMapLayer.Expanded = true;
+            ((IWMSMapLayer)wmsMapLayer).BackgroundColor = new RgbColor() { NullColor = true };
+            wmsLyr = (ILayer)wmsMapLayer;
+            wmsLyr.Name = serviceDesc.WMSTitle;
+            wmsLyr.Visible = true;
+
+            return wmsLyr;
+        }
+
+        public static ILayer getWMSasLayer(string WMSurl)
+        {
+            IPropertySet propSet = new PropertySetClass();
+            IWMSConnectionName connName = new WMSConnectionNameClass();
+            IWMSGroupLayer wmsMapLayer = new WMSMapLayerClass();
+            IDataLayer dataLayer = (IDataLayer) wmsMapLayer;
+            IWMSServiceDescription serviceDesc;
+            
+            //connect to url
+            propSet.SetProperty("URL", WMSurl);
+            connName.ConnectionProperties = propSet;
+            dataLayer.Connect((IName)connName);
+            //get service description
+            serviceDesc = wmsMapLayer.WMSServiceDescription;
+
+            ILayer wmsLayer = (ILayer)wmsMapLayer;
+            wmsLayer.Visible = true;
+            wmsMapLayer.Expanded = true;
+            wmsLayer.Name = serviceDesc.WMSTitle;
+            makeCompositeLayersVisibile( wmsLayer , false);
+            return wmsLayer;
+        }
+
+        private static List<IWMSLayerDescription> ListWMSlayersByDescription(IWMSLayerDescription root) 
+        {
+            List<IWMSLayerDescription> lyrNames = new List<IWMSLayerDescription>();
+            lyrNames.Add(root);
+
+            for (int i = 0; i < root.LayerDescriptionCount; i++)
+            {
+                IWMSLayerDescription layerDesc = root.get_LayerDescription(i);
+
+                lyrNames.Add(layerDesc);
+
+                if (layerDesc.LayerDescriptionCount != 0)
+                {
+                    List<IWMSLayerDescription> namesL2 = ListWMSlayersByDescription(layerDesc);
+                    lyrNames.AddRange(namesL2);
+                }
+            }
+            return lyrNames;
+        }
+
+        public static List<IWMSLayerDescription> listWMSlayers(IWMSServiceDescription serviceDesc)
+        {
+            List<IWMSLayerDescription> lyrNames = new List<IWMSLayerDescription>();
+
+            for (int i = 0; i < serviceDesc.LayerDescriptionCount; i++)
+            {
+                lyrNames.AddRange(
+                    ListWMSlayersByDescription(serviceDesc.get_LayerDescription(i)));
+            }
+            return lyrNames;
+        }
+
+        public static List<IWMSLayerDescription> listWMSlayers(string WMSurl) 
+        {
+            List<IWMSLayerDescription> lyrNames = new List<IWMSLayerDescription>();
+            
+            IPropertySet propSet = new PropertySetClass();
+            IWMSConnectionName connName = new WMSConnectionNameClass();
+            IWMSGroupLayer wmsMapLayer = new WMSMapLayerClass();
+            IDataLayer dataLayer = (IDataLayer)wmsMapLayer;
+            IWMSServiceDescription serviceDesc;
+
+            //connect to url
+            propSet.SetProperty("URL", WMSurl);
+            connName.ConnectionProperties = propSet;
+            dataLayer.Connect((IName)connName);
+            //get service description
+            serviceDesc = wmsMapLayer.WMSServiceDescription;
+
+            lyrNames = listWMSlayers(serviceDesc);
+            return lyrNames;
+        }
+
+        #endregion
+
+        #region "Make Composite Layer Visible"
+        /// <summary>Toggle the visibility on and off for a composite layer, including all child layers</summary>
+        /// <param name="activeView">An IActiveView interface.</param>
+        /// <param name="layer">The composite layer as Ilayer</param>
+        /// <param name="onlyGroupLayer">Only turn on all composite layers or all layers</param>
+        public static void makeCompositeLayersVisibile(ILayer layer, bool onlyGroupLayer = true)
+        {
+            //return if not composite
+            if (layer is ICompositeLayer2)
+            {
+                ICompositeLayer2 compositeLayer2 = layer as ICompositeLayer2;
+
+                //Turn the layer visibility on
+                layer.Visible = true;
+
+                //Turn each sub-layer (ie. composite layer) visibility on if onlyGroupLayer == true, loop through sub grouplayers
+                for (int compositeLayerIndex = 0; compositeLayerIndex < compositeLayer2.Count; compositeLayerIndex++)
+                {
+                    ILayer lyr = compositeLayer2.get_Layer(compositeLayerIndex);
+                    lyr.Visible = ! onlyGroupLayer;
+                    makeCompositeLayersVisibile(lyr, onlyGroupLayer);
+                }
+            }
+        }
         #endregion
     }
 }

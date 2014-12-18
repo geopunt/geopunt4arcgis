@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.IO;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.GISClient;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
@@ -26,16 +28,25 @@ namespace geopunt4Arcgis
         protected override void OnClick()
         {
             try
-            {
-                string wms = Interaction.InputBox("geef wms op", "WMS toevoegen");
-                //bv http://geo.agiv.be/ogc/wms/product/VMM?request=GetCapabilities&version=1.3.0&service=wms 
+            {   // "http://geo.agiv.be/ogc/wms/product/DeLijn?request=GetCapabilities&version=1.3.0&service=wms"
+                // "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/wms?"
+                // "http://grb.agiv.be/geodiensten/raadpleegdiensten/GRB-basiskaart/wmsgr"
+                // "http://geo.agiv.be/ogc/wms/product/VMM?request=GetCapabilities&version=1.3.0&service=wms"
+                Uri wms = new Uri(@"http://geo.agiv.be/ogc/wms/product/VMM?request=GetCapabilities&version=1.3.0&service=wms");
 
-                if (wms != "")
-                {
-                    IMap map = activeView.FocusMap;
-                    geopuntHelper.addWMS2map(map, wms);
-                } 
+                IMap map = activeView.FocusMap;
 
+                //ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0], "Riodb");
+
+                //map.AddLayer(laag);
+                //map.MoveLayer(laag, 0);
+                //activeView.Refresh();
+                List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
+
+                string[] names = layers.Where( c => c.StyleDescriptionCount > 0 )
+                                       .Select(c => c.get_StyleDescription(0).URL).ToArray<string>();
+
+                System.Windows.Forms.MessageBox.Show(string.Join(" - ", names));
                 //dataHandler.capakey capa = new dataHandler.capakey();
                 //datacontract.municipality muni = capa.getMunicipalitiy(
                 //    11002, dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);

@@ -8,24 +8,20 @@
   <Company>KGIS.be</Company>
   <Date>10/12/2014</Date>
   <Targets>
-    <Target name="Desktop" version="10.0" />
-    <Target name="Desktop" version="10.1" />
     <Target name="Desktop" version="10.2" />
+   <!-- <Target name="Desktop" version="10.1" />
+    <Target name="Desktop" version="10.2" /> -->
   </Targets>
-  <AddIn language="CLR4.0" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
+  <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>
       <Commands>
-        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" 
-                caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" image="Images\geopuntAddressCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" image="Images\geopuntAddressCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres" />
         </Button>
-        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" 
-              message="Prik een locatie op de kaart om het meest nabije adres te weten." caption="Prik een adres" 
-              tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" message="Prik een locatie op de kaart om het meest nabije adres te weten." caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart" />
         </Tool>
-        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" 
-                message="Data uit GIPOD raadplegen." caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Data uit GIPOD raadplegen." caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" />
         </Button>
         <!--Test, remove on production-->
@@ -42,7 +38,7 @@
             <Item refID="KGIS_geopunt4Arcgis_geopuntAddressCmd" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntReverse" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntGipodCmd" />
-            <Item refID="KGIS_geopunt4Arcgis_testBtn"/>
+            <Item refID="KGIS_geopunt4Arcgis_testBtn" />
           </Items>
         </Toolbar>
       </Toolbars>
