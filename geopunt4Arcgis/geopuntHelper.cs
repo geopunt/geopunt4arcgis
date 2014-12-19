@@ -936,23 +936,6 @@ namespace geopunt4Arcgis
 
             serviceDesc = wmsLayerGroup.WMSServiceDescription;
 
-            for (int i = 0; i < serviceDesc.LayerDescriptionCount; i++)
-            {
-                IWMSLayerDescription layerDesc = serviceDesc.get_LayerDescription(i);
-                ILayer newLayer;
-
-                if (layerDesc.LayerDescriptionCount == 0) 
-                {
-                    newLayer = (ILayer) wmsLayerGroup.CreateWMSLayer(layerDesc);
-                    wmsLayerGroup.InsertLayer(newLayer, 0);
-                }
-                else
-                {
-                    newLayer = (ILayer) wmsLayerGroup.CreateWMSGroupLayers(layerDesc);
-                    wmsLayerGroup.InsertLayer(newLayer, 0);
-                }
-            }
-
             wmsLayerGroup.Expanded = true;
             lyr = (ILayer)wmsLayerGroup;
             lyr.Name = serviceDesc.WMSTitle;

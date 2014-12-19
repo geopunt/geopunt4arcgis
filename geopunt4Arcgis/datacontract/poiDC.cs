@@ -49,7 +49,7 @@ namespace geopunt4Arcgis.datacontract
     {
         public List<poiValueGroup> categories { get; set; }
         public int id { get; set; }
-        public poiValueGroup labels { get; set; }
+        public List<poiValueGroup> labels { get; set; }
         public List<poiLink> links { get; set; }
         public poiLocation location { get; set; }
     }
@@ -63,10 +63,17 @@ namespace geopunt4Arcgis.datacontract
         public poiValueGroup license { get; set; }
     }
 
-    public class poiResponse
+    public class poiMinResponse
     {
         public List<cluster> clusters  { get; set; }
         public poiValueGroup label { get; set; }
         public List<poiMinModel> pois { get; set; }
+    }
+
+    public class poiMaxResponse
+    {
+        public List<cluster> clusters { get; set; }
+        public poiValueGroup label { get; set; }
+        public List<poiMaxModel> pois { get; set; }
     }
 }

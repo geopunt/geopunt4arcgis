@@ -36,17 +36,22 @@ namespace geopunt4Arcgis
 
                 IMap map = activeView.FocusMap;
 
+                dataHandler.poi poi = new dataHandler.poi();
+                datacontract.poiMinResponse poiData = poi.getMinmodel("school");
+
+                System.Windows.Forms.MessageBox.Show(poiData.pois[0].id.ToString() +" "+ poiData.pois[0].links[0].href);
+
                 //ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0], "Riodb");
 
                 //map.AddLayer(laag);
                 //map.MoveLayer(laag, 0);
                 //activeView.Refresh();
-                List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
+                //List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
 
-                string[] names = layers.Where( c => c.StyleDescriptionCount > 0 )
-                                       .Select(c => c.get_StyleDescription(0).URL).ToArray<string>();
+                //string[] names = layers.Where( c => c.StyleDescriptionCount > 0 )
+                //                       .Select(c => c.get_StyleDescription(0).URL).ToArray<string>();
 
-                System.Windows.Forms.MessageBox.Show(string.Join(" - ", names));
+                //System.Windows.Forms.MessageBox.Show(string.Join(" - ", names));
                 //dataHandler.capakey capa = new dataHandler.capakey();
                 //datacontract.municipality muni = capa.getMunicipalitiy(
                 //    11002, dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);

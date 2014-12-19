@@ -142,6 +142,7 @@
     <Compile Include="dataHandler\capakey.cs" />
     <Compile Include="dataHandler\gipod.cs" />
     <Compile Include="dataHandler\geopuntParam.cs" />
+    <Compile Include="dataHandler\poi.cs" />
     <Compile Include="Form\gipodForm.cs">
       <SubType>Form</SubType>
     </Compile>

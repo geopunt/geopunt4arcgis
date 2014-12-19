@@ -127,7 +127,7 @@ namespace geopunt4Arcgis.dataHandler
         }
 
         private void setQueryValues(DateTime? startdate, DateTime? enddate, 
-            string city, string province, string owner, string eventtype, CRS CRS, int c, int offset, boundingBox bbox = null)
+            string city, string province, string owner, string eventtype, CRS sRS, int c, int offset, boundingBox bbox = null)
         {
             //counters
             qryValues.Add("offset", offset.ToString());
@@ -138,7 +138,7 @@ namespace geopunt4Arcgis.dataHandler
             if (owner != "" || owner != null) qryValues.Add("owner", owner);
             if (eventtype != "" || eventtype != null) qryValues.Add("eventtype", eventtype);
             //CRS
-            qryValues.Add("CRS", Convert.ToString((int)CRS));
+            qryValues.Add("CRS", Convert.ToString((int)sRS));
 
             //Time
             if (startdate != null) qryValues.Add("startdate", startdate.Value.ToString("yyyy-MM-dd"));
