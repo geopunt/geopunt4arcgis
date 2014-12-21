@@ -4,12 +4,12 @@
   <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in geïntegreed worden in Arcgis.</Description>
   <Version>1.0</Version>
   <Image>Images\geopunt4Arcgis.png</Image>
-  <Author>kay Warrie</Author>
+  <Author>Kay Warrie</Author>
   <Company>KGIS.be</Company>
-  <Date>10/12/2014</Date>
+  <Date>21/12/2014</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
-   <!-- <Target name="Desktop" version="10.1" />
+    <!-- <Target name="Desktop" version="10.1" />
     <Target name="Desktop" version="10.2" /> -->
   </Targets>
   <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
@@ -24,8 +24,14 @@
         <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Data uit GIPOD raadplegen." caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" />
         </Button>
-        <!--Test, remove on production-->
-        <Button id="KGIS_geopunt4Arcgis_testBtn" class="testBtn" caption="Text Button" tip="test" category="Add-In Controls" image="Images\testBtn.png" />
+        <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" 
+                message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." 
+                caption="Zoek een intersante " tip="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." 
+                category="Zoek een interessante plaats " image="Images\geopuntPoiCmd.png">
+          <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/poi" />
+        </Button>
+          <!--Test, remove on production-->
+         <Button id="KGIS_geopunt4Arcgis_testBtn" class="testBtn" caption="Text Button" tip="test" category="Add-In Controls" image="Images\testBtn.png" />
       </Commands>
       <Extensions>
         <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
@@ -38,6 +44,7 @@
             <Item refID="KGIS_geopunt4Arcgis_geopuntAddressCmd" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntReverse" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntGipodCmd" />
+            <Item refID="KGIS_geopunt4Arcgis_geopuntPoiCmd" />
             <Item refID="KGIS_geopunt4Arcgis_testBtn" />
           </Items>
         </Toolbar>

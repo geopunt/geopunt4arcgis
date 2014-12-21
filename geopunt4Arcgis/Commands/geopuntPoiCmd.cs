@@ -1,23 +1,31 @@
 ﻿using System;
+using System.Security.Permissions;
+using Microsoft.Win32;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
-using System.Net;
-using Newtonsoft.Json;
+using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Display;
+using ESRI.ArcGIS.Geodatabase;
+
 
 namespace geopunt4Arcgis
 {
-    public class geopuntAddressCmd : ESRI.ArcGIS.Desktop.AddIns.Button
+    public class geopuntPoiCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         IActiveView view;
         geopunt4arcgisExtension extension;
-        zoekAdresForm zoekAdresDlg;
+        poiSearchForm poiDlg;
 
-        public geopuntAddressCmd()
+        public geopuntPoiCmd()
         {
             view = ArcMap.Document.ActiveView;
             extension = geopunt4arcgisExtension.getGeopuntExtension();
@@ -32,32 +40,29 @@ namespace geopunt4Arcgis
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
                     return;
                 }
-                if (zoekAdresDlg != null  ) 
+                if (poiDlg != null)
                 {
-                    if (zoekAdresDlg.IsDisposed)
+                    if (poiDlg.IsDisposed)
                     {
-                        zoekAdresDlg = null;
+                        poiDlg = null;
                     }
                     else
                     {
-                        if (!zoekAdresDlg.Visible) zoekAdresDlg.Show();
-                        zoekAdresDlg.WindowState = FormWindowState.Normal;
-                        zoekAdresDlg.Focus();
+                        if (!poiDlg.Visible) poiDlg.Show();
+                        poiDlg.WindowState = FormWindowState.Normal;
+                        poiDlg.Focus();
                         return;
                     }
                 }
-
-                zoekAdresDlg = new zoekAdresForm(view);
-                zoekAdresDlg.Show();
-                zoekAdresDlg.WindowState = FormWindowState.Normal;
-                zoekAdresDlg.Focus();
-            }   
-            catch (Exception ex) {
+                poiDlg = new poiSearchForm();
+                poiDlg.Show();
+                poiDlg.WindowState = FormWindowState.Normal;
+                poiDlg.Focus();
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
-
         }
-
     }
-
 }

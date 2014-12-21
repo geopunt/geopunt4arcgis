@@ -124,6 +124,5 @@ namespace geopunt4Arcgis.dataHandler
 
             if (bbox != null) qryValues.Add("bbox", bbox.ToBboxString("|", "|"));
         }
-
     }
 }

@@ -21,7 +21,7 @@ namespace geopunt4Arcgis
 
         public geopuntReverseCmd()
         {
-
+            activeView = ArcMap.Document.ActiveView;
         }
 
         protected override void OnActivate()
@@ -29,14 +29,6 @@ namespace geopunt4Arcgis
 
             try
             {
-                activeView = ArcMap.Document.ActiveView;
-
-                //if (!geopuntHelper.IsConnectedToInternet)
-                //{
-                //    MessageBox.Show("geen internet connectie, misschien moet je een proxy instellen?");
-                //    return;
-                //}
-
                 if (activeView.FocusMap.SpatialReference == null)
                 {
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");

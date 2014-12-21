@@ -126,6 +126,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\geopuntPoiCmd.cs" />
     <Compile Include="boundingBox.cs" />
     <Compile Include="Commands\geopuntGipodCmd.cs" />
     <Compile Include="Config.Designer.cs">
@@ -143,25 +144,37 @@
     <Compile Include="dataHandler\gipod.cs" />
     <Compile Include="dataHandler\geopuntParam.cs" />
     <Compile Include="dataHandler\poi.cs" />
-    <Compile Include="Form\gipodForm.cs">
+    <Compile Include="Forms\gipodForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\gipodForm.designer.cs">
+    <Compile Include="Forms\gipodForm.designer.cs">
       <DependentUpon>gipodForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\zoekAdresForm.cs">
+    <Compile Include="Forms\poiDataRow.cs" />
+    <Compile Include="Forms\poiSearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\zoekAdresForm.designer.cs">
+    <Compile Include="Forms\poiSearchForm.Designer.cs">
+      <DependentUpon>poiSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\zoekAdresForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\zoekAdresForm.designer.cs">
       <DependentUpon>zoekAdresForm.cs</DependentUpon>
     </Compile>
     <Compile Include="geopuntHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\reverseZoekForm.cs">
+    <Compile Include="Forms\reverseZoekForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\reverseZoekForm.designer.cs">
+    <Compile Include="Forms\reverseZoekForm.designer.cs">
       <DependentUpon>reverseZoekForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="testBtn.cs" />
   </ItemGroup>
@@ -212,24 +225,32 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form\gipodForm.resx">
+    <EmbeddedResource Include="Forms\gipodForm.resx">
       <DependentUpon>gipodForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\zoekAdresForm.resx">
+    <EmbeddedResource Include="Forms\poiSearchForm.resx">
+      <DependentUpon>poiSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\zoekAdresForm.resx">
       <DependentUpon>zoekAdresForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\reverseZoekForm.resx">
+    <EmbeddedResource Include="Forms\reverseZoekForm.resx">
       <DependentUpon>reverseZoekForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <AddInContent Include="Images\ArcGISAddin1.png" />
     <AddInContent Include="Images\geopuntGipodCmd.png" />
+    <AddInContent Include="Images\geopuntPoiCmd.png" />
     <Content Include="Images\gipod.ico" />
     <Content Include="Images\gipod.png" />
     <Content Include="Images\instellingen.ico" />
     <Content Include="Images\instellingen.png" />
     <Content Include="Images\logogeopunt.png" />
+    <Content Include="Images\magnifyingGlassSmall.png" />
     <Content Include="Images\poiZoek.ico" />
     <Content Include="Images\poiZoek.png" />
     <Content Include="Images\reverseZoek.ico" />

@@ -28,9 +28,7 @@ namespace geopunt4Arcgis
         {
             try
             {
-                IActiveView activeView = ArcMap.Document.ActiveView;
-
-                if (activeView.FocusMap.SpatialReference == null)
+                if (view.FocusMap.SpatialReference == null)
                 {
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
                     return;
