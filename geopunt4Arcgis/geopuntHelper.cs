@@ -164,100 +164,6 @@ namespace geopunt4Arcgis
         }
         #endregion
 
-        #region "Flash Geometry"
-
-        ///<summary>Flash geometry on the display. The geometry type could be polygon, polyline, point, or multipoint.</summary>
-        ///
-        ///<param name="geometry"> An IGeometry interface</param>
-        ///<param name="color">An IRgbColor interface</param>
-        ///<param name="display">An IDisplay interface</param>
-        ///<param name="delay">A System.Int32 that is the time im milliseconds to wait.</param>
-        /// 
-        ///<remarks></remarks>
-        public static void FlashGeometry(IGeometry geometry, IRgbColor color, IDisplay display, System.Int32 delay)
-        {
-            if (geometry == null || color == null || display == null)
-            {
-                return;
-            }
-
-            display.StartDrawing(display.hDC, (System.Int16)esriScreenCache.esriNoScreenCache); // Explicit Cast
-
-            switch (geometry.GeometryType)
-            {
-                case esriGeometryType.esriGeometryPolygon:
-                    {
-                        //Set the flash geometry's symbol.
-                        ISimpleFillSymbol simpleFillSymbol = new SimpleFillSymbolClass();
-                        simpleFillSymbol.Color = color;
-                        ISymbol symbol = simpleFillSymbol as ISymbol; // Dynamic Cast
-                        symbol.ROP2 = esriRasterOpCode.esriROPNotXOrPen;
-
-                        //Flash the input polygon geometry.
-                        display.SetSymbol(symbol);
-                        display.DrawPolygon(geometry);
-                        System.Threading.Thread.Sleep(delay);
-                        display.DrawPolygon(geometry);
-                        break;
-                    }
-
-                case esriGeometryType.esriGeometryPolyline:
-                    {
-                        //Set the flash geometry's symbol.
-                        ISimpleLineSymbol simpleLineSymbol = new SimpleLineSymbolClass();
-                        simpleLineSymbol.Width = 4;
-                        simpleLineSymbol.Color = color;
-                        ISymbol symbol = simpleLineSymbol as ISymbol; // Dynamic Cast
-                        symbol.ROP2 = esriRasterOpCode.esriROPNotXOrPen;
-
-                        //Flash the input polyline geometry.
-                        display.SetSymbol(symbol);
-                        display.DrawPolyline(geometry);
-                        System.Threading.Thread.Sleep(delay);
-                        display.DrawPolyline(geometry);
-                        break;
-                    }
-
-                case esriGeometryType.esriGeometryPoint:
-                    {
-                        //Set the flash geometry's symbol.
-                        ISimpleMarkerSymbol simpleMarkerSymbol = new SimpleMarkerSymbolClass();
-                        simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle;
-                        simpleMarkerSymbol.Size = 12;
-                        simpleMarkerSymbol.Color = color;
-                        ISymbol symbol = simpleMarkerSymbol as ISymbol; // Dynamic Cast
-                        symbol.ROP2 = esriRasterOpCode.esriROPNotXOrPen;
-
-                        //Flash the input point geometry.
-                        display.SetSymbol(symbol);
-                        display.DrawPoint(geometry);
-                        System.Threading.Thread.Sleep(delay);
-                        display.DrawPoint(geometry);
-                        break;
-                    }
-
-                case esriGeometryType.esriGeometryMultipoint:
-                    {
-                        //Set the flash geometry's symbol.
-                        ISimpleMarkerSymbol simpleMarkerSymbol = new SimpleMarkerSymbolClass();
-                        simpleMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle;
-                        simpleMarkerSymbol.Size = 12;
-                        simpleMarkerSymbol.Color = color;
-                        ISymbol symbol = simpleMarkerSymbol as ISymbol; // Dynamic Cast
-                        symbol.ROP2 = esriRasterOpCode.esriROPNotXOrPen;
-
-                        //Flash the input multipoint geometry.
-                        display.SetSymbol(symbol);
-                        display.DrawMultipoint(geometry);
-                        System.Threading.Thread.Sleep(delay);
-                        display.DrawMultipoint(geometry);
-                        break;
-                    }
-            }
-            display.FinishDrawing();
-        }
-        #endregion
-
         #region "Zoom by Ratio and Recenter"
 
         ///<summary>Zoom in ActiveView using a ratio of the current extent and re-center based upon supplied x,y map coordinates.</summary>
@@ -284,15 +190,15 @@ namespace geopunt4Arcgis
         }
         #endregion
 
-        #region "Add Graphic markter to Map"
+        #region "Add Graphic to Map"
         ///<summary>Draw a specified graphic on the map using the supplied colors.</summary>
-        ///      
         ///<param name="map">An IMap interface.</param>
         ///<param name="geometry">An IPoint interface. It can be of the geometry type esriGeometryPoint</param>
         ///<param name="rgbColor">An IRgbColor interface. The color to draw the geometry.</param>
-        ///<param name="outlineRgbColor">An IRgbColor interface. For those geometry's with an outline it will be this color.</param>
-        ///<param name="size">size in pixel as integer</param>
-        public static IElement AddGraphicToMap(IMap map, IPoint geometry, IRgbColor rgbColor, IRgbColor outlineRgbColor, int size)
+        ///<param name="outlineRgbColor">An IRgbColor interface. For marker anfd polygons the outline it will be this color, for lines this is ignored</param>
+        ///<param name="size">size in pixel as integer linewidth of outLine or of intire marker if point</param>
+        ///<param name="userLock">locked from editing by user?</param>
+        public static IElement AddGraphicToMap(IMap map, IGeometry geometry, IRgbColor rgbColor, IRgbColor outlineRgbColor, int size = 5, bool userLock = false)
         {
             IGraphicsContainer graphicsContainer = (IGraphicsContainer)map; // Explicit Cast
             IElement element = null;
@@ -310,10 +216,40 @@ namespace geopunt4Arcgis
                 markerElement.Symbol = simpleMarkerSymbol;
                 element = (IElement)markerElement; // Explicit Cast
             }
+            else if ((geometry.GeometryType) == ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolyline)
+            {
+                //  Line elements
+                ISimpleLineSymbol simpleLineSymbol = new SimpleLineSymbolClass();
+                simpleLineSymbol.Color = rgbColor;
+                simpleLineSymbol.Style = esriSimpleLineStyle.esriSLSSolid;
+                simpleLineSymbol.Width = size;
 
+                ILineElement lineElement = new LineElementClass();
+                lineElement.Symbol = simpleLineSymbol;
+                element = (IElement)lineElement; // Explicit Cast
+            }
+            else if ((geometry.GeometryType) == ESRI.ArcGIS.Geometry.esriGeometryType.esriGeometryPolygon)
+            {
+                // Polygon elements
+                ISimpleLineSymbol simpleLineSymbol = new SimpleLineSymbolClass();
+                simpleLineSymbol.Color = outlineRgbColor;
+                simpleLineSymbol.Style = esriSimpleLineStyle.esriSLSSolid;
+                simpleLineSymbol.Width = size;
+
+                ISimpleFillSymbol simpleFillSymbol = new SimpleFillSymbolClass();
+                simpleFillSymbol.Color = rgbColor;
+                simpleFillSymbol.Style = esriSimpleFillStyle.esriSFSSolid;
+                simpleFillSymbol.Outline = simpleLineSymbol;
+
+                IFillShapeElement fillShapeElement = new PolygonElementClass();
+                fillShapeElement.Symbol = simpleFillSymbol;
+
+                element = (IElement)fillShapeElement; // Explicit Cast
+            }
             if (!(element == null))
             {
                 element.Geometry = geometry;
+                element.Locked = userLock;
                 graphicsContainer.AddElement(element, 0);
             }
             return element;
@@ -344,13 +280,13 @@ namespace geopunt4Arcgis
         /// <returns>the fieldClass</returns>
         public static IField createField( string name, esriFieldType fieldType = esriFieldType.esriFieldTypeString , int len = 64 ) 
         {
-            IField field = new FieldClass();
-            IFieldEdit fieldEdit = (IFieldEdit)field;
+            IField2 field = new FieldClass();
+            IFieldEdit2 fieldEdit = (IFieldEdit2)field;
             fieldEdit.Name_2 = name;
             fieldEdit.Type_2 =  fieldType;
             if (fieldType == esriFieldType.esriFieldTypeString ) fieldEdit.Length_2 = len;
             fieldEdit.IsNullable_2 = true;
-            return field;
+            return (IField) field;
         }
 
         #endregion
@@ -526,21 +462,44 @@ namespace geopunt4Arcgis
         /// <summary>Delete a existing shapefile</summary>
         /// <param name="path">the full path to the shapefile (*.shp)</param>
         /// <returns>return if succesfull otherwise false</returns> 
-        public static bool deleteFeatureClass( string path ){
-            try
-            {
-                FileInfo featureClassPath = new FileInfo(path);
+        public static bool deleteFeatureClass( string path )
+        {
+            FileInfo featureClassPath = new FileInfo(path);
 
-                if (featureClassPath.Exists && featureClassPath.Extension == ".shp")
+            if (  path.ToLowerInvariant().EndsWith( ".shp"))
+            {
+                if (!featureClassPath.Exists) return true;
+
+                //create factory
+                IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
+                IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(
+                                            featureClassPath.DirectoryName, 0);
+                //create featureclass 
+                IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(
+                                            featureClassPath.Name.Replace(featureClassPath.Extension, ""));
+                //cast tot dataset and delete
+                IDataset ds = featureClass as IDataset;
+                if (ds.CanDelete())
                 {
-                    //create factory
-                    IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
-                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(
-                                             featureClassPath.DirectoryName, 0);
-                    //create featureclass 
-                    IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(
-                                             featureClassPath.Name.Replace(featureClassPath.Extension, ""));
-                    //cast tot dataset and delete
+                    ds.Delete();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if ( featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb") )
+            {
+                    IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile( 
+                                                                                    featureClassPath.DirectoryName, 0);
+                    IWorkspace2 ws = (IWorkspace2)featureWorkspace;
+                    if (!ws.get_NameExists(esriDatasetType.esriDTFeatureClass, featureClassPath.Name))
+                    {
+                        return true;
+                    }
+                    IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(featureClassPath.Name);
                     IDataset ds = featureClass as IDataset;
                     if (ds.CanDelete())
                     {
@@ -551,38 +510,10 @@ namespace geopunt4Arcgis
                     {
                         return false;
                     }
-                }
-                else if ( featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb") )
-                {
-                     IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
-                     IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile( 
-                                                                                      featureClassPath.DirectoryName, 0);
-                     IWorkspace2 ws = (IWorkspace2)featureWorkspace;
-                     if (!ws.get_NameExists(esriDatasetType.esriDTFeatureClass, featureClassPath.Name))
-                     {
-                         return false;
-                     }
-                     IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(featureClassPath.Name);
-                     IDataset ds = featureClass as IDataset;
-                     if (ds.CanDelete())
-                     {
-                         ds.Delete();
-                         return true;
-                     }
-                     else
-                     {
-                         return false;
-                     }
-                }
-                else
-                {
-                    throw new Exception("File is not a shapefile or Filegeodatabase Feature Class");
-                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.StackTrace +" : "+ ex.Message);
-                return false;
+                throw new Exception("File is not a shapefile or Filegeodatabase Feature Class");
             }
         }
         #endregion

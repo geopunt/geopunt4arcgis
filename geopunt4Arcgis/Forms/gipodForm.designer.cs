@@ -268,11 +268,11 @@
             // saveAsShapeBtn
             // 
             this.saveAsShapeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveAsShapeBtn.Location = new System.Drawing.Point(292, 264);
+            this.saveAsShapeBtn.Location = new System.Drawing.Point(333, 264);
             this.saveAsShapeBtn.Name = "saveAsShapeBtn";
-            this.saveAsShapeBtn.Size = new System.Drawing.Size(125, 23);
+            this.saveAsShapeBtn.Size = new System.Drawing.Size(84, 23);
             this.saveAsShapeBtn.TabIndex = 16;
-            this.saveAsShapeBtn.Text = "Opslaan als Shapefile";
+            this.saveAsShapeBtn.Text = "Opslaan";
             this.saveAsShapeBtn.UseVisualStyleBackColor = true;
             this.saveAsShapeBtn.Click += new System.EventHandler(this.saveAsShapeBtn_Click);
             // 
@@ -305,7 +305,6 @@
             this.Name = "gipodForm";
             this.ShowInTaskbar = false;
             this.Text = "GIPOD";
-            this.TopMost = true;
             this.gipodTypeGroup.ResumeLayout(false);
             this.gipodTypeGroup.PerformLayout();
             this.statusBar.ResumeLayout(false);

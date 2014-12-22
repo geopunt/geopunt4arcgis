@@ -76,39 +76,42 @@ namespace geopunt4Arcgis.dataHandler
         }
 
         public datacontract.poiMinResponse getMinmodel(string q = null, int c = 30, string theme = null, string category = null, 
-            string POItype = null, CRS srs = CRS.WGS84, int? id = null, int? niscode = null, boundingBox bbox = null)
+            string POItype = null, CRS srs = CRS.WGS84, int? id = null, string niscode = null, boundingBox bbox = null)
         {
             setQueryValues(q, c, false, theme, category, POItype, srs, id, niscode, bbox );
             client.QueryString = qryValues;
 
             Uri poiUri = new Uri("http://poi.api.geopunt.be/core");
+
             string json = client.DownloadString(poiUri);
 
             datacontract.poiMinResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMinResponse>(json);
 
             client.QueryString.Clear();
+
             return poiResponse;
         }
 
         public datacontract.poiMaxResponse getMaxmodel(string q = null, int c = 30, string theme = null, string category = null,
-            string POItype = null, CRS srs = CRS.WGS84, int? id = null, int? niscode = null, boundingBox bbox = null)
+            string POItype = null, CRS srs = CRS.WGS84, int? id = null, string niscode = null, boundingBox bbox = null)
         {
             setQueryValues(q, c, true, theme, category, POItype, srs, id, niscode, bbox);
             client.QueryString = qryValues;
 
             Uri poiUri = new Uri("http://poi.api.geopunt.be/core");
+
             string json = client.DownloadString(poiUri);
 
             datacontract.poiMaxResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMaxResponse>(json);
 
             client.QueryString.Clear();
+
             return poiResponse;
         }
 
-        private void setQueryValues(
-             string q = "", int c = 30 , bool maxModel = false,
+        private void setQueryValues( string q = "", int c = 30 , bool maxModel = false,
              string theme = null, string category = null, string POItype = null, CRS srs = CRS.WGS84, 
-             int? id = null, int? niscode = null, boundingBox bbox = null)
+             int? id = null, string niscode = null, boundingBox bbox = null)
         {
             if (q != null || q != "") qryValues.Add("keyword", q);
             qryValues.Add("maxcount", c.ToString());
@@ -117,7 +120,7 @@ namespace geopunt4Arcgis.dataHandler
             qryValues.Add("srsOut", Convert.ToString((int)srs));
             //string lists
             if (id != null ) qryValues.Add("id", id.ToString());
-            if (niscode != null) qryValues.Add("regions", niscode.ToString());
+            if (niscode != null || niscode != "") qryValues.Add("region", niscode);
             if (theme != null || theme != "" ) qryValues.Add("theme", theme);
             if (category != null || category != "" ) qryValues.Add("category", category);
             if (POItype != null || POItype != "" ) qryValues.Add("POItype", POItype);

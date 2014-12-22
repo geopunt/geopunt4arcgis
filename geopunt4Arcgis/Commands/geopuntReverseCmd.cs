@@ -46,7 +46,6 @@ namespace geopunt4Arcgis
         {
             try
             {
-
                 IDisplayTransformation displayTransformation = activeView.ScreenDisplay.DisplayTransformation;
 
                 IPoint mapPoint = displayTransformation.ToMapPoint(arg.X, arg.Y);
@@ -81,9 +80,6 @@ namespace geopunt4Arcgis
             finally {
                 base.OnMouseDown(arg);
             }
-
         }
-
     }
-
 }

@@ -831,7 +831,6 @@
             this.Name = "zoekAdresForm";
             this.ShowInTaskbar = false;
             this.Text = "Zoek een adres";
-            this.TopMost = true;
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.ResumeLayout(false);

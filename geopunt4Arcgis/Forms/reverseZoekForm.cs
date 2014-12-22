@@ -21,8 +21,12 @@ namespace geopunt4Arcgis
     public partial class reverseZoekForm : Form
     {
         IActiveView view;
+        IMap map;
         ISpatialReference lam72;
         IFeatureClass reverseFC;
+
+        IElement clickGrp;
+        IElement adresGrp;
 
         geopunt4arcgisExtension gpExtension;
 
@@ -35,6 +39,7 @@ namespace geopunt4Arcgis
         public reverseZoekForm()
         {
             view = ArcMap.Document.ActiveView;
+            map = view.FocusMap;
             adresLocation = new dataHandler.adresLocation(adresCallback);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
@@ -92,6 +97,8 @@ namespace geopunt4Arcgis
                 adresLocation.client.CancelAsync();
             }
             base.OnClosed(e);
+            clearGraphics();
+            view.Refresh();
         }
      #endregion
 
@@ -111,6 +118,15 @@ namespace geopunt4Arcgis
                     adresType = addresses[0].LocationType;
                     diff = Math.Sqrt(Math.Pow(xAdres - xClick, 2) + Math.Pow(yAdres - yClick, 2));
                     setText(adres, diff, adresType);
+
+                    IPoint xyLam72 = new PointClass() {X= xAdres, Y= yAdres, SpatialReference=lam72 };
+                    IPoint xyAdres = (IPoint)geopuntHelper.Transform((IGeometry)xyLam72, map.SpatialReference);
+
+                    IRgbColor rgb = new RgbColorClass() { Red = 255, Blue = 0, Green = 255 };
+                    IRgbColor black = new RgbColorClass() { Red = 0, Blue = 0, Green = 0 };
+                    adresGrp = geopuntHelper.AddGraphicToMap(map, xyAdres, rgb, black, 8, true);
+                    view.Refresh();
+
                     add2MapBtn.Enabled = true;
                     saveBtn.Enabled = true;
                     return;
@@ -188,12 +204,18 @@ namespace geopunt4Arcgis
 
         public void reverseGeocode(IPoint xyLam72)
         {
-            if (adresLocation.client.IsBusy) { return; }
+            if (adresLocation.client.IsBusy) return;
 
             xClick = Math.Round(xyLam72.X, 2);
             yClick = Math.Round(xyLam72.Y, 2);
 
             lam72 = xyLam72.SpatialReference;
+
+            IPoint xyClick = (IPoint) geopuntHelper.Transform( (IGeometry) xyLam72, map.SpatialReference);
+            clearGraphics();
+            IRgbColor rgb = new RgbColorClass(){Red= 0, Blue=255, Green=0 };
+            IRgbColor black = new RgbColorClass(){Red= 0, Blue=0, Green=0 };
+            clickGrp = geopuntHelper.AddGraphicToMap(map, xyClick, rgb, black, 8, true);
 
             adresLocation.getXYadresLocationAsync(xClick, yClick);
 
@@ -202,6 +224,22 @@ namespace geopunt4Arcgis
             infoLabel.Text = "";
             add2MapBtn.Enabled = false;
             saveBtn.Enabled = false;
+            view.Refresh();
+        }
+
+        public void clearGraphics()
+        {
+            IGraphicsContainer grpCont = (IGraphicsContainer)map;
+            if (adresGrp != null) 
+            {
+                grpCont.DeleteElement(adresGrp);
+                adresGrp = null;
+            }
+            if (clickGrp != null)
+            {
+                grpCont.DeleteElement(clickGrp);
+                clickGrp = null;
+            }
         }
 
      #endregion

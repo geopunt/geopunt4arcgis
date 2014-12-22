@@ -103,19 +103,23 @@ namespace geopunt4Arcgis
             try
             {
                 string shapeCreated;
-                shapeCreated = createShapeName();
+                shapeCreated = geopuntHelper.ShowSaveDataDialog("Opslaan als");
 
                 //if user canceled shapeCreated is null
                 if (shapeCreated == null) return;
 
-                if (File.Exists(shapeCreated))
+                bool deleted = geopuntHelper.deleteFeatureClass(shapeCreated);
+
+                if (!deleted)
                 {
-                    geopuntHelper.deleteFeatureClass(shapeCreated);
+                    MessageBox.Show("Kan file de onderaande file niet deleten: \n" + shapeCreated  );
+                    return;
                 }
+                FileInfo featureClassPath = new FileInfo(shapeCreated);
 
                 dataHandler.gipodParam param = getGipodParam();
 
-                //disable button to prevent multiple runs and start waiting animation
+                //disable button to prevent multiple runs and start waiting animation --> TODO: make ansync, all this has no point now
                 saveAsShapeBtn.Enabled = false;
                 messageLbl.Text = "Data ophalen van GIPOD";
                 progress.MarqueeAnimationSpeed = 100;
@@ -126,9 +130,25 @@ namespace geopunt4Arcgis
                 {
                     messageLbl.Text = String.Format("{0} objecten gevonden in GIPOD, aan het schrijven naar shapefile", gipodRecords.Count);
 
-                    //create shapefile
-                    List<IField> gipodfields = gipodIFields(param.gipodType);
-                    IFeatureClass gipodFC = geopuntHelper.createShapeFile(shapeCreated, gipodfields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+                    //create shapefile or FeatureClass
+                    List<IField> gipodfields;
+                    IFeatureClass gipodFC;
+                    if ( shapeCreated.ToLowerInvariant().EndsWith(".shp") )
+                    {
+                        gipodfields = gipodIFields(param.gipodType, true);
+                        gipodFC = geopuntHelper.createShapeFile(shapeCreated, gipodfields, view.FocusMap.SpatialReference, 
+                                                                                        esriGeometryType.esriGeometryPoint);
+                    }
+                    else if (featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
+                    {
+                        gipodfields = gipodIFields(param.gipodType, false);
+                        gipodFC = geopuntHelper.createFeatureClass(featureClassPath.DirectoryName, featureClassPath.Name , 
+                                                            gipodfields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+                    }
+                    else
+                    {
+                        throw new Exception("Is geen feature class of shapefile.");
+                    }
 
                     populateGipodShape(gipodFC, gipodRecords, param.gipodType);
 
@@ -234,37 +254,19 @@ namespace geopunt4Arcgis
             }
         }
 
-        /// <summary>get the filename for gipod shapefile and delete existing shape if needed </summary>
-        private string createShapeName()
-        {
-            //get shapefile path
-            SaveFileDialog saveDlg = new SaveFileDialog()
-            {
-                Filter = "shapefile (*.shp)|*.shp",
-                Title = "Opslaan naar een shapefile",
-                CheckFileExists = false
-            };
-            saveDlg.ShowDialog();
-
-            //write shapefile 
-            if (saveDlg.FileName == "")
-            {
-                return null;
-            }
-
-            return saveDlg.FileName;
-        }
-
         /// <summary>Create the the fields for teh gipod Shapefile</summary>
-        private List<IField> gipodIFields(dataHandler.gipodtype gtype)
+        private List<IField> gipodIFields(dataHandler.gipodtype gtype, bool shp = true)
         {
             List<IField> fields = new List<IField>();
 
             IField gipodID = geopuntHelper.createField("gipodID", esriFieldType.esriFieldTypeInteger);
             fields.Add(gipodID);
-            IField eigenaar = geopuntHelper.createField("eigenaar", esriFieldType.esriFieldTypeString, 255);
+            IField eigenaar = geopuntHelper.createField("eigenaar", esriFieldType.esriFieldTypeString, 254);
             fields.Add(eigenaar);
-            IField descript = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 255);
+
+            int descriptLen = 1600;
+            if (shp) descriptLen = 254;
+            IField descript = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, descriptLen);
             fields.Add(descript);
             IField startDate = geopuntHelper.createField("start", esriFieldType.esriFieldTypeDate);
             fields.Add(startDate);
@@ -274,7 +276,7 @@ namespace geopunt4Arcgis
             fields.Add(hinder);
             IField detail = geopuntHelper.createField("detail", esriFieldType.esriFieldTypeString, 140);
             fields.Add(detail);
-            IField cities = geopuntHelper.createField("cities", esriFieldType.esriFieldTypeString, 255);
+            IField cities = geopuntHelper.createField("cities", esriFieldType.esriFieldTypeString, 254);
             fields.Add(cities);
 
             if (gtype == dataHandler.gipodtype.manifestation) {
@@ -285,7 +287,6 @@ namespace geopunt4Arcgis
                 IField recurrencePattern = geopuntHelper.createField("patroon", esriFieldType.esriFieldTypeString, 255);
                 fields.Add(recurrencePattern);
             }
-
             return fields;
         }
 
@@ -361,8 +362,14 @@ namespace geopunt4Arcgis
                     int ownerIdx = gipodFC.FindField("eigenaar");
                     featureBuffer.set_Value(ownerIdx, owner);
 
+                    //sometime very long, handle that
                     string description = row.description;
                     int descriptionIdx = gipodFC.FindField("info");
+                    int maxLen = featureBuffer.Fields.get_Field(descriptionIdx).Length;
+                    if (description.Length > maxLen)
+                    {
+                        description = description.Substring(0, maxLen);
+                    }
                     featureBuffer.set_Value(descriptionIdx, description);
 
                     DateTime startDate = row.startDateTime;

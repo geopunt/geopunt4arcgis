@@ -18,10 +18,8 @@ namespace geopunt4Arcgis
         double Ymin;
         ISpatialReference inSRS;
 
-        /// <summary>
-        /// constructor: creates a Class to handle a boundingbox, 
-        /// that make sure it is within Flanderers and return string string in the wanted format.
-        /// </summary>
+        /// <summary> constructor: creates a Class to handle a boundingbox, 
+        /// that make sure it is within Flanderers and return string string in the wanted format. </summary>
         /// <param name="xmin">lowest x-coordinate in given srs</param>
         /// <param name="ymin">lowest y-coordinate in given srs<</param>
         /// <param name="xmax">highest x-coordinate in given srs<</param>
@@ -47,11 +45,9 @@ namespace geopunt4Arcgis
             if (xmax < prjBounds.YMax) Ymax = ymax;
             else Ymax = prjBounds.YMax;
         }
-        /// <summary>
-        /// returns the bounds of vlaanderen
-        /// </summary>
-        /// <param name="srs">the spatial reference of input and output</param>
-        public boundingBox(int srs)
+        /// <summary> returns the bounds of vlaanderen </summary>
+        /// <param name="srs">the spatial reference of input and output, default lam72</param>
+        public boundingBox(int srs = 31370)
         {
             //handle SRS
             ISpatialReferenceFactory3 SpatialReferenceFactory = new SpatialReferenceEnvironmentClass();
@@ -67,9 +63,8 @@ namespace geopunt4Arcgis
             Ymax = prjBounds.YMax;
         }
 
-        /// <summary>
-        ///  Class to handle a boundingbox, that make sure it is within Flanderers and return string string in the wanted format from arcgis IEnvelope
-        /// </summary>
+        /// <summary> Class to handle a boundingbox, that make sure it is within Flanderers 
+        /// and return string string in the wanted format from arcgis IEnvelope </summary>
         /// <param name="arcgisBbox">arcgis IEnvelope </param>
         public boundingBox(IEnvelope arcgisBbox)
         {
@@ -97,9 +92,7 @@ namespace geopunt4Arcgis
             else Ymax = maxBounds.YMax;
         }
 
-        /// <summary>
-        /// return a strin in the "Xmin,Ymin|Xmax,Ymax" form, with sep=| and xySplit = ","
-        /// </summary>
+        /// <summary> return a strin in the "Xmin,Ymin|Xmax,Ymax" form, with sep=| and xySplit = ","</summary>
         /// <param name="xySplit">separator of x and y pairs </param>
         /// <param name="sep">sepator between xy-pairs </param>
         public string ToBboxString( string xySplit = "|" , string sep="|")
@@ -110,9 +103,7 @@ namespace geopunt4Arcgis
             return toString;
         }
 
-        /// <summary>
-        /// Return bbox as arcgis IEnvelope
-        /// </summary>
+        /// <summary> Return bbox as arcgis IEnvelope </summary>
         /// <returns>the bbox as arcgis IEnvelope</returns>
         public IEnvelope toArcGISEnvelope()
         {
