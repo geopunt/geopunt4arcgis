@@ -56,7 +56,7 @@ namespace geopunt4Arcgis.datacontract
 
     public class poiMaxModel : poiMinModel
     {
-        public poiValueGroup authors { get; set; }
+        public List<poiValueGroup> authors { get; set; }
         public DateTime created { get; set; }
         public DateTime updated { get; set; }
         public poiValueGroup description { get; set; }

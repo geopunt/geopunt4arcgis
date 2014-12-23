@@ -153,6 +153,7 @@ namespace geopunt4Arcgis
                     populateGipodShape(gipodFC, gipodRecords, param.gipodType);
 
                     geopuntHelper.addFeatureClassToMap(view, gipodFC, true);
+                    view.Refresh();
                     this.Close();
                 }
                 else
@@ -414,7 +415,6 @@ namespace geopunt4Arcgis
                     insertCursor.InsertFeature(featureBuffer);
                 }
                 insertCursor.Flush();
-                
             }
         }
         #endregion

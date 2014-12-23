@@ -12,12 +12,16 @@ namespace geopunt4Arcgis
         private static geopunt4arcgisExtension gpExtension;
         public IFeatureClass adresLayer;
         public IFeatureClass reverseLayer;
+        public IFeatureClass poiLayer;
+        public IFeatureClass poiMinLayer;
 
         public geopunt4arcgisExtension()
         {
             gpExtension = this;
             adresLayer = null;
             reverseLayer = null;
+            poiLayer = null;
+            poiMinLayer = null;
         }
 
         internal static geopunt4arcgisExtension getGeopuntExtension()
@@ -37,7 +41,7 @@ namespace geopunt4Arcgis
             //ArcMap.Events. += delegate()
             //{
             //    // Return true to stop document from closing
-            //    ESRI.ArcGIS.Framework.IMessageDialog msgBox = new ESRI.ArcGIS.Framework.MessageDialogClass();
+            //    IMessageDialog msgBox = new MessageDialogClass();
             //    return msgBox.DoModal("BeforeCloseDocument Event", "Abort closing?", "Yes", "No", ArcMap.Application.hWnd);
             //};
         }

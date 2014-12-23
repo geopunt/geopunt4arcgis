@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
@@ -12,6 +13,7 @@ using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
+
 
 namespace geopunt4Arcgis 
 {
@@ -88,16 +90,21 @@ namespace geopunt4Arcgis
             }
             else extent = null;
 
+            int count = 30;
+            if (keyWord != "") count = 100;
+
             try
             {
                 //get the data
-                poiData = poiDH.getMaxmodel(
+                poiData = poiDH.getMaxmodel( 
                     q: keyWord, theme: themeCode, category: catCode, POItype: poiTypeCode, niscode: nis,
-                    bbox: extent, srs: dataHandler.CRS.WGS84);
+                    c: count, bbox: extent, srs: dataHandler.CRS.WGS84);
 
                 List<datacontract.poiMaxModel> pois = poiData.pois;
 
                 rows.Clear();
+
+                msgLbl.Text = string.Format("Aantal getoond:{0} - gevonden:{1}", pois.Count, poiData.label.value);
 
                 //parse results
                 foreach (datacontract.poiMaxModel poi in pois)
@@ -170,7 +177,7 @@ namespace geopunt4Arcgis
         {
             string cat = categoryCbx.Text;
             string theme = themeCbx.Text;
-            if (cat == "" || theme == "")
+            if (cat == "")
             {
                 populateFilters();
                 return;
@@ -230,9 +237,184 @@ namespace geopunt4Arcgis
             {
                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
             }
+        }
 
+        private void zoom2selBtn_Click(object sender, EventArgs e)
+        {
+            if (resultGrid.SelectedRows.Count == 0) return;
 
+            IPointCollection points = new MultipointClass();
+            try
+            {
+                for (int i = 0; i < resultGrid.SelectedRows.Count; i++)
+                {
+                    DataGridViewRow row = resultGrid.SelectedRows[i];
+                    int id = (int)row.Cells[0].Value;
 
+                    List<datacontract.poiLocation> qry = (from n in poiData.pois
+                                                          where n.id == id
+                                                          select n.location).ToList<datacontract.poiLocation>();
+                    if (qry.Count == 0) break;
+                    if (qry[0].points == null || qry[0].points.Count == 0) break;
+
+                    datacontract.geojsonPoint jsonPt = qry[0].points[0].Point;
+                    IPoint wgsPt = geopuntHelper.geojson2esriPoint(jsonPt, 4326);
+                    IPoint prjPt = (IPoint)geopuntHelper.Transform((IGeometry)wgsPt, map.SpatialReference);
+
+                    points.AddPoint(prjPt, Type.Missing, Type.Missing);
+                }
+                if (points.PointCount == 0)
+                {
+                    return;
+                }
+                else if (points.PointCount == 1)
+                {
+                    IPoint xy = points.get_Point(0);
+                    geopuntHelper.ZoomByRatioAndRecenter(view, 0.5, xy.X, xy.Y);
+                }
+                else
+                {
+                    IEnvelope extent = ((IGeometry)points).Envelope;
+                    view.Extent = extent;
+                }
+                view.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            }
+        }
+
+        private void addSelection2mapBtn_Click(object sender, EventArgs e)
+        {
+            if (resultGrid.SelectedRows.Count == 0) return;
+
+            List<int> ids = new List<int>();
+            List<datacontract.poiMaxModel> pois;
+
+            try
+            {
+                for (int i = 0; i < resultGrid.SelectedRows.Count; i++)
+                {
+                    DataGridViewRow row = resultGrid.SelectedRows[i];
+                    int id = (int)row.Cells[0].Value;
+                    ids.Add(id);
+                }
+                pois = (from n in poiData.pois
+                        where ids.Contains(n.id)
+                        select n).ToList<datacontract.poiMaxModel>();
+                if (pois.Count == 0) return;
+
+                IFeatureClass poiFC;
+
+                if (gpExtension.poiLayer == null)
+                {
+                    String poiPath = geopuntHelper.ShowSaveDataDialog("Opslaan als");
+                    if (poiPath == null) return;
+
+                    bool deleted = geopuntHelper.deleteFeatureClass(poiPath);
+                    if (!deleted)
+                    {
+                        MessageBox.Show("Kan file de onderaande file niet deleten: \n" + poiPath);
+                        return;
+                    }
+                    FileInfo featureClassPath = new FileInfo(poiPath);
+                    List<IField> fields = poiIMaxFields();
+
+                    if (poiPath.ToLowerInvariant().EndsWith(".shp"))
+                    {
+                        poiFC = geopuntHelper.createShapeFile(poiPath, fields, view.FocusMap.SpatialReference,
+                                                                                        esriGeometryType.esriGeometryPoint);
+                    }
+                    else if (featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
+                    {
+                        poiFC = geopuntHelper.createFeatureClass(featureClassPath.DirectoryName, featureClassPath.Name,
+                                                            fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+                    }
+                    else
+                    {
+                        throw new Exception("Is geen feature class of shapefile.");
+                    }
+                    gpExtension.poiLayer = poiFC;
+                    geopuntHelper.addFeatureClassToMap(view, poiFC, true);
+                }
+                populateMaxFields(gpExtension.poiLayer, pois);
+                view.Refresh();
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            }
+
+        }
+
+        private void addAll2MapBtn_Click(object sender, EventArgs e)
+        {
+            //get input
+            string nis = municipality2nis(gemeenteCbx.Text);
+            string themeCode = theme2code(themeCbx.Text);
+            string catCode = cat2code(categoryCbx.Text);
+            string poiTypeCode = poitype2code(typeCbx.Text);
+            string keyWord = keywordTxt.Text;
+            boundingBox extent;
+            if (extentCkb.Checked)
+            {
+                IEnvelope env = view.Extent;
+                IEnvelope prjEnv = geopuntHelper.Transform2WGS((IGeometry)env).Envelope;
+                extent = new boundingBox(prjEnv);
+            }
+            else extent = null;
+
+            try
+            {
+                //get the data
+                datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode, 
+                                             POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
+
+                List<datacontract.poiMinModel> pois = poiMinData.pois;
+                List<datacontract.cluster> clusters = poiMinData.clusters;
+
+                if (pois.Count == 0 && clusters.Count == 0) return;
+
+                if (gpExtension.poiMinLayer == null)
+                {
+                    String poiPath = geopuntHelper.ShowSaveDataDialog("Opslaan als");
+                    if (poiPath == null) return;
+
+                    bool deleted = geopuntHelper.deleteFeatureClass(poiPath);
+                    if (!deleted)
+                    {
+                        MessageBox.Show("Kan file de onderaande file niet deleten: \n" + poiPath);
+                        return;
+                    }
+                    FileInfo featureClassPath = new FileInfo(poiPath);
+                    List<IField> fields = poiIMinFields();
+                    IFeatureClass poiFC;
+
+                    if (poiPath.ToLowerInvariant().EndsWith(".shp"))
+                    {
+                        poiFC = geopuntHelper.createShapeFile(poiPath, fields, view.FocusMap.SpatialReference,
+                                                                                        esriGeometryType.esriGeometryPoint);
+                    }
+                    else if (featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
+                    {
+                        poiFC = geopuntHelper.createFeatureClass(featureClassPath.DirectoryName, featureClassPath.Name,
+                                                            fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+                    }
+                    else
+                    {
+                        throw new Exception("Is geen feature class of shapefile.");
+                    }
+                    gpExtension.poiMinLayer = poiFC;
+                    geopuntHelper.addFeatureClassToMap(view, poiFC, true);
+                }
+                populateMinFields(gpExtension.poiMinLayer, pois, clusters);
+                view.Refresh();
+            }
+            catch (Exception ex)
+            {
+                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            }
         }
         #endregion
 
@@ -325,7 +507,309 @@ namespace geopunt4Arcgis
             }
             graphics.Clear();
         }
-        
+
+        /// <summary>Create the the fields for the poi MaxModel Features</summary>
+        private List<IField> poiIMaxFields()
+        {
+            List<IField> fields = new List<IField>();
+
+            IField poiID = geopuntHelper.createField("poiID", esriFieldType.esriFieldTypeInteger);
+            fields.Add(poiID);
+            IField auteur = geopuntHelper.createField("auteur", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(auteur);
+            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 64);
+            fields.Add(naam);
+            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 64);
+            fields.Add(poitype);
+            //IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
+            //fields.Add(info);
+            IField detail = geopuntHelper.createField("link", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(detail);
+            //datumes
+            IField creatie = geopuntHelper.createField("creatie", esriFieldType.esriFieldTypeDate);
+            fields.Add(creatie);
+            IField update = geopuntHelper.createField("wijziging", esriFieldType.esriFieldTypeDate);
+            fields.Add(update);
+
+            //adres
+            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(straat);
+            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(huisnr);
+            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(busnr);
+            IField postcode = geopuntHelper.createField("postcode", esriFieldType.esriFieldTypeString, 16);
+            fields.Add(postcode);
+            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(gemeente);
+            return fields;
+        }
+
+        /// <summary>Create the the fields for the poi MinModel Features</summary>
+        private List<IField> poiIMinFields()
+        {
+            List<IField> fields = new List<IField>();
+
+            IField poiID = geopuntHelper.createField("poiID", esriFieldType.esriFieldTypeInteger);
+            fields.Add(poiID);
+
+            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 64);
+            fields.Add(naam);
+            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 64);
+            fields.Add(poitype);
+            IField link = geopuntHelper.createField("link", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(link);
+
+            //adres
+            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(straat);
+            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(huisnr);
+            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(busnr);
+            IField postcode = geopuntHelper.createField("postcode", esriFieldType.esriFieldTypeString, 16);
+            fields.Add(postcode);
+            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 50);
+            fields.Add(gemeente);
+
+            //count of cluster
+            IField aantal = geopuntHelper.createField("aantal", esriFieldType.esriFieldTypeInteger);
+            fields.Add(aantal);
+            return fields;
+        }
+
+        private void populateMaxFields(IFeatureClass poiFC, List<datacontract.poiMaxModel> pois)
+        {
+            using (ComReleaser comReleaser = new ComReleaser())
+            {
+                //Spatialreference 
+                ISpatialReference srs = view.FocusMap.SpatialReference;
+                // Create a feature buffer.
+                IFeatureBuffer featureBuffer = poiFC.CreateFeatureBuffer();
+                comReleaser.ManageLifetime(featureBuffer);
+
+                // Create an insert cursor.
+                IFeatureCursor insertCursor = poiFC.Insert(true);
+                comReleaser.ManageLifetime(insertCursor);
+
+                foreach (datacontract.poiMaxModel row in pois)
+                {
+                    if (row.location.points == null || row.location.points.Count == 0) 
+                        throw new Exception( "Niet alle punten hebben een coördinaat" );
+
+                    Double x = row.location.points[0].Point.coordinates[0];
+                    Double y = row.location.points[0].Point.coordinates[1];
+                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = wgs };
+                    IPoint toPt = geopuntHelper.Transform(pt, srs) as IPoint;
+
+                    featureBuffer.Shape = toPt;
+
+                    int id = row.id;
+                    int idIdx = poiFC.FindField("poiID");
+                    featureBuffer.set_Value(idIdx, id);
+
+                    if ( row.authors != null  )
+                    {
+                        List<string> authorQry = (from n in row.authors
+                                                select n.value).ToList<string>();
+                        if (authorQry.Count > 0)
+                        {
+                            string owner = authorQry[0];
+                            int ownerIdx = poiFC.FindField("auteur");
+                            featureBuffer.set_Value(ownerIdx, owner);
+                        }
+                    }
+                    if ( row.labels != null )
+                    {
+                        List<string> labelQry = (from n in row.labels
+                                                select n.value).ToList<string>();
+                        if (labelQry.Count > 0)
+                        {
+                            string label = labelQry[0];
+                            int labelIdx = poiFC.FindField("naam");
+                            featureBuffer.set_Value(labelIdx, label);
+                        }
+                    }
+                    if (row.categories != null)
+                    {
+                        List<string> poitypeQry = (from n in row.categories
+                                                     where n.type == "Type"
+                                                     select n.value).ToList<string>();
+                        if (poitypeQry.Count > 0)
+                        {
+                            string poitype = poitypeQry[0];
+                            int poitypeIdx = poiFC.FindField("poitype");
+                            featureBuffer.set_Value(poitypeIdx, poitype);
+                        }
+                    }
+                    if (row.links != null)
+                    {
+                        List<string> linkQry = (from n in row.links
+                                                select n.href).ToList<string>();
+                        if (linkQry.Count > 0)
+                        {
+                            string link = linkQry[0];
+                            int linkIdx = poiFC.FindField("link");
+                            featureBuffer.set_Value(linkIdx, link);
+                        }
+                    }
+                    DateTime startDate = row.created;
+                    int startDateIdx = poiFC.FindField("creatie");
+                    featureBuffer.set_Value(startDateIdx, startDate);
+
+                    DateTime updateDate = row.updated;
+                    int updateDateIdx = poiFC.FindField("wijziging");
+                    featureBuffer.set_Value(updateDateIdx, updateDate);
+
+                    //adres
+                    if (row.location.address != null)
+                    {
+                        string straat = row.location.address.street;
+                        string huisnr = row.location.address.streetnumber;
+                        string busnr = row.location.address.boxnumber;
+                        string postcode = row.location.address.postalcode;
+                        string gemeente = row.location.address.municipality;
+                        int straatIdx = poiFC.FindField("straat");
+                        featureBuffer.set_Value(straatIdx, straat);
+                        int huisnrIdx = poiFC.FindField("huisnr");
+                        featureBuffer.set_Value(huisnrIdx, huisnr);
+                        int busnrIdx = poiFC.FindField("busnr");
+                        featureBuffer.set_Value(busnrIdx, busnr);
+                        int postcodeIdx = poiFC.FindField("postcode");
+                        featureBuffer.set_Value(postcodeIdx, postcode);
+                        int gemeenteIdx = poiFC.FindField("gemeente");
+                        featureBuffer.set_Value(gemeenteIdx, gemeente);
+                    }
+
+                    insertCursor.InsertFeature(featureBuffer);
+                }
+                insertCursor.Flush();
+            }
+        }
+
+        private void populateMinFields(IFeatureClass poiFC, List<datacontract.poiMinModel> pois , List<datacontract.cluster> clusters)
+        {
+            using (ComReleaser comReleaser = new ComReleaser())
+            {
+                //Spatialreference 
+                ISpatialReference srs = view.FocusMap.SpatialReference;
+                // Create a feature buffer.
+                IFeatureBuffer featureBuffer = poiFC.CreateFeatureBuffer();
+                comReleaser.ManageLifetime(featureBuffer);
+
+                // Create an insert cursor.
+                IFeatureCursor insertCursor = poiFC.Insert(true);
+                comReleaser.ManageLifetime(insertCursor);
+
+                foreach (datacontract.poiMinModel row in pois)
+                {
+                    if (row.location.points == null || row.location.points.Count == 0)
+                        throw new Exception("Niet alle punten hebben een coördinaat");
+
+                    Double x = row.location.points[0].Point.coordinates[0];
+                    Double y = row.location.points[0].Point.coordinates[1];
+                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = wgs };
+                    IPoint toPt = geopuntHelper.Transform(pt, srs) as IPoint;
+
+                    featureBuffer.Shape = toPt;
+
+                    int id = row.id;
+                    int idIdx = poiFC.FindField("poiID");
+                    featureBuffer.set_Value(idIdx, id);
+
+                    if (row.labels != null)
+                    {
+                        List<string> labelQry = (from n in row.labels
+                                                 select n.value).ToList<string>();
+                        if (labelQry.Count > 0)
+                        {
+                            string label = labelQry[0];
+                            int labelIdx = poiFC.FindField("naam");
+                            featureBuffer.set_Value(labelIdx, label);
+                        }
+                    }
+                    if (row.categories != null)
+                    {
+                        List<string> poitypeQry = (from n in row.categories
+                                                   where n.type == "Type"
+                                                   select n.value).ToList<string>();
+                        if (poitypeQry.Count > 0)
+                        {
+                            string poitype = poitypeQry[0];
+                            int poitypeIdx = poiFC.FindField("poitype");
+                            featureBuffer.set_Value(poitypeIdx, poitype);
+                        }
+                    }
+                    if (row.links != null)
+                    {
+                        List<string> linkQry = (from n in row.links
+                                                select n.href).ToList<string>();
+                        if (linkQry.Count > 0)
+                        {
+                            string link = linkQry[0];
+                            int linkIdx = poiFC.FindField("link");
+                            featureBuffer.set_Value(linkIdx, link);
+                        }
+                    }
+
+                    //adres
+                    if (row.location.address != null)
+                    {
+                        string straat = row.location.address.street;
+                        string huisnr = row.location.address.streetnumber;
+                        string busnr = row.location.address.boxnumber;
+                        string postcode = row.location.address.postalcode;
+                        string gemeente = row.location.address.municipality;
+                        int straatIdx = poiFC.FindField("straat");
+                        featureBuffer.set_Value(straatIdx, straat);
+                        int huisnrIdx = poiFC.FindField("huisnr");
+                        featureBuffer.set_Value(huisnrIdx, huisnr);
+                        int busnrIdx = poiFC.FindField("busnr");
+                        featureBuffer.set_Value(busnrIdx, busnr);
+                        int postcodeIdx = poiFC.FindField("postcode");
+                        featureBuffer.set_Value(postcodeIdx, postcode);
+                        int gemeenteIdx = poiFC.FindField("gemeente");
+                        featureBuffer.set_Value(gemeenteIdx, gemeente);
+                    }
+
+                    int cIdx = poiFC.FindField("aantal");
+                    featureBuffer.set_Value(cIdx, 1);
+
+                    insertCursor.InsertFeature(featureBuffer);
+                }
+
+                foreach (datacontract.cluster row in clusters)
+                {
+                    int c = row.count;
+                    int cIdx = poiFC.FindField("aantal");
+                    featureBuffer.set_Value(cIdx, c);
+                    int poitypeIdx = poiFC.FindField("poitype");
+                    featureBuffer.set_Value(poitypeIdx, "Cluster");
+                    insertCursor.InsertFeature(featureBuffer);
+                    
+                    //set others to null
+                    int idIdx = poiFC.FindField("poiID");
+                    featureBuffer.set_Value(idIdx, null);
+                    int labelIdx = poiFC.FindField("naam");
+                    featureBuffer.set_Value(labelIdx, null);
+                    int linkIdx = poiFC.FindField("link");
+                    featureBuffer.set_Value(linkIdx, null);
+                    //adres
+                    int straatIdx = poiFC.FindField("straat");
+                    featureBuffer.set_Value(straatIdx, null);
+                    int huisnrIdx = poiFC.FindField("huisnr");
+                    featureBuffer.set_Value(huisnrIdx, null);
+                    int busnrIdx = poiFC.FindField("busnr");
+                    featureBuffer.set_Value(busnrIdx, null);
+                    int postcodeIdx = poiFC.FindField("postcode");
+                    featureBuffer.set_Value(postcodeIdx, null);
+                    int gemeenteIdx = poiFC.FindField("gemeente");
+                    featureBuffer.set_Value(gemeenteIdx, null);
+                }
+
+                insertCursor.Flush();
+            }
+        }
         #endregion
 
     }

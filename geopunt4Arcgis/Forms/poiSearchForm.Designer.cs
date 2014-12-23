@@ -44,8 +44,12 @@
             this.keywordLbl = new System.Windows.Forms.Label();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.addSelection2mapBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.zoom2selBtn = new System.Windows.Forms.Button();
+            this.addAll2MapBtn = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // resultGrid
@@ -64,6 +68,7 @@
             this.resultGrid.Size = new System.Drawing.Size(493, 185);
             this.resultGrid.TabIndex = 0;
             this.resultGrid.SelectionChanged += new System.EventHandler(this.resultGrid_SelectionChanged);
+            this.resultGrid.DoubleClick += new System.EventHandler(this.zoom2selBtn_Click);
             // 
             // zoekBtn
             // 
@@ -191,7 +196,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cancelBtn.Location = new System.Drawing.Point(430, 418);
+            this.cancelBtn.Location = new System.Drawing.Point(442, 427);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 13;
@@ -208,23 +213,53 @@
             this.addSelection2mapBtn.TabIndex = 14;
             this.addSelection2mapBtn.Text = "Voeg selectie aan kaart";
             this.addSelection2mapBtn.UseVisualStyleBackColor = true;
+            this.addSelection2mapBtn.Click += new System.EventHandler(this.addSelection2mapBtn_Click);
             // 
-            // button1
+            // zoom2selBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(379, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Zoom naar selectie";
-            this.button1.UseVisualStyleBackColor = true;
+            this.zoom2selBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.zoom2selBtn.Location = new System.Drawing.Point(379, 389);
+            this.zoom2selBtn.Name = "zoom2selBtn";
+            this.zoom2selBtn.Size = new System.Drawing.Size(126, 23);
+            this.zoom2selBtn.TabIndex = 15;
+            this.zoom2selBtn.Text = "Zoom naar selectie";
+            this.zoom2selBtn.UseVisualStyleBackColor = true;
+            this.zoom2selBtn.Click += new System.EventHandler(this.zoom2selBtn_Click);
+            // 
+            // addAll2MapBtn
+            // 
+            this.addAll2MapBtn.Location = new System.Drawing.Point(280, 418);
+            this.addAll2MapBtn.Name = "addAll2MapBtn";
+            this.addAll2MapBtn.Size = new System.Drawing.Size(156, 23);
+            this.addAll2MapBtn.TabIndex = 16;
+            this.addAll2MapBtn.Text = "Voeg alle punten toe";
+            this.addAll2MapBtn.UseVisualStyleBackColor = true;
+            this.addAll2MapBtn.Click += new System.EventHandler(this.addAll2MapBtn_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msgLbl});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 453);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(517, 22);
+            this.statusStrip1.TabIndex = 17;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // msgLbl
+            // 
+            this.msgLbl.Name = "msgLbl";
+            this.msgLbl.Size = new System.Drawing.Size(28, 17);
+            this.msgLbl.Text = "       ";
             // 
             // poiSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 448);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(517, 475);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.addAll2MapBtn);
+            this.Controls.Add(this.zoom2selBtn);
             this.Controls.Add(this.addSelection2mapBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.keywordLbl);
@@ -241,9 +276,12 @@
             this.Controls.Add(this.zoekBtn);
             this.Controls.Add(this.resultGrid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(250, 400);
             this.Name = "poiSearchForm";
             this.Text = "Zoek naar interessante plaats";
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,6 +304,9 @@
         private System.Windows.Forms.Label keywordLbl;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button addSelection2mapBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button zoom2selBtn;
+        private System.Windows.Forms.Button addAll2MapBtn;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel msgLbl;
     }
 }

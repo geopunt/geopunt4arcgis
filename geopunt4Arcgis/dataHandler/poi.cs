@@ -75,10 +75,10 @@ namespace geopunt4Arcgis.dataHandler
             return poiResponse;
         }
 
-        public datacontract.poiMinResponse getMinmodel(string q = null, int c = 30, string theme = null, string category = null, 
+        public datacontract.poiMinResponse getMinmodel(string q = null, string theme = null, string category = null, 
             string POItype = null, CRS srs = CRS.WGS84, int? id = null, string niscode = null, boundingBox bbox = null)
         {
-            setQueryValues(q, c, false, theme, category, POItype, srs, id, niscode, bbox );
+            setQueryValues(q, 0, false, theme, category, POItype, srs, id, niscode, bbox );
             client.QueryString = qryValues;
 
             Uri poiUri = new Uri("http://poi.api.geopunt.be/core");
@@ -114,7 +114,7 @@ namespace geopunt4Arcgis.dataHandler
              int? id = null, string niscode = null, boundingBox bbox = null)
         {
             if (q != null || q != "") qryValues.Add("keyword", q);
-            qryValues.Add("maxcount", c.ToString());
+            
             //srs
             qryValues.Add("srsIn", Convert.ToString((int)srs));
             qryValues.Add("srsOut", Convert.ToString((int)srs));
@@ -124,6 +124,16 @@ namespace geopunt4Arcgis.dataHandler
             if (theme != null || theme != "" ) qryValues.Add("theme", theme);
             if (category != null || category != "" ) qryValues.Add("category", category);
             if (POItype != null || POItype != "" ) qryValues.Add("POItype", POItype);
+
+            if (maxModel)
+            {
+                qryValues.Add("maxmodel", "true");
+                qryValues.Add("maxcount", c.ToString());
+            }
+            else
+            {
+                qryValues.Add("maxmodel", "false");
+            }
 
             if (bbox != null) qryValues.Add("bbox", bbox.ToBboxString("|", "|"));
         }

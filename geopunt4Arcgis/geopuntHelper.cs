@@ -1,4 +1,5 @@
-﻿using ESRI.ArcGIS.Framework;
+﻿using ESRI.ArcGIS.ArcMapUI;
+using ESRI.ArcGIS.Framework;
 using ESRI.ArcGIS.Catalog;
 using ESRI.ArcGIS.CatalogUI;
 using ESRI.ArcGIS.DataSourcesFile;
@@ -364,16 +365,31 @@ namespace geopunt4Arcgis
         {
             DirectoryInfo fgbInfo = new DirectoryInfo(FGDBPath);
 
+            if (FGDBPath == "" || FCname == "") return null; // name was not passed in 
+
+            IFeatureClass featureClass;
+
             // Instantiate a feature class description to get the required fields.
             IFeatureClassDescription fcDescription = new FeatureClassDescriptionClass();
             IObjectClassDescription ocDescription = fcDescription as IObjectClassDescription;
 
             IFields fields = ocDescription.RequiredFields;
-            IFieldsEdit fieldsEdit = fields as IFieldsEdit;
+            IFieldsEdit fieldsEdit = (IFieldsEdit) fields ;
 
             // Find the shape field in the required fields and modify its GeometryDef to
             // use wanted geometry and to set the spatial reference.
-            int shapeFieldIndex = fields.FindField(fcDescription.ShapeFieldName);
+            IField shapeField = null;
+            for (int j = 0; j < fields.FieldCount; j++)
+            {
+                if (fields.get_Field(j).Type == ESRI.ArcGIS.Geodatabase.esriFieldType.esriFieldTypeGeometry)
+                {
+                    shapeField = fields.get_Field(j);
+                    break;
+                }
+            }
+            if (shapeField == null) return null;
+
+            int shapeFieldIndex = fields.FindField(shapeField.Name);
             IField geofield = fields.get_Field(shapeFieldIndex);
             IGeometryDef geometryDef = geofield.GeometryDef;
             IGeometryDefEdit geometryDefEdit = (IGeometryDefEdit)geometryDef;
@@ -384,8 +400,8 @@ namespace geopunt4Arcgis
             {
                 fieldsEdit.AddField(field);
             }
-
-            IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
+            
+            IWorkspaceFactory2 workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
             IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(FGDBPath, 0);
             IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     // Explict Cast
 
@@ -403,10 +419,18 @@ namespace geopunt4Arcgis
                     throw new Exception(FCname + " exists");
                 }
             }
-            IFeatureClass featureClass = featureWorkspace.CreateFeatureClass( FCname , fields,
-                                               ocDescription.InstanceCLSID, ocDescription.ClassExtensionCLSID,
-                                               esriFeatureType.esriFTSimple, fcDescription.ShapeFieldName, "");
 
+            // Use IFieldChecker to create a validated fields collection.
+            IFieldChecker fieldChecker = new FieldCheckerClass();
+            IEnumFieldError enumFieldError = null;
+            IFields validatedFields = null;
+            fieldChecker.ValidateWorkspace = (IWorkspace)workspace;
+            fieldChecker.Validate(fields, out enumFieldError, out validatedFields);
+
+            //create the feature class
+            featureClass = featureWorkspace.CreateFeatureClass(FCname, validatedFields,
+                                       ocDescription.InstanceCLSID, ocDescription.ClassExtensionCLSID,
+                                       esriFeatureType.esriFTSimple, shapeField.Name, "");
             return featureClass;
         }
         #endregion
@@ -427,7 +451,6 @@ namespace geopunt4Arcgis
 
             if(zoomTo) view.Extent = featureLayer.AreaOfInterest;
                 
-            view.Refresh();
             return featureLayer;
         }
 
@@ -554,7 +577,6 @@ namespace geopunt4Arcgis
 
             return pGxObject;
         }
-
 
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="filters"> for example:

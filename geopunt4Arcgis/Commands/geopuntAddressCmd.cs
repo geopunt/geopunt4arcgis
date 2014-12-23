@@ -55,7 +55,6 @@ namespace geopunt4Arcgis
             catch (Exception ex) {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
-
         }
 
     }
