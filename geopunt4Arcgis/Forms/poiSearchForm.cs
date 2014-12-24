@@ -77,19 +77,23 @@ namespace geopunt4Arcgis
         private void zoekBtn_Click(object sender, EventArgs e)
         {
             //input
-            string nis = municipality2nis(gemeenteCbx.Text);
             string themeCode = theme2code(themeCbx.Text);
             string catCode = cat2code(categoryCbx.Text);
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
+            string nis;
             boundingBox extent;
             if (extentCkb.Checked) {
                 IEnvelope env = view.Extent;
                 IEnvelope prjEnv = geopuntHelper.Transform2WGS((IGeometry)env).Envelope; 
-                extent = new boundingBox(prjEnv); 
+                extent = new boundingBox(prjEnv);
+                nis = null;
             }
-            else extent = null;
-
+            else
+            {
+                nis = municipality2nis(gemeenteCbx.Text);
+                extent = null;
+            }
             int count = 30;
             if (keyWord != "") count = 100;
 
@@ -336,7 +340,7 @@ namespace geopunt4Arcgis
                         throw new Exception("Is geen feature class of shapefile.");
                     }
                     gpExtension.poiLayer = poiFC;
-                    geopuntHelper.addFeatureClassToMap(view, poiFC, true);
+                    geopuntHelper.addFeatureClassToMap(view, poiFC, false);
                 }
                 populateMaxFields(gpExtension.poiLayer, pois);
                 view.Refresh();
@@ -351,19 +355,24 @@ namespace geopunt4Arcgis
         private void addAll2MapBtn_Click(object sender, EventArgs e)
         {
             //get input
-            string nis = municipality2nis(gemeenteCbx.Text);
             string themeCode = theme2code(themeCbx.Text);
             string catCode = cat2code(categoryCbx.Text);
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
+            string nis;
             boundingBox extent;
             if (extentCkb.Checked)
             {
                 IEnvelope env = view.Extent;
                 IEnvelope prjEnv = geopuntHelper.Transform2WGS((IGeometry)env).Envelope;
                 extent = new boundingBox(prjEnv);
+                nis = null;
             }
-            else extent = null;
+            else
+            {
+                nis = municipality2nis(gemeenteCbx.Text);
+                extent = null;
+            }
 
             try
             {
@@ -406,7 +415,7 @@ namespace geopunt4Arcgis
                         throw new Exception("Is geen feature class of shapefile.");
                     }
                     gpExtension.poiMinLayer = poiFC;
-                    geopuntHelper.addFeatureClassToMap(view, poiFC, true);
+                    geopuntHelper.addFeatureClassToMap(view, poiFC, false);
                 }
                 populateMinFields(gpExtension.poiMinLayer, pois, clusters);
                 view.Refresh();
@@ -415,6 +424,11 @@ namespace geopunt4Arcgis
             {
                  MessageBox.Show(ex.Message + ": " + ex.StackTrace);
             }
+        }
+
+        private void helpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
         }
         #endregion
 

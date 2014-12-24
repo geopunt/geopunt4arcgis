@@ -35,6 +35,7 @@
             this.makeMarkerBtn = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.gemeenteBox = new System.Windows.Forms.ComboBox();
             this.closeBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -89,7 +90,8 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoLabel});
+            this.infoLabel,
+            this.helpLbl});
             this.statusBar.Location = new System.Drawing.Point(0, 220);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(412, 22);
@@ -104,10 +106,17 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(397, 17);
+            this.infoLabel.Size = new System.Drawing.Size(338, 17);
             this.infoLabel.Spring = true;
-            this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // helpLbl
+            // 
+            this.helpLbl.IsLink = true;
+            this.helpLbl.Name = "helpLbl";
+            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Text = "Help";
+            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // gemeenteBox
             // 
@@ -850,5 +859,6 @@
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.ToolStripStatusLabel helpLbl;
     }
 }

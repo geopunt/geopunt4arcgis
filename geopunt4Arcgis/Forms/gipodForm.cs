@@ -152,7 +152,7 @@ namespace geopunt4Arcgis
 
                     populateGipodShape(gipodFC, gipodRecords, param.gipodType);
 
-                    geopuntHelper.addFeatureClassToMap(view, gipodFC, true);
+                    geopuntHelper.addFeatureClassToMap(view, gipodFC, false);
                     view.Refresh();
                     this.Close();
                 }
@@ -205,6 +205,11 @@ namespace geopunt4Arcgis
             }
             cities.Insert(0, "");
             cityCombo.DataSource = cities;
+        }
+
+        private void HelpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod");
         }
         #endregion
 

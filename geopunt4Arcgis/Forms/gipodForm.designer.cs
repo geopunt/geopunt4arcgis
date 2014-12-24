@@ -50,6 +50,7 @@
             this.progress = new System.Windows.Forms.ToolStripProgressBar();
             this.useExtendChk = new System.Windows.Forms.CheckBox();
             this.saveAsShapeBtn = new System.Windows.Forms.Button();
+            this.HelpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.gipodTypeGroup.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -230,7 +231,8 @@
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.messageLbl,
-            this.progress});
+            this.progress,
+            this.HelpLbl});
             this.statusBar.Location = new System.Drawing.Point(0, 301);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(510, 22);
@@ -244,7 +246,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.messageLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.messageLbl.Name = "messageLbl";
-            this.messageLbl.Size = new System.Drawing.Size(393, 17);
+            this.messageLbl.Size = new System.Drawing.Size(334, 17);
             this.messageLbl.Spring = true;
             this.messageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -275,6 +277,14 @@
             this.saveAsShapeBtn.Text = "Opslaan";
             this.saveAsShapeBtn.UseVisualStyleBackColor = true;
             this.saveAsShapeBtn.Click += new System.EventHandler(this.saveAsShapeBtn_Click);
+            // 
+            // HelpLbl
+            // 
+            this.HelpLbl.IsLink = true;
+            this.HelpLbl.Name = "HelpLbl";
+            this.HelpLbl.Size = new System.Drawing.Size(28, 17);
+            this.HelpLbl.Text = "Help";
+            this.HelpLbl.Click += new System.EventHandler(this.HelpLbl_Click);
             // 
             // gipodForm
             // 
@@ -337,5 +347,6 @@
         private System.Windows.Forms.CheckBox useExtendChk;
         private System.Windows.Forms.Button saveAsShapeBtn;
         private System.Windows.Forms.ToolStripProgressBar progress;
+        private System.Windows.Forms.ToolStripStatusLabel HelpLbl;
     }
 }

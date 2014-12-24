@@ -36,17 +36,17 @@ namespace geopunt4Arcgis
 
                 IMap map = activeView.FocusMap;
 
-                dataHandler.poi poi = new dataHandler.poi();
-                datacontract.poiMinResponse poiData = poi.getMinmodel("school");
+                //dataHandler.poi poi = new dataHandler.poi();
+                //datacontract.poiMinResponse poiData = poi.getMinmodel("school");
 
-                System.Windows.Forms.MessageBox.Show(poiData.pois[0].id.ToString() +" "+ poiData.pois[0].links[0].href);
+                //System.Windows.Forms.MessageBox.Show(poiData.pois[0].id.ToString() +" "+ poiData.pois[0].links[0].href);
 
-                //ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0], "Riodb");
+                ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0] + "?", "Riodb");
 
-                //map.AddLayer(laag);
-                //map.MoveLayer(laag, 0);
-                //activeView.Refresh();
-                //List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
+                map.AddLayer(laag);
+                map.MoveLayer(laag, 0);
+                activeView.Refresh();
+                List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
 
                 //string[] names = layers.Where( c => c.StyleDescriptionCount > 0 )
                 //                       .Select(c => c.get_StyleDescription(0).URL).ToArray<string>();

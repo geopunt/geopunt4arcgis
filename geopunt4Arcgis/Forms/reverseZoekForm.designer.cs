@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.diffBox = new System.Windows.Forms.TextBox();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +91,8 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoLabel});
+            this.infoLabel,
+            this.helpLbl});
             this.statusBar.Location = new System.Drawing.Point(0, 111);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(372, 22);
@@ -105,7 +107,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(357, 17);
+            this.infoLabel.Size = new System.Drawing.Size(298, 17);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,6 +143,14 @@
             this.saveBtn.Text = "Opslaan";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // helpLbl
+            // 
+            this.helpLbl.IsLink = true;
+            this.helpLbl.Name = "helpLbl";
+            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Text = "Help";
+            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // reverseZoekForm
             // 
@@ -181,5 +191,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox diffBox;
         private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.ToolStripStatusLabel helpLbl;
     }
 }

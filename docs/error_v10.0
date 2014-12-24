@@ -1,0 +1,34 @@
+
+Niet tonen in toolbox, wel bij klik op toolbar
+
+-- Bij reverse geocode: geen resultaat --> bij <double>.toString() -> <double>.toString(CultureInfo.InvariantCulture) of string.Format( CultureInfo.InvariantCulture , ... )
+
+-- Bij poi Zoom naar layer op false zetten, voeg alle toe button locken.
+
+--
+Bij poi bbox aangevinkt
+
+De externe server heeft een fout geretourneerd: (400) Ongeldige opdracht.:    bij System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+
+   bij System.Net.WebClient.DownloadString(Uri address)
+
+   bij geopunt4Arcgis.dataHandler.poi.getMaxmodel(String q, Int32 c, String theme, String category, String POItype, CRS srs, Nullable`1 id, String niscode, boundingBox bbox) in E:\Users\sa64489\Documents\Visual Studio 2010\Projects\geopunt4arcgis\geopunt4Arcgis\dataHandler\poi.cs:regel 103
+
+   bij geopunt4Arcgis.poiSearchForm.zoekBtn_Click(Object sender, EventArgs e) in E:\Users\sa64489\Documents\Visual Studio 2010\Projects\geopunt4arcgis\geopunt4Arcgis\Forms\poiSearchForm.cs:regel 99
+
+--> bij <double>.toString() -> <double>.toString(CultureInfo.InvariantCulture) of string.Format( CultureInfo.InvariantCulture , ... )
+--
+
+--
+Bij WMS-laden
+An invalid field name was used in a query string
+
+
+    Er is een ongeldige veldnaam gebruikt in een querytekenreeks (Uitzondering van HRESULT: 0x80040204) :    bij ESRI.ArcGIS.Carto.WMSMapLayerClass.Connect(IName pOptRepairName)
+
+    bij geopunt4Arcgis.geopuntHelper.getWMSLayerByName(String WMSurl, String layerName) in E:\Users\sa64489\Documents\Visual Studio 2010\Projects\geopunt4arcgis\geopunt4Arcgis\geopuntHelper.cs:regel 915
+
+    bij geopunt4Arcgis.testBtn.OnClick() in E:\Users\sa64489\Documents\Visual Studio 2010\Projects\geopunt4arcgis\geopunt4Arcgis\testBtn.cs:regel 44
+
+--> oplosssing:  steeds een ? achter url zetten, arcgis vergeet dit blijkbaar
+--

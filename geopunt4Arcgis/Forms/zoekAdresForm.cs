@@ -122,6 +122,10 @@ namespace geopunt4Arcgis
             saveAdres();
         }
 
+        private void helpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres");
+        }
      #endregion
 
      #region "overrides"

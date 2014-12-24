@@ -244,5 +244,10 @@ namespace geopunt4Arcgis
 
      #endregion
 
+        private void helpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
+        }
+
     }
 }
