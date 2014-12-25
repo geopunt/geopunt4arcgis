@@ -36,17 +36,38 @@ namespace geopunt4Arcgis
 
                 IMap map = activeView.FocusMap;
 
+                //dataHandler.dhm dhm = new dataHandler.dhm();
+
+                //List<List<double>> pts= new List<List<double>>();
+
+                //pts.Add(new List<double>() { 4.362179, 51.233112 }); 
+                //pts.Add(new List<double>() { 4.535901, 51.175463 }); 
+                //pts.Add(new List<double>() { 4.507502, 51.168732 }); 
+                //pts.Add(new List<double>() { 4.413410, 51.119256 }); 
+                //pts.Add(new List<double>() { 4.413410, 51.119256 });
+
+                //datacontract.geojsonLine lijn = new datacontract.geojsonLine()
+                //{
+                //    coordinates = pts,
+                //    type = "LineString"
+                //};
+
+                //List<List<double>> profile= dhm.getDataAlongLine(10, dataHandler.CRS.WGS84, lijn);
+
+                //System.Windows.Forms.MessageBox.Show(JsonConvert.SerializeObject(profile));
+
+
                 //dataHandler.poi poi = new dataHandler.poi();
                 //datacontract.poiMinResponse poiData = poi.getMinmodel("school");
 
                 //System.Windows.Forms.MessageBox.Show(poiData.pois[0].id.ToString() +" "+ poiData.pois[0].links[0].href);
 
-                ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0] + "?", "Riodb");
+                //ILayer laag = geopuntHelper.getWMSLayerByName(wms.AbsoluteUri.Split('?')[0] + "?", "Riodb");
 
-                map.AddLayer(laag);
-                map.MoveLayer(laag, 0);
-                activeView.Refresh();
-                List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
+                //map.AddLayer(laag);
+                //map.MoveLayer(laag, 0);
+                //activeView.Refresh();
+                //List<IWMSLayerDescription> layers = geopuntHelper.listWMSlayers(wms.AbsoluteUri.Split('?')[0]);
 
                 //string[] names = layers.Where( c => c.StyleDescriptionCount > 0 )
                 //                       .Select(c => c.get_StyleDescription(0).URL).ToArray<string>();

@@ -34,7 +34,6 @@ namespace geopunt4Arcgis
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
                     return;
                 }
-
             }
             finally
             {

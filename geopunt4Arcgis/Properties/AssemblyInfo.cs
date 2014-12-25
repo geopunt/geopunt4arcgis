@@ -7,13 +7,13 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("geopunt4Arcgis")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in toegevoegd worden in Arcgis")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KGIS")]
 [assembly: AssemblyProduct("geopunt4Arcgis")]
 [assembly: AssemblyCopyright("Copyright © KGIS 2014")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("du-BE")]
+[assembly: AssemblyCulture("nl-BE")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

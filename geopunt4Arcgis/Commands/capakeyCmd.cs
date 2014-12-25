@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
-using System.Net;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
+using System.Windows.Forms;
 
 namespace geopunt4Arcgis
 {
-    public class geopuntAddressCmd : ESRI.ArcGIS.Desktop.AddIns.Button
+    public class capakeyCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         IActiveView view;
-        zoekAdresForm zoekAdresDlg;
+        capakeyForm capakayDlg;
 
-        public geopuntAddressCmd()
+        public capakeyCmd()
         {
             view = ArcMap.Document.ActiveView;
         }
@@ -29,31 +28,31 @@ namespace geopunt4Arcgis
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
                     return;
                 }
-                if (zoekAdresDlg != null  ) 
+                if (capakayDlg != null)
                 {
-                    if (zoekAdresDlg.IsDisposed)
+                    if (capakayDlg.IsDisposed)
                     {
-                        zoekAdresDlg = null;
+                        capakayDlg = null;
                     }
                     else
                     {
-                        if (!zoekAdresDlg.Visible) zoekAdresDlg.Show();
-                        zoekAdresDlg.WindowState = FormWindowState.Normal;
-                        zoekAdresDlg.Focus();
+                        if (!capakayDlg.Visible) capakayDlg.Show();
+                        capakayDlg.WindowState = FormWindowState.Normal;
+                        capakayDlg.Focus();
                         return;
                     }
                 }
 
-                zoekAdresDlg = new zoekAdresForm();
-                zoekAdresDlg.Show();
-                zoekAdresDlg.WindowState = FormWindowState.Normal;
-                zoekAdresDlg.Focus();
-            }   
-            catch (Exception ex) {
+                capakayDlg = new capakeyForm();
+                capakayDlg.Show();
+                capakayDlg.WindowState = FormWindowState.Normal;
+                capakayDlg.Focus();
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
         }
 
     }
-
 }

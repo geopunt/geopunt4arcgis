@@ -35,7 +35,7 @@ namespace geopunt4Arcgis
 
         List<string> suggestions;
 
-        public zoekAdresForm( IActiveView activeView )
+        public zoekAdresForm()
         {
             //set global objects
             view = ArcMap.Document.ActiveView;

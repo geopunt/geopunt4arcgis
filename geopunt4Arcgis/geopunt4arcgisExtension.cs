@@ -34,17 +34,5 @@ namespace geopunt4Arcgis
             }
             return gpExtension;
         }
-
-        private void WireDocumentEvents()
-        {
-            //Example: Anonymous event handler
-            //ArcMap.Events. += delegate()
-            //{
-            //    // Return true to stop document from closing
-            //    IMessageDialog msgBox = new MessageDialogClass();
-            //    return msgBox.DoModal("BeforeCloseDocument Event", "Abort closing?", "Yes", "No", ArcMap.Application.hWnd);
-            //};
-        }
     }
-
 }

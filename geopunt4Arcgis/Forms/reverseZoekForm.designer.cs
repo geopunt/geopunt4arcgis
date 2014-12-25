@@ -35,10 +35,10 @@
             this.adresBox = new System.Windows.Forms.TextBox();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.infoLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.diffBox = new System.Windows.Forms.TextBox();
             this.saveBtn = new System.Windows.Forms.Button();
-            this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,6 +112,14 @@
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // helpLbl
+            // 
+            this.helpLbl.IsLink = true;
+            this.helpLbl.Name = "helpLbl";
+            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Text = "Help";
+            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -143,14 +151,6 @@
             this.saveBtn.Text = "Opslaan";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
-            // 
-            // helpLbl
-            // 
-            this.helpLbl.IsLink = true;
-            this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(28, 17);
-            this.helpLbl.Text = "Help";
-            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // reverseZoekForm
             // 

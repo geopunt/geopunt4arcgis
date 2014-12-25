@@ -1,44 +1,57 @@
 ﻿<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>geopunt4Arcgis</Name>
   <AddInID>{9473f72a-33ce-402e-85c7-170c29b08419}</AddInID>
-  <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in geïntegreed worden in Arcgis.</Description>
+  <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
+die met deze add-in geïntegreed worden in Arcgis.</Description>
   <Version>1.1</Version>
   <Image>Images\geopunt4Arcgis.png</Image>
   <Author>Kay Warrie</Author>
   <Company>KGIS.be</Company>
-  <Date>24/12/2014</Date>
+  <Date>25/12/2014</Date>
   <Targets>
     <!--<Target name="Desktop" version="10.0" />-->
-  <Target name="Desktop" version="10.2" />
+    <Target name="Desktop" version="10.2" />
   </Targets>
   <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>
       <Commands>
-        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" 
-                category="geopunt" image="Images\geopuntAddressCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" 
+                message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" 
+                image="Images\geopuntAddressCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres" />
         </Button>
-        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" message="Prik een locatie op de kaart om het meest nabije adres te weten." 
-              caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" 
-              image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" 
+              message="Prik een locatie op de kaart om het meest nabije adres te weten." 
+              caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" 
+              category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart" />
         </Tool>
-        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Data uit GIPOD raadplegen." 
-                caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" 
+                message="Data uit GIPOD raadplegen." caption="GIPOD" tip="Data uit GIPOD raadplegen." 
+                category="geopunt" image="Images\geopuntGipodCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" />
         </Button>
         <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" 
                 message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." 
-                caption="Zoek een intersante " tip="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." 
+                caption="Zoek een intersante " 
+                tip="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." 
                 category="Zoek een interessante plaats " image="Images\geopuntPoiCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/poi" />
         </Button>
-          <!--Test, remove on production-->
-         <Button id="KGIS_geopunt4Arcgis_testBtn" class="testBtn" caption="Text Button" tip="test" category="Add-In Controls" image="Images\testBtn.png" />
+        <!--Test, remove on production-->
+        <Button id="KGIS_geopunt4Arcgis_capakeyCmd" class="capakeyCmd" 
+                message="Met perceelservice van Geopunt kan je op getrapte wijze de ligging van een perceel zoeken. 
+                Je selecteert eerst de gemeente waarin je wenst te zoeken, daarna het departement en de sectie, 
+                dan krijg je een keuzelijst met alle perceelnummers binnen die sectie." 
+                caption="Zoek een perceel" tip="Zoeken naar percelen op gertrapte wijze via geopunt." category="geopunt" image="Images\capakeyCmd.png">
+          <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel" />
+        </Button>
+        <Button id="KGIS_geopunt4Arcgis_testBtn" class="testBtn" caption="Text Button" tip="test" category="Add-In Controls" image="Images\testBtn.png" />
       </Commands>
       <Extensions>
         <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
-          <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, die met deze add-in toegevoegd worden in Arcgis.</Description>
+          <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
+die met deze add-in toegevoegd worden in Arcgis.</Description>
         </Extension>
       </Extensions>
       <Toolbars>
@@ -48,6 +61,7 @@
             <Item refID="KGIS_geopunt4Arcgis_geopuntReverse" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntGipodCmd" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntPoiCmd" />
+            <Item refID="KGIS_geopunt4Arcgis_capakeyCmd" />
             <Item refID="KGIS_geopunt4Arcgis_testBtn" />
           </Items>
         </Toolbar>
