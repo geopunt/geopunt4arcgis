@@ -84,7 +84,7 @@ namespace geopunt4Arcgis.dataHandler
             datacontract.sectionList response = JsonConvert.DeserializeObject<datacontract.sectionList>(json);
             return response;
         }
-        public datacontract.section getDepartment(int NIScode, int departmentCode, string sectie, CRS srs, capakeyGeometryType geomType)
+        public datacontract.section getSectie(int NIScode, int departmentCode, string sectie, CRS srs, capakeyGeometryType geomType)
         {
             qryValues.Add("srs", Convert.ToString((int)srs));
             if (geomType == capakeyGeometryType.no) qryValues.Add("geometry", "no");
@@ -92,8 +92,9 @@ namespace geopunt4Arcgis.dataHandler
             else if (geomType == capakeyGeometryType.full) qryValues.Add("geometry", "full");
 
             client.QueryString = qryValues;
-            Uri gipodUri = new Uri(baseUri + "Municipality/" + NIScode.ToString() + "/department/" + departmentCode.ToString() + "/section/" + sectie);
-            string json = client.DownloadString(gipodUri);
+
+            Uri capkeyUri = new Uri(baseUri + "Municipality/" + NIScode.ToString() + "/department/" + departmentCode.ToString() + "/section/" + sectie);
+            string json = client.DownloadString(capkeyUri);
             datacontract.section response = JsonConvert.DeserializeObject<datacontract.section>(json);
 
             client.QueryString.Clear();

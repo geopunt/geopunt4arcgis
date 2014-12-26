@@ -14,6 +14,7 @@ namespace geopunt4Arcgis
         public IFeatureClass reverseLayer;
         public IFeatureClass poiLayer;
         public IFeatureClass poiMinLayer;
+        public IFeatureClass parcelLayer;
 
         public geopunt4arcgisExtension()
         {
@@ -22,6 +23,7 @@ namespace geopunt4Arcgis
             reverseLayer = null;
             poiLayer = null;
             poiMinLayer = null;
+            parcelLayer = null;
         }
 
         internal static geopunt4arcgisExtension getGeopuntExtension()

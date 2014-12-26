@@ -6,7 +6,7 @@ using System.Text;
 namespace geopunt4Arcgis.datacontract
 {
 
-    public abstract class geojson
+    public class geojson
     {
         public string type { get; set; }
         public geojsonCRS crs { get; set; }

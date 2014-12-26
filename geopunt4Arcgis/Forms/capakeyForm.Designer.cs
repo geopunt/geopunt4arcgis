@@ -36,7 +36,7 @@
             this.sectieCbx = new System.Windows.Forms.ComboBox();
             this.sectieLbl = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.parcelCbx = new System.Windows.Forms.ComboBox();
@@ -45,6 +45,7 @@
             this.departementZoomBtn = new System.Windows.Forms.Button();
             this.sectieZoomBtn = new System.Windows.Forms.Button();
             this.parcelZoomBtn = new System.Windows.Forms.Button();
+            this.add2mapBtn = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +115,7 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
+            this.msgLbl,
             this.helpLbl});
             this.statusStrip1.Location = new System.Drawing.Point(0, 211);
             this.statusStrip1.Name = "statusStrip1";
@@ -122,15 +123,15 @@
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // msgLbl
             // 
-            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            this.msgLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(461, 17);
-            this.toolStripStatusLabel1.Spring = true;
+            this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.msgLbl.Name = "msgLbl";
+            this.msgLbl.Size = new System.Drawing.Size(430, 17);
+            this.msgLbl.Spring = true;
             // 
             // helpLbl
             // 
@@ -142,8 +143,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.Location = new System.Drawing.Point(413, 175);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(79, 23);
@@ -182,6 +182,7 @@
             this.gemeenteZoomBtn.Size = new System.Drawing.Size(44, 21);
             this.gemeenteZoomBtn.TabIndex = 10;
             this.gemeenteZoomBtn.UseVisualStyleBackColor = true;
+            this.gemeenteZoomBtn.Click += new System.EventHandler(this.gemeenteZoomBtn_Click);
             // 
             // departementZoomBtn
             // 
@@ -192,6 +193,7 @@
             this.departementZoomBtn.Size = new System.Drawing.Size(44, 21);
             this.departementZoomBtn.TabIndex = 11;
             this.departementZoomBtn.UseVisualStyleBackColor = true;
+            this.departementZoomBtn.Click += new System.EventHandler(this.departementZoomBtn_Click);
             // 
             // sectieZoomBtn
             // 
@@ -202,6 +204,7 @@
             this.sectieZoomBtn.Size = new System.Drawing.Size(44, 21);
             this.sectieZoomBtn.TabIndex = 12;
             this.sectieZoomBtn.UseVisualStyleBackColor = true;
+            this.sectieZoomBtn.Click += new System.EventHandler(this.sectieZoomBtn_Click);
             // 
             // parcelZoomBtn
             // 
@@ -212,12 +215,25 @@
             this.parcelZoomBtn.Size = new System.Drawing.Size(44, 21);
             this.parcelZoomBtn.TabIndex = 13;
             this.parcelZoomBtn.UseVisualStyleBackColor = true;
+            this.parcelZoomBtn.Click += new System.EventHandler(this.parcelZoomBtn_Click);
+            // 
+            // add2mapBtn
+            // 
+            this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.add2mapBtn.Location = new System.Drawing.Point(332, 175);
+            this.add2mapBtn.Name = "add2mapBtn";
+            this.add2mapBtn.Size = new System.Drawing.Size(75, 23);
+            this.add2mapBtn.TabIndex = 14;
+            this.add2mapBtn.Text = "Voeg Toe";
+            this.add2mapBtn.UseVisualStyleBackColor = true;
+            this.add2mapBtn.Click += new System.EventHandler(this.add2mapBtn_Click);
             // 
             // capakeyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 233);
+            this.Controls.Add(this.add2mapBtn);
             this.Controls.Add(this.parcelZoomBtn);
             this.Controls.Add(this.sectieZoomBtn);
             this.Controls.Add(this.departementZoomBtn);
@@ -237,7 +253,7 @@
             this.MinimumSize = new System.Drawing.Size(300, 260);
             this.Name = "capakeyForm";
             this.ShowInTaskbar = false;
-            this.Text = "capakeyForm";
+            this.Text = "Zoek een perceel";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -254,7 +270,7 @@
         private System.Windows.Forms.ComboBox sectieCbx;
         private System.Windows.Forms.Label sectieLbl;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel msgLbl;
         private System.Windows.Forms.ToolStripStatusLabel helpLbl;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox parcelCbx;
@@ -263,5 +279,6 @@
         private System.Windows.Forms.Button departementZoomBtn;
         private System.Windows.Forms.Button sectieZoomBtn;
         private System.Windows.Forms.Button parcelZoomBtn;
+        private System.Windows.Forms.Button add2mapBtn;
     }
 }

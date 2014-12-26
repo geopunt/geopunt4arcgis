@@ -239,7 +239,7 @@ namespace geopunt4Arcgis
 
                 ISimpleFillSymbol simpleFillSymbol = new SimpleFillSymbolClass();
                 simpleFillSymbol.Color = rgbColor;
-                simpleFillSymbol.Style = esriSimpleFillStyle.esriSFSSolid;
+                simpleFillSymbol.Style = esriSimpleFillStyle.esriSFSForwardDiagonal;
                 simpleFillSymbol.Outline = simpleLineSymbol;
 
                 IFillShapeElement fillShapeElement = new PolygonElementClass();

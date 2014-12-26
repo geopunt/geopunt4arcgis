@@ -517,7 +517,14 @@ namespace geopunt4Arcgis
             {
                 if (grp == null) break;
                 //grp.Locked = false;
-                graphicsContainer.DeleteElement(grp);
+                try
+                {
+                    graphicsContainer.DeleteElement(grp);
+                }
+                catch (Exception)
+                {
+                    Console.Write("Element was already deleted");
+                }
             }
             graphics.Clear();
         }

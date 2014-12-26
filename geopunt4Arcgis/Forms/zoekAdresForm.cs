@@ -237,7 +237,7 @@ namespace geopunt4Arcgis
 
                 innerClr = new RgbColor() { Red = 255, Blue = 0, Green = 255 };
                 outlineClr = new RgbColor() { Red = 0, Blue = 0, Green = 0 };
-                geopuntHelper.AddGraphicToMap(map, toXY, innerClr, outlineClr, 12);
+                geopuntHelper.AddGraphicToMap(map, toXY, innerClr, outlineClr, 12, false);
                 geopuntHelper.AddTextElement(map , toXY, loc.FormattedAddress);
                 view.Refresh();
                 return true;
@@ -248,8 +248,8 @@ namespace geopunt4Arcgis
         private void createAdresFeatureClass(string fcPath, ISpatialReference srs)
         {
             List<IField> attr = new List<IField>();
-            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString));
-            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString));
+            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString, 80));
+            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString, 50));
 
             FileInfo fcInfo = new FileInfo(fcPath);
 

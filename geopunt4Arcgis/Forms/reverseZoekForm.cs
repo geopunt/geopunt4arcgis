@@ -64,8 +64,8 @@ namespace geopunt4Arcgis
             IRgbColor innerClr = new RgbColor() { Red = 255, Blue = 0, Green = 255 };
             IRgbColor outlineClr = new RgbColor() { Red = 0, Blue = 0, Green = 0 };
 
-            geopuntHelper.AddGraphicToMap(view.FocusMap, toXY, innerClr, outlineClr, 12);
-            geopuntHelper.AddTextElement(view.FocusMap, toXY, adres);
+            geopuntHelper.AddGraphicToMap(map, toXY, innerClr, outlineClr, 12, false);
+            geopuntHelper.AddTextElement(map, toXY, adres);
             
             view.Refresh();
         }
@@ -169,7 +169,7 @@ namespace geopunt4Arcgis
             else if (fcInfo.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
             {
                 reverseFC = geopuntHelper.createFeatureClass(fcInfo.DirectoryName, fcInfo.Name, attr, srs,
-                                                                           esriGeometryType.esriGeometryPoint, true);
+                                                                           esriGeometryType.esriGeometryPoint, false);
             }
             else
             {
