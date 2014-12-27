@@ -48,8 +48,8 @@
             this.addAll2MapBtn = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.filterbox = new System.Windows.Forms.GroupBox();
             this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.filterbox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.filterbox.SuspendLayout();
@@ -199,6 +199,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.Location = new System.Drawing.Point(401, 427);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
@@ -214,7 +215,7 @@
             this.addSelection2mapBtn.Name = "addSelection2mapBtn";
             this.addSelection2mapBtn.Size = new System.Drawing.Size(156, 23);
             this.addSelection2mapBtn.TabIndex = 14;
-            this.addSelection2mapBtn.Text = "Voeg selectie aan kaart";
+            this.addSelection2mapBtn.Text = "Selectie opslaan";
             this.addSelection2mapBtn.UseVisualStyleBackColor = true;
             this.addSelection2mapBtn.Click += new System.EventHandler(this.addSelection2mapBtn_Click);
             // 
@@ -236,7 +237,7 @@
             this.addAll2MapBtn.Name = "addAll2MapBtn";
             this.addAll2MapBtn.Size = new System.Drawing.Size(156, 23);
             this.addAll2MapBtn.TabIndex = 16;
-            this.addAll2MapBtn.Text = "Voeg alle punten toe";
+            this.addAll2MapBtn.Text = "Alle punten opslaan";
             this.addAll2MapBtn.UseVisualStyleBackColor = true;
             this.addAll2MapBtn.Click += new System.EventHandler(this.addAll2MapBtn_Click);
             // 
@@ -256,10 +257,18 @@
             this.msgLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(414, 17);
+            this.msgLbl.Size = new System.Drawing.Size(445, 17);
             this.msgLbl.Spring = true;
+            // 
+            // helpLbl
+            // 
+            this.helpLbl.IsLink = true;
+            this.helpLbl.Name = "helpLbl";
+            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Text = "Help";
+            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // filterbox
             // 
@@ -282,14 +291,6 @@
             this.filterbox.TabIndex = 18;
             this.filterbox.TabStop = false;
             this.filterbox.Text = "Filters";
-            // 
-            // helpLbl
-            // 
-            this.helpLbl.IsLink = true;
-            this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(28, 17);
-            this.helpLbl.Text = "Help";
-            this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // poiSearchForm
             // 

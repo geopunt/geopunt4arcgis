@@ -48,9 +48,9 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.messageLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.progress = new System.Windows.Forms.ToolStripProgressBar();
+            this.HelpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.useExtendChk = new System.Windows.Forms.CheckBox();
             this.saveAsShapeBtn = new System.Windows.Forms.Button();
-            this.HelpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.gipodTypeGroup.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -223,7 +223,7 @@
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBtn.TabIndex = 13;
-            this.closeBtn.Text = "Annuleren";
+            this.closeBtn.Text = "Sluiten";
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
@@ -257,6 +257,14 @@
             this.progress.Size = new System.Drawing.Size(100, 16);
             this.progress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             // 
+            // HelpLbl
+            // 
+            this.HelpLbl.IsLink = true;
+            this.HelpLbl.Name = "HelpLbl";
+            this.HelpLbl.Size = new System.Drawing.Size(28, 17);
+            this.HelpLbl.Text = "Help";
+            this.HelpLbl.Click += new System.EventHandler(this.HelpLbl_Click);
+            // 
             // useExtendChk
             // 
             this.useExtendChk.AutoSize = true;
@@ -277,14 +285,6 @@
             this.saveAsShapeBtn.Text = "Opslaan";
             this.saveAsShapeBtn.UseVisualStyleBackColor = true;
             this.saveAsShapeBtn.Click += new System.EventHandler(this.saveAsShapeBtn_Click);
-            // 
-            // HelpLbl
-            // 
-            this.HelpLbl.IsLink = true;
-            this.HelpLbl.Name = "HelpLbl";
-            this.HelpLbl.Size = new System.Drawing.Size(28, 17);
-            this.HelpLbl.Text = "Help";
-            this.HelpLbl.Click += new System.EventHandler(this.HelpLbl_Click);
             // 
             // gipodForm
             // 

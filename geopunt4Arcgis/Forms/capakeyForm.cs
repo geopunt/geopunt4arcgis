@@ -320,6 +320,28 @@ namespace geopunt4Arcgis
                   MessageBox.Show(ex.Message + ": " + ex.StackTrace);
             }
         }
+
+        private void addMarkerBtn_Click(object sender, EventArgs e)
+        {
+            if (perceel == null) return;
+
+            datacontract.geojsonPolygon jsPoly = JsonConvert.DeserializeObject<datacontract.geojsonPolygon>(perceel.geometry.shape);
+            IPolygon wgsShape = geopuntHelper.geojson2esriPolygon(jsPoly, (int)dataHandler.CRS.WGS84);
+            IPolygon mapShape = (IPolygon)geopuntHelper.Transform(wgsShape, map.SpatialReference);
+
+            string adres = string.Join("-", perceel.adres.ToArray()) ;
+            if (adres.Length > 120) adres = adres.Substring(0, 120);
+
+            IRgbColor innerClr = new RgbColor() { Red = 0, Blue = 0, Green = 0 };
+            IRgbColor outlineClr = new RgbColor() { Red = 0, Blue = 200, Green = 0 };
+
+            IPoint center = ((IArea)mapShape).LabelPoint;
+
+            geopuntHelper.AddGraphicToMap(map, mapShape, innerClr, outlineClr, 2, false);
+            geopuntHelper.AddTextElement(map, center, perceel.capakey + "\r\n" + adres);
+
+            view.Refresh();
+        }
         #endregion
 
         #region "private functions"
@@ -481,7 +503,6 @@ namespace geopunt4Arcgis
             }
             graphics.Clear();
         }
-
         #endregion
 
     }

@@ -46,6 +46,7 @@
             this.sectieZoomBtn = new System.Windows.Forms.Button();
             this.parcelZoomBtn = new System.Windows.Forms.Button();
             this.add2mapBtn = new System.Windows.Forms.Button();
+            this.addMarkerBtn = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,9 +129,9 @@
             this.msgLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(430, 17);
+            this.msgLbl.Size = new System.Drawing.Size(461, 17);
             this.msgLbl.Spring = true;
             // 
             // helpLbl
@@ -144,6 +145,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.Location = new System.Drawing.Point(413, 175);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(79, 23);
@@ -220,19 +222,31 @@
             // add2mapBtn
             // 
             this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add2mapBtn.Location = new System.Drawing.Point(332, 175);
+            this.add2mapBtn.Location = new System.Drawing.Point(227, 175);
             this.add2mapBtn.Name = "add2mapBtn";
             this.add2mapBtn.Size = new System.Drawing.Size(75, 23);
             this.add2mapBtn.TabIndex = 14;
-            this.add2mapBtn.Text = "Voeg Toe";
+            this.add2mapBtn.Text = "Opslaan";
             this.add2mapBtn.UseVisualStyleBackColor = true;
             this.add2mapBtn.Click += new System.EventHandler(this.add2mapBtn_Click);
+            // 
+            // addMarkerBtn
+            // 
+            this.addMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addMarkerBtn.Location = new System.Drawing.Point(308, 175);
+            this.addMarkerBtn.Name = "addMarkerBtn";
+            this.addMarkerBtn.Size = new System.Drawing.Size(99, 23);
+            this.addMarkerBtn.TabIndex = 15;
+            this.addMarkerBtn.Text = "Markeer Locatie";
+            this.addMarkerBtn.UseVisualStyleBackColor = true;
+            this.addMarkerBtn.Click += new System.EventHandler(this.addMarkerBtn_Click);
             // 
             // capakeyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(504, 233);
+            this.Controls.Add(this.addMarkerBtn);
             this.Controls.Add(this.add2mapBtn);
             this.Controls.Add(this.parcelZoomBtn);
             this.Controls.Add(this.sectieZoomBtn);
@@ -280,5 +294,6 @@
         private System.Windows.Forms.Button sectieZoomBtn;
         private System.Windows.Forms.Button parcelZoomBtn;
         private System.Windows.Forms.Button add2mapBtn;
+        private System.Windows.Forms.Button addMarkerBtn;
     }
 }

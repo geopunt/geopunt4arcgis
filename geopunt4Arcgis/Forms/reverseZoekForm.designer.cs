@@ -45,6 +45,7 @@
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeBtn.Location = new System.Drawing.Point(286, 85);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
@@ -107,7 +108,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(298, 17);
+            this.infoLabel.Size = new System.Drawing.Size(329, 17);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,9 +155,10 @@
             // 
             // reverseZoekForm
             // 
-            this.AcceptButton = this.closeBtn;
+            this.AcceptButton = this.saveBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.closeBtn;
             this.ClientSize = new System.Drawing.Size(372, 133);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.diffBox);

@@ -127,13 +127,26 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\capakeyCmd.cs" />
+    <Compile Include="Commands\geopuntCapakeyCmd.cs" />
     <Compile Include="Commands\geopuntPoiCmd.cs" />
+    <Compile Include="Forms\batchGeocodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\batchGeocodeForm.Designer.cs">
+      <DependentUpon>batchGeocodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\capakeyForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\capakeyForm.Designer.cs">
       <DependentUpon>capakeyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\geopuntBatchGeocodingCmd.cs" />
+    <Compile Include="Forms\inputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\inputForm.Designer.cs">
+      <DependentUpon>inputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -146,14 +159,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.esriaddinx</DependentUpon>
     </Compile>
-    <Compile Include="datacontract\crabLocationDC.cs" />
-    <Compile Include="datacontract\crabSuggestionDC.cs" />
+    <Compile Include="datacontract\crabLocationResponse.cs" />
+    <Compile Include="datacontract\crabSuggestionResponse.cs" />
     <Compile Include="datacontract\dhmRequest.cs" />
-    <Compile Include="datacontract\geojsonDC.cs" />
-    <Compile Include="datacontract\gipodDC.cs" />
-    <Compile Include="datacontract\poiDC.cs" />
+    <Compile Include="datacontract\geojsonResponse.cs" />
+    <Compile Include="datacontract\gipodResponse.cs" />
+    <Compile Include="datacontract\poiResponse.cs" />
     <Compile Include="dataHandler\adres.cs" />
-    <Compile Include="datacontract\capakeyDC.cs" />
+    <Compile Include="datacontract\capakeyResponse.cs" />
     <Compile Include="dataHandler\capakey.cs" />
     <Compile Include="dataHandler\dhm.cs" />
     <Compile Include="dataHandler\gipod.cs" />
@@ -235,11 +248,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\batchGeocodeForm.resx">
+      <DependentUpon>batchGeocodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\capakeyForm.resx">
       <DependentUpon>capakeyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\gipodForm.resx">
       <DependentUpon>gipodForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\inputForm.resx">
+      <DependentUpon>inputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\poiSearchForm.resx">
       <DependentUpon>poiSearchForm.cs</DependentUpon>
@@ -261,6 +280,8 @@
     <AddInContent Include="Images\capakeyCmd.png" />
     <Content Include="Images\binocular.png" />
     <Content Include="Images\binocularSmall.png" />
+    <AddInContent Include="Images\geopuntBatchGeocodingCmd.png" />
+    <Content Include="Images\Batchgeocode.ico" />
     <Content Include="Images\geopuntParcel.ico" />
     <Content Include="Images\gipod.ico" />
     <Content Include="Images\gipod.png" />
@@ -273,6 +294,8 @@
     <Content Include="Images\reverseZoek.ico" />
     <Content Include="Images\reverseZoek.png" />
     <AddInContent Include="Images\testBtn.png" />
+    <Content Include="Images\select.png" />
+    <Content Include="Images\validAll.png" />
     <Content Include="Images\zoek.ico" />
     <Content Include="Images\zoek.png" />
     <Content Include="Images\zoom.png" />

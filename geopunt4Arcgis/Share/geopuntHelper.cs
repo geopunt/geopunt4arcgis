@@ -9,7 +9,7 @@ using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.GISClient;
-
+using System.Data;
 using System.IO;
 using System.Windows.Forms;
 using System;
@@ -1055,5 +1055,91 @@ namespace geopunt4Arcgis
             }
         }
         #endregion
+
+        #region "CSV and table related"
+        /// <summary>Read a csv file into a datatable </summary>
+        /// <param name="csvPath">the path to the csv-file</param>
+        /// <param name="separator">the character separating the values, can be COMMA, PUNTCOMMA, SPATIE, TAB, 
+        /// for any sepator string the other the input is used</param>
+        /// <returns>a datable containing the values form the file</returns>
+        public static DataTable loadCSV2datatable(string csvPath, string separator )
+        {
+            FileInfo csv = new FileInfo(csvPath);
+            string sep;
+            DataTable tbl = new DataTable();
+
+            if (!csv.Exists)
+                throw new Exception("Deze csv-file bestaat niet: " + csv.Name);
+            if( separator == "" || separator == null ) 
+                throw new Exception("Deze separator is niet toegelaten");
+
+            switch (separator)
+            {
+                case "COMMA":
+                    sep = ",";
+                    break;
+                case "PUNTCOMMA":
+                    sep = ";";
+                    break;
+                case "SPATIE":
+                    sep = " ";
+                    break;
+                case "TAB":
+                    sep = "/t";
+                    break;
+                default:
+                    sep = separator;
+                    break;
+            }
+            using (Microsoft.VisualBasic.FileIO.TextFieldParser csvParser =
+                            new Microsoft.VisualBasic.FileIO.TextFieldParser(csv.FullName))
+            {
+                csvParser.Delimiters = new string[] { sep };
+                csvParser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;
+                csvParser.TrimWhiteSpace = !(separator == "TAB" || separator == "SPATIE") ;
+
+                string[] colNames = csvParser.ReadFields();
+                string[] row;
+
+                foreach (string colName in colNames)
+                {
+                    tbl.Columns.Add(colName);
+                }
+                while (!csvParser.EndOfData)
+                {
+                    try
+                    {
+                        row = csvParser.ReadFields();
+
+                        if (tbl.Columns.Count != row.Count())
+                        {
+                            throw new csvException("Niet alle rijen hebben hetzelfde aantal kollommen, op eerste lijn: " +
+                             tbl.Rows.Count.ToString() + " gevonden: " + row.Count() + " op lijn: \n" + string.Join(sep, row));
+                        }
+                        tbl.Rows.Add(row);
+                    }
+                    catch (Microsoft.VisualBasic.FileIO.MalformedLineException ex)
+                    {
+                        throw new csvException("CSV is kan niet worden gelezen, het heeft niet de correcte vorm: " + csvParser.ErrorLine, ex);
+                    }
+                }
+            }
+            return tbl;
+        }
+        #endregion
     }
+
+    #region "exceptions"
+    [Serializable]
+    public class csvException : Exception
+    {
+        public string csvMessage;
+        public csvException(string message) : base(message) { }
+        public csvException(string message, Exception inner) : base(message, inner) { }
+        protected csvException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
+    }
+    #endregion
 }

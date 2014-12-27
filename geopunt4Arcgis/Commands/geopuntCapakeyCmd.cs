@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace geopunt4Arcgis
 {
-    public class capakeyCmd : ESRI.ArcGIS.Desktop.AddIns.Button
+    public class geopuntCapakeyCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         IActiveView view;
         capakeyForm capakayDlg;
 
-        public capakeyCmd()
+        public geopuntCapakeyCmd()
         {
             view = ArcMap.Document.ActiveView;
         }

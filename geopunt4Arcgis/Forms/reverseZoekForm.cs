@@ -56,7 +56,7 @@ namespace geopunt4Arcgis
 
         private void add2MapBtn_Click(object sender, EventArgs e)
         {
-            if ( lam72 == null || adres == null ) { return; }
+            if ( lam72 == null || adres == null ) return; 
 
             IPoint fromXY = new ESRI.ArcGIS.Geometry.PointClass(){X = xAdres, Y= yAdres, SpatialReference = lam72 } ;
             IPoint toXY = geopuntHelper.Transform(fromXY as IGeometry, view.FocusMap.SpatialReference) as IPoint;
