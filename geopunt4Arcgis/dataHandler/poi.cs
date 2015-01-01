@@ -27,6 +27,7 @@ namespace geopunt4Arcgis.dataHandler
                                            Proxy = new System.Net.WebProxy(proxyUrl, port) };
             }
             client.Headers["Content-type"] = "application/json";
+            
             qryValues = new NameValueCollection();
             baseUrl = "http://poi.api.geopunt.be/core";
         }

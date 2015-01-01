@@ -22,13 +22,13 @@ namespace geopunt4Arcgis
     public class geopuntPoiCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         IActiveView view;
-        geopunt4arcgisExtension extension;
+        geopunt4arcgisExtension gpExtension;
         poiSearchForm poiDlg;
 
         public geopuntPoiCmd()
         {
             view = ArcMap.Document.ActiveView;
-            extension = geopunt4arcgisExtension.getGeopuntExtension();
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()
@@ -55,6 +55,7 @@ namespace geopunt4Arcgis
                     }
                 }
                 poiDlg = new poiSearchForm();
+                gpExtension.poiDlg = poiDlg;
                 poiDlg.Show();
                 poiDlg.WindowState = FormWindowState.Normal;
                 poiDlg.Focus();

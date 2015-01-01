@@ -15,13 +15,13 @@ namespace geopunt4Arcgis
     public class geopuntGipodCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         IActiveView view;
-        geopunt4arcgisExtension extension;
+        geopunt4arcgisExtension gpExtension;
         gipodForm gipodFormDlg;
 
         public geopuntGipodCmd()
         {
             view = ArcMap.Document.ActiveView;
-            extension = geopunt4arcgisExtension.getGeopuntExtension();
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()
@@ -49,6 +49,7 @@ namespace geopunt4Arcgis
                 }
 
                 gipodFormDlg = new gipodForm();
+                gpExtension.gipodDlg = gipodFormDlg;
                 gipodFormDlg.Show();
                 gipodFormDlg.WindowState = FormWindowState.Normal;
                 gipodFormDlg.Focus();

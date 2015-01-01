@@ -106,7 +106,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(338, 17);
+            this.infoLabel.Size = new System.Drawing.Size(369, 17);
             this.infoLabel.Spring = true;
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -838,7 +838,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(420, 250);
             this.Name = "zoekAdresForm";
-            this.ShowInTaskbar = false;
             this.Text = "Zoek een adres";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();

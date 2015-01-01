@@ -81,6 +81,15 @@ namespace geopunt4Arcgis
             enddatePicker.MinDate = DateTime.Today;
         }
 
+        #region "overrides"
+        protected override void OnClosed(EventArgs e)
+        {
+            gpExtension.gipodDlg = null;
+            base.OnClosed(e);
+        }
+
+        #endregion
+
         #region "eventhandlers"
 
         private void workassignmentRadio_CheckedChanged(object sender, EventArgs e)
@@ -280,24 +289,24 @@ namespace geopunt4Arcgis
             fields.Add(endDate);
             IField hinder = geopuntHelper.createField("hinder", esriFieldType.esriFieldTypeSmallInteger);
             fields.Add(hinder);
-            IField detail = geopuntHelper.createField("detail", esriFieldType.esriFieldTypeString, 140);
+            IField detail = geopuntHelper.createField("detail", esriFieldType.esriFieldTypeString, 254);
             fields.Add(detail);
             IField cities = geopuntHelper.createField("cities", esriFieldType.esriFieldTypeString, 254);
             fields.Add(cities);
 
             if (gtype == dataHandler.gipodtype.manifestation) {
-                IField initiator = geopuntHelper.createField("initiator", esriFieldType.esriFieldTypeString, 140);
+                IField initiator = geopuntHelper.createField("initiator", esriFieldType.esriFieldTypeString, 254);
                 fields.Add(initiator);
-                IField eventType = geopuntHelper.createField("eventType", esriFieldType.esriFieldTypeString, 140);
+                IField eventType = geopuntHelper.createField("eventType", esriFieldType.esriFieldTypeString, 254);
                 fields.Add(eventType);
-                IField recurrencePattern = geopuntHelper.createField("patroon", esriFieldType.esriFieldTypeString, 255);
+                IField recurrencePattern = geopuntHelper.createField("patroon", esriFieldType.esriFieldTypeString, 254);
                 fields.Add(recurrencePattern);
             }
             return fields;
         }
 
         /// <summary>Get the gipod parameters </summary>
-        private dataHandler.gipodParam getGipodParam( )
+        private dataHandler.gipodParam getGipodParam()
         {
             //get parameters form GUI
             dataHandler.gipodParam param = new dataHandler.gipodParam();
@@ -365,6 +374,7 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(idIdx, id);
 
                     string owner = row.owner;
+                    if (owner.Length > 254) owner = owner.Substring(0, 254);
                     int ownerIdx = gipodFC.FindField("eigenaar");
                     featureBuffer.set_Value(ownerIdx, owner);
 
@@ -391,27 +401,32 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(hinderIdx, hinder);
 
                     string detail = row.detail;
+                    if (detail.Length > 254) detail = detail.Substring(0, 254);
                     int detailIdx = gipodFC.FindField("detail");
                     featureBuffer.set_Value(detailIdx, detail);
 
                     string cities = string.Join(", ", row.cities.ToArray());
+                    if (cities.Length > 254) cities = cities.Substring(0, 254);
                     int citiesIdx = gipodFC.FindField("cities");
                     featureBuffer.set_Value(citiesIdx, cities);
 
-                    if (gtype == dataHandler.gipodtype.manifestation) {
+                    if (gtype == dataHandler.gipodtype.manifestation) 
+                    {
                         string initiator = row.initiator ;
                         if (initiator != null) {
+                            if (initiator.Length > 254) initiator = initiator.Substring(0, 254);
                             int initiatorIdx = gipodFC.FindField("initiator");
                             featureBuffer.set_Value(initiatorIdx, initiator);
                         }
                         string eventType = row.eventType ;
                         if (eventType != null) {
+                            if (eventType.Length > 254) eventType = eventType.Substring(0, 254);
                             int eventTypeIdx = gipodFC.FindField("eventType");
                             featureBuffer.set_Value(eventTypeIdx, eventType);
                         }
-
                         string recurrencePattern = row.recurrencePattern ;
                         if (recurrencePattern != null) {
+                            if (recurrencePattern.Length > 254) recurrencePattern = recurrencePattern.Substring(0, 254);
                             int recurrencePatternIdx = gipodFC.FindField("patroon");
                             featureBuffer.set_Value(recurrencePatternIdx, recurrencePattern);
                         }

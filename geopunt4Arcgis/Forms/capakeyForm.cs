@@ -66,6 +66,7 @@ namespace geopunt4Arcgis
         #region "overrides"
         protected override void OnClosed(EventArgs e)
         {
+            gpExtension.capakayDlg = null;
             clearGraphics();
             view.Refresh();
             base.OnClosed(e);
@@ -340,7 +341,7 @@ namespace geopunt4Arcgis
             geopuntHelper.AddGraphicToMap(map, mapShape, innerClr, outlineClr, 2, false);
             geopuntHelper.AddTextElement(map, center, perceel.capakey + "\r\n" + adres);
 
-            view.Refresh();
+            view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
         }
         #endregion
 
@@ -392,7 +393,7 @@ namespace geopunt4Arcgis
         {
             List<IField> fields = new List<IField>();
 
-            IField capakey = geopuntHelper.createField("capakey", esriFieldType.esriFieldTypeString, 50);
+            IField capakey = geopuntHelper.createField("capakey", esriFieldType.esriFieldTypeString, 60);
             fields.Add(capakey);
             IField perceelnr = geopuntHelper.createField("perceelnr", esriFieldType.esriFieldTypeString, 40);
             fields.Add(perceelnr);

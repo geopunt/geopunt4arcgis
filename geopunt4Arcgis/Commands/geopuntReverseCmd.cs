@@ -16,12 +16,14 @@ namespace geopunt4Arcgis
 {
     public class geopuntReverseCmd : ESRI.ArcGIS.Desktop.AddIns.Tool
     {
-        IActiveView activeView;
+        IActiveView view;
         reverseZoekForm resultForm;
+        geopunt4arcgisExtension gpExtension;
 
         public geopuntReverseCmd()
         {
-            activeView = ArcMap.Document.ActiveView;
+            view = ArcMap.Document.ActiveView;
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnActivate()
@@ -29,7 +31,7 @@ namespace geopunt4Arcgis
 
             try
             {
-                if (activeView.FocusMap.SpatialReference == null)
+                if (view.FocusMap.SpatialReference == null)
                 {
                     MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
                     return;
@@ -45,7 +47,7 @@ namespace geopunt4Arcgis
         {
             try
             {
-                IDisplayTransformation displayTransformation = activeView.ScreenDisplay.DisplayTransformation;
+                IDisplayTransformation displayTransformation = view.ScreenDisplay.DisplayTransformation;
 
                 IPoint mapPoint = displayTransformation.ToMapPoint(arg.X, arg.Y);
                 IPoint lam72Point = geopuntHelper.Transform2Lam72(mapPoint) as IPoint;
@@ -66,6 +68,7 @@ namespace geopunt4Arcgis
                     }
                 }
                 resultForm = new reverseZoekForm();
+                gpExtension.reverseDlg = resultForm;
                 resultForm.Show();
                 resultForm.WindowState = FormWindowState.Normal;
                 resultForm.Focus();

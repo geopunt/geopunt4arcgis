@@ -13,10 +13,12 @@ namespace geopunt4Arcgis
     {
         IActiveView view;
         capakeyForm capakayDlg;
+        geopunt4arcgisExtension gpExtension;
 
         public geopuntCapakeyCmd()
         {
             view = ArcMap.Document.ActiveView;
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()

@@ -7,7 +7,7 @@ die met deze add-in geïntegreed worden in Arcgis.</Description>
   <Image>Images\geopunt4Arcgis.png</Image>
   <Author>Kay Warrie</Author>
   <Company>KGIS.be</Company>
-  <Date>27/12/2014</Date>
+  <Date>1/01/2015</Date>
   <Targets>
     <!--<Target name="Desktop" version="10.0" />-->
     <Target name="Desktop" version="10.2" />
@@ -15,46 +15,48 @@ die met deze add-in geïntegreed worden in Arcgis.</Description>
   <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>
       <Commands>
-        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een crab-adres" caption="Zoek een adres" tip="Zoek een crab-adres" category="geopunt" image="Images\geopuntAddressCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een adres op en toon dit op de kaart of voeg het als laag toe aan je project." caption="Zoek een adres" tip="Zoek een adres" category="geopunt" image="Images\geopuntAddressCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres" />
         </Button>
-        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" message="Prik een locatie op de kaart om het meest nabije adres te weten." caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseCmd" message="Selecteer een locatie op je kaart en bepaal het dichtstbijzijnde CRAB-adres." caption="Prik een adres" tip="Prik een locatie op de kaart om het meest nabije CRAB-adres te weten" category="geopunt" image="Images\geopuntReverse.png" cursor="Images\geopuntReverse.cur">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart" />
         </Tool>
-        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Data uit GIPOD raadplegen." caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Haal GIPOD-data op met betrekking tot geplande werkzaamheden of manifestaties." caption="GIPOD" tip="Data uit GIPOD raadplegen." category="geopunt" image="Images\geopuntGipodCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." caption="Zoek een intersante " tip="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-service zoeken." category="Zoek een interessante plaats " image="Images\geopuntPoiCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" 
+                message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-dienst zoeken." 
+                caption="Zoek een interssante plaats" 
+                tip="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-dienst zoeken." 
+                category="geopunt" image="Images\geopuntPoiCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/poi" />
         </Button>
-        <!--Test, remove on production-->
         <Button id="KGIS_geopunt4Arcgis_capakeyCmd" class="geopuntCapakeyCmd" 
-                message="Met perceelservice van Geopunt kan je op getrapte wijze de ligging van een perceel zoeken.
- Je selecteert eerst de gemeente waarin je wenst te zoeken, daarna het departement en de sectie, dan krijg je een keuzelijst met
- alle perceelnummers binnen die sectie." 
-                caption="Zoek een perceel" tip="Zoeken naar percelen op getrapte wijze via geopunt." category="geopunt" image="Images\capakeyCmd.png">
+                message="Zoek een kadastraal perceel op via gemeente, departement, sectie en perceelnummer." 
+                caption="Zoek een perceel" tip="Zoek een kadastraal perceel op via gemeente, departement, sectie en perceelnummer." 
+                category="geopunt" image="Images\capakeyCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingCmd" class="geopuntBatchGeocodingCmd" message="
-Met deze tool kan je een CSV-bestand geocoderen, omzetten naar een kaartlaag. 
-Een CSV-bestand (Comma Seperated Values) is een tekstbestand waarin de waarden door een teken (de separator) meestal een komma of 
-puntkomma gescheiden zijn. Je kunt opslaan Als je CSV-bestand adresgegevens bevat, kan je deze met deze tool op de kaart weergeven 
-met hun correct CRAB-adres." 
-                caption="CSV-bestanden geocoderen" tip="Adressen in CSV-bestanden geocoderen " 
-                category="geopunt" image="Images\geopuntBatchGeocodingCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingCmd" class="geopuntBatchGeocodingCmd" 
+                message="Met deze tool kan je een CSV-bestand geocoderen en omzetten naar een kaartlaag." 
+                caption="CSV-bestanden geocoderen" tip="Adressen in CSV-bestanden geocoderen " category="geopunt" image="Images\geopuntBatchGeocodingCmd.png">
           <Help source="http://www.geopunt.be/nl/voor-experts/geopunt-plug-ins/functionaliteiten/csv-bestanden-geocoderen" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_testBtn" class="testBtn" caption="Text Button" tip="test" category="Add-In Controls" image="Images\testBtn.png" />
+        <Button id="KGIS_geopunt4Arcgis_aboutCmd" class="aboutCmd" caption="Over geopunt voor Arcgis" 
+                tip="Over geopunt voor Arcgis" category="geopunt" image="Images\aboutCmd.png">
+          <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins" />
+        </Button>
+        <!--Hulp tools, niet toevoegen aan UI-->
+        <Tool id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingTool" class="geopuntBatchGeocodingTool" message="Hulptool om CSV-bestanden te geocoderen, niet toevoegen aan een taakbalk" cursor="Images\geopuntReverse.cur" caption="Hulp tool om CSV-bestanden geocoderen" category="geopunt" image="Images\geopuntBatchGeocodingTool.png" />
       </Commands>
       <Extensions>
-        <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" 
-                   class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
+        <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
           <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
 die met deze add-in toegevoegd worden in Arcgis.</Description>
         </Extension>
       </Extensions>
       <Toolbars>
-        <Toolbar id="KGIS_geoPunt_toolBar" caption="geoPunt toolBar" showInitially="true">
+        <Toolbar id="KGIS_geoPunt_toolBar" caption="geopunt4arcgis toolBar" showInitially="true">
           <Items>
             <Item refID="KGIS_geopunt4Arcgis_geopuntAddressCmd" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntReverse" />
@@ -62,7 +64,7 @@ die met deze add-in toegevoegd worden in Arcgis.</Description>
             <Item refID="KGIS_geopunt4Arcgis_geopuntPoiCmd" />
             <Item refID="KGIS_geopunt4Arcgis_capakeyCmd" />
             <Item refID="KGIS_geopunt4Arcgis_geopuntBatchGeocodingCmd" />
-            <Item refID="KGIS_geopunt4Arcgis_testBtn" />
+            <Item refID="KGIS_geopunt4Arcgis_aboutCmd" />
           </Items>
         </Toolbar>
       </Toolbars>

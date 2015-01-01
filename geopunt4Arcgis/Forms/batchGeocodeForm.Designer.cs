@@ -36,9 +36,14 @@
             this.openBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.gridPanel = new System.Windows.Forms.Panel();
-            this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.csvDataGrid = new System.Windows.Forms.DataGridView();
             this.gridTools = new System.Windows.Forms.ToolStrip();
             this.validateAllBtn = new System.Windows.Forms.ToolStripButton();
+            this.validateSelBtn = new System.Windows.Forms.ToolStripButton();
+            this.cancelValidationBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.manualLocBtn = new System.Windows.Forms.ToolStripButton();
+            this.zoom2selBtn = new System.Windows.Forms.ToolStripButton();
             this.openCSVDlg = new System.Windows.Forms.OpenFileDialog();
             this.csvPathTxt = new System.Windows.Forms.TextBox();
             this.adresColLbl = new System.Windows.Forms.Label();
@@ -53,12 +58,16 @@
             this.sepLbl = new System.Windows.Forms.Label();
             this.sepCbx = new System.Windows.Forms.ComboBox();
             this.otherSepBox = new System.Windows.Forms.TextBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.validationWorker = new System.ComponentModel.BackgroundWorker();
+            this.csvBox = new System.Windows.Forms.GroupBox();
+            this.csvErrorLbl = new System.Windows.Forms.Label();
+            this.add2mapBtn = new System.Windows.Forms.Button();
             this.statusBar.SuspendLayout();
             this.gridPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.csvDataGrid)).BeginInit();
             this.gridTools.SuspendLayout();
             this.adresSettingsBox.SuspendLayout();
+            this.csvBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusBar
@@ -67,9 +76,9 @@
             this.msgLbl,
             this.progressBar,
             this.helpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 480);
+            this.statusBar.Location = new System.Drawing.Point(0, 525);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(532, 22);
+            this.statusBar.Size = new System.Drawing.Size(583, 22);
             this.statusBar.TabIndex = 0;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -80,7 +89,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(387, 17);
+            this.msgLbl.Size = new System.Drawing.Size(438, 17);
             this.msgLbl.Spring = true;
             // 
             // progressBar
@@ -99,9 +108,9 @@
             // openBtn
             // 
             this.openBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.openBtn.Location = new System.Drawing.Point(445, 12);
+            this.openBtn.Location = new System.Drawing.Point(487, 16);
             this.openBtn.Name = "openBtn";
-            this.openBtn.Size = new System.Drawing.Size(75, 23);
+            this.openBtn.Size = new System.Drawing.Size(62, 23);
             this.openBtn.TabIndex = 2;
             this.openBtn.Text = "Open";
             this.openBtn.UseVisualStyleBackColor = true;
@@ -111,9 +120,9 @@
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(445, 454);
+            this.cancelBtn.Location = new System.Drawing.Point(499, 499);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Size = new System.Drawing.Size(72, 23);
             this.cancelBtn.TabIndex = 3;
             this.cancelBtn.Text = "Sluiten";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -124,34 +133,39 @@
             this.gridPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridPanel.Controls.Add(this.dataGrid);
+            this.gridPanel.Controls.Add(this.csvDataGrid);
             this.gridPanel.Controls.Add(this.gridTools);
-            this.gridPanel.Location = new System.Drawing.Point(12, 195);
+            this.gridPanel.Location = new System.Drawing.Point(12, 212);
             this.gridPanel.Name = "gridPanel";
-            this.gridPanel.Size = new System.Drawing.Size(508, 253);
+            this.gridPanel.Size = new System.Drawing.Size(559, 281);
             this.gridPanel.TabIndex = 5;
             // 
-            // dataGrid
+            // csvDataGrid
             // 
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid.Location = new System.Drawing.Point(0, 25);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(508, 228);
-            this.dataGrid.TabIndex = 6;
+            this.csvDataGrid.AllowUserToAddRows = false;
+            this.csvDataGrid.AllowUserToDeleteRows = false;
+            this.csvDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.csvDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.csvDataGrid.Location = new System.Drawing.Point(0, 25);
+            this.csvDataGrid.Name = "csvDataGrid";
+            this.csvDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.csvDataGrid.Size = new System.Drawing.Size(559, 256);
+            this.csvDataGrid.TabIndex = 6;
             // 
             // gridTools
             // 
             this.gridTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.validateAllBtn,
-            this.toolStripButton1});
+            this.validateSelBtn,
+            this.cancelValidationBtn,
+            this.toolStripSeparator1,
+            this.manualLocBtn,
+            this.zoom2selBtn});
             this.gridTools.Location = new System.Drawing.Point(0, 0);
             this.gridTools.Name = "gridTools";
-            this.gridTools.Size = new System.Drawing.Size(508, 25);
+            this.gridTools.Size = new System.Drawing.Size(559, 25);
             this.gridTools.TabIndex = 5;
-            this.gridTools.Text = "toolStrip1";
+            this.gridTools.Text = "Tabel tools";
             // 
             // validateAllBtn
             // 
@@ -161,21 +175,66 @@
             this.validateAllBtn.Size = new System.Drawing.Size(89, 22);
             this.validateAllBtn.Text = "Valideer alles";
             this.validateAllBtn.ToolTipText = "Valideer alle records";
+            this.validateAllBtn.Click += new System.EventHandler(this.validateAllBtn_Click);
+            // 
+            // validateSelBtn
+            // 
+            this.validateSelBtn.Image = ((System.Drawing.Image)(resources.GetObject("validateSelBtn.Image")));
+            this.validateSelBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.validateSelBtn.Name = "validateSelBtn";
+            this.validateSelBtn.Size = new System.Drawing.Size(104, 22);
+            this.validateSelBtn.Text = "Valideer selectie";
+            this.validateSelBtn.ToolTipText = "Valideer alleen de geselecteerde records";
+            this.validateSelBtn.Click += new System.EventHandler(this.validateSelBtn_Click);
+            // 
+            // cancelValidationBtn
+            // 
+            this.cancelValidationBtn.Image = ((System.Drawing.Image)(resources.GetObject("cancelValidationBtn.Image")));
+            this.cancelValidationBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cancelValidationBtn.Name = "cancelValidationBtn";
+            this.cancelValidationBtn.Size = new System.Drawing.Size(70, 22);
+            this.cancelValidationBtn.Text = "Annuleer";
+            this.cancelValidationBtn.ToolTipText = "Annuleer validatie, onderbreek uitvoering";
+            this.cancelValidationBtn.Click += new System.EventHandler(this.cancelValidationBtn_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // manualLocBtn
+            // 
+            this.manualLocBtn.Image = ((System.Drawing.Image)(resources.GetObject("manualLocBtn.Image")));
+            this.manualLocBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.manualLocBtn.Name = "manualLocBtn";
+            this.manualLocBtn.Size = new System.Drawing.Size(93, 22);
+            this.manualLocBtn.Text = "Prik de locatie";
+            this.manualLocBtn.ToolTipText = "Duid de locatie op de kaart aan, van de geselecteerde records";
+            this.manualLocBtn.Click += new System.EventHandler(this.manualLocBtn_Click);
+            // 
+            // zoom2selBtn
+            // 
+            this.zoom2selBtn.Image = ((System.Drawing.Image)(resources.GetObject("zoom2selBtn.Image")));
+            this.zoom2selBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.zoom2selBtn.Name = "zoom2selBtn";
+            this.zoom2selBtn.Size = new System.Drawing.Size(118, 22);
+            this.zoom2selBtn.Text = "Zoom naar Selectie";
+            this.zoom2selBtn.ToolTipText = "Zoom naar Selectie (Maximaal 30 rijen)";
+            this.zoom2selBtn.Click += new System.EventHandler(this.zoom2selBtn_Click);
             // 
             // openCSVDlg
             // 
             this.openCSVDlg.DefaultExt = "csv";
-            this.openCSVDlg.Filter = "\"CSV-file(*.csv)|*.csv|Text-file(*.txt)|*.txt|All Files(*.*)|*.*\"";
             this.openCSVDlg.RestoreDirectory = true;
             // 
             // csvPathTxt
             // 
             this.csvPathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.csvPathTxt.Location = new System.Drawing.Point(12, 12);
+            this.csvPathTxt.Location = new System.Drawing.Point(9, 19);
             this.csvPathTxt.Name = "csvPathTxt";
             this.csvPathTxt.ReadOnly = true;
-            this.csvPathTxt.Size = new System.Drawing.Size(427, 20);
+            this.csvPathTxt.Size = new System.Drawing.Size(472, 20);
             this.csvPathTxt.TabIndex = 6;
             this.csvPathTxt.Text = "< input CSV-file >";
             this.csvPathTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -197,7 +256,7 @@
             this.adresColCbx.FormattingEnabled = true;
             this.adresColCbx.Location = new System.Drawing.Point(105, 42);
             this.adresColCbx.Name = "adresColCbx";
-            this.adresColCbx.Size = new System.Drawing.Size(397, 21);
+            this.adresColCbx.Size = new System.Drawing.Size(448, 21);
             this.adresColCbx.TabIndex = 8;
             // 
             // adresSettingsBox
@@ -213,9 +272,11 @@
             this.adresSettingsBox.Controls.Add(this.GemeenteColLbl);
             this.adresSettingsBox.Controls.Add(this.adresColCbx);
             this.adresSettingsBox.Controls.Add(this.adresColLbl);
-            this.adresSettingsBox.Location = new System.Drawing.Point(12, 66);
+            this.adresSettingsBox.Location = new System.Drawing.Point(12, 85);
+            this.adresSettingsBox.MaximumSize = new System.Drawing.Size(570, 123);
+            this.adresSettingsBox.MinimumSize = new System.Drawing.Size(300, 123);
             this.adresSettingsBox.Name = "adresSettingsBox";
-            this.adresSettingsBox.Size = new System.Drawing.Size(508, 123);
+            this.adresSettingsBox.Size = new System.Drawing.Size(559, 123);
             this.adresSettingsBox.TabIndex = 9;
             this.adresSettingsBox.TabStop = false;
             this.adresSettingsBox.Text = "Adres Instellingen";
@@ -252,7 +313,7 @@
             this.HuisNrCbx.FormattingEnabled = true;
             this.HuisNrCbx.Location = new System.Drawing.Point(105, 69);
             this.HuisNrCbx.Name = "HuisNrCbx";
-            this.HuisNrCbx.Size = new System.Drawing.Size(397, 21);
+            this.HuisNrCbx.Size = new System.Drawing.Size(448, 21);
             this.HuisNrCbx.TabIndex = 12;
             // 
             // huisNrColLbl
@@ -272,23 +333,23 @@
             this.gemeenteColCbx.FormattingEnabled = true;
             this.gemeenteColCbx.Location = new System.Drawing.Point(105, 96);
             this.gemeenteColCbx.Name = "gemeenteColCbx";
-            this.gemeenteColCbx.Size = new System.Drawing.Size(397, 21);
+            this.gemeenteColCbx.Size = new System.Drawing.Size(448, 21);
             this.gemeenteColCbx.TabIndex = 10;
             // 
             // GemeenteColLbl
             // 
             this.GemeenteColLbl.AutoSize = true;
-            this.GemeenteColLbl.Location = new System.Drawing.Point(6, 99);
+            this.GemeenteColLbl.Location = new System.Drawing.Point(6, 91);
             this.GemeenteColLbl.Name = "GemeenteColLbl";
-            this.GemeenteColLbl.Size = new System.Drawing.Size(93, 13);
+            this.GemeenteColLbl.Size = new System.Drawing.Size(93, 26);
             this.GemeenteColLbl.TabIndex = 9;
-            this.GemeenteColLbl.Text = "Gemeente kolom: ";
+            this.GemeenteColLbl.Text = "Gemeente kolom: \r\n(of postcode)";
             // 
             // sepLbl
             // 
             this.sepLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sepLbl.AutoSize = true;
-            this.sepLbl.Location = new System.Drawing.Point(278, 45);
+            this.sepLbl.Location = new System.Drawing.Point(343, 48);
             this.sepLbl.Name = "sepLbl";
             this.sepLbl.Size = new System.Drawing.Size(59, 13);
             this.sepLbl.TabIndex = 10;
@@ -305,57 +366,96 @@
             "SPATIE",
             "TAB",
             "ANDER TEKEN"});
-            this.sepCbx.Location = new System.Drawing.Point(353, 42);
+            this.sepCbx.Location = new System.Drawing.Point(408, 44);
             this.sepCbx.Name = "sepCbx";
-            this.sepCbx.Size = new System.Drawing.Size(121, 21);
+            this.sepCbx.Size = new System.Drawing.Size(108, 21);
             this.sepCbx.TabIndex = 11;
             this.sepCbx.SelectedIndexChanged += new System.EventHandler(this.sepCbx_SelectedIndexChanged);
             // 
             // otherSepBox
             // 
             this.otherSepBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.otherSepBox.Location = new System.Drawing.Point(480, 43);
+            this.otherSepBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.otherSepBox.Location = new System.Drawing.Point(528, 45);
             this.otherSepBox.Name = "otherSepBox";
             this.otherSepBox.ReadOnly = true;
-            this.otherSepBox.Size = new System.Drawing.Size(34, 20);
+            this.otherSepBox.Size = new System.Drawing.Size(21, 23);
             this.otherSepBox.TabIndex = 12;
             // 
-            // toolStripButton1
+            // validationWorker
             // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(104, 22);
-            this.toolStripButton1.Text = "Valideer selectie";
-            this.toolStripButton1.ToolTipText = "Valideer alleen de geselecteerde records";
+            this.validationWorker.WorkerReportsProgress = true;
+            this.validationWorker.WorkerSupportsCancellation = true;
+            this.validationWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.validationWorker_DoWork);
+            this.validationWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.validationWorker_ProgressChanged);
+            this.validationWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.validationWorker_RunWorkerCompleted);
+            // 
+            // csvBox
+            // 
+            this.csvBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.csvBox.Controls.Add(this.csvErrorLbl);
+            this.csvBox.Controls.Add(this.otherSepBox);
+            this.csvBox.Controls.Add(this.csvPathTxt);
+            this.csvBox.Controls.Add(this.sepCbx);
+            this.csvBox.Controls.Add(this.openBtn);
+            this.csvBox.Controls.Add(this.sepLbl);
+            this.csvBox.Location = new System.Drawing.Point(12, 4);
+            this.csvBox.MinimumSize = new System.Drawing.Size(300, 75);
+            this.csvBox.Name = "csvBox";
+            this.csvBox.Size = new System.Drawing.Size(559, 75);
+            this.csvBox.TabIndex = 0;
+            this.csvBox.TabStop = false;
+            this.csvBox.Text = "CSV instellingen";
+            // 
+            // csvErrorLbl
+            // 
+            this.csvErrorLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.csvErrorLbl.ForeColor = System.Drawing.Color.Red;
+            this.csvErrorLbl.Location = new System.Drawing.Point(6, 42);
+            this.csvErrorLbl.Name = "csvErrorLbl";
+            this.csvErrorLbl.Size = new System.Drawing.Size(331, 30);
+            this.csvErrorLbl.TabIndex = 13;
+            // 
+            // add2mapBtn
+            // 
+            this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.add2mapBtn.Location = new System.Drawing.Point(292, 499);
+            this.add2mapBtn.Name = "add2mapBtn";
+            this.add2mapBtn.Size = new System.Drawing.Size(201, 23);
+            this.add2mapBtn.TabIndex = 10;
+            this.add2mapBtn.Text = "Voeg alle gevalideerde adressen toe";
+            this.add2mapBtn.UseVisualStyleBackColor = true;
+            this.add2mapBtn.Click += new System.EventHandler(this.add2mapBtn_Click);
             // 
             // batchGeocodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(532, 502);
-            this.Controls.Add(this.otherSepBox);
-            this.Controls.Add(this.sepCbx);
-            this.Controls.Add(this.sepLbl);
+            this.ClientSize = new System.Drawing.Size(583, 547);
+            this.Controls.Add(this.add2mapBtn);
+            this.Controls.Add(this.csvBox);
             this.Controls.Add(this.adresSettingsBox);
-            this.Controls.Add(this.csvPathTxt);
             this.Controls.Add(this.gridPanel);
             this.Controls.Add(this.cancelBtn);
-            this.Controls.Add(this.openBtn);
             this.Controls.Add(this.statusBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(340, 400);
             this.Name = "batchGeocodeForm";
             this.Text = "batchGeocodeForm";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.gridPanel.ResumeLayout(false);
             this.gridPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.csvDataGrid)).EndInit();
             this.gridTools.ResumeLayout(false);
             this.gridTools.PerformLayout();
             this.adresSettingsBox.ResumeLayout(false);
             this.adresSettingsBox.PerformLayout();
+            this.csvBox.ResumeLayout(false);
+            this.csvBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,7 +470,7 @@
         private System.Windows.Forms.Button openBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Panel gridPanel;
-        private System.Windows.Forms.DataGridView dataGrid;
+        private System.Windows.Forms.DataGridView csvDataGrid;
         private System.Windows.Forms.ToolStrip gridTools;
         private System.Windows.Forms.OpenFileDialog openCSVDlg;
         private System.Windows.Forms.TextBox csvPathTxt;
@@ -387,6 +487,14 @@
         private System.Windows.Forms.RadioButton multiColAdresRadio;
         private System.Windows.Forms.RadioButton singleColAdresRadio;
         private System.Windows.Forms.TextBox otherSepBox;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton validateSelBtn;
+        private System.ComponentModel.BackgroundWorker validationWorker;
+        private System.Windows.Forms.GroupBox csvBox;
+        private System.Windows.Forms.Label csvErrorLbl;
+        private System.Windows.Forms.Button add2mapBtn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton manualLocBtn;
+        private System.Windows.Forms.ToolStripButton zoom2selBtn;
+        private System.Windows.Forms.ToolStripButton cancelValidationBtn;
     }
 }

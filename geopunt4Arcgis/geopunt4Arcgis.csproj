@@ -111,6 +111,10 @@
     <Reference Include="ESRI.ArcGIS.System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI, Version=10.2.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -127,8 +131,15 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\aboutCmd.cs" />
     <Compile Include="Commands\geopuntCapakeyCmd.cs" />
     <Compile Include="Commands\geopuntPoiCmd.cs" />
+    <Compile Include="Forms\AboutGeopunt4arcgisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutGeopunt4arcgisForm.Designer.cs">
+      <DependentUpon>AboutGeopunt4arcgisForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\batchGeocodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +159,7 @@
     <Compile Include="Forms\inputForm.Designer.cs">
       <DependentUpon>inputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\geopuntBatchGeocodingTool.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,7 +211,6 @@
     <Compile Include="Forms\reverseZoekForm.designer.cs">
       <DependentUpon>reverseZoekForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="testBtn.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -248,6 +259,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\AboutGeopunt4arcgisForm.resx">
+      <DependentUpon>AboutGeopunt4arcgisForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\batchGeocodeForm.resx">
       <DependentUpon>batchGeocodeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,11 +292,16 @@
     <AddInContent Include="Images\geopuntGipodCmd.png" />
     <AddInContent Include="Images\geopuntPoiCmd.png" />
     <AddInContent Include="Images\capakeyCmd.png" />
+    <AddInContent Include="Images\aboutCmd.png" />
     <Content Include="Images\binocular.png" />
     <Content Include="Images\binocularSmall.png" />
     <AddInContent Include="Images\geopuntBatchGeocodingCmd.png" />
     <Content Include="Images\Batchgeocode.ico" />
+    <Content Include="Images\cancel.png" />
+    <AddInContent Include="Images\geopuntBatchGeocodingTool.png" />
     <Content Include="Images\geopuntParcel.ico" />
+    <AddInContent Include="Images\getMousePointTool.png" />
+    <AddInContent Include="Images\getMousePointTool.cur" />
     <Content Include="Images\gipod.ico" />
     <Content Include="Images\gipod.png" />
     <Content Include="Images\instellingen.ico" />
@@ -291,6 +310,7 @@
     <Content Include="Images\magnifyingGlassSmall.png" />
     <Content Include="Images\poiZoek.ico" />
     <Content Include="Images\poiZoek.png" />
+    <Content Include="Images\prik.png" />
     <Content Include="Images\reverseZoek.ico" />
     <Content Include="Images\reverseZoek.png" />
     <AddInContent Include="Images\testBtn.png" />

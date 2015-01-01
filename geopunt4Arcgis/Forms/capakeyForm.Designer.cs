@@ -61,8 +61,8 @@
             // 
             // gemeenteCbx
             // 
-            this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gemeenteCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gemeenteCbx.FormattingEnabled = true;
             this.gemeenteCbx.Location = new System.Drawing.Point(99, 29);
@@ -73,8 +73,8 @@
             // 
             // departementCbx
             // 
-            this.departementCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.departementCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.departementCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.departementCbx.FormattingEnabled = true;
             this.departementCbx.Location = new System.Drawing.Point(99, 66);
@@ -94,8 +94,8 @@
             // 
             // sectieCbx
             // 
-            this.sectieCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sectieCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.sectieCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sectieCbx.FormattingEnabled = true;
             this.sectieCbx.Location = new System.Drawing.Point(99, 103);
@@ -126,9 +126,9 @@
             // 
             // msgLbl
             // 
-            this.msgLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.msgLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
             this.msgLbl.Size = new System.Drawing.Size(461, 17);
@@ -156,8 +156,8 @@
             // 
             // parcelCbx
             // 
-            this.parcelCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.parcelCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.parcelCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.parcelCbx.FormattingEnabled = true;
             this.parcelCbx.Location = new System.Drawing.Point(99, 139);
@@ -266,7 +266,6 @@
             this.MaximumSize = new System.Drawing.Size(600, 260);
             this.MinimumSize = new System.Drawing.Size(300, 260);
             this.Name = "capakeyForm";
-            this.ShowInTaskbar = false;
             this.Text = "Zoek een perceel";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

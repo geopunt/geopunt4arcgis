@@ -99,7 +99,7 @@ namespace geopunt4Arcgis
         {
             string toString, formatString;
             formatString = "{0:F4}" + xySplit + "{1:F4}" + sep + "{2:F4}" + xySplit + "{3:F4}";
-            toString = string.Format( formatString , Xmin, Ymin, Xmax, Ymax);
+            toString = string.Format(System.Globalization.CultureInfo.InvariantCulture, formatString, Xmin, Ymin, Xmax, Ymax);
             return toString;
         }
 

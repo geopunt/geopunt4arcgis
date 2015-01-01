@@ -235,7 +235,7 @@ namespace geopunt4Arcgis
                     IElement grp = geopuntHelper.AddGraphicToMap(view.FocusMap, prjPt, clr, outclr, 5, true);
                     graphics.Add(grp);
                 }
-                view.Refresh();
+                view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
             }
             catch (Exception ex)
             {
@@ -390,12 +390,6 @@ namespace geopunt4Arcgis
                     String poiPath = geopuntHelper.ShowSaveDataDialog("Opslaan als");
                     if (poiPath == null) return;
 
-                    bool deleted = geopuntHelper.deleteFeatureClass(poiPath);
-                    if (!deleted)
-                    {
-                        MessageBox.Show("Kan file de onderaande file niet deleten: \n" + poiPath);
-                        return;
-                    }
                     FileInfo featureClassPath = new FileInfo(poiPath);
                     List<IField> fields = poiIMinFields();
                     IFeatureClass poiFC;
@@ -403,12 +397,12 @@ namespace geopunt4Arcgis
                     if (poiPath.ToLowerInvariant().EndsWith(".shp"))
                     {
                         poiFC = geopuntHelper.createShapeFile(poiPath, fields, view.FocusMap.SpatialReference,
-                                                                                        esriGeometryType.esriGeometryPoint);
+                                                                                        esriGeometryType.esriGeometryPoint, true);
                     }
                     else if (featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
                     {
                         poiFC = geopuntHelper.createFeatureClass(featureClassPath.DirectoryName, featureClassPath.Name,
-                                                            fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint);
+                                                            fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint, true);
                     }
                     else
                     {
@@ -435,9 +429,11 @@ namespace geopunt4Arcgis
         #region "overrides"
         protected override void  OnClosed(EventArgs e)
         {
-            base.OnClosed(e);
+            gpExtension.poiDlg = null;
+
             clearGraphics();
             view.Refresh();
+            base.OnClosed(e);
         }
         #endregion
 
@@ -536,11 +532,11 @@ namespace geopunt4Arcgis
 
             IField poiID = geopuntHelper.createField("poiID", esriFieldType.esriFieldTypeInteger);
             fields.Add(poiID);
-            IField auteur = geopuntHelper.createField("auteur", esriFieldType.esriFieldTypeString, 50);
+            IField auteur = geopuntHelper.createField("auteur", esriFieldType.esriFieldTypeString, 100);
             fields.Add(auteur);
-            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 64);
+            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 100);
             fields.Add(naam);
-            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 64);
+            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poitype);
             //IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
             //fields.Add(info);
@@ -553,15 +549,15 @@ namespace geopunt4Arcgis
             fields.Add(update);
 
             //adres
-            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 50);
+            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 254);
             fields.Add(straat);
-            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 50);
+            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 80);
             fields.Add(huisnr);
-            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 50);
+            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 80);
             fields.Add(busnr);
             IField postcode = geopuntHelper.createField("postcode", esriFieldType.esriFieldTypeString, 16);
             fields.Add(postcode);
-            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 50);
+            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 254);
             fields.Add(gemeente);
             return fields;
         }
@@ -574,23 +570,23 @@ namespace geopunt4Arcgis
             IField poiID = geopuntHelper.createField("poiID", esriFieldType.esriFieldTypeInteger);
             fields.Add(poiID);
 
-            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 64);
+            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 100);
             fields.Add(naam);
-            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 64);
+            IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poitype);
             IField link = geopuntHelper.createField("link", esriFieldType.esriFieldTypeString, 254);
             fields.Add(link);
 
             //adres
-            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 50);
+            IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 254);
             fields.Add(straat);
-            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 50);
+            IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 80);
             fields.Add(huisnr);
-            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 50);
+            IField busnr = geopuntHelper.createField("busnr", esriFieldType.esriFieldTypeString, 80);
             fields.Add(busnr);
             IField postcode = geopuntHelper.createField("postcode", esriFieldType.esriFieldTypeString, 16);
             fields.Add(postcode);
-            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 50);
+            IField gemeente = geopuntHelper.createField("gemeente", esriFieldType.esriFieldTypeString, 254);
             fields.Add(gemeente);
 
             //count of cluster
@@ -632,10 +628,12 @@ namespace geopunt4Arcgis
                     if ( row.authors != null  )
                     {
                         List<string> authorQry = (from n in row.authors
-                                                select n.value).ToList<string>();
+                                                  select n.value).ToList<string>();
                         if (authorQry.Count > 0)
                         {
                             string owner = authorQry[0];
+                            if (owner.Length > 100)
+                                owner = owner.Substring(0, 80);
                             int ownerIdx = poiFC.FindField("auteur");
                             featureBuffer.set_Value(ownerIdx, owner);
                         }
@@ -643,10 +641,12 @@ namespace geopunt4Arcgis
                     if ( row.labels != null )
                     {
                         List<string> labelQry = (from n in row.labels
-                                                select n.value).ToList<string>();
+                                                 select n.value).ToList<string>();
                         if (labelQry.Count > 0)
                         {
                             string label = labelQry[0];
+                            if (label.Length > 100)
+                                label = label.Substring(0, 100);
                             int labelIdx = poiFC.FindField("naam");
                             featureBuffer.set_Value(labelIdx, label);
                         }
@@ -654,11 +654,13 @@ namespace geopunt4Arcgis
                     if (row.categories != null)
                     {
                         List<string> poitypeQry = (from n in row.categories
-                                                     where n.type == "Type"
-                                                     select n.value).ToList<string>();
+                                                   where n.type == "Type"
+                                                   select n.value).ToList<string>();
                         if (poitypeQry.Count > 0)
                         {
                             string poitype = poitypeQry[0];
+                            if (poitype.Length > 80)
+                                poitype = poitype.Substring(0, 80);
                             int poitypeIdx = poiFC.FindField("poitype");
                             featureBuffer.set_Value(poitypeIdx, poitype);
                         }
@@ -670,6 +672,8 @@ namespace geopunt4Arcgis
                         if (linkQry.Count > 0)
                         {
                             string link = linkQry[0];
+                            if (link.Length > 254)
+                                link = link.Substring(0, 254);
                             int linkIdx = poiFC.FindField("link");
                             featureBuffer.set_Value(linkIdx, link);
                         }
@@ -745,6 +749,8 @@ namespace geopunt4Arcgis
                         if (labelQry.Count > 0)
                         {
                             string label = labelQry[0];
+                            if (label.Length > 100)
+                                label = label.Substring(0, 100);
                             int labelIdx = poiFC.FindField("naam");
                             featureBuffer.set_Value(labelIdx, label);
                         }
@@ -757,6 +763,8 @@ namespace geopunt4Arcgis
                         if (poitypeQry.Count > 0)
                         {
                             string poitype = poitypeQry[0];
+                            if (poitype.Length > 80)
+                                poitype = poitype.Substring(0, 80);
                             int poitypeIdx = poiFC.FindField("poitype");
                             featureBuffer.set_Value(poitypeIdx, poitype);
                         }
@@ -768,6 +776,8 @@ namespace geopunt4Arcgis
                         if (linkQry.Count > 0)
                         {
                             string link = linkQry[0];
+                            if (link.Length > 254)
+                                link = link.Substring(0, 254);
                             int linkIdx = poiFC.FindField("link");
                             featureBuffer.set_Value(linkIdx, link);
                         }
@@ -806,8 +816,7 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(cIdx, c);
                     int poitypeIdx = poiFC.FindField("poitype");
                     featureBuffer.set_Value(poitypeIdx, "Cluster");
-                    insertCursor.InsertFeature(featureBuffer);
-                    
+
                     //set others to null
                     int idIdx = poiFC.FindField("poiID");
                     featureBuffer.set_Value(idIdx, null);
@@ -826,6 +835,8 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(postcodeIdx, null);
                     int gemeenteIdx = poiFC.FindField("gemeente");
                     featureBuffer.set_Value(gemeenteIdx, null);
+
+                    insertCursor.InsertFeature(featureBuffer);
                 }
 
                 insertCursor.Flush();

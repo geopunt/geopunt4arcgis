@@ -172,7 +172,6 @@
             this.MaximumSize = new System.Drawing.Size(800, 160);
             this.MinimumSize = new System.Drawing.Size(240, 160);
             this.Name = "reverseZoekForm";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meest nabije adres";
             this.statusBar.ResumeLayout(false);

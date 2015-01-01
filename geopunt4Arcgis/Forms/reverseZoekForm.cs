@@ -66,8 +66,8 @@ namespace geopunt4Arcgis
 
             geopuntHelper.AddGraphicToMap(map, toXY, innerClr, outlineClr, 12, false);
             geopuntHelper.AddTextElement(map, toXY, adres);
-            
-            view.Refresh();
+
+            view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -101,9 +101,10 @@ namespace geopunt4Arcgis
             {
                 adresLocation.client.CancelAsync();
             }
-            base.OnClosed(e);
+            gpExtension.reverseDlg = null;
             clearGraphics();
             view.Refresh();
+            base.OnClosed(e);
         }
      #endregion
 
@@ -156,8 +157,8 @@ namespace geopunt4Arcgis
         private void createAdresFeatureClass(string fcPath, ISpatialReference srs)
         {
             List<IField> attr = new List<IField>();
-            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString));
-            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString));
+            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString, 254));
+            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString, 80));
 
             FileInfo fcInfo = new FileInfo(fcPath);
 
@@ -187,6 +188,8 @@ namespace geopunt4Arcgis
 
             IFeature feature = reverseFC.CreateFeature();
             feature.Shape = (IGeometry)pt;
+
+            if (adres.Length > 254) adres = adres.Substring(0, 254);
 
             int adresIdx = reverseFC.FindField("adres");
             int adresTypeIdx = reverseFC.FindField("adresType");
@@ -229,7 +232,7 @@ namespace geopunt4Arcgis
             infoLabel.Text = "";
             add2MapBtn.Enabled = false;
             saveBtn.Enabled = false;
-            view.Refresh();
+            view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
         }
 
         public void clearGraphics()

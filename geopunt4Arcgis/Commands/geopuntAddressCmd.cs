@@ -14,10 +14,12 @@ namespace geopunt4Arcgis
     {
         IActiveView view;
         zoekAdresForm zoekAdresDlg;
+        geopunt4arcgisExtension gpExtension;
 
         public geopuntAddressCmd()
         {
             view = ArcMap.Document.ActiveView;
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()
@@ -43,8 +45,8 @@ namespace geopunt4Arcgis
                         return;
                     }
                 }
-
                 zoekAdresDlg = new zoekAdresForm();
+                gpExtension.zoekAdresDlg = zoekAdresDlg;
                 zoekAdresDlg.Show();
                 zoekAdresDlg.WindowState = FormWindowState.Normal;
                 zoekAdresDlg.Focus();

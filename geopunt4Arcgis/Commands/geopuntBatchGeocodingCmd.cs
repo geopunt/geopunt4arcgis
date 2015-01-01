@@ -13,10 +13,12 @@ namespace geopunt4Arcgis
     {
         IActiveView view;
         batchGeocodeForm batchDlg;
+        geopunt4arcgisExtension gpExtension;
 
         public geopuntBatchGeocodingCmd()
         {
             view = ArcMap.Document.ActiveView;
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()
@@ -42,9 +44,11 @@ namespace geopunt4Arcgis
                         return;
                     }
                 }
-
                 batchDlg = new batchGeocodeForm();
-                batchDlg.Show();
+
+                gpExtension.batchGeocodeDlg = batchDlg;
+
+                batchDlg.Show( );
                 batchDlg.WindowState = FormWindowState.Normal;
                 batchDlg.Focus();
             }
@@ -53,6 +57,5 @@ namespace geopunt4Arcgis
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace);
             }
         }
-
     }
 }

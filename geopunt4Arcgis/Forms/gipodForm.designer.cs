@@ -246,7 +246,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.messageLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.messageLbl.Name = "messageLbl";
-            this.messageLbl.Size = new System.Drawing.Size(334, 17);
+            this.messageLbl.Size = new System.Drawing.Size(365, 17);
             this.messageLbl.Spring = true;
             this.messageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -313,7 +313,6 @@
             this.MaximumSize = new System.Drawing.Size(1200, 350);
             this.MinimumSize = new System.Drawing.Size(420, 350);
             this.Name = "gipodForm";
-            this.ShowInTaskbar = false;
             this.Text = "GIPOD";
             this.gipodTypeGroup.ResumeLayout(false);
             this.gipodTypeGroup.PerformLayout();

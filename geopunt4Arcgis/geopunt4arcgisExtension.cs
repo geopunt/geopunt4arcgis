@@ -10,22 +10,25 @@ namespace geopunt4Arcgis
     public class geopunt4arcgisExtension : ESRI.ArcGIS.Desktop.AddIns.Extension
     {
         private static geopunt4arcgisExtension gpExtension;
-        public IFeatureClass adresLayer;
-        public IFeatureClass reverseLayer;
-        public IFeatureClass poiLayer;
-        public IFeatureClass poiMinLayer;
-        public IFeatureClass parcelLayer;
+        public IFeatureClass adresLayer = null;
+        public IFeatureClass reverseLayer = null;
+        public IFeatureClass poiLayer = null;
+        public IFeatureClass poiMinLayer = null;
+        public IFeatureClass parcelLayer = null;
+
+        public zoekAdresForm zoekAdresDlg = null;
+        public reverseZoekForm reverseDlg = null;
+        public poiSearchForm poiDlg = null;
+        public gipodForm gipodDlg = null;
+        public capakeyForm capakayDlg = null;
+        public batchGeocodeForm batchGeocodeDlg = null;
 
         public geopunt4arcgisExtension()
         {
             gpExtension = this;
-            adresLayer = null;
-            reverseLayer = null;
-            poiLayer = null;
-            poiMinLayer = null;
-            parcelLayer = null;
         }
 
+        /// <summary>Get the extensions object</summary>
         internal static geopunt4arcgisExtension getGeopuntExtension()
         {
             if (gpExtension == null)
@@ -36,5 +39,30 @@ namespace geopunt4Arcgis
             }
             return gpExtension;
         }
+
+        protected override void OnShutdown()
+        {
+            //trash every form and its resources still open on shutdown.
+            if (zoekAdresDlg != null)
+                if (!zoekAdresDlg.IsDisposed) zoekAdresDlg.Dispose();
+
+            if (reverseDlg != null)
+                if (!reverseDlg.IsDisposed) reverseDlg.Dispose();
+
+            if (poiDlg != null)
+                if (!poiDlg.IsDisposed) poiDlg.Dispose();
+
+            if (gipodDlg != null)
+                if (!gipodDlg.IsDisposed) gipodDlg.Dispose();
+
+            if (capakayDlg != null)
+                if (!capakayDlg.IsDisposed) capakayDlg.Dispose();
+
+            if (batchGeocodeDlg != null)
+                if (!batchGeocodeDlg.IsDisposed) batchGeocodeDlg.Dispose();
+
+            base.OnShutdown();
+        }
+
     }
 }

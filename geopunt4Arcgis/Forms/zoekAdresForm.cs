@@ -135,7 +135,6 @@ namespace geopunt4Arcgis
             {
                 adresSuggestion.client.CancelAsync();
             }
-            base.OnClosed(e);
             if (graphic != null)
             {
                 IGraphicsContainer grpCont = (IGraphicsContainer)map;
@@ -143,6 +142,8 @@ namespace geopunt4Arcgis
                 view.Refresh();
             }
 
+            gpExtension.zoekAdresDlg = null;
+            base.OnClosed(e);
         }
      #endregion
 
@@ -248,15 +249,15 @@ namespace geopunt4Arcgis
         private void createAdresFeatureClass(string fcPath, ISpatialReference srs)
         {
             List<IField> attr = new List<IField>();
-            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString, 80));
-            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString, 50));
+            attr.Add(geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString, 254));
+            attr.Add(geopuntHelper.createField("adresType", esriFieldType.esriFieldTypeString, 80));
 
             FileInfo fcInfo = new FileInfo(fcPath);
 
             if (fcInfo.Extension == ".shp")
             {
                 adresFC = geopuntHelper.createShapeFile(fcInfo.FullName, attr, map.SpatialReference, 
-                                                esriGeometryType.esriGeometryPoint, true);
+                                                            esriGeometryType.esriGeometryPoint, true);
             }
             else if (fcInfo.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
             {
@@ -273,12 +274,14 @@ namespace geopunt4Arcgis
 
         private void addAdres2FC( double x, double y, ISpatialReference srs , string adres, string adresType )
         {
-            if (adresFC == null) { return; }
+            if (adresFC == null) return;
 
             IPoint pt = new PointClass() { X=x , Y=y, SpatialReference= srs };
 
             IFeature feature = adresFC.CreateFeature();
             feature.Shape = (IGeometry) pt;
+
+            if (adres.Length > 254) adres = adres.Substring(0, 254);
 
             int adresIdx = adresFC.FindField("adres");
             int adresTypeIdx = adresFC.FindField("adresType");

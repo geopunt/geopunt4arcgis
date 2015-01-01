@@ -1059,19 +1059,19 @@ namespace geopunt4Arcgis
         #region "CSV and table related"
         /// <summary>Read a csv file into a datatable </summary>
         /// <param name="csvPath">the path to the csv-file</param>
-        /// <param name="separator">the character separating the values, can be COMMA, PUNTCOMMA, SPATIE, TAB, 
-        /// for any sepator string the other the input is used</param>
+        /// <param name="separator">the character separating the values, can be "COMMA", "PUNTCOMMA", "SPATIE" or "TAB", 
+        /// for any sepator string the the input is used</param>
         /// <returns>a datable containing the values form the file</returns>
-        public static DataTable loadCSV2datatable(string csvPath, string separator )
+        public static DataTable loadCSV2datatable(string csvPath, string separator, int maxRows = 500 )
         {
             FileInfo csv = new FileInfo(csvPath);
             string sep;
             DataTable tbl = new DataTable();
 
             if (!csv.Exists)
-                throw new Exception("Deze csv-file bestaat niet: " + csv.Name);
+                throw new csvException("Deze csv-file bestaat niet: " + csv.Name);
             if( separator == "" || separator == null ) 
-                throw new Exception("Deze separator is niet toegelaten");
+                throw new csvException("Deze separator is niet toegelaten");
 
             switch (separator)
             {
@@ -1100,6 +1100,7 @@ namespace geopunt4Arcgis
 
                 string[] colNames = csvParser.ReadFields();
                 string[] row;
+                int counter = 0;
 
                 foreach (string colName in colNames)
                 {
@@ -1109,12 +1110,18 @@ namespace geopunt4Arcgis
                 {
                     try
                     {
+                        if (counter > maxRows)
+                        {
+                            throw new csvException("maximaal aantal rijen van "+ maxRows.ToString() + " overschreden.");
+                        }
+                        counter++;
+
                         row = csvParser.ReadFields();
 
                         if (tbl.Columns.Count != row.Count())
                         {
-                            throw new csvException("Niet alle rijen hebben hetzelfde aantal kollommen, op eerste lijn: " +
-                             tbl.Rows.Count.ToString() + " gevonden: " + row.Count() + " op lijn: \n" + string.Join(sep, row));
+                            throw new csvException("Niet alle rijen hebben hetzelfde aantal kolommen, op eerste lijn: " +
+                             tbl.Rows.Count.ToString() + " gevonden: " + row.Count() + " op lijn: " + string.Join(sep, row));
                         }
                         tbl.Rows.Add(row);
                     }
@@ -1136,10 +1143,10 @@ namespace geopunt4Arcgis
         public string csvMessage;
         public csvException(string message) : base(message) { }
         public csvException(string message, Exception inner) : base(message, inner) { }
-        protected csvException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context)
-            : base(info, context) { }
+        //protected csvException(
+        //  System.Runtime.Serialization.SerializationInfo info,
+        //  System.Runtime.Serialization.StreamingContext context)
+        //    : base(info, context) { }
     }
     #endregion
 }

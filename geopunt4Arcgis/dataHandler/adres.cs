@@ -44,13 +44,13 @@ namespace geopunt4Arcgis.dataHandler
 
         public void getAdresSuggestionAsync(string q, int c = 5)
         {
-            string adresUrl = string.Format(CultureInfo.InvariantCulture, "http://loc.api.geopunt.be/geolocation/Suggestion?c={1}25&q={0}", q, c);
+            string adresUrl = string.Format(CultureInfo.InvariantCulture, "http://loc.api.geopunt.be/geolocation/Suggestion?c={1}&q={0}", q, c);
             client.DownloadStringAsync(new Uri( adresUrl ));
         }
 
         public List<string> getAdresSuggestion(string q, int c = 5)
         {
-            string adresUrl = string.Format(CultureInfo.InvariantCulture, "http://loc.api.geopunt.be/geolocation/Suggestion?c={1}25&q={0}", q, c);
+            string adresUrl = string.Format(CultureInfo.InvariantCulture, "http://loc.api.geopunt.be/geolocation/Suggestion?c={1}&q={0}", q, c);
             string json = client.DownloadString(new Uri(adresUrl));
             datacontract.crabSuggestion crabSug = JsonConvert.DeserializeObject<datacontract.crabSuggestion>(json);
             return crabSug.SuggestionResult;
