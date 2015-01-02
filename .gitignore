@@ -4,6 +4,8 @@
 *.doc
 *.docx
 
+Deliverable/
+
 ## bin ##
 
 *.exe 
