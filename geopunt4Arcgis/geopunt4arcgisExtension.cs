@@ -22,6 +22,7 @@ namespace geopunt4Arcgis
         public gipodForm gipodDlg = null;
         public capakeyForm capakayDlg = null;
         public batchGeocodeForm batchGeocodeDlg = null;
+        public AboutGeopunt4arcgisForm aboutDlg = null;
 
         public geopunt4arcgisExtension()
         {
@@ -60,6 +61,9 @@ namespace geopunt4Arcgis
 
             if (batchGeocodeDlg != null)
                 if (!batchGeocodeDlg.IsDisposed) batchGeocodeDlg.Dispose();
+
+            if (aboutDlg != null)
+                if (!aboutDlg.IsDisposed) aboutDlg.Dispose();
 
             base.OnShutdown();
         }

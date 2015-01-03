@@ -9,9 +9,11 @@ namespace geopunt4Arcgis
     public class aboutCmd : ESRI.ArcGIS.Desktop.AddIns.Button
     {
         AboutGeopunt4arcgisForm about;
+        geopunt4arcgisExtension gpExtension;
 
         public aboutCmd()
         {
+            gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
         }
 
         protected override void OnClick()
@@ -31,6 +33,7 @@ namespace geopunt4Arcgis
                 }
             }
             about = new AboutGeopunt4arcgisForm();
+            gpExtension.aboutDlg = about;
             about.Show();
             about.WindowState = FormWindowState.Normal;
             about.Focus();

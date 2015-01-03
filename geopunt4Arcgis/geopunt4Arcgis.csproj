@@ -134,11 +134,11 @@
     <Compile Include="Commands\aboutCmd.cs" />
     <Compile Include="Commands\geopuntCapakeyCmd.cs" />
     <Compile Include="Commands\geopuntPoiCmd.cs" />
-    <Compile Include="Forms\AboutGeopunt4arcgisForm.cs">
+    <Compile Include="Forms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AboutGeopunt4arcgisForm.Designer.cs">
-      <DependentUpon>AboutGeopunt4arcgisForm.cs</DependentUpon>
+    <Compile Include="Forms\AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\batchGeocodeForm.cs">
       <SubType>Form</SubType>
@@ -259,8 +259,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\AboutGeopunt4arcgisForm.resx">
-      <DependentUpon>AboutGeopunt4arcgisForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\batchGeocodeForm.resx">
       <DependentUpon>batchGeocodeForm.cs</DependentUpon>
@@ -299,6 +299,7 @@
     <Content Include="Images\Batchgeocode.ico" />
     <Content Include="Images\cancel.png" />
     <AddInContent Include="Images\geopuntBatchGeocodingTool.png" />
+    <Content Include="Images\geopunt.ico" />
     <Content Include="Images\geopuntParcel.ico" />
     <AddInContent Include="Images\getMousePointTool.png" />
     <AddInContent Include="Images\getMousePointTool.cur" />
@@ -319,6 +320,7 @@
     <Content Include="Images\zoek.ico" />
     <Content Include="Images\zoek.png" />
     <Content Include="Images\zoom.png" />
+    <AddInContent Include="Resources\about.html" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

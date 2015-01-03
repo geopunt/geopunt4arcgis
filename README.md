@@ -14,14 +14,15 @@ https://github.com/warrieka/geopunt4Qgis
 
 ##Doelstelling:
 
-Geopunt4arcgis - "Geopunt voor ArcGIS" is een add-in voor ESRI ArcGIS desktop, die de webservices van het Vlaamse geoportaal Geopunt ontsluit naar desktop ArcGIS-gebruikers.
+Geopunt4arcgis - 'Geopunt voor ArcGIS' is een add-in voor ESRI ArcGIS desktop, die de webservices van het Vlaamse geoportaal Geopunt ontsluit naar desktop ArcGIS-gebruikers.
 
-Het Vlaamse Geoportaal Geopunt bied een aantal geografische diensten (web-services) aan die mogen gebruikt worden door derden zoals andere overheden en bedrijven. Deze tool implementeert de geolocatie publieke dienst als een arcgis deskop addin. Het is een port van de QGIS-plugin [geopunt4qgis](https://github.com/warrieka/geopunt4Qgis) naar Arcgis.
+Het Vlaamse Geoportaal Geopunt bied een aantal geografische diensten (web-services) aan die mogen gebruikt worden door derden zoals andere overheden en bedrijven. Deze tool implementeert de achterliggende diensten in een arcgis deskop addin. Het is een port van de QGIS-plugin [geopunt4qgis](https://github.com/warrieka/geopunt4Qgis) naar Arcgis.
 
 De webservices, die zijn gebaseerd op de OGC standaard WMS en kunnen gemakkelijk worden toegevoegd aan ArcGIS desktop. GIS-gebruikers kunnen deze diensten ontdekken via het metadatacenter. De achterliggende zoekservice voor deze diensten is niet direct bruikbaar in ArcGIS en wordt in deze plug-in ingebouwd.
 Sommige diensten aangeboden door Geopunt zijn niet gebaseerd op een open standaard omdat het gaat om diensten die geen open standaard hebben. Deze publieke webservices zijn opgesteld volgens een REST-volle API, die eenvoudiger in gebruik is voor programmeurs dan OGC-diensten, maar omdat ze niet gestandaardiseerd zijn kunnen ze niet zomaar binnen getrokken worden in desktop software.
 
 Het gaat onder andere over:
+
 - Geocoderen, gebaseerd op de officiële CRAB adressen-databank.
 - Locaties zoeken, door koppeling van adressen aan de CRAB-databank, bijvoorbeeld de scholendatabank van de Vlaamse overheid. (documentatie nog niet beschikbaar).
 - Innames van openbaar domein, van het Generiek Informatieplatform Openbaar Domein (GIPOD) GIPOD, de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.
@@ -44,7 +45,7 @@ Als output krijg je een lijst van strings in de vorm (straatnaam huisnummer, gem
 **Een adres Identificeren op een lokatie op de kaart (Reverse geocoding)** 
 Met deze tool kan je op een locatie in Vlaanderen op de kaart klikken om het correcte adres in CRAB te weten te komen. Het gevonden adres verschijnt in een popup. Je kan de locatie van dit adres toevoegen als graphic of Feature Class.
 
-**Zoeken naar interessepunten **
+**Zoeken naar interessepunten**
 Met deze tool kan je de Geopunt POI-service doorzoeken en de resultaten opslaan als een Feature Class of graphic.
 
 **GIPOD**
@@ -60,3 +61,9 @@ Met deze tool kan je een CSV-bestand geocoderen, omzetten naar een kaartlaag. Ee
 
 **Metadata Catalogus**
 
+##Gerelateerde links
+
+- [Add-ins voor Arcgis installeren](http://resources.arcgis.com/en/help/main/10.1/index.html#//014p0000001m000000)
+- [Over Geopunt](http://www.geopunt.be/over-geopunt/)
+- [Over de auteur](http://kgis.be/pages/over-mij.html)
+- [Broncode](https://github.com/warrieka/geopunt4arcgis/)
