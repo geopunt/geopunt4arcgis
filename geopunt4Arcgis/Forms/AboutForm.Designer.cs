@@ -136,14 +136,11 @@
             this.descriptionWebBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-<<<<<<< HEAD
             this.descriptionWebBox.Location = new System.Drawing.Point(12, 113);
             this.descriptionWebBox.MinimumSize = new System.Drawing.Size(20, 20);
-=======
             this.descriptionWebBox.Location = new System.Drawing.Point(16, 139);
             this.descriptionWebBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.descriptionWebBox.MinimumSize = new System.Drawing.Size(27, 25);
->>>>>>> 3e779762c701ff2f1f36e7643fe6939135544ab5
             this.descriptionWebBox.Name = "descriptionWebBox";
             this.descriptionWebBox.Size = new System.Drawing.Size(780, 416);
             this.descriptionWebBox.TabIndex = 28;
@@ -163,12 +160,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutGeopunt4arcgisForm";
-<<<<<<< HEAD
+
             this.Padding = new System.Windows.Forms.Padding(9);
-=======
             this.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.ShowInTaskbar = false;
->>>>>>> 3e779762c701ff2f1f36e7643fe6939135544ab5
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             this.TopMost = true;

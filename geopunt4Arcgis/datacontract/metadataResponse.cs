@@ -14,4 +14,12 @@ namespace geopunt4Arcgis.datacontract
         public string description { get; set; }
     }
 
+    public class metadataResponse
+    {
+        public List<metadata> metadataRecords { get; set; }
+        public int maxCount { get; set; }
+        public int from { get; set; }
+        public int to { get; set; }
+    }
+
 }

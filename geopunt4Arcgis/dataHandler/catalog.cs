@@ -19,12 +19,15 @@ namespace geopunt4Arcgis.dataHandler
         NameValueCollection qryValues;
 
         public string geoNetworkUrl = "https://metadata.geopunt.be/zoekdienst/srv/dut";
+        
         public Dictionary<string, string> dataTypes = new Dictionary<string, string>() { 
                    {"Dataset","dataset"}, {"Datasetserie","series"}, 
                    {"Objectencatalogus","model"}, {"Service","service"} };
-        public List<string> inspireServiceTypes = new List<string>() {
+        
+        public List<string> inspireServiceTypes = new List<string>() { "", 
                     "Discovery", "Transformation", "View", "Other", "Invoke" };
-        public List<string> inpireAnnex = new List<string>(){"i","ii","iii"};
+        
+        public List<string> inpireAnnex = new List<string>(){ "", "i","ii","iii"};
 
         public catalog(string proxyUrl = "", int port = 80)
         {
@@ -45,16 +48,25 @@ namespace geopunt4Arcgis.dataHandler
         {
             qryValues.Add("q", q);
             qryValues.Add("field", field);
+            client.QueryString = qryValues;
+
             string url = geoNetworkUrl + "/main.search.suggest" ;
 
-            client.QueryString = qryValues;
             string jsonString = client.DownloadString(new Uri(url));
             JArray jsonArr = JArray.Parse(jsonString) as JArray;
             JArray keywords = (JArray)jsonArr[1];
 
+            qryValues.Clear();
             client.QueryString.Clear();
-
             return keywords.Select(c => (string)c).ToList();
+        }
+
+        public List<string> getOrganisations() {
+            string url = geoNetworkUrl + @"/main.search.suggest?field=orgName";
+            string jsonString = client.DownloadString(new Uri(url));
+            JArray jsonArr = JArray.Parse(jsonString) as JArray;
+            JArray orgs = (JArray)jsonArr[1];
+            return orgs.Select(c => (string)c).ToList();
         }
 
         public List<string> inspireKeywords() 
@@ -91,14 +103,30 @@ namespace geopunt4Arcgis.dataHandler
             return sourcesDict;
         }
 
-        public List<datacontract.metadata> search(string q, int start = 1, int to = 20, 
+        public List<string> getGDIthemes( string q="" ) {
+            List<string> GDIthemes = new List<string>();
+            string url = geoNetworkUrl +
+                "/xml.search.keywords?pNewSearch=true&pTypeSearch=1&pThesauri=external.theme.GDI-Vlaanderen-trefwoorden&pKeyword=*" + q + "*";
+            string xmlDoc = client.DownloadString(new Uri(url));
+            XElement element = XElement.Parse(xmlDoc);
+            IEnumerable<XElement> sources = element.Element("descKeys").Elements("keyword");
+            foreach (var item in sources)
+            {
+                string name = item.Element("value").Value;
+                GDIthemes.Add(name);
+            }
+
+            return GDIthemes;
+        }
+
+        public datacontract.metadataResponse search(string q, int start = 1, int to = 20, 
             string themekey="", string orgName="", string dataType="", string siteId="", 
             string inspiretheme="", string inspireannex="", string inspireServiceType="") 
         {
             qryValues.Add("fast", "index");
             qryValues.Add("sortBy", "changeDate");
-            qryValues.Add("q", q);
-            qryValues.Add("start", start.ToString());
+            qryValues.Add("any", "*"+ q + "*");
+            qryValues.Add("from", start.ToString());
             qryValues.Add("to", to.ToString());
             if (themekey != "") qryValues.Add("themekey", themekey);
             if (orgName != "") qryValues.Add("orgName", orgName);
@@ -108,30 +136,50 @@ namespace geopunt4Arcgis.dataHandler
             if (inspireannex != "") qryValues.Add("inspireannex", inspireannex);
             if (inspireServiceType != "") qryValues.Add("inspireServiceType", inspireServiceType);
 
+            client.QueryString = qryValues;
+
             Uri url = new Uri(geoNetworkUrl + "/q");
-            MessageBox.Show( url.AbsoluteUri );
-            List<datacontract.metadata> metaList = new List<datacontract.metadata>();
 
             string xmlDoc = client.DownloadString(url);
-            XElement element = XElement.Load(xmlDoc);
+            XElement element = XElement.Parse(xmlDoc);
+
+            int maxCount; int from; int xto ;
+            int.TryParse( element.Element("summary").Attribute("count").Value , out maxCount);
+            int.TryParse(element.Attribute("from").Value, out from);
+            int.TryParse(element.Attribute("to").Value, out xto);
+
+            datacontract.metadataResponse metaResp = new datacontract.metadataResponse() 
+                                {from = from, to=xto, maxCount=maxCount };
+            List<datacontract.metadata> metaList = new List<datacontract.metadata>();
             IEnumerable<XElement> sources = element.Elements("metadata");
             foreach (var item in sources)
             {
                 datacontract.metadata meta = new datacontract.metadata();
+                XNamespace ns = "http://www.fao.org/geonetwork";
 
-                meta.sourceID = item.Element("source").Value;
-                meta.title = item.Element("title").Value;
-                meta.description = item.Element("abstract").Value;
+                var xsource = item.Element(ns + "info");
+                var xtitle = item.Element("title");
+                var xabstract = item.Element("abstract");
+
+                if (xsource == null || xtitle == null) continue;
+
+                meta.sourceID = xsource.Element("uuid").Value;
+                meta.title = xtitle.Value;
+                if (xabstract != null) meta.description = xabstract.Value;
+                else meta.description = "";
                 meta.links = new List<string>();
                 foreach (var elem in item.Elements("link"))
                 {
                     meta.links.Add(elem.Value);
                 }
                 metaList.Add(meta);
-            } 
+            }
+            metaResp.metadataRecords = metaList ;
+
             qryValues.Clear();
             client.QueryString.Clear();
-            return metaList;
+
+            return metaResp;
         }
     }
 }
