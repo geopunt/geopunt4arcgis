@@ -9,7 +9,7 @@ using System.IO;
 
 namespace geopunt4Arcgis
 {
-    partial class AboutGeopunt4arcgisForm : Form
+    public partial class AboutGeopunt4arcgisForm : Form
     {
         string htmlLocation;
         geopunt4arcgisExtension gpExtension;

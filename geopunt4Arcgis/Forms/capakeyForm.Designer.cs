@@ -118,7 +118,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msgLbl,
             this.helpLbl});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 211);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 199);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(504, 22);
             this.statusStrip1.TabIndex = 6;
@@ -131,14 +131,14 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(461, 17);
+            this.msgLbl.Size = new System.Drawing.Size(426, 17);
             this.msgLbl.Spring = true;
             // 
             // helpLbl
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Size = new System.Drawing.Size(32, 17);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
@@ -245,7 +245,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 233);
+            this.ClientSize = new System.Drawing.Size(504, 221);
             this.Controls.Add(this.addMarkerBtn);
             this.Controls.Add(this.add2mapBtn);
             this.Controls.Add(this.parcelZoomBtn);

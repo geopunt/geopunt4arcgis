@@ -46,7 +46,7 @@
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeBtn.Location = new System.Drawing.Point(286, 85);
+            this.closeBtn.Location = new System.Drawing.Point(297, 78);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBtn.TabIndex = 0;
@@ -56,8 +56,8 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
@@ -69,7 +69,7 @@
             // 
             this.add2MapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.add2MapBtn.Enabled = false;
-            this.add2MapBtn.Location = new System.Drawing.Point(181, 85);
+            this.add2MapBtn.Location = new System.Drawing.Point(192, 78);
             this.add2MapBtn.Name = "add2MapBtn";
             this.add2MapBtn.Size = new System.Drawing.Size(99, 23);
             this.add2MapBtn.TabIndex = 2;
@@ -79,13 +79,13 @@
             // 
             // adresBox
             // 
-            this.adresBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.adresBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.adresBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.adresBox.Location = new System.Drawing.Point(15, 25);
             this.adresBox.Name = "adresBox";
             this.adresBox.ReadOnly = true;
-            this.adresBox.Size = new System.Drawing.Size(346, 20);
+            this.adresBox.Size = new System.Drawing.Size(357, 20);
             this.adresBox.TabIndex = 3;
             this.adresBox.Text = "< De informatie wordt opgehaald, even geduld. >";
             // 
@@ -94,21 +94,21 @@
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoLabel,
             this.helpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 111);
+            this.statusBar.Location = new System.Drawing.Point(0, 117);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(372, 22);
+            this.statusBar.Size = new System.Drawing.Size(383, 24);
             this.statusBar.TabIndex = 5;
             this.statusBar.Text = "statusStrip1";
             // 
             // infoLabel
             // 
             this.infoLabel.ActiveLinkColor = System.Drawing.Color.Black;
-            this.infoLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.infoLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(329, 17);
+            this.infoLabel.Size = new System.Drawing.Size(336, 19);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,7 +117,7 @@
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Size = new System.Drawing.Size(32, 19);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
@@ -132,20 +132,20 @@
             // 
             // diffBox
             // 
-            this.diffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.diffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.diffBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.diffBox.Location = new System.Drawing.Point(141, 52);
             this.diffBox.Name = "diffBox";
             this.diffBox.ReadOnly = true;
-            this.diffBox.Size = new System.Drawing.Size(220, 20);
+            this.diffBox.Size = new System.Drawing.Size(231, 20);
             this.diffBox.TabIndex = 7;
             // 
             // saveBtn
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Enabled = false;
-            this.saveBtn.Location = new System.Drawing.Point(100, 85);
+            this.saveBtn.Location = new System.Drawing.Point(111, 78);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 9;
@@ -159,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeBtn;
-            this.ClientSize = new System.Drawing.Size(372, 133);
+            this.ClientSize = new System.Drawing.Size(383, 141);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.diffBox);
             this.Controls.Add(this.label2);
@@ -169,8 +169,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.closeBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(800, 160);
-            this.MinimumSize = new System.Drawing.Size(240, 160);
+            this.MaximumSize = new System.Drawing.Size(800, 180);
+            this.MinimumSize = new System.Drawing.Size(240, 180);
             this.Name = "reverseZoekForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meest nabije adres";

@@ -187,11 +187,6 @@ namespace geopunt4Arcgis
             this.Close();
         }
 
-        private void helpLbl_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel");
-        }
-
         private void gemeenteZoomBtn_Click(object sender, EventArgs e)
         {
             string gemeente = gemeenteCbx.Text;
@@ -342,6 +337,11 @@ namespace geopunt4Arcgis
             geopuntHelper.AddTextElement(map, center, perceel.capakey + "\r\n" + adres);
 
             view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+        }
+
+        private void helpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel");
         }
         #endregion
 

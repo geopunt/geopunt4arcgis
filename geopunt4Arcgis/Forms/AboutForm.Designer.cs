@@ -1,6 +1,6 @@
 ﻿namespace geopunt4Arcgis
 {
-    partial class AboutGeopunt4arcgisForm
+    public partial class AboutGeopunt4arcgisForm
     {
         /// <summary>
         /// Required designer variable.
@@ -76,8 +76,8 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -130,9 +130,9 @@
             // 
             // descriptionWebBox
             // 
-            this.descriptionWebBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.descriptionWebBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.descriptionWebBox.Location = new System.Drawing.Point(12, 113);
             this.descriptionWebBox.MinimumSize = new System.Drawing.Size(20, 20);
             this.descriptionWebBox.Name = "descriptionWebBox";
@@ -154,7 +154,6 @@
             this.MinimizeBox = false;
             this.Name = "AboutGeopunt4arcgisForm";
             this.Padding = new System.Windows.Forms.Padding(9);
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
             this.TopMost = true;
