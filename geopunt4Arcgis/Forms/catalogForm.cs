@@ -25,10 +25,17 @@ namespace geopunt4Arcgis
         ISpatialReference wgs;
         geopunt4arcgisExtension gpExtension;
 
+        /*filters lists*/
+        List<string> gdiThemes;
+        List<string> orgNames;
+        Dictionary<string, string> dataBronnen;
+        Dictionary<string, string> dataTypes;
+        List<string> inspKeyw;
+
+        AutoCompleteStringCollection keyWords;
+
         dataHandler.catalog clg;
         datacontract.metadataResponse metaList = null;
-
-        AutoCompleteStringCollection keyWords ;
 
         public catalogForm()
         {
@@ -54,27 +61,30 @@ namespace geopunt4Arcgis
             keyWords.AddRange(  clg.getKeyWords().ToArray() );
             keywordTxt.AutoCompleteSource = AutoCompleteSource.CustomSource;
             keywordTxt.AutoCompleteCustomSource = keyWords;
-            List<string> gdiThemes = clg.getGDIthemes();
+            gdiThemes = clg.getGDIthemes();
             gdiThemes.Insert(0, "");
             GDIthemeCbx.DataSource = gdiThemes;
 
-            List<string> orgNames = clg.getOrganisations();
+            orgNames = clg.getOrganisations();
             orgNames.Insert(0, "");
             orgNameCbx.DataSource = orgNames;
 
-            List<string> bronnen = clg.getSources().Select(c => c.Value).ToList();
+            dataBronnen = clg.getSources();
+            List<string> bronnen = dataBronnen.Select(c => c.Key).ToList();
             bronnen.Insert(0, "");
             bronCatCbx.DataSource = bronnen;
 
-            List<string> stypes = clg.dataTypes.Select(c => c.Key).ToList() ;
-            stypes.Insert(0, "");
-            typeCbx.DataSource = stypes;
+            dataTypes = clg.dataTypes;
+            List<string> dtypes = dataTypes.Select(c => c.Key).ToList();
+            dtypes.Insert(0, "");
+            typeCbx.DataSource = dtypes;
 
-            List<string> inspKeyw = clg.inspireKeywords();
+            inspKeyw = clg.inspireKeywords();
             inspKeyw.Insert(0, "");
-            
             INSPIREthemeCbx.DataSource = inspKeyw;
+
             INSPIREannexCbx.DataSource = clg.inpireAnnex;
+
             INSPIREserviceCbx.DataSource = clg.inspireServiceTypes;
         }
 
@@ -85,17 +95,36 @@ namespace geopunt4Arcgis
             try
             {
                 string zoekString = keywordTxt.Text;
-                metaList = clg.search(zoekString);
-                string[] sresult = metaList.metadataRecords.Select(c => c.title).ToArray();
+                string themekey = GDIthemeCbx.Text; 
+                string orgName = orgNameCbx.Text;
+                string dataType = "";
+                if( dataTypes.Select(c => c.Key).Contains(typeCbx.Text)) dataType = dataTypes[typeCbx.Text] ;
+                string siteId = "";
+                if( dataBronnen.Select(c => c.Key).Contains(bronCatCbx.Text)) siteId = dataBronnen[bronCatCbx.Text];
+                string inspiretheme = INSPIREthemeCbx.Text; 
+                string inspireannex = INSPIREannexCbx.Text; 
+                string inspireServiceType = INSPIREserviceCbx.Text;
 
+                metaList = clg.searchAll(zoekString, themekey, orgName, dataType, siteId, inspiretheme, inspireannex, inspireServiceType);
+                
                 searchResultsList.Items.Clear();
-                searchResultsList.Items.AddRange(sresult);
+                statusMsgLbl.Text = "";
+                descriptionHTML.DocumentText = "";
+
+                if( metaList.to != 0 ) {
+                    string[] sresult = metaList.metadataRecords.Select(c => c.title).ToArray();
+                    searchResultsList.Items.AddRange(sresult);
+                    statusMsgLbl.Text = String.Format("Aantal records gevonden: {0}", metaList.maxCount );
+                }
+                else
+                {
+                    MessageBox.Show( "Er werd niets gevonden dat voldoet aan deze criteria", "Geen resultaat" );
+                }
             }
             catch ( Exception ex )
             {
-                MessageBox.Show( ex.Message +" : "+ ex.StackTrace );
+                MessageBox.Show( ex.Message +" : "+ ex.StackTrace, "Error" );
             }
-
         }
 
         private void helpLbl_Click(object sender, EventArgs e)
@@ -108,26 +137,93 @@ namespace geopunt4Arcgis
         {
             this.Close();
         }
-        #endregion
 
         private void searchResultsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(metaList == null) return;
+            if (metaList == null) return;
 
             string selVal = searchResultsList.Text;
-
-            List<datacontract.metadata> metaObjs = ( from n in metaList.metadataRecords
-                                                     where n.title == selVal
-                                                     select n).ToList();
+            List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
+                                                    where n.title == selVal
+                                                    select n).ToList();
             if (metaObjs.Count > 0)
             {
                 datacontract.metadata metaObj = metaObjs[0];
-
-                string infoMsg = string.Format("<h3>{0}</h3><div>{1}</div>", metaObj.title, metaObj.description);
+                string infoMsg = string.Format("<strong><small>{0}</small></strong><br/><div><small>{1}</small></div>", metaObj.title, metaObj.description);
                 infoMsg += string.Format(
-                   "<a target='_blank' href='https://metadata.geopunt.be/zoekdienst/apps/tabsearch/index.html?uuid={0}'>Ga naar fiche</a>", metaObj.sourceID);
+                    "<br/><a target='_blank' href='https://metadata.geopunt.be/zoekdienst/apps/tabsearch/index.html?uuid={0}'><small>Ga naar fiche</small></a>", 
+                                            metaObj.sourceID);
 
                 descriptionHTML.DocumentText = infoMsg;
+            }
+        }
+
+        private void OpenDownloadBtn_Click(object sender, EventArgs e)
+        {
+            if (metaList == null) return;
+
+            string selVal = searchResultsList.Text;
+            List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
+                                                    where n.title == selVal
+                                                    select n).ToList();
+            try
+            {
+                if (metaObjs.Count > 0 && metaObjs[0].links.Count > 0)
+                {
+                    datacontract.metadata metaObj = metaObjs[0];
+                    List<List<string>> linkList = metaObj.links.Select(c => c.Split('|').ToList()).ToList();
+                    foreach (List<string> link in linkList)
+                    {
+                        for (int i = 1; i < link.Count; i++)
+                        {
+                            if (link[i].ToUpper().Contains("DOWNLOAD") && link[i-1].ToLower().Contains("http"))
+                            {
+                                System.Diagnostics.Process.Start(link[i - 1]);
+                                return;
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message +" : "+ ex.StackTrace, "Error" );
+            }
+        }
+
+        #endregion
+
+        private void addWMSbtn_Click(object sender, EventArgs e)
+        {
+            if (metaList == null) return;
+
+            string selVal = searchResultsList.Text;
+            List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
+                                                    where n.title == selVal
+                                                    select n).ToList();
+            try
+            {
+                if (metaObjs.Count > 0 && metaObjs[0].links.Count > 0)
+                {
+                    datacontract.metadata metaObj = metaObjs[0];
+                    List<List<string>> linkList = metaObj.links.Select(c => c.Split('|').ToList()).ToList();
+                    foreach (List<string> link in linkList)
+                    {
+                        for (int i = 1; i < link.Count; i++)
+                        {
+                            if (link[i].ToUpper().Contains("OGC:WMS") && link[i - 1].ToLower().Contains("http"))
+                            {
+                                System.Diagnostics.Process.Start(link[i-1]);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " : " + ex.StackTrace, "Error");
             }
         }
     }

@@ -98,7 +98,7 @@ namespace geopunt4Arcgis.dataHandler
             {
                 string uuid =  item.Element("uuid").Value;
                 string name = item.Element("name").Value;
-                sourcesDict.Add(uuid, name);
+                sourcesDict.Add(name,uuid);
             }
             return sourcesDict;
         }
@@ -125,12 +125,12 @@ namespace geopunt4Arcgis.dataHandler
         {
             qryValues.Add("fast", "index");
             qryValues.Add("sortBy", "changeDate");
-            qryValues.Add("any", "*"+ q + "*");
+            if (q != "" && q != null) qryValues.Add("any", "*" + q + "*");
             qryValues.Add("from", start.ToString());
             qryValues.Add("to", to.ToString());
             if (themekey != "") qryValues.Add("themekey", themekey);
             if (orgName != "") qryValues.Add("orgName", orgName);
-            if (dataType != "") qryValues.Add("dataType", dataType);
+            if (dataType != "") qryValues.Add("type", dataType);
             if (siteId != "") qryValues.Add("siteId", siteId);
             if (inspiretheme != "") qryValues.Add("inspiretheme", inspiretheme);
             if (inspireannex != "") qryValues.Add("inspireannex", inspireannex);
@@ -179,6 +179,24 @@ namespace geopunt4Arcgis.dataHandler
             qryValues.Clear();
             client.QueryString.Clear();
 
+            return metaResp;
+        }
+
+        public datacontract.metadataResponse searchAll(string q,
+            string themekey = "", string orgName = "", string dataType = "", string siteId = "",
+            string inspiretheme = "", string inspireannex = "", string inspireServiceType = "") 
+        {
+            datacontract.metadataResponse metaResp = search(
+                q, 1, 20, themekey, orgName, dataType, siteId, inspireannex, inspireServiceType);
+
+            for (int i = 21; i < metaResp.maxCount; i += 20) 
+            {
+                datacontract.metadataResponse metaResp2 = search(
+                    q, i, i + 19, themekey, orgName, dataType, siteId, inspireannex, inspireServiceType);
+
+                metaResp.metadataRecords.AddRange( metaResp2.metadataRecords );
+            }
+            metaResp.to = metaResp.maxCount;
             return metaResp;
         }
     }
