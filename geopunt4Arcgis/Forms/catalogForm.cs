@@ -120,6 +120,8 @@ namespace geopunt4Arcgis
                 {
                     MessageBox.Show( "Er werd niets gevonden dat voldoet aan deze criteria", "Geen resultaat" );
                 }
+                addWMSbtn.Enabled = false;
+                OpenDownloadBtn.Enabled = false;
             }
             catch ( Exception ex )
             {
@@ -142,6 +144,9 @@ namespace geopunt4Arcgis
         {
             if (metaList == null) return;
 
+            addWMSbtn.Enabled = false;
+            OpenDownloadBtn.Enabled = false;
+
             string selVal = searchResultsList.Text;
             List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
                                                     where n.title == selVal
@@ -155,48 +160,34 @@ namespace geopunt4Arcgis
                                             metaObj.sourceID);
 
                 descriptionHTML.DocumentText = infoMsg;
+
+                if( getWMSurl("DOWNLOAD") != null ) OpenDownloadBtn.Enabled = true;
+                if (getWMSurl("OGC:WMS") != null) addWMSbtn.Enabled = true;
             }
         }
 
         private void OpenDownloadBtn_Click(object sender, EventArgs e)
         {
-            if (metaList == null) return;
+            string wms = getWMSurl("DOWNLOAD");
+            if (wms != null) System.Diagnostics.Process.Start(wms);
+        }
 
-            string selVal = searchResultsList.Text;
-            List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
-                                                    where n.title == selVal
-                                                    select n).ToList();
-            try
+        private void addWMSbtn_Click(object sender, EventArgs e)
+        {
+            string wms = getWMSurl("OGC:WMS");
+            if (wms != null)
             {
-                if (metaObjs.Count > 0 && metaObjs[0].links.Count > 0)
-                {
-                    datacontract.metadata metaObj = metaObjs[0];
-                    List<List<string>> linkList = metaObj.links.Select(c => c.Split('|').ToList()).ToList();
-                    foreach (List<string> link in linkList)
-                    {
-                        for (int i = 1; i < link.Count; i++)
-                        {
-                            if (link[i].ToUpper().Contains("DOWNLOAD") && link[i-1].ToLower().Contains("http"))
-                            {
-                                System.Diagnostics.Process.Start(link[i - 1]);
-                                return;
-                            }
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message +" : "+ ex.StackTrace, "Error" );
+                string wmsUri = wms.Split('?')[0];
+                MessageBox.Show( wmsUri );
+                geopuntHelper.addWMS2map( ArcMap.Document.FocusMap , wmsUri + "?");
             }
         }
 
         #endregion
 
-        private void addWMSbtn_Click(object sender, EventArgs e)
+        private string getWMSurl(string stype)
         {
-            if (metaList == null) return;
+            if (metaList == null) return null;
 
             string selVal = searchResultsList.Text;
             List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
@@ -212,19 +203,26 @@ namespace geopunt4Arcgis
                     {
                         for (int i = 1; i < link.Count; i++)
                         {
-                            if (link[i].ToUpper().Contains("OGC:WMS") && link[i - 1].ToLower().Contains("http"))
+                            if (link[i].ToUpper().Contains(stype) && link[i - 1].ToLower().Contains("http"))
                             {
-                                System.Diagnostics.Process.Start(link[i-1]);
-                                return;
+                                string wms = link[i - 1] ;
+                                return wms;
                             }
                         }
                     }
+                    return null;
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace, "Error");
+                return null;
             }
-        }
+        } 
+    
     }
 }

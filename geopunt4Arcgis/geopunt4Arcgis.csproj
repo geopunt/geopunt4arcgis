@@ -363,6 +363,23 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arcgis10.0|AnyCPU'">
+    <OutputPath>bin\arcgis10.0\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arcgis10.0|x86'">
+    <OutputPath>bin\x86\arcgis10.0\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\ESRI\ESRI.ArcGIS.AddIns.targets" Condition="Exists('$(MSBuildExtensionsPath)\ESRI\ESRI.ArcGIS.AddIns.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -129,7 +129,7 @@ namespace geopunt4Arcgis.dataHandler
             qryValues.Add("from", start.ToString());
             qryValues.Add("to", to.ToString());
             if (themekey != "") qryValues.Add("themekey", themekey);
-            if (orgName != "") qryValues.Add("orgName", orgName);
+            if (orgName != "") qryValues.Add("orgName", "\"" + orgName + "\"" );
             if (dataType != "") qryValues.Add("type", dataType);
             if (siteId != "") qryValues.Add("siteId", siteId);
             if (inspiretheme != "") qryValues.Add("inspiretheme", inspiretheme);
