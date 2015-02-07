@@ -86,6 +86,8 @@ namespace geopunt4Arcgis
             INSPIREannexCbx.DataSource = clg.inpireAnnex;
 
             INSPIREserviceCbx.DataSource = clg.inspireServiceTypes;
+
+            filterResultsCbx.SelectedIndex = 0;
         }
 
         #region "eventHandlers"
@@ -107,13 +109,11 @@ namespace geopunt4Arcgis
 
                 metaList = clg.searchAll(zoekString, themekey, orgName, dataType, siteId, inspiretheme, inspireannex, inspireServiceType);
                 
-                searchResultsList.Items.Clear();
                 statusMsgLbl.Text = "";
                 descriptionHTML.DocumentText = "";
 
                 if( metaList.to != 0 ) {
-                    string[] sresult = metaList.metadataRecords.Select(c => c.title).ToArray();
-                    searchResultsList.Items.AddRange(sresult);
+                    updateFilter();
                     statusMsgLbl.Text = String.Format("Aantal records gevonden: {0}", metaList.maxCount );
                 }
                 else
@@ -161,68 +161,95 @@ namespace geopunt4Arcgis
 
                 descriptionHTML.DocumentText = infoMsg;
 
-                if( getWMSurl("DOWNLOAD") != null ) OpenDownloadBtn.Enabled = true;
-                if (getWMSurl("OGC:WMS") != null) addWMSbtn.Enabled = true;
+                if (metaList.geturl(selVal, "DOWNLOAD")) OpenDownloadBtn.Enabled = true;
+                if (metaList.geturl(selVal, "OGC:WMS")) addWMSbtn.Enabled = true;
             }
         }
 
         private void OpenDownloadBtn_Click(object sender, EventArgs e)
         {
-            string wms = getWMSurl("DOWNLOAD");
-            if (wms != null) System.Diagnostics.Process.Start(wms);
+            string selVal = searchResultsList.Text;
+            string dlName; string dlUrl;
+
+            bool hasDl = metaList.geturl(selVal, "DOWNLOAD", out dlUrl, out dlName);
+            if (hasDl) System.Diagnostics.Process.Start(dlUrl);
         }
 
         private void addWMSbtn_Click(object sender, EventArgs e)
         {
-            string wms = getWMSurl("OGC:WMS");
-            if (wms != null)
+            string selVal = searchResultsList.Text;
+            string lyrName; string wmsUrl;
+
+            bool hasWms = metaList.geturl(selVal, "OGC:WMS", out wmsUrl, out lyrName);
+            if (hasWms)
             {
-                string wmsUri = wms.Split('?')[0];
-                MessageBox.Show( wmsUri );
-                geopuntHelper.addWMS2map( ArcMap.Document.FocusMap , wmsUri + "?");
+                wmsUrl = wmsUrl.Split('?')[0] + "?";
+
+                if (geopuntHelper.websiteExists(wmsUrl, true) == false)
+                {
+                    MessageBox.Show( "Kan geen connectie maken met de Service.", "Connection timed out");
+                    return;
+                }
+
+                ILayer lyr = geopuntHelper.getWMSLayerByName(wmsUrl, lyrName);
+                if (lyr != null)
+                {
+                    ArcMap.Document.FocusMap.AddLayer(lyr);
+                }
+                else
+                {
+                    geopuntHelper.addWMS2map(ArcMap.Document.FocusMap, wmsUrl);
+                }
             }
+        }
+
+        private void filterResultsCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateFilter();
         }
 
         #endregion
 
-        private string getWMSurl(string stype)
+        private void updateFilter()
         {
-            if (metaList == null) return null;
-
-            string selVal = searchResultsList.Text;
-            List<datacontract.metadata> metaObjs = (from n in metaList.metadataRecords
-                                                    where n.title == selVal
-                                                    select n).ToList();
-            try
+            string filterTxt = filterResultsCbx.Text;
+            switch (filterTxt)
             {
-                if (metaObjs.Count > 0 && metaObjs[0].links.Count > 0)
-                {
-                    datacontract.metadata metaObj = metaObjs[0];
-                    List<List<string>> linkList = metaObj.links.Select(c => c.Split('|').ToList()).ToList();
-                    foreach (List<string> link in linkList)
-                    {
-                        for (int i = 1; i < link.Count; i++)
-                        {
-                            if (link[i].ToUpper().Contains(stype) && link[i - 1].ToLower().Contains("http"))
-                            {
-                                string wms = link[i - 1] ;
-                                return wms;
-                            }
-                        }
-                    }
-                    return null;
-                }
-                else
-                {
-                    return null;
-                }
+                case "Alles weergeven":
+                    searchResultsList.Items.Clear();
+                    searchResultsList.Items.AddRange(geenFilter());
+                    break;
+                case "WMS":
+                    searchResultsList.Items.Clear();
+                    searchResultsList.Items.AddRange(filterWMS());
+                    break;
+                case "Download":
+                    searchResultsList.Items.Clear();
+                    searchResultsList.Items.AddRange(filterDL());
+                    break;
+                default:
+                    break;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " : " + ex.StackTrace, "Error");
-                return null;
-            }
-        } 
-    
+        }
+        private string[] filterDL()
+        {
+            if (metaList == null) return new string[0];
+            return (from g in metaList.metadataRecords
+                    where metaList.geturl(g.title, "DOWNLOAD")
+                    select g.title).ToArray();
+        }
+        private string[] filterWMS()
+        {
+            if (metaList == null) return new string[0];
+            return (from g in metaList.metadataRecords
+                    where metaList.geturl(g.title, "OGC:WMS")
+                    select g.title).ToArray();
+        }
+        private string[] geenFilter()
+        {
+            if (metaList == null) return new string[0];
+            return (from g in metaList.metadataRecords
+                    select g.title).ToArray();
+        }
     }
 }

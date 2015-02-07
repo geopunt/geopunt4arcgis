@@ -55,6 +55,7 @@
             this.OpenDownloadBtn = new System.Windows.Forms.Button();
             this.addWMSbtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
+            this.filterResultsCbx = new System.Windows.Forms.ComboBox();
             this.statusStrip.SuspendLayout();
             this.filterPane.SuspendLayout();
             this.contentSplitContainer.Panel1.SuspendLayout();
@@ -98,7 +99,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.keywordTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.keywordTxt.Location = new System.Drawing.Point(13, 18);
-            this.keywordTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keywordTxt.Margin = new System.Windows.Forms.Padding(4);
             this.keywordTxt.Name = "keywordTxt";
             this.keywordTxt.Size = new System.Drawing.Size(613, 22);
             this.keywordTxt.TabIndex = 1;
@@ -107,7 +108,7 @@
             // 
             this.zoekBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zoekBtn.Location = new System.Drawing.Point(635, 15);
-            this.zoekBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoekBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoekBtn.Name = "zoekBtn";
             this.zoekBtn.Size = new System.Drawing.Size(85, 28);
             this.zoekBtn.TabIndex = 3;
@@ -369,11 +370,27 @@
             this.closeBtn.UseVisualStyleBackColor = true;
             this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
             // 
+            // filterResultsCbx
+            // 
+            this.filterResultsCbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.filterResultsCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filterResultsCbx.FormattingEnabled = true;
+            this.filterResultsCbx.Items.AddRange(new object[] {
+            "Alles weergeven",
+            "WMS",
+            "Download"});
+            this.filterResultsCbx.Location = new System.Drawing.Point(19, 412);
+            this.filterResultsCbx.Name = "filterResultsCbx";
+            this.filterResultsCbx.Size = new System.Drawing.Size(132, 24);
+            this.filterResultsCbx.TabIndex = 14;
+            this.filterResultsCbx.SelectedIndexChanged += new System.EventHandler(this.filterResultsCbx_SelectedIndexChanged);
+            // 
             // catalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 494);
+            this.Controls.Add(this.filterResultsCbx);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.addWMSbtn);
             this.Controls.Add(this.OpenDownloadBtn);
@@ -383,7 +400,7 @@
             this.Controls.Add(this.keywordTxt);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(600, 498);
             this.Name = "catalogForm";
             this.Text = "Geopunt Catalogus";
@@ -427,5 +444,6 @@
         private System.Windows.Forms.Button OpenDownloadBtn;
         private System.Windows.Forms.Button addWMSbtn;
         private System.Windows.Forms.Button closeBtn;
+        private System.Windows.Forms.ComboBox filterResultsCbx;
     }
 }

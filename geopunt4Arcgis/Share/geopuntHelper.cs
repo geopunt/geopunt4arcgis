@@ -464,7 +464,7 @@ namespace geopunt4Arcgis
             {
                 try 
                 {
-                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("http://loc.api.geopunt.be/"); 
+                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("https://www.google.be/"); 
                     hwebRequest.Timeout = 5000; //5 seconds timeout to process the request.
                     HttpWebResponse hWebResponse = (HttpWebResponse)hwebRequest.GetResponse(); //Process the request.
                     if (hWebResponse.StatusCode == HttpStatusCode.OK) //Get the response.
@@ -476,6 +476,34 @@ namespace geopunt4Arcgis
                 catch (Exception ex) {
                     MessageBox.Show("Geen internet connectie", ex.Message);
                     return false;
+                }
+            }
+        }
+
+        public static bool websiteExists( string url, bool isWMS = false ){
+            HttpWebResponse response = null;
+
+            if (isWMS) url = url.Split('?')[0] + "?request=GetCapabilities&service=WMS";
+
+            var hwebRequest = (HttpWebRequest)WebRequest.Create(url);
+
+            hwebRequest.Timeout = 5000;
+            hwebRequest.Method = "HEAD";
+
+            try
+            {
+                response = (HttpWebResponse)hwebRequest.GetResponse();
+                return true;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
                 }
             }
         }
@@ -941,7 +969,7 @@ namespace geopunt4Arcgis
                 qrylyr = (ILayer)wmsMapLayer.CreateWMSGroupLayers(layerDesc);
                 wmsMapLayer.InsertLayer(qrylyr, 0);
             }
-            makeCompositeLayersVisibile(qrylyr, false);
+            makeCompositeLayersVisibile(qrylyr);
 
             wmsMapLayer.Expanded = true;
             ((IWMSMapLayer)wmsMapLayer).BackgroundColor = new RgbColor() { NullColor = true };
@@ -971,7 +999,7 @@ namespace geopunt4Arcgis
             wmsLayer.Visible = true;
             wmsMapLayer.Expanded = true;
             wmsLayer.Name = serviceDesc.WMSTitle;
-            makeCompositeLayersVisibile( wmsLayer , false);
+            makeCompositeLayersVisibile( wmsLayer);
             return wmsLayer;
         }
 
@@ -1035,7 +1063,7 @@ namespace geopunt4Arcgis
         /// <param name="activeView">An IActiveView interface.</param>
         /// <param name="layer">The composite layer as Ilayer</param>
         /// <param name="onlyGroupLayer">Only turn on all composite layers or all layers</param>
-        public static void makeCompositeLayersVisibile(ILayer layer, bool onlyGroupLayer = true)
+        public static void makeCompositeLayersVisibile(ILayer layer)
         {
             //return if not composite
             if (layer is ICompositeLayer2)
@@ -1049,8 +1077,8 @@ namespace geopunt4Arcgis
                 for (int compositeLayerIndex = 0; compositeLayerIndex < compositeLayer2.Count; compositeLayerIndex++)
                 {
                     ILayer lyr = compositeLayer2.get_Layer(compositeLayerIndex);
-                    lyr.Visible = ! onlyGroupLayer;
-                    makeCompositeLayersVisibile(lyr, onlyGroupLayer);
+                    lyr.Visible = true;
+                    makeCompositeLayersVisibile(lyr);
                 }
             }
         }
