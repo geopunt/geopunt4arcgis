@@ -19,7 +19,7 @@ namespace geopunt4Arcgis
 {
     public partial class poiSearchForm : Form
     {
-        BindingList<poiDataRow> rows;
+        SortableBindingList<poiDataRow> rows;
         IActiveView view;
         IMap map;
         ISpatialReferenceFactory spatialReferenceFactory;
@@ -56,7 +56,7 @@ namespace geopunt4Arcgis
 
         public void initGui()
         {
-            rows = new BindingList<poiDataRow>();
+            rows = new SortableBindingList<poiDataRow>();
             resultGrid.DataSource = rows;
 
             dataHandler.capakey capa = new dataHandler.capakey();
@@ -94,7 +94,7 @@ namespace geopunt4Arcgis
                 nis = municipality2nis(gemeenteCbx.Text);
                 extent = null;
             }
-            int count = 30;
+            int count = 32;
             if (keyWord != "") count = 100;
 
             try
@@ -119,13 +119,24 @@ namespace geopunt4Arcgis
 
                     row.id = poi.id;
 
-                    qry = (
-                        from datacontract.poiValueGroup n in poi.categories
-                        where n.type == "Type"
-                        select n.value).ToList();
+                    qry = ( from datacontract.poiValueGroup n in poi.categories
+                            where n.type == "Type"
+                            select n.value).ToList();
                     if (qry.Count > 0) row.Type = qry[0];
+
+                    qry = (  from datacontract.poiValueGroup n in poi.categories
+                             where n.type == "Categorie"
+                             select n.value).ToList();
+                    if (qry.Count > 0) row.Category = qry[0];
+
+                    qry = ( from datacontract.poiValueGroup n in poi.categories
+                            where n.type == "Thema"
+                            select n.value).ToList();
+                    if (qry.Count > 0) row.Theme = qry[0];
+              
                     qry = (
-                     from datacontract.poiValueGroup n in poi.labels select n.value).ToList();
+                     from datacontract.poiValueGroup n in poi.labels 
+                     select n.value).ToList();
                     if (qry.Count > 0) row.Naam = qry[0];
 
                     adres = poi.location.address;
@@ -422,7 +433,7 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/catalogus");
         }
         #endregion
 
@@ -536,6 +547,11 @@ namespace geopunt4Arcgis
             fields.Add(auteur);
             IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 100);
             fields.Add(naam);
+
+            IField poithema = geopuntHelper.createField("thema", esriFieldType.esriFieldTypeString, 80);
+            fields.Add(poithema);
+            IField poiCategory = geopuntHelper.createField("categorie", esriFieldType.esriFieldTypeString, 80);
+            fields.Add(poiCategory);
             IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poitype);
             //IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
@@ -653,9 +669,32 @@ namespace geopunt4Arcgis
                     }
                     if (row.categories != null)
                     {
+                        List<string> poithemeQry = (from n in row.categories
+                                                    where n.type == "Thema"
+                                                   select n.value).ToList<string>();
+                        List<string> poiCatQry = (from n in row.categories
+                                                  where n.type == "Categorie"
+                                                   select n.value).ToList<string>();
                         List<string> poitypeQry = (from n in row.categories
                                                    where n.type == "Type"
                                                    select n.value).ToList<string>();
+
+                        if (poithemeQry.Count > 0)
+                        {
+                            string poitype = poithemeQry[0];
+                            if (poitype.Length > 80)
+                                poitype = poitype.Substring(0, 80);
+                            int poitypeIdx = poiFC.FindField("thema");
+                            featureBuffer.set_Value(poitypeIdx, poitype);
+                        }
+                        if (poiCatQry.Count > 0)
+                        {
+                            string poitype = poiCatQry[0];
+                            if (poitype.Length > 80)
+                                poitype = poitype.Substring(0, 80);
+                            int poitypeIdx = poiFC.FindField("categorie");
+                            featureBuffer.set_Value(poitypeIdx, poitype);
+                        }
                         if (poitypeQry.Count > 0)
                         {
                             string poitype = poitypeQry[0];
@@ -811,6 +850,13 @@ namespace geopunt4Arcgis
 
                 foreach (datacontract.cluster row in clusters)
                 {
+                    Double x = row.point.Point.coordinates[0];
+                    Double y = row.point.Point.coordinates[1];
+                    IPoint pt = new PointClass() { X = x, Y = y, SpatialReference = wgs };
+                    IPoint toPt = geopuntHelper.Transform(pt, srs) as IPoint;
+
+                    featureBuffer.Shape = toPt;
+
                     int c = row.count;
                     int cIdx = poiFC.FindField("aantal");
                     featureBuffer.set_Value(cIdx, c);

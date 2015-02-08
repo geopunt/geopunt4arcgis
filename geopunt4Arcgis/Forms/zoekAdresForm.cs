@@ -126,6 +126,11 @@ namespace geopunt4Arcgis
         {
             System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres");
         }
+
+        private void LARALink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://crab.agiv.be/Lara/");
+        }
      #endregion
 
      #region "overrides"
@@ -183,6 +188,23 @@ namespace geopunt4Arcgis
 
             if (loc.Count > 0)
             {
+                IPoint leftXY = new ESRI.ArcGIS.Geometry.Point()
+                {
+                    X = loc[0].BoundingBox.LowerLeft.Lon_WGS84,
+                    Y = loc[0].BoundingBox.LowerLeft.Lat_WGS84,
+                    SpatialReference = wgs
+                };
+                IPoint toleftXY = geopuntHelper.Transform(leftXY as IGeometry, map.SpatialReference) as IPoint;
+                IPoint rightXY = new ESRI.ArcGIS.Geometry.Point()
+                {
+                    X = loc[0].BoundingBox.UpperRight.Lon_WGS84,
+                    Y = loc[0].BoundingBox.UpperRight.Lat_WGS84,
+                    SpatialReference = wgs
+                };
+                IPoint torightXY = geopuntHelper.Transform(rightXY as IGeometry, map.SpatialReference) as IPoint;
+                IEnvelope bbox = geopuntHelper.makeExtend(toleftXY.X, toleftXY.Y, torightXY.X, torightXY.Y, 
+                                                                                map.SpatialReference);
+
                 IPoint XY = new ESRI.ArcGIS.Geometry.Point()
                 {
                     X = loc[0].Location.Lon_WGS84,
@@ -190,17 +212,21 @@ namespace geopunt4Arcgis
                     SpatialReference = wgs
                 };
                 IPoint toXY = geopuntHelper.Transform(XY as IGeometry, map.SpatialReference) as IPoint;
-                IRgbColor rgb = new RgbColorClass() { Red = 255, Blue = 255, Green = 0 };
 
                 //create a graphic
+                IRgbColor rgb = new RgbColorClass() { Red = 255, Blue = 255, Green = 0 };
                 if (graphic != null)
                 {
                     IGraphicsContainer grpCont = (IGraphicsContainer)map;
                     grpCont.DeleteElement(graphic);
                     graphic = null;
                 }
-                graphic = geopuntHelper.AddGraphicToMap(map, toXY, rgb, new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }, 8, true);
-                geopuntHelper.ZoomByRatioAndRecenter(view, zoom, toXY.X, toXY.Y);
+                graphic = geopuntHelper.AddGraphicToMap(map, toXY, rgb, 
+                                new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }, 8, true);
+
+                view.Extent = bbox;
+                geopuntHelper.ZoomByRatioAndRecenter(view, 1, toXY.X, toXY.Y);
+
                 view.Refresh();
                 return true;
             }

@@ -53,9 +53,10 @@
             // gemeenteLbl
             // 
             this.gemeenteLbl.AutoSize = true;
-            this.gemeenteLbl.Location = new System.Drawing.Point(34, 29);
+            this.gemeenteLbl.Location = new System.Drawing.Point(45, 36);
+            this.gemeenteLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gemeenteLbl.Name = "gemeenteLbl";
-            this.gemeenteLbl.Size = new System.Drawing.Size(59, 13);
+            this.gemeenteLbl.Size = new System.Drawing.Size(78, 17);
             this.gemeenteLbl.TabIndex = 0;
             this.gemeenteLbl.Text = "Gemeente:";
             // 
@@ -63,11 +64,13 @@
             // 
             this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gemeenteCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteCbx.FormattingEnabled = true;
-            this.gemeenteCbx.Location = new System.Drawing.Point(99, 29);
+            this.gemeenteCbx.Location = new System.Drawing.Point(132, 36);
+            this.gemeenteCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gemeenteCbx.Name = "gemeenteCbx";
-            this.gemeenteCbx.Size = new System.Drawing.Size(341, 21);
+            this.gemeenteCbx.Size = new System.Drawing.Size(417, 24);
             this.gemeenteCbx.TabIndex = 1;
             this.gemeenteCbx.SelectedIndexChanged += new System.EventHandler(this.gemeenteCbx_SelectedIndexChanged);
             // 
@@ -75,20 +78,23 @@
             // 
             this.departementCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.departementCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.departementCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.departementCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.departementCbx.FormattingEnabled = true;
-            this.departementCbx.Location = new System.Drawing.Point(99, 66);
+            this.departementCbx.Location = new System.Drawing.Point(132, 81);
+            this.departementCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.departementCbx.Name = "departementCbx";
-            this.departementCbx.Size = new System.Drawing.Size(341, 21);
+            this.departementCbx.Size = new System.Drawing.Size(417, 24);
             this.departementCbx.TabIndex = 3;
             this.departementCbx.SelectedIndexChanged += new System.EventHandler(this.departementCbx_SelectedIndexChanged);
             // 
             // departementLbl
             // 
             this.departementLbl.AutoSize = true;
-            this.departementLbl.Location = new System.Drawing.Point(22, 66);
+            this.departementLbl.Location = new System.Drawing.Point(29, 81);
+            this.departementLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.departementLbl.Name = "departementLbl";
-            this.departementLbl.Size = new System.Drawing.Size(71, 13);
+            this.departementLbl.Size = new System.Drawing.Size(94, 17);
             this.departementLbl.TabIndex = 2;
             this.departementLbl.Text = "Departement:";
             // 
@@ -96,20 +102,23 @@
             // 
             this.sectieCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.sectieCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sectieCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.sectieCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.sectieCbx.FormattingEnabled = true;
-            this.sectieCbx.Location = new System.Drawing.Point(99, 103);
+            this.sectieCbx.Location = new System.Drawing.Point(132, 127);
+            this.sectieCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sectieCbx.Name = "sectieCbx";
-            this.sectieCbx.Size = new System.Drawing.Size(341, 21);
+            this.sectieCbx.Size = new System.Drawing.Size(417, 24);
             this.sectieCbx.TabIndex = 5;
             this.sectieCbx.SelectedIndexChanged += new System.EventHandler(this.sectieCbx_SelectedIndexChanged);
             // 
             // sectieLbl
             // 
             this.sectieLbl.AutoSize = true;
-            this.sectieLbl.Location = new System.Drawing.Point(53, 103);
+            this.sectieLbl.Location = new System.Drawing.Point(71, 127);
+            this.sectieLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sectieLbl.Name = "sectieLbl";
-            this.sectieLbl.Size = new System.Drawing.Size(40, 13);
+            this.sectieLbl.Size = new System.Drawing.Size(51, 17);
             this.sectieLbl.TabIndex = 4;
             this.sectieLbl.Text = "Sectie:";
             // 
@@ -118,9 +127,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msgLbl,
             this.helpLbl});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 199);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 258);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(504, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(636, 23);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -131,14 +141,14 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(426, 17);
+            this.msgLbl.Size = new System.Drawing.Size(580, 18);
             this.msgLbl.Spring = true;
             // 
             // helpLbl
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(32, 17);
+            this.helpLbl.Size = new System.Drawing.Size(36, 18);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
@@ -146,9 +156,10 @@
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(413, 175);
+            this.cancelBtn.Location = new System.Drawing.Point(515, 215);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(79, 23);
+            this.cancelBtn.Size = new System.Drawing.Size(105, 28);
             this.cancelBtn.TabIndex = 7;
             this.cancelBtn.Text = "Sluiten";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -158,20 +169,23 @@
             // 
             this.parcelCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.parcelCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.parcelCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.parcelCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.parcelCbx.FormattingEnabled = true;
-            this.parcelCbx.Location = new System.Drawing.Point(99, 139);
+            this.parcelCbx.Location = new System.Drawing.Point(132, 171);
+            this.parcelCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.parcelCbx.Name = "parcelCbx";
-            this.parcelCbx.Size = new System.Drawing.Size(341, 21);
+            this.parcelCbx.Size = new System.Drawing.Size(417, 24);
             this.parcelCbx.TabIndex = 9;
             this.parcelCbx.SelectedIndexChanged += new System.EventHandler(this.parcelCbx_SelectedIndexChanged);
             // 
             // parcelLbl
             // 
             this.parcelLbl.AutoSize = true;
-            this.parcelLbl.Location = new System.Drawing.Point(10, 139);
+            this.parcelLbl.Location = new System.Drawing.Point(13, 171);
+            this.parcelLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.parcelLbl.Name = "parcelLbl";
-            this.parcelLbl.Size = new System.Drawing.Size(83, 13);
+            this.parcelLbl.Size = new System.Drawing.Size(111, 17);
             this.parcelLbl.TabIndex = 8;
             this.parcelLbl.Text = "Perceelnummer:";
             // 
@@ -179,9 +193,10 @@
             // 
             this.gemeenteZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gemeenteZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("gemeenteZoomBtn.Image")));
-            this.gemeenteZoomBtn.Location = new System.Drawing.Point(448, 29);
+            this.gemeenteZoomBtn.Location = new System.Drawing.Point(561, 36);
+            this.gemeenteZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gemeenteZoomBtn.Name = "gemeenteZoomBtn";
-            this.gemeenteZoomBtn.Size = new System.Drawing.Size(44, 21);
+            this.gemeenteZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.gemeenteZoomBtn.TabIndex = 10;
             this.gemeenteZoomBtn.UseVisualStyleBackColor = true;
             this.gemeenteZoomBtn.Click += new System.EventHandler(this.gemeenteZoomBtn_Click);
@@ -190,9 +205,10 @@
             // 
             this.departementZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.departementZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("departementZoomBtn.Image")));
-            this.departementZoomBtn.Location = new System.Drawing.Point(448, 66);
+            this.departementZoomBtn.Location = new System.Drawing.Point(561, 81);
+            this.departementZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.departementZoomBtn.Name = "departementZoomBtn";
-            this.departementZoomBtn.Size = new System.Drawing.Size(44, 21);
+            this.departementZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.departementZoomBtn.TabIndex = 11;
             this.departementZoomBtn.UseVisualStyleBackColor = true;
             this.departementZoomBtn.Click += new System.EventHandler(this.departementZoomBtn_Click);
@@ -201,9 +217,10 @@
             // 
             this.sectieZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sectieZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("sectieZoomBtn.Image")));
-            this.sectieZoomBtn.Location = new System.Drawing.Point(448, 102);
+            this.sectieZoomBtn.Location = new System.Drawing.Point(561, 126);
+            this.sectieZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sectieZoomBtn.Name = "sectieZoomBtn";
-            this.sectieZoomBtn.Size = new System.Drawing.Size(44, 21);
+            this.sectieZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.sectieZoomBtn.TabIndex = 12;
             this.sectieZoomBtn.UseVisualStyleBackColor = true;
             this.sectieZoomBtn.Click += new System.EventHandler(this.sectieZoomBtn_Click);
@@ -212,9 +229,10 @@
             // 
             this.parcelZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.parcelZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("parcelZoomBtn.Image")));
-            this.parcelZoomBtn.Location = new System.Drawing.Point(448, 138);
+            this.parcelZoomBtn.Location = new System.Drawing.Point(561, 170);
+            this.parcelZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.parcelZoomBtn.Name = "parcelZoomBtn";
-            this.parcelZoomBtn.Size = new System.Drawing.Size(44, 21);
+            this.parcelZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.parcelZoomBtn.TabIndex = 13;
             this.parcelZoomBtn.UseVisualStyleBackColor = true;
             this.parcelZoomBtn.Click += new System.EventHandler(this.parcelZoomBtn_Click);
@@ -222,9 +240,10 @@
             // add2mapBtn
             // 
             this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add2mapBtn.Location = new System.Drawing.Point(227, 175);
+            this.add2mapBtn.Location = new System.Drawing.Point(267, 215);
+            this.add2mapBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.add2mapBtn.Name = "add2mapBtn";
-            this.add2mapBtn.Size = new System.Drawing.Size(75, 23);
+            this.add2mapBtn.Size = new System.Drawing.Size(100, 28);
             this.add2mapBtn.TabIndex = 14;
             this.add2mapBtn.Text = "Opslaan";
             this.add2mapBtn.UseVisualStyleBackColor = true;
@@ -233,9 +252,10 @@
             // addMarkerBtn
             // 
             this.addMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addMarkerBtn.Location = new System.Drawing.Point(308, 175);
+            this.addMarkerBtn.Location = new System.Drawing.Point(375, 215);
+            this.addMarkerBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addMarkerBtn.Name = "addMarkerBtn";
-            this.addMarkerBtn.Size = new System.Drawing.Size(99, 23);
+            this.addMarkerBtn.Size = new System.Drawing.Size(132, 28);
             this.addMarkerBtn.TabIndex = 15;
             this.addMarkerBtn.Text = "Markeer Locatie";
             this.addMarkerBtn.UseVisualStyleBackColor = true;
@@ -243,9 +263,9 @@
             // 
             // capakeyForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 221);
+            this.ClientSize = new System.Drawing.Size(636, 281);
             this.Controls.Add(this.addMarkerBtn);
             this.Controls.Add(this.add2mapBtn);
             this.Controls.Add(this.parcelZoomBtn);
@@ -263,8 +283,9 @@
             this.Controls.Add(this.gemeenteCbx);
             this.Controls.Add(this.gemeenteLbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(600, 260);
-            this.MinimumSize = new System.Drawing.Size(300, 260);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(797, 313);
+            this.MinimumSize = new System.Drawing.Size(397, 313);
             this.Name = "capakeyForm";
             this.Text = "Zoek een perceel";
             this.statusStrip1.ResumeLayout(false);

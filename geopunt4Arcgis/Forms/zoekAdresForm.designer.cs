@@ -40,15 +40,17 @@
             this.closeBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.LARALink = new System.Windows.Forms.LinkLabel();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // zoomBtn
             // 
             this.zoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoomBtn.Location = new System.Drawing.Point(245, 194);
+            this.zoomBtn.Location = new System.Drawing.Point(304, 218);
+            this.zoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.zoomBtn.Name = "zoomBtn";
-            this.zoomBtn.Size = new System.Drawing.Size(75, 23);
+            this.zoomBtn.Size = new System.Drawing.Size(113, 28);
             this.zoomBtn.TabIndex = 0;
             this.zoomBtn.Text = "Zoom naar";
             this.zoomBtn.UseVisualStyleBackColor = true;
@@ -56,32 +58,36 @@
             // 
             // zoekText
             // 
-            this.zoekText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoekText.Location = new System.Drawing.Point(139, 30);
+            this.zoekText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.zoekText.Location = new System.Drawing.Point(185, 37);
+            this.zoekText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.zoekText.Name = "zoekText";
-            this.zoekText.Size = new System.Drawing.Size(261, 20);
+            this.zoekText.Size = new System.Drawing.Size(340, 22);
             this.zoekText.TabIndex = 1;
             this.zoekText.TextChanged += new System.EventHandler(this.zoekText_onZoekTextChange);
             // 
             // suggestionList
             // 
-            this.suggestionList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.suggestionList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.suggestionList.FormattingEnabled = true;
-            this.suggestionList.Location = new System.Drawing.Point(12, 56);
+            this.suggestionList.ItemHeight = 16;
+            this.suggestionList.Location = new System.Drawing.Point(16, 69);
+            this.suggestionList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.suggestionList.Name = "suggestionList";
-            this.suggestionList.Size = new System.Drawing.Size(388, 121);
+            this.suggestionList.Size = new System.Drawing.Size(509, 132);
             this.suggestionList.TabIndex = 2;
             this.suggestionList.DoubleClick += new System.EventHandler(this.suggestionList_itemDoubleClicked);
             // 
             // makeMarkerBtn
             // 
             this.makeMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.makeMarkerBtn.Location = new System.Drawing.Point(144, 194);
+            this.makeMarkerBtn.Location = new System.Drawing.Point(156, 218);
+            this.makeMarkerBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.makeMarkerBtn.Name = "makeMarkerBtn";
-            this.makeMarkerBtn.Size = new System.Drawing.Size(95, 23);
+            this.makeMarkerBtn.Size = new System.Drawing.Size(140, 28);
             this.makeMarkerBtn.TabIndex = 3;
             this.makeMarkerBtn.Text = "Markeer locatie";
             this.makeMarkerBtn.UseVisualStyleBackColor = true;
@@ -92,21 +98,22 @@
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoLabel,
             this.helpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 220);
+            this.statusBar.Location = new System.Drawing.Point(0, 275);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(412, 22);
+            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusBar.Size = new System.Drawing.Size(542, 23);
             this.statusBar.TabIndex = 4;
             this.statusBar.Text = "statusStrip1";
             // 
             // infoLabel
             // 
             this.infoLabel.ActiveLinkColor = System.Drawing.Color.Black;
-            this.infoLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.infoLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(369, 17);
+            this.infoLabel.Size = new System.Drawing.Size(486, 18);
             this.infoLabel.Spring = true;
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -114,7 +121,7 @@
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(28, 17);
+            this.helpLbl.Size = new System.Drawing.Size(36, 18);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
@@ -781,9 +788,10 @@
             "Ukkel",
             "Vorst",
             "Watermaal-Bosvoorde"});
-            this.gemeenteBox.Location = new System.Drawing.Point(12, 29);
+            this.gemeenteBox.Location = new System.Drawing.Point(16, 36);
+            this.gemeenteBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gemeenteBox.Name = "gemeenteBox";
-            this.gemeenteBox.Size = new System.Drawing.Size(121, 21);
+            this.gemeenteBox.Size = new System.Drawing.Size(160, 24);
             this.gemeenteBox.TabIndex = 5;
             this.gemeenteBox.Text = "Antwerpen";
             this.gemeenteBox.SelectedIndexChanged += new System.EventHandler(this.gemeenteBox_SelectedIndexChanged);
@@ -792,9 +800,10 @@
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeBtn.Location = new System.Drawing.Point(325, 194);
+            this.closeBtn.Location = new System.Drawing.Point(425, 218);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 6;
             this.closeBtn.Text = "Sluiten";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -803,29 +812,45 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(383, 13);
+            this.label1.Size = new System.Drawing.Size(516, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Selecteer een gemeente. Geef een straat (+nr) op, dan selecteer een suggestie.";
             // 
             // saveBtn
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveBtn.Location = new System.Drawing.Point(63, 194);
+            this.saveBtn.Location = new System.Drawing.Point(48, 218);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.Size = new System.Drawing.Size(100, 28);
             this.saveBtn.TabIndex = 8;
             this.saveBtn.Text = "Opslaan";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // LARALink
+            // 
+            this.LARALink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LARALink.AutoSize = true;
+            this.LARALink.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LARALink.Location = new System.Drawing.Point(301, 250);
+            this.LARALink.Name = "LARALink";
+            this.LARALink.Size = new System.Drawing.Size(224, 15);
+            this.LARALink.TabIndex = 9;
+            this.LARALink.TabStop = true;
+            this.LARALink.Text = "Foute adressen kunt u melden via LARA";
+            this.LARALink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LARALink_LinkClicked);
+            // 
             // zoekAdresForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeBtn;
-            this.ClientSize = new System.Drawing.Size(412, 242);
+            this.ClientSize = new System.Drawing.Size(542, 298);
+            this.Controls.Add(this.LARALink);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.closeBtn);
@@ -836,7 +861,8 @@
             this.Controls.Add(this.zoekText);
             this.Controls.Add(this.zoomBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(420, 250);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(550, 300);
             this.Name = "zoekAdresForm";
             this.Text = "Zoek een adres";
             this.statusBar.ResumeLayout(false);
@@ -859,5 +885,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ToolStripStatusLabel helpLbl;
+        private System.Windows.Forms.LinkLabel LARALink;
     }
 }

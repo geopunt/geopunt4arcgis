@@ -403,7 +403,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(600, 498);
             this.Name = "catalogForm";
-            this.Text = "Geopunt Catalogus";
+            this.Text = "Geopunt-catalogus";
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.filterPane.ResumeLayout(false);

@@ -131,7 +131,6 @@ namespace geopunt4Arcgis
                 //disable button to prevent multiple runs and start waiting animation --> TODO: make ansync, all this has no point now
                 saveAsShapeBtn.Enabled = false;
                 messageLbl.Text = "Data ophalen van GIPOD";
-                progress.MarqueeAnimationSpeed = 100;
 
                 List<datacontract.gipodResponse> gipodRecords = fetchGipod(param);
 
@@ -168,7 +167,6 @@ namespace geopunt4Arcgis
                 else
                 {
                     saveAsShapeBtn.Enabled = true;
-                    progress.MarqueeAnimationSpeed = 0;
                     messageLbl.Text = "Geen records gevonden in gipod, die voldoen aan deze parameters";
                 }
             }

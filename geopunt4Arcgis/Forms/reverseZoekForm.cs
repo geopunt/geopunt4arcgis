@@ -92,6 +92,11 @@ namespace geopunt4Arcgis
         {
             System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
         }
+
+        private void LARALink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://crab.agiv.be/Lara/");
+        }
      #endregion
 
      #region "overrides"

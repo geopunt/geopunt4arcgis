@@ -1103,16 +1103,16 @@ namespace geopunt4Arcgis
 
             switch (separator)
             {
-                case "COMMA":
+                case "Comma":
                     sep = ",";
                     break;
-                case "PUNTCOMMA":
+                case "Puntcomma":
                     sep = ";";
                     break;
-                case "SPATIE":
+                case "Spatie":
                     sep = " ";
                     break;
-                case "TAB":
+                case "Tab":
                     sep = "/t";
                     break;
                 default:

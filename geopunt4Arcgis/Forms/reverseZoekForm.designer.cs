@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.diffBox = new System.Windows.Forms.TextBox();
             this.saveBtn = new System.Windows.Forms.Button();
+            this.LARALink = new System.Windows.Forms.LinkLabel();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,9 +47,10 @@
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeBtn.Location = new System.Drawing.Point(297, 78);
+            this.closeBtn.Location = new System.Drawing.Point(433, 96);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 0;
             this.closeBtn.Text = "Sluiten";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(49, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Adres:";
             // 
@@ -69,9 +72,10 @@
             // 
             this.add2MapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.add2MapBtn.Enabled = false;
-            this.add2MapBtn.Location = new System.Drawing.Point(192, 78);
+            this.add2MapBtn.Location = new System.Drawing.Point(293, 96);
+            this.add2MapBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.add2MapBtn.Name = "add2MapBtn";
-            this.add2MapBtn.Size = new System.Drawing.Size(99, 23);
+            this.add2MapBtn.Size = new System.Drawing.Size(132, 28);
             this.add2MapBtn.TabIndex = 2;
             this.add2MapBtn.Text = "Markeer Locatie";
             this.add2MapBtn.UseVisualStyleBackColor = true;
@@ -82,10 +86,11 @@
             this.adresBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.adresBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.adresBox.Location = new System.Drawing.Point(15, 25);
+            this.adresBox.Location = new System.Drawing.Point(20, 31);
+            this.adresBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.adresBox.Name = "adresBox";
             this.adresBox.ReadOnly = true;
-            this.adresBox.Size = new System.Drawing.Size(357, 20);
+            this.adresBox.Size = new System.Drawing.Size(512, 22);
             this.adresBox.TabIndex = 3;
             this.adresBox.Text = "< De informatie wordt opgehaald, even geduld. >";
             // 
@@ -94,9 +99,10 @@
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoLabel,
             this.helpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 117);
+            this.statusBar.Location = new System.Drawing.Point(0, 155);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(383, 24);
+            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusBar.Size = new System.Drawing.Size(548, 27);
             this.statusBar.TabIndex = 5;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -108,7 +114,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(336, 19);
+            this.infoLabel.Size = new System.Drawing.Size(492, 22);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,16 +123,17 @@
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(32, 19);
+            this.helpLbl.Size = new System.Drawing.Size(36, 22);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 52);
+            this.label2.Location = new System.Drawing.Point(20, 64);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 13);
+            this.label2.Size = new System.Drawing.Size(159, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Afstand tot geprikt punt:";
             // 
@@ -135,31 +142,47 @@
             this.diffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.diffBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.diffBox.Location = new System.Drawing.Point(141, 52);
+            this.diffBox.Location = new System.Drawing.Point(188, 64);
+            this.diffBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.diffBox.Name = "diffBox";
             this.diffBox.ReadOnly = true;
-            this.diffBox.Size = new System.Drawing.Size(231, 20);
+            this.diffBox.Size = new System.Drawing.Size(344, 22);
             this.diffBox.TabIndex = 7;
             // 
             // saveBtn
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Enabled = false;
-            this.saveBtn.Location = new System.Drawing.Point(111, 78);
+            this.saveBtn.Location = new System.Drawing.Point(185, 96);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.Size = new System.Drawing.Size(100, 28);
             this.saveBtn.TabIndex = 9;
             this.saveBtn.Text = "Opslaan";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // LARALink
+            // 
+            this.LARALink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LARALink.AutoSize = true;
+            this.LARALink.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LARALink.Location = new System.Drawing.Point(309, 128);
+            this.LARALink.Name = "LARALink";
+            this.LARALink.Size = new System.Drawing.Size(224, 15);
+            this.LARALink.TabIndex = 10;
+            this.LARALink.TabStop = true;
+            this.LARALink.Text = "Foute adressen kunt u melden via LARA";
+            this.LARALink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LARALink_LinkClicked);
+            // 
             // reverseZoekForm
             // 
             this.AcceptButton = this.saveBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeBtn;
-            this.ClientSize = new System.Drawing.Size(383, 141);
+            this.ClientSize = new System.Drawing.Size(548, 182);
+            this.Controls.Add(this.LARALink);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.diffBox);
             this.Controls.Add(this.label2);
@@ -169,8 +192,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.closeBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(800, 180);
-            this.MinimumSize = new System.Drawing.Size(240, 180);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(1064, 214);
+            this.MinimumSize = new System.Drawing.Size(400, 214);
             this.Name = "reverseZoekForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meest nabije adres";
@@ -193,5 +217,6 @@
         private System.Windows.Forms.TextBox diffBox;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ToolStripStatusLabel helpLbl;
+        private System.Windows.Forms.LinkLabel LARALink;
     }
 }
