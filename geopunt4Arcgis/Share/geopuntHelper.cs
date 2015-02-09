@@ -742,8 +742,8 @@ namespace geopunt4Arcgis
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI point object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonPoint(IPoint esriPoint) 
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonPoint esri2geojsonPoint(IPoint esriPoint) 
         {
             int epsg;
             string epsgUri;
@@ -775,13 +775,22 @@ namespace geopunt4Arcgis
                 crs = JScrs
             };
 
-           return JsonConvert.SerializeObject(JSpoint);
+           return JSpoint;
+        }
+
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polygon object</param>
+        /// <returns>A geojson string</returns>
+        public static string esri2geojsonPointString(IPoint esriPoint)
+        {
+            datacontract.geojsonPoint gjs = esri2geojsonPoint(esriPoint);
+            return JsonConvert.SerializeObject(gjs);
         }
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI polyline object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonLine(IPolyline esriLine)
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonLine esri2geojsonLine(IPolyline esriLine)
         {
             int epsg;
             string epsgUri;
@@ -810,7 +819,7 @@ namespace geopunt4Arcgis
             datacontract.geojsonLine JSline = new datacontract.geojsonLine() {type = "Polyline", crs = JScrs };
             List<List<double>> coords = new List<List<double>>();
 
-            IPointCollection5 nodes = esriLine as IPointCollection5;
+            IPointCollection4 nodes = esriLine as IPointCollection4;
 
             for (int n = 0; n < nodes.PointCount; n++)
             {
@@ -820,13 +829,22 @@ namespace geopunt4Arcgis
             }
             JSline.coordinates = coords;
 
-            return JsonConvert.SerializeObject(JSline);
+            return JSline;
+        }
+
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polyline object</param>
+        /// <returns>A geojson String</returns>
+        public static string esri2geojsonLineString(IPolyline esriLine)
+        {
+            datacontract.geojsonLine gjsline = esri2geojsonLine(esriLine);
+            return JsonConvert.SerializeObject(gjsline);
         }
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI polygon object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonPolygon(IPolygon esriPolygon)
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonPolygon esri2geojsonPolygon(IPolygon esriPolygon)
         {
             int epsg;
             string epsgUri;
@@ -870,7 +888,16 @@ namespace geopunt4Arcgis
             }
             JSpolygon.coordinates = coords;
 
-            return JsonConvert.SerializeObject(JSpolygon);
+            return JSpolygon;
+        }
+        
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polygon object</param>
+        /// <returns>A geojson string</returns>
+        public static string esri2geojsonPolygonString(IPolygon esriPoly)
+        {
+            datacontract.geojsonPolygon gjsline = esri2geojsonPolygon(esriPoly);
+            return JsonConvert.SerializeObject(gjsline);
         }
 
         #endregion
@@ -1162,6 +1189,26 @@ namespace geopunt4Arcgis
             return tbl;
         }
         #endregion
+
+        #region "Get Polyline From Mouse Clicks"
+        ///<summary>Create a polyline geometry object using the RubberBand.TrackNew method when a user click the mouse on the map control.</summary>
+        ///<param name="activeView">An ESRI.ArcGIS.Carto.IActiveView interface that will user will interace with to draw a polyline.</param>
+        ///<returns>An ESRI.ArcGIS.Geometry.IPolyline interface that is the polyline the user drew</returns>
+        ///<remarks>Double click the left mouse button to end tracking the polyline.</remarks>
+        public static IPolyline GetPolylineFromMouseClicks(IActiveView activeView)
+        {
+            IScreenDisplay screenDisplay = activeView.ScreenDisplay;
+
+            IRubberBand rubberBand = new RubberLineClass();
+            IGeometry geometry = rubberBand.TrackNew(screenDisplay, null);
+
+            IPolyline polyline = (IPolyline)geometry;
+
+            return polyline;
+
+        }
+        #endregion
+    
     }
 
     #region "exceptions"

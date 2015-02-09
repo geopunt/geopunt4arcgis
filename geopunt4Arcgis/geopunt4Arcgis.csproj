@@ -161,6 +161,12 @@
     <Compile Include="Forms\catalogForm.Designer.cs">
       <DependentUpon>catalogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\elevationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\elevationForm.Designer.cs">
+      <DependentUpon>elevationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\inputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,8 @@
     </Compile>
     <Compile Include="Commands\geopuntBatchGeocodingTool.cs" />
     <Compile Include="Commands\geopuntMetaCatalogCmd.cs" />
+    <Compile Include="Commands\geopuntElevationTool.cs" />
+    <Compile Include="geopuntElevationCmd.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,7 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\geopuntReverseCmd.cs" />
-    <AddInContent Include="Images\geopuntReverse.png;Images\geopuntReverse.cur" />
+    <AddInContent Include="Images\geopuntReverse.cur" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="geopunt4arcgisExtension.cs" />
@@ -281,6 +289,9 @@
     <EmbeddedResource Include="Forms\catalogForm.resx">
       <DependentUpon>catalogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\elevationForm.resx">
+      <DependentUpon>elevationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\gipodForm.resx">
       <DependentUpon>gipodForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,37 +315,30 @@
   <ItemGroup>
     <AddInContent Include="Images\geopuntGipodCmd.png" />
     <AddInContent Include="Images\geopuntPoiCmd.png" />
-    <AddInContent Include="Images\capakeyCmd.png" />
-    <AddInContent Include="Images\aboutCmd.png" />
+    <AddInContent Include="Images\geopuntPerceelCmd.png" />
+    <AddInContent Include="Images\geopuntAboutCmd.png" />
     <Content Include="Images\binocular.png" />
     <Content Include="Images\binocularSmall.png" />
     <AddInContent Include="Images\geopuntBatchGeocodingCmd.png" />
-    <Content Include="Images\Batchgeocode.ico" />
     <Content Include="Images\cancel.png" />
     <AddInContent Include="Images\geopuntBatchGeocodingTool.png" />
     <Content Include="Images\geopunt.ico" />
-    <AddInContent Include="Images\geopuntMetaCatalog.png" />
-    <Content Include="Images\geopuntDataCatalogus.ico" />
-    <Content Include="Images\geopuntDataCatalogus.png" />
-    <Content Include="Images\geopuntDataCatalogusSmall.png" />
-    <Content Include="Images\geopuntParcel.ico" />
+    <AddInContent Include="Images\geopuntDataCatalogusCmd.png" />
+    <AddInContent Include="Images\geopuntElevationTool.png" />
+    <AddInContent Include="Images\geopuntElevationTool.cur" />
     <AddInContent Include="Images\getMousePointTool.png" />
     <AddInContent Include="Images\getMousePointTool.cur" />
-    <Content Include="Images\gipod.ico" />
+    <AddInContent Include="Images\geopuntReverseCmd.png" />
+    <AddInContent Include="Images\geopuntElevationCmd.png" />
     <Content Include="Images\gipod.png" />
-    <Content Include="Images\instellingen.ico" />
-    <Content Include="Images\instellingen.png" />
     <Content Include="Images\logogeopunt.png" />
     <Content Include="Images\magnifyingGlassSmall.png" />
-    <Content Include="Images\poiZoek.ico" />
     <Content Include="Images\poiZoek.png" />
     <Content Include="Images\prik.png" />
-    <Content Include="Images\reverseZoek.ico" />
     <Content Include="Images\reverseZoek.png" />
     <AddInContent Include="Images\testBtn.png" />
     <Content Include="Images\select.png" />
     <Content Include="Images\validAll.png" />
-    <Content Include="Images\zoek.ico" />
     <Content Include="Images\zoek.png" />
     <Content Include="Images\zoom.png" />
     <AddInContent Include="Resources\about.html" />
