@@ -5,6 +5,9 @@
 *.docx
 
 Deliverable/
+images/*.ico
+images/*.png
+
 
 ## bin ##
 
