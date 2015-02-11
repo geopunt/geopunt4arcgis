@@ -48,7 +48,7 @@
             // 
             this.zoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.zoomBtn.Location = new System.Drawing.Point(304, 218);
-            this.zoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoomBtn.Name = "zoomBtn";
             this.zoomBtn.Size = new System.Drawing.Size(113, 28);
             this.zoomBtn.TabIndex = 0;
@@ -61,7 +61,7 @@
             this.zoekText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.zoekText.Location = new System.Drawing.Point(185, 37);
-            this.zoekText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoekText.Margin = new System.Windows.Forms.Padding(4);
             this.zoekText.Name = "zoekText";
             this.zoekText.Size = new System.Drawing.Size(340, 22);
             this.zoekText.TabIndex = 1;
@@ -75,7 +75,7 @@
             this.suggestionList.FormattingEnabled = true;
             this.suggestionList.ItemHeight = 16;
             this.suggestionList.Location = new System.Drawing.Point(16, 69);
-            this.suggestionList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.suggestionList.Margin = new System.Windows.Forms.Padding(4);
             this.suggestionList.Name = "suggestionList";
             this.suggestionList.Size = new System.Drawing.Size(509, 132);
             this.suggestionList.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             this.makeMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.makeMarkerBtn.Location = new System.Drawing.Point(156, 218);
-            this.makeMarkerBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.makeMarkerBtn.Margin = new System.Windows.Forms.Padding(4);
             this.makeMarkerBtn.Name = "makeMarkerBtn";
             this.makeMarkerBtn.Size = new System.Drawing.Size(140, 28);
             this.makeMarkerBtn.TabIndex = 3;
@@ -789,7 +789,7 @@
             "Vorst",
             "Watermaal-Bosvoorde"});
             this.gemeenteBox.Location = new System.Drawing.Point(16, 36);
-            this.gemeenteBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gemeenteBox.Margin = new System.Windows.Forms.Padding(4);
             this.gemeenteBox.Name = "gemeenteBox";
             this.gemeenteBox.Size = new System.Drawing.Size(160, 24);
             this.gemeenteBox.TabIndex = 5;
@@ -801,7 +801,7 @@
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeBtn.Location = new System.Drawing.Point(425, 218);
-            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 6;
@@ -823,7 +823,7 @@
             // 
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Location = new System.Drawing.Point(48, 218);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 28);
             this.saveBtn.TabIndex = 8;
@@ -861,7 +861,7 @@
             this.Controls.Add(this.zoekText);
             this.Controls.Add(this.zoomBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(550, 300);
             this.Name = "zoekAdresForm";
             this.Text = "Zoek een adres";

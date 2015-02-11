@@ -62,7 +62,7 @@
             this.cityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityCombo.FormattingEnabled = true;
             this.cityCombo.Location = new System.Drawing.Point(141, 123);
-            this.cityCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cityCombo.Margin = new System.Windows.Forms.Padding(4);
             this.cityCombo.Name = "cityCombo";
             this.cityCombo.Size = new System.Drawing.Size(521, 24);
             this.cityCombo.TabIndex = 0;
@@ -75,7 +75,7 @@
             this.provinceCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.provinceCombo.FormattingEnabled = true;
             this.provinceCombo.Location = new System.Drawing.Point(141, 90);
-            this.provinceCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.provinceCombo.Margin = new System.Windows.Forms.Padding(4);
             this.provinceCombo.Name = "provinceCombo";
             this.provinceCombo.Size = new System.Drawing.Size(521, 24);
             this.provinceCombo.TabIndex = 1;
@@ -106,7 +106,7 @@
             this.startdatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.startdatePicker.Location = new System.Drawing.Point(141, 236);
-            this.startdatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startdatePicker.Margin = new System.Windows.Forms.Padding(4);
             this.startdatePicker.Name = "startdatePicker";
             this.startdatePicker.Size = new System.Drawing.Size(521, 22);
             this.startdatePicker.TabIndex = 4;
@@ -116,7 +116,7 @@
             this.enddatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.enddatePicker.Location = new System.Drawing.Point(141, 268);
-            this.enddatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.enddatePicker.Margin = new System.Windows.Forms.Padding(4);
             this.enddatePicker.Name = "enddatePicker";
             this.enddatePicker.Size = new System.Drawing.Size(521, 22);
             this.enddatePicker.TabIndex = 5;
@@ -130,7 +130,7 @@
             this.ownerCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ownerCombo.FormattingEnabled = true;
             this.ownerCombo.Location = new System.Drawing.Point(141, 159);
-            this.ownerCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ownerCombo.Margin = new System.Windows.Forms.Padding(4);
             this.ownerCombo.Name = "ownerCombo";
             this.ownerCombo.Size = new System.Drawing.Size(521, 24);
             this.ownerCombo.TabIndex = 6;
@@ -184,7 +184,7 @@
             this.eventTypeCombo.Enabled = false;
             this.eventTypeCombo.FormattingEnabled = true;
             this.eventTypeCombo.Location = new System.Drawing.Point(141, 196);
-            this.eventTypeCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.eventTypeCombo.Margin = new System.Windows.Forms.Padding(4);
             this.eventTypeCombo.Name = "eventTypeCombo";
             this.eventTypeCombo.Size = new System.Drawing.Size(521, 24);
             this.eventTypeCombo.TabIndex = 11;
@@ -196,9 +196,9 @@
             this.gipodTypeGroup.Controls.Add(this.manifestationRadio);
             this.gipodTypeGroup.Controls.Add(this.workassignmentRadio);
             this.gipodTypeGroup.Location = new System.Drawing.Point(13, 16);
-            this.gipodTypeGroup.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gipodTypeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.gipodTypeGroup.Name = "gipodTypeGroup";
-            this.gipodTypeGroup.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gipodTypeGroup.Padding = new System.Windows.Forms.Padding(4);
             this.gipodTypeGroup.Size = new System.Drawing.Size(651, 63);
             this.gipodTypeGroup.TabIndex = 12;
             this.gipodTypeGroup.TabStop = false;
@@ -209,7 +209,7 @@
             this.manifestationRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manifestationRadio.AutoSize = true;
             this.manifestationRadio.Location = new System.Drawing.Point(316, 23);
-            this.manifestationRadio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.manifestationRadio.Margin = new System.Windows.Forms.Padding(4);
             this.manifestationRadio.Name = "manifestationRadio";
             this.manifestationRadio.Size = new System.Drawing.Size(105, 21);
             this.manifestationRadio.TabIndex = 1;
@@ -221,7 +221,7 @@
             this.workassignmentRadio.AutoSize = true;
             this.workassignmentRadio.Checked = true;
             this.workassignmentRadio.Location = new System.Drawing.Point(43, 23);
-            this.workassignmentRadio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.workassignmentRadio.Margin = new System.Windows.Forms.Padding(4);
             this.workassignmentRadio.Name = "workassignmentRadio";
             this.workassignmentRadio.Size = new System.Drawing.Size(118, 21);
             this.workassignmentRadio.TabIndex = 0;
@@ -235,7 +235,7 @@
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeBtn.Location = new System.Drawing.Point(564, 325);
-            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 13;
@@ -262,7 +262,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.messageLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.messageLbl.Name = "messageLbl";
-            this.messageLbl.Size = new System.Drawing.Size(593, 18);
+            this.messageLbl.Size = new System.Drawing.Size(624, 18);
             this.messageLbl.Spring = true;
             this.messageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -278,7 +278,7 @@
             // 
             this.useExtendChk.AutoSize = true;
             this.useExtendChk.Location = new System.Drawing.Point(56, 300);
-            this.useExtendChk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.useExtendChk.Margin = new System.Windows.Forms.Padding(4);
             this.useExtendChk.Name = "useExtendChk";
             this.useExtendChk.Size = new System.Drawing.Size(288, 21);
             this.useExtendChk.TabIndex = 15;
@@ -289,7 +289,7 @@
             // 
             this.saveAsShapeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveAsShapeBtn.Location = new System.Drawing.Point(444, 325);
-            this.saveAsShapeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveAsShapeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveAsShapeBtn.Name = "saveAsShapeBtn";
             this.saveAsShapeBtn.Size = new System.Drawing.Size(112, 28);
             this.saveAsShapeBtn.TabIndex = 16;
@@ -321,7 +321,7 @@
             this.Controls.Add(this.provinceLbl);
             this.Controls.Add(this.citylbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1597, 423);
             this.MinimumSize = new System.Drawing.Size(557, 423);
             this.Name = "gipodForm";

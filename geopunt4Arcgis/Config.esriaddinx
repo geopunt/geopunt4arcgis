@@ -9,8 +9,8 @@ die met deze add-in geïntegreed worden in Arcgis.</Description>
   <Company>AGIV</Company>
   <Date>9/02/2015</Date>
   <Targets>
-    <!--<Target name="Desktop" version="10.0" />-->
-    <Target name="Desktop" version="10.2" />
+    <Target name="Desktop" version="10.0" />
+    <!--<Target name="Desktop" version="10.2" />-->
   </Targets>
   <AddIn language="CLR" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">
     <ArcMap>

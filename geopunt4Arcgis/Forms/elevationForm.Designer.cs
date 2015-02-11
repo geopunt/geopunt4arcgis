@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(elevationForm));
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpLink = new System.Windows.Forms.ToolStripStatusLabel();
@@ -80,6 +81,7 @@
             this.ClientSize = new System.Drawing.Size(526, 347);
             this.Controls.Add(this.drawLineBtn);
             this.Controls.Add(this.statusBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "elevationForm";
             this.Text = "Hoogteprofiel";
             this.statusBar.ResumeLayout(false);

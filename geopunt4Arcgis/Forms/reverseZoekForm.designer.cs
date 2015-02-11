@@ -48,7 +48,7 @@
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.closeBtn.Location = new System.Drawing.Point(433, 96);
-            this.closeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 0;
@@ -73,7 +73,7 @@
             this.add2MapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.add2MapBtn.Enabled = false;
             this.add2MapBtn.Location = new System.Drawing.Point(293, 96);
-            this.add2MapBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add2MapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.add2MapBtn.Name = "add2MapBtn";
             this.add2MapBtn.Size = new System.Drawing.Size(132, 28);
             this.add2MapBtn.TabIndex = 2;
@@ -87,7 +87,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.adresBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.adresBox.Location = new System.Drawing.Point(20, 31);
-            this.adresBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adresBox.Margin = new System.Windows.Forms.Padding(4);
             this.adresBox.Name = "adresBox";
             this.adresBox.ReadOnly = true;
             this.adresBox.Size = new System.Drawing.Size(512, 22);
@@ -143,7 +143,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.diffBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.diffBox.Location = new System.Drawing.Point(188, 64);
-            this.diffBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.diffBox.Margin = new System.Windows.Forms.Padding(4);
             this.diffBox.Name = "diffBox";
             this.diffBox.ReadOnly = true;
             this.diffBox.Size = new System.Drawing.Size(344, 22);
@@ -154,7 +154,7 @@
             this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.saveBtn.Enabled = false;
             this.saveBtn.Location = new System.Drawing.Point(185, 96);
-            this.saveBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(100, 28);
             this.saveBtn.TabIndex = 9;
@@ -192,7 +192,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.closeBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1064, 214);
             this.MinimumSize = new System.Drawing.Size(400, 214);
             this.Name = "reverseZoekForm";

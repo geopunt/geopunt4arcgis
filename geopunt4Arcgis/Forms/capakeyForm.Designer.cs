@@ -68,7 +68,7 @@
             this.gemeenteCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteCbx.FormattingEnabled = true;
             this.gemeenteCbx.Location = new System.Drawing.Point(132, 36);
-            this.gemeenteCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gemeenteCbx.Margin = new System.Windows.Forms.Padding(4);
             this.gemeenteCbx.Name = "gemeenteCbx";
             this.gemeenteCbx.Size = new System.Drawing.Size(417, 24);
             this.gemeenteCbx.TabIndex = 1;
@@ -82,7 +82,7 @@
             this.departementCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.departementCbx.FormattingEnabled = true;
             this.departementCbx.Location = new System.Drawing.Point(132, 81);
-            this.departementCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.departementCbx.Margin = new System.Windows.Forms.Padding(4);
             this.departementCbx.Name = "departementCbx";
             this.departementCbx.Size = new System.Drawing.Size(417, 24);
             this.departementCbx.TabIndex = 3;
@@ -106,7 +106,7 @@
             this.sectieCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.sectieCbx.FormattingEnabled = true;
             this.sectieCbx.Location = new System.Drawing.Point(132, 127);
-            this.sectieCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sectieCbx.Margin = new System.Windows.Forms.Padding(4);
             this.sectieCbx.Name = "sectieCbx";
             this.sectieCbx.Size = new System.Drawing.Size(417, 24);
             this.sectieCbx.TabIndex = 5;
@@ -157,7 +157,7 @@
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelBtn.Location = new System.Drawing.Point(515, 215);
-            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(105, 28);
             this.cancelBtn.TabIndex = 7;
@@ -173,7 +173,7 @@
             this.parcelCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.parcelCbx.FormattingEnabled = true;
             this.parcelCbx.Location = new System.Drawing.Point(132, 171);
-            this.parcelCbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.parcelCbx.Margin = new System.Windows.Forms.Padding(4);
             this.parcelCbx.Name = "parcelCbx";
             this.parcelCbx.Size = new System.Drawing.Size(417, 24);
             this.parcelCbx.TabIndex = 9;
@@ -194,7 +194,7 @@
             this.gemeenteZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.gemeenteZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("gemeenteZoomBtn.Image")));
             this.gemeenteZoomBtn.Location = new System.Drawing.Point(561, 36);
-            this.gemeenteZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gemeenteZoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.gemeenteZoomBtn.Name = "gemeenteZoomBtn";
             this.gemeenteZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.gemeenteZoomBtn.TabIndex = 10;
@@ -206,7 +206,7 @@
             this.departementZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.departementZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("departementZoomBtn.Image")));
             this.departementZoomBtn.Location = new System.Drawing.Point(561, 81);
-            this.departementZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.departementZoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.departementZoomBtn.Name = "departementZoomBtn";
             this.departementZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.departementZoomBtn.TabIndex = 11;
@@ -218,7 +218,7 @@
             this.sectieZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sectieZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("sectieZoomBtn.Image")));
             this.sectieZoomBtn.Location = new System.Drawing.Point(561, 126);
-            this.sectieZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sectieZoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.sectieZoomBtn.Name = "sectieZoomBtn";
             this.sectieZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.sectieZoomBtn.TabIndex = 12;
@@ -230,7 +230,7 @@
             this.parcelZoomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.parcelZoomBtn.Image = ((System.Drawing.Image)(resources.GetObject("parcelZoomBtn.Image")));
             this.parcelZoomBtn.Location = new System.Drawing.Point(561, 170);
-            this.parcelZoomBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.parcelZoomBtn.Margin = new System.Windows.Forms.Padding(4);
             this.parcelZoomBtn.Name = "parcelZoomBtn";
             this.parcelZoomBtn.Size = new System.Drawing.Size(59, 26);
             this.parcelZoomBtn.TabIndex = 13;
@@ -241,7 +241,7 @@
             // 
             this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.add2mapBtn.Location = new System.Drawing.Point(267, 215);
-            this.add2mapBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.add2mapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.add2mapBtn.Name = "add2mapBtn";
             this.add2mapBtn.Size = new System.Drawing.Size(100, 28);
             this.add2mapBtn.TabIndex = 14;
@@ -253,7 +253,7 @@
             // 
             this.addMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addMarkerBtn.Location = new System.Drawing.Point(375, 215);
-            this.addMarkerBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addMarkerBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addMarkerBtn.Name = "addMarkerBtn";
             this.addMarkerBtn.Size = new System.Drawing.Size(132, 28);
             this.addMarkerBtn.TabIndex = 15;
@@ -283,7 +283,7 @@
             this.Controls.Add(this.gemeenteCbx);
             this.Controls.Add(this.gemeenteLbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(797, 313);
             this.MinimumSize = new System.Drawing.Size(397, 313);
             this.Name = "capakeyForm";
