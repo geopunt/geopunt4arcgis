@@ -16,6 +16,8 @@ using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Catalog;
 
+using ZedGraph;
+
 namespace geopunt4Arcgis
 {
     public partial class elevationForm : Form
@@ -32,7 +34,8 @@ namespace geopunt4Arcgis
 
         geopunt4arcgisExtension gpExtension;
         List<List<double>> profileData;
-        IPolyline profileLine;
+        LineItem grpCurve;
+        PointPairList profileLine;
         IElement grapic;
 
         public elevationForm()
@@ -57,15 +60,44 @@ namespace geopunt4Arcgis
             mouseCmd = commandBars.Find(toolID, false, false);
 
             InitializeComponent();
+            initGui();
+        }
+
+        public void initGui()
+        {
+            //the GraphPane
+            profileLine = new PointPairList();
+            grpCurve = profileGrp.GraphPane.AddCurve("Profiel", profileLine, Color.Red, SymbolType.Diamond);
+            profileGrp.GraphPane.Legend.IsVisible = false;
+            profileGrp.GraphPane.XAxis.Title.Text = "Afstand (m)";
+            profileGrp.GraphPane.YAxis.Title.Text = "Hoogte (m)";
         }
 
         public void setData(IPolyline profileLineGeom, List<List<double>> data )
         {
-            profileLine = profileLineGeom;
             profileData = data;
             ArcMap.Application.CurrentTool = oldCmd;
+            this.WindowState = FormWindowState.Normal;
 
-            addLineGrapic(profileLine);
+            addLineGrapic(profileLineGeom);
+            createGraph(profileData);
+        }
+
+        public void createGraph( List<List<double>> data )
+        {
+            // Set the Titles
+            profileGrp.GraphPane.Title.Text = "Hoogte Profiel 1";
+
+            // Make up some data arrays based on the Sine function
+            profileLine.Clear();
+            foreach (List<double> rec in data)
+            {
+                double x = rec[0];
+                double h = rec[3];
+                profileLine.Add(x, h);
+            }
+            // Tell the graph to refigure the axes since the data have changed
+            profileGrp.AxisChange();
         }
 
         #region "overrides"
@@ -76,6 +108,7 @@ namespace geopunt4Arcgis
                 ArcMap.Application.CurrentTool = oldCmd;
             }
             clearGraphics();
+            view.Refresh();
             base.OnClosed(e);
         }
         #endregion
@@ -85,6 +118,8 @@ namespace geopunt4Arcgis
         private void drawbtn_Click(object sender, EventArgs e)
         {
             if (mouseCmd == null)  return;
+
+            this.WindowState = FormWindowState.Minimized;
 
             oldCmd = ArcMap.Application.CurrentTool;
             ArcMap.Application.CurrentTool = mouseCmd;
@@ -111,7 +146,6 @@ namespace geopunt4Arcgis
             IGraphicsContainer graphicsContainer = (IGraphicsContainer)map;
 
             if (grapic == null) return;
-
             try
             {
                 graphicsContainer.DeleteElement(grapic);
@@ -122,7 +156,6 @@ namespace geopunt4Arcgis
                 Console.Write("Element was already deleted");
             }
         }
-
         #endregion
 
     }

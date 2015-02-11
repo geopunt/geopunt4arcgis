@@ -68,10 +68,9 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusMsgLbl,
             this.helpLbl});
-            this.statusStrip.Location = new System.Drawing.Point(0, 471);
+            this.statusStrip.Location = new System.Drawing.Point(0, 379);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(732, 23);
+            this.statusStrip.Size = new System.Drawing.Size(549, 22);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -82,14 +81,14 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.statusMsgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.statusMsgLbl.Name = "statusMsgLbl";
-            this.statusMsgLbl.Size = new System.Drawing.Size(676, 18);
+            this.statusMsgLbl.Size = new System.Drawing.Size(506, 17);
             this.statusMsgLbl.Spring = true;
             // 
             // helpLbl
             // 
             this.helpLbl.IsLink = true;
             this.helpLbl.Name = "helpLbl";
-            this.helpLbl.Size = new System.Drawing.Size(36, 18);
+            this.helpLbl.Size = new System.Drawing.Size(28, 17);
             this.helpLbl.Text = "Help";
             this.helpLbl.Click += new System.EventHandler(this.helpLbl_Click);
             // 
@@ -98,19 +97,17 @@
             this.keywordTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.keywordTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.keywordTxt.Location = new System.Drawing.Point(13, 18);
-            this.keywordTxt.Margin = new System.Windows.Forms.Padding(4);
+            this.keywordTxt.Location = new System.Drawing.Point(10, 15);
             this.keywordTxt.Name = "keywordTxt";
-            this.keywordTxt.Size = new System.Drawing.Size(613, 22);
+            this.keywordTxt.Size = new System.Drawing.Size(461, 20);
             this.keywordTxt.TabIndex = 1;
             // 
             // zoekBtn
             // 
             this.zoekBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoekBtn.Location = new System.Drawing.Point(635, 15);
-            this.zoekBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.zoekBtn.Location = new System.Drawing.Point(476, 12);
             this.zoekBtn.Name = "zoekBtn";
-            this.zoekBtn.Size = new System.Drawing.Size(85, 28);
+            this.zoekBtn.Size = new System.Drawing.Size(64, 23);
             this.zoekBtn.TabIndex = 3;
             this.zoekBtn.Text = "Zoek";
             this.zoekBtn.UseVisualStyleBackColor = true;
@@ -120,9 +117,10 @@
             // 
             this.GDIthemaLbl.AutoSize = true;
             this.GDIthemaLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GDIthemaLbl.Location = new System.Drawing.Point(3, 0);
+            this.GDIthemaLbl.Location = new System.Drawing.Point(2, 0);
+            this.GDIthemaLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.GDIthemaLbl.Name = "GDIthemaLbl";
-            this.GDIthemaLbl.Size = new System.Drawing.Size(135, 36);
+            this.GDIthemaLbl.Size = new System.Drawing.Size(102, 29);
             this.GDIthemaLbl.TabIndex = 4;
             this.GDIthemaLbl.Text = "GDI-thema:";
             // 
@@ -130,9 +128,10 @@
             // 
             this.orgName.AutoSize = true;
             this.orgName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orgName.Location = new System.Drawing.Point(3, 36);
+            this.orgName.Location = new System.Drawing.Point(2, 29);
+            this.orgName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.orgName.Name = "orgName";
-            this.orgName.Size = new System.Drawing.Size(135, 36);
+            this.orgName.Size = new System.Drawing.Size(102, 29);
             this.orgName.TabIndex = 5;
             this.orgName.Text = "Organisatie naam:";
             // 
@@ -140,9 +139,10 @@
             // 
             this.BronLbl.AutoSize = true;
             this.BronLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BronLbl.Location = new System.Drawing.Point(3, 72);
+            this.BronLbl.Location = new System.Drawing.Point(2, 58);
+            this.BronLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BronLbl.Name = "BronLbl";
-            this.BronLbl.Size = new System.Drawing.Size(135, 36);
+            this.BronLbl.Size = new System.Drawing.Size(102, 29);
             this.BronLbl.TabIndex = 6;
             this.BronLbl.Text = "Bron catalogus";
             // 
@@ -150,9 +150,10 @@
             // 
             this.typeLbl.AutoSize = true;
             this.typeLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.typeLbl.Location = new System.Drawing.Point(3, 108);
+            this.typeLbl.Location = new System.Drawing.Point(2, 87);
+            this.typeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.typeLbl.Name = "typeLbl";
-            this.typeLbl.Size = new System.Drawing.Size(135, 37);
+            this.typeLbl.Size = new System.Drawing.Size(102, 31);
             this.typeLbl.TabIndex = 7;
             this.typeLbl.Text = "Type: ";
             // 
@@ -160,9 +161,10 @@
             // 
             this.INSPIREannexLbl.AutoSize = true;
             this.INSPIREannexLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.INSPIREannexLbl.Location = new System.Drawing.Point(356, 0);
+            this.INSPIREannexLbl.Location = new System.Drawing.Point(267, 0);
+            this.INSPIREannexLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.INSPIREannexLbl.Name = "INSPIREannexLbl";
-            this.INSPIREannexLbl.Size = new System.Drawing.Size(135, 36);
+            this.INSPIREannexLbl.Size = new System.Drawing.Size(102, 29);
             this.INSPIREannexLbl.TabIndex = 8;
             this.INSPIREannexLbl.Text = "INSPIRE-annex:";
             // 
@@ -189,94 +191,95 @@
             this.filterPane.Controls.Add(this.INSPIREannexLbl, 2, 0);
             this.filterPane.Controls.Add(this.INSPIREthemeLbl, 2, 1);
             this.filterPane.Controls.Add(this.INSPIREserviceLbl, 2, 2);
-            this.filterPane.Location = new System.Drawing.Point(13, 60);
-            this.filterPane.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.filterPane.Location = new System.Drawing.Point(10, 49);
+            this.filterPane.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.filterPane.Name = "filterPane";
             this.filterPane.RowCount = 4;
             this.filterPane.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.filterPane.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.filterPane.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.filterPane.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.filterPane.Size = new System.Drawing.Size(707, 145);
+            this.filterPane.Size = new System.Drawing.Size(530, 118);
             this.filterPane.TabIndex = 9;
             // 
             // typeCbx
             // 
             this.typeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.typeCbx.FormattingEnabled = true;
-            this.typeCbx.Location = new System.Drawing.Point(144, 110);
-            this.typeCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.typeCbx.Location = new System.Drawing.Point(108, 89);
+            this.typeCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.typeCbx.Name = "typeCbx";
-            this.typeCbx.Size = new System.Drawing.Size(206, 24);
+            this.typeCbx.Size = new System.Drawing.Size(155, 21);
             this.typeCbx.TabIndex = 16;
             // 
             // INSPIREserviceCbx
             // 
             this.INSPIREserviceCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREserviceCbx.FormattingEnabled = true;
-            this.INSPIREserviceCbx.Location = new System.Drawing.Point(497, 74);
-            this.INSPIREserviceCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.INSPIREserviceCbx.Location = new System.Drawing.Point(373, 60);
+            this.INSPIREserviceCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.INSPIREserviceCbx.Name = "INSPIREserviceCbx";
-            this.INSPIREserviceCbx.Size = new System.Drawing.Size(207, 24);
+            this.INSPIREserviceCbx.Size = new System.Drawing.Size(155, 21);
             this.INSPIREserviceCbx.TabIndex = 15;
             // 
             // bronCatCbx
             // 
             this.bronCatCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bronCatCbx.FormattingEnabled = true;
-            this.bronCatCbx.Location = new System.Drawing.Point(144, 74);
-            this.bronCatCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bronCatCbx.Location = new System.Drawing.Point(108, 60);
+            this.bronCatCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bronCatCbx.Name = "bronCatCbx";
-            this.bronCatCbx.Size = new System.Drawing.Size(206, 24);
+            this.bronCatCbx.Size = new System.Drawing.Size(155, 21);
             this.bronCatCbx.TabIndex = 14;
             // 
             // INSPIREthemeCbx
             // 
             this.INSPIREthemeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREthemeCbx.FormattingEnabled = true;
-            this.INSPIREthemeCbx.Location = new System.Drawing.Point(497, 38);
-            this.INSPIREthemeCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.INSPIREthemeCbx.Location = new System.Drawing.Point(373, 31);
+            this.INSPIREthemeCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.INSPIREthemeCbx.Name = "INSPIREthemeCbx";
-            this.INSPIREthemeCbx.Size = new System.Drawing.Size(207, 24);
+            this.INSPIREthemeCbx.Size = new System.Drawing.Size(155, 21);
             this.INSPIREthemeCbx.TabIndex = 13;
             // 
             // orgNameCbx
             // 
             this.orgNameCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orgNameCbx.FormattingEnabled = true;
-            this.orgNameCbx.Location = new System.Drawing.Point(144, 38);
-            this.orgNameCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.orgNameCbx.Location = new System.Drawing.Point(108, 31);
+            this.orgNameCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.orgNameCbx.Name = "orgNameCbx";
-            this.orgNameCbx.Size = new System.Drawing.Size(206, 24);
+            this.orgNameCbx.Size = new System.Drawing.Size(155, 21);
             this.orgNameCbx.TabIndex = 12;
             // 
             // INSPIREannexCbx
             // 
             this.INSPIREannexCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREannexCbx.FormattingEnabled = true;
-            this.INSPIREannexCbx.Location = new System.Drawing.Point(497, 2);
-            this.INSPIREannexCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.INSPIREannexCbx.Location = new System.Drawing.Point(373, 2);
+            this.INSPIREannexCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.INSPIREannexCbx.Name = "INSPIREannexCbx";
-            this.INSPIREannexCbx.Size = new System.Drawing.Size(207, 24);
+            this.INSPIREannexCbx.Size = new System.Drawing.Size(155, 21);
             this.INSPIREannexCbx.TabIndex = 11;
             // 
             // GDIthemeCbx
             // 
             this.GDIthemeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GDIthemeCbx.FormattingEnabled = true;
-            this.GDIthemeCbx.Location = new System.Drawing.Point(144, 2);
-            this.GDIthemeCbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GDIthemeCbx.Location = new System.Drawing.Point(108, 2);
+            this.GDIthemeCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GDIthemeCbx.Name = "GDIthemeCbx";
-            this.GDIthemeCbx.Size = new System.Drawing.Size(206, 24);
+            this.GDIthemeCbx.Size = new System.Drawing.Size(155, 21);
             this.GDIthemeCbx.TabIndex = 10;
             // 
             // INSPIREthemeLbl
             // 
             this.INSPIREthemeLbl.AutoSize = true;
             this.INSPIREthemeLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.INSPIREthemeLbl.Location = new System.Drawing.Point(356, 36);
+            this.INSPIREthemeLbl.Location = new System.Drawing.Point(267, 29);
+            this.INSPIREthemeLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.INSPIREthemeLbl.Name = "INSPIREthemeLbl";
-            this.INSPIREthemeLbl.Size = new System.Drawing.Size(135, 36);
+            this.INSPIREthemeLbl.Size = new System.Drawing.Size(102, 29);
             this.INSPIREthemeLbl.TabIndex = 9;
             this.INSPIREthemeLbl.Text = "INSPIRE-thema:";
             // 
@@ -284,9 +287,10 @@
             // 
             this.INSPIREserviceLbl.AutoSize = true;
             this.INSPIREserviceLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.INSPIREserviceLbl.Location = new System.Drawing.Point(356, 72);
+            this.INSPIREserviceLbl.Location = new System.Drawing.Point(267, 58);
+            this.INSPIREserviceLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.INSPIREserviceLbl.Name = "INSPIREserviceLbl";
-            this.INSPIREserviceLbl.Size = new System.Drawing.Size(135, 36);
+            this.INSPIREserviceLbl.Size = new System.Drawing.Size(102, 29);
             this.INSPIREserviceLbl.TabIndex = 10;
             this.INSPIREserviceLbl.Text = "INSPIRE- servicetype:";
             // 
@@ -295,8 +299,8 @@
             this.contentSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.contentSplitContainer.Location = new System.Drawing.Point(13, 210);
-            this.contentSplitContainer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.contentSplitContainer.Location = new System.Drawing.Point(10, 171);
+            this.contentSplitContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.contentSplitContainer.Name = "contentSplitContainer";
             // 
             // contentSplitContainer.Panel1
@@ -306,19 +310,19 @@
             // contentSplitContainer.Panel2
             // 
             this.contentSplitContainer.Panel2.Controls.Add(this.descriptionHTML);
-            this.contentSplitContainer.Size = new System.Drawing.Size(701, 197);
-            this.contentSplitContainer.SplitterDistance = 231;
+            this.contentSplitContainer.Size = new System.Drawing.Size(526, 160);
+            this.contentSplitContainer.SplitterDistance = 173;
+            this.contentSplitContainer.SplitterWidth = 3;
             this.contentSplitContainer.TabIndex = 10;
             // 
             // searchResultsList
             // 
             this.searchResultsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchResultsList.FormattingEnabled = true;
-            this.searchResultsList.ItemHeight = 16;
             this.searchResultsList.Location = new System.Drawing.Point(0, 0);
-            this.searchResultsList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.searchResultsList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchResultsList.Name = "searchResultsList";
-            this.searchResultsList.Size = new System.Drawing.Size(231, 197);
+            this.searchResultsList.Size = new System.Drawing.Size(173, 160);
             this.searchResultsList.TabIndex = 0;
             this.searchResultsList.SelectedIndexChanged += new System.EventHandler(this.searchResultsList_SelectedIndexChanged);
             // 
@@ -326,20 +330,20 @@
             // 
             this.descriptionHTML.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descriptionHTML.Location = new System.Drawing.Point(0, 0);
-            this.descriptionHTML.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.descriptionHTML.MinimumSize = new System.Drawing.Size(20, 20);
+            this.descriptionHTML.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descriptionHTML.MinimumSize = new System.Drawing.Size(15, 16);
             this.descriptionHTML.Name = "descriptionHTML";
-            this.descriptionHTML.Size = new System.Drawing.Size(466, 197);
+            this.descriptionHTML.Size = new System.Drawing.Size(350, 160);
             this.descriptionHTML.TabIndex = 0;
             // 
             // OpenDownloadBtn
             // 
             this.OpenDownloadBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenDownloadBtn.Enabled = false;
-            this.OpenDownloadBtn.Location = new System.Drawing.Point(469, 423);
-            this.OpenDownloadBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OpenDownloadBtn.Location = new System.Drawing.Point(352, 344);
+            this.OpenDownloadBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OpenDownloadBtn.Name = "OpenDownloadBtn";
-            this.OpenDownloadBtn.Size = new System.Drawing.Size(109, 34);
+            this.OpenDownloadBtn.Size = new System.Drawing.Size(82, 28);
             this.OpenDownloadBtn.TabIndex = 11;
             this.OpenDownloadBtn.Text = "Downloaden";
             this.OpenDownloadBtn.UseVisualStyleBackColor = true;
@@ -349,10 +353,10 @@
             // 
             this.addWMSbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addWMSbtn.Enabled = false;
-            this.addWMSbtn.Location = new System.Drawing.Point(319, 423);
-            this.addWMSbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addWMSbtn.Location = new System.Drawing.Point(239, 344);
+            this.addWMSbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.addWMSbtn.Name = "addWMSbtn";
-            this.addWMSbtn.Size = new System.Drawing.Size(144, 34);
+            this.addWMSbtn.Size = new System.Drawing.Size(108, 28);
             this.addWMSbtn.TabIndex = 12;
             this.addWMSbtn.Text = "WMS-toevoegen";
             this.addWMSbtn.UseVisualStyleBackColor = true;
@@ -361,10 +365,10 @@
             // closeBtn
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.Location = new System.Drawing.Point(605, 423);
-            this.closeBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.closeBtn.Location = new System.Drawing.Point(454, 344);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(109, 34);
+            this.closeBtn.Size = new System.Drawing.Size(82, 28);
             this.closeBtn.TabIndex = 13;
             this.closeBtn.Text = "Sluiten";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -379,17 +383,18 @@
             "Alles weergeven",
             "WMS",
             "Download"});
-            this.filterResultsCbx.Location = new System.Drawing.Point(19, 412);
+            this.filterResultsCbx.Location = new System.Drawing.Point(14, 335);
+            this.filterResultsCbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.filterResultsCbx.Name = "filterResultsCbx";
-            this.filterResultsCbx.Size = new System.Drawing.Size(132, 24);
+            this.filterResultsCbx.Size = new System.Drawing.Size(100, 21);
             this.filterResultsCbx.TabIndex = 14;
             this.filterResultsCbx.SelectedIndexChanged += new System.EventHandler(this.filterResultsCbx_SelectedIndexChanged);
             // 
             // catalogForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 494);
+            this.ClientSize = new System.Drawing.Size(549, 401);
             this.Controls.Add(this.filterResultsCbx);
             this.Controls.Add(this.closeBtn);
             this.Controls.Add(this.addWMSbtn);
@@ -400,8 +405,7 @@
             this.Controls.Add(this.keywordTxt);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(600, 498);
+            this.MinimumSize = new System.Drawing.Size(452, 410);
             this.Name = "catalogForm";
             this.Text = "Geopunt-catalogus";
             this.statusStrip.ResumeLayout(false);

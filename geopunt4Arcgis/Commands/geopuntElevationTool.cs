@@ -59,9 +59,6 @@ namespace geopunt4Arcgis
                 List<List<double>> prf = dhm.getDataAlongLine(gjs, 50, dataHandler.CRS.Lambert72);
 
                 dlg.setData(polyline, prf);
-
-                MessageBox.Show( String.Join( ",", prf.Select(c => c[0].ToString() ).ToArray()) );
-
             }
             catch (Exception ex)
             {

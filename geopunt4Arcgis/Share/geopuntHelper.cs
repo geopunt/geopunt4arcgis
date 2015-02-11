@@ -483,12 +483,15 @@ namespace geopunt4Arcgis
         public static bool websiteExists( string url, bool isWMS = false ){
             HttpWebResponse response = null;
 
-            if (isWMS) url = url.Split('?')[0] + "?request=GetCapabilities&service=WMS";
+            if (isWMS)
+            {
+                url = url.Split('?')[0] + "?request=GetCapabilities&service=WMS";
+            }
 
             var hwebRequest = (HttpWebRequest)WebRequest.Create(url);
 
-            hwebRequest.Timeout = 5000;
-            hwebRequest.Method = "HEAD";
+            hwebRequest.Timeout = 8000;
+            //hwebRequest.Method = "HEAD";
 
             try
             {

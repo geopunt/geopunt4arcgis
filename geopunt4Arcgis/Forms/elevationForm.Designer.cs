@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(elevationForm));
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpLink = new System.Windows.Forms.ToolStripStatusLabel();
             this.drawLineBtn = new System.Windows.Forms.Button();
+            this.profileGrp = new ZedGraph.ZedGraphControl();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,11 +76,30 @@
             this.drawLineBtn.UseVisualStyleBackColor = true;
             this.drawLineBtn.Click += new System.EventHandler(this.drawbtn_Click);
             // 
+            // profileGrp
+            // 
+            this.profileGrp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.profileGrp.Location = new System.Drawing.Point(13, 49);
+            this.profileGrp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.profileGrp.Name = "profileGrp";
+            this.profileGrp.ScrollGrace = 0D;
+            this.profileGrp.ScrollMaxX = 0D;
+            this.profileGrp.ScrollMaxY = 0D;
+            this.profileGrp.ScrollMaxY2 = 0D;
+            this.profileGrp.ScrollMinX = 0D;
+            this.profileGrp.ScrollMinY = 0D;
+            this.profileGrp.ScrollMinY2 = 0D;
+            this.profileGrp.Size = new System.Drawing.Size(500, 256);
+            this.profileGrp.TabIndex = 2;
+            // 
             // elevationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 347);
+            this.Controls.Add(this.profileGrp);
             this.Controls.Add(this.drawLineBtn);
             this.Controls.Add(this.statusBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -97,5 +118,6 @@
         private System.Windows.Forms.Button drawLineBtn;
         private System.Windows.Forms.ToolStripStatusLabel msgLbl;
         private System.Windows.Forms.ToolStripStatusLabel helpLink;
+        private ZedGraph.ZedGraphControl profileGrp;
     }
 }
