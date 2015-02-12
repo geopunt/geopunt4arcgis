@@ -36,21 +36,26 @@
             this.drawLineBtn = new System.Windows.Forms.Button();
             this.profileGrp = new ZedGraph.ZedGraphControl();
             this.GraphPanel = new System.Windows.Forms.Panel();
+            this.aantalSamplesNum = new System.Windows.Forms.Label();
+            this.samplesNum = new System.Windows.Forms.NumericUpDown();
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.profileToolBar = new System.Windows.Forms.ToolStrip();
             this.unZoomBtn = new System.Windows.Forms.ToolStripButton();
             this.prevZoomBtn = new System.Windows.Forms.ToolStripButton();
             this.PanActivateBtn = new System.Windows.Forms.ToolStripButton();
             this.zoomRectActivateBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.savePrfAsImageBtn = new System.Windows.Forms.ToolStripButton();
             this.setTitleBtn = new System.Windows.Forms.ToolStripButton();
             this.fillBtn = new System.Windows.Forms.ToolStripButton();
+            this.symbolBtn = new System.Windows.Forms.ToolStripComboBox();
             this.closeBtn = new System.Windows.Forms.Button();
             this.addDhmBtn = new System.Windows.Forms.Button();
             this.savePointsBtn = new System.Windows.Forms.Button();
             this.saveLineBtn = new System.Windows.Forms.Button();
-            this.symbolBtn = new System.Windows.Forms.ToolStripComboBox();
             this.statusBar.SuspendLayout();
             this.GraphPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.samplesNum)).BeginInit();
             this.profileToolBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,9 +64,9 @@
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msgLbl,
             this.helpLink});
-            this.statusBar.Location = new System.Drawing.Point(0, 429);
+            this.statusBar.Location = new System.Drawing.Point(0, 475);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(699, 23);
+            this.statusBar.Size = new System.Drawing.Size(715, 23);
             this.statusBar.TabIndex = 0;
             // 
             // msgLbl
@@ -71,7 +76,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(556, 18);
+            this.msgLbl.Size = new System.Drawing.Size(664, 18);
             this.msgLbl.Spring = true;
             // 
             // helpLink
@@ -107,7 +112,7 @@
             this.profileGrp.ScrollMinX = 0D;
             this.profileGrp.ScrollMinY = 0D;
             this.profileGrp.ScrollMinY2 = 0D;
-            this.profileGrp.Size = new System.Drawing.Size(675, 304);
+            this.profileGrp.Size = new System.Drawing.Size(691, 337);
             this.profileGrp.TabIndex = 2;
             this.profileGrp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.profileGrp_MouseMove);
             // 
@@ -116,30 +121,87 @@
             this.GraphPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.GraphPanel.Controls.Add(this.aantalSamplesNum);
+            this.GraphPanel.Controls.Add(this.samplesNum);
+            this.GraphPanel.Controls.Add(this.refreshBtn);
             this.GraphPanel.Controls.Add(this.profileToolBar);
             this.GraphPanel.Controls.Add(this.profileGrp);
             this.GraphPanel.Location = new System.Drawing.Point(12, 48);
             this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(675, 333);
+            this.GraphPanel.Size = new System.Drawing.Size(691, 367);
             this.GraphPanel.TabIndex = 3;
+            // 
+            // aantalSamplesNum
+            // 
+            this.aantalSamplesNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.aantalSamplesNum.AutoSize = true;
+            this.aantalSamplesNum.Location = new System.Drawing.Point(424, 341);
+            this.aantalSamplesNum.Name = "aantalSamplesNum";
+            this.aantalSamplesNum.Size = new System.Drawing.Size(139, 17);
+            this.aantalSamplesNum.TabIndex = 6;
+            this.aantalSamplesNum.Text = "Aantal profielpunten:";
+            // 
+            // samplesNum
+            // 
+            this.samplesNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.samplesNum.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.samplesNum.Location = new System.Drawing.Point(569, 339);
+            this.samplesNum.Maximum = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
+            this.samplesNum.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.samplesNum.Name = "samplesNum";
+            this.samplesNum.Size = new System.Drawing.Size(68, 22);
+            this.samplesNum.TabIndex = 5;
+            this.samplesNum.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.refreshBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refreshBtn.BackgroundImage")));
+            this.refreshBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.refreshBtn.Location = new System.Drawing.Point(643, 339);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(45, 24);
+            this.refreshBtn.TabIndex = 4;
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
             // profileToolBar
             // 
-            this.profileToolBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.profileToolBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.profileToolBar.Dock = System.Windows.Forms.DockStyle.None;
+            this.profileToolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.profileToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unZoomBtn,
             this.prevZoomBtn,
             this.PanActivateBtn,
             this.zoomRectActivateBtn,
+            this.toolStripSeparator1,
             this.savePrfAsImageBtn,
             this.setTitleBtn,
             this.fillBtn,
             this.symbolBtn});
-            this.profileToolBar.Location = new System.Drawing.Point(0, 307);
+            this.profileToolBar.Location = new System.Drawing.Point(0, 337);
             this.profileToolBar.Name = "profileToolBar";
-            this.profileToolBar.Size = new System.Drawing.Size(675, 26);
+            this.profileToolBar.Padding = new System.Windows.Forms.Padding(2);
+            this.profileToolBar.Size = new System.Drawing.Size(296, 30);
             this.profileToolBar.TabIndex = 3;
-            this.profileToolBar.Text = "profileToolbar";
+            this.profileToolBar.Text = "Toolbalk";
             // 
             // unZoomBtn
             // 
@@ -181,6 +243,11 @@
             this.zoomRectActivateBtn.Text = "Zoom naar rechthoek";
             this.zoomRectActivateBtn.Click += new System.EventHandler(this.zoomRectActivateBtn_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
+            // 
             // savePrfAsImageBtn
             // 
             this.savePrfAsImageBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -212,48 +279,6 @@
             this.fillBtn.Text = "Vulkleur";
             this.fillBtn.Click += new System.EventHandler(this.fillBtn_Click);
             // 
-            // closeBtn
-            // 
-            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeBtn.Location = new System.Drawing.Point(578, 387);
-            this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(109, 31);
-            this.closeBtn.TabIndex = 4;
-            this.closeBtn.Text = "Sluiten";
-            this.closeBtn.UseVisualStyleBackColor = true;
-            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
-            // 
-            // addDhmBtn
-            // 
-            this.addDhmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addDhmBtn.Location = new System.Drawing.Point(439, 11);
-            this.addDhmBtn.Name = "addDhmBtn";
-            this.addDhmBtn.Size = new System.Drawing.Size(248, 30);
-            this.addDhmBtn.TabIndex = 5;
-            this.addDhmBtn.Text = "Voeg hoogtemodel toe als laag";
-            this.addDhmBtn.UseVisualStyleBackColor = true;
-            // 
-            // savePointsBtn
-            // 
-            this.savePointsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.savePointsBtn.Location = new System.Drawing.Point(12, 387);
-            this.savePointsBtn.Name = "savePointsBtn";
-            this.savePointsBtn.Size = new System.Drawing.Size(153, 32);
-            this.savePointsBtn.TabIndex = 6;
-            this.savePointsBtn.Text = "Profiellijn opslaan";
-            this.savePointsBtn.UseVisualStyleBackColor = true;
-            // 
-            // saveLineBtn
-            // 
-            this.saveLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveLineBtn.Location = new System.Drawing.Point(171, 387);
-            this.saveLineBtn.Name = "saveLineBtn";
-            this.saveLineBtn.Size = new System.Drawing.Size(178, 32);
-            this.saveLineBtn.TabIndex = 7;
-            this.saveLineBtn.Text = "Profielpunten opslaan";
-            this.saveLineBtn.UseVisualStyleBackColor = true;
-            // 
             // symbolBtn
             // 
             this.symbolBtn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -268,12 +293,55 @@
             this.symbolBtn.ToolTipText = "Symbool";
             this.symbolBtn.SelectedIndexChanged += new System.EventHandler(this.symbolBtn_Click);
             // 
+            // closeBtn
+            // 
+            this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeBtn.Location = new System.Drawing.Point(594, 422);
+            this.closeBtn.Name = "closeBtn";
+            this.closeBtn.Size = new System.Drawing.Size(109, 31);
+            this.closeBtn.TabIndex = 4;
+            this.closeBtn.Text = "Sluiten";
+            this.closeBtn.UseVisualStyleBackColor = true;
+            this.closeBtn.Click += new System.EventHandler(this.closeBtn_Click);
+            // 
+            // addDhmBtn
+            // 
+            this.addDhmBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addDhmBtn.Location = new System.Drawing.Point(455, 11);
+            this.addDhmBtn.Name = "addDhmBtn";
+            this.addDhmBtn.Size = new System.Drawing.Size(248, 30);
+            this.addDhmBtn.TabIndex = 5;
+            this.addDhmBtn.Text = "Voeg hoogtemodel toe als laag";
+            this.addDhmBtn.UseVisualStyleBackColor = true;
+            this.addDhmBtn.Click += new System.EventHandler(this.addDhmBtn_Click);
+            // 
+            // savePointsBtn
+            // 
+            this.savePointsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.savePointsBtn.Location = new System.Drawing.Point(12, 421);
+            this.savePointsBtn.Name = "savePointsBtn";
+            this.savePointsBtn.Size = new System.Drawing.Size(153, 32);
+            this.savePointsBtn.TabIndex = 6;
+            this.savePointsBtn.Text = "Profiellijn opslaan";
+            this.savePointsBtn.UseVisualStyleBackColor = true;
+            // 
+            // saveLineBtn
+            // 
+            this.saveLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveLineBtn.Location = new System.Drawing.Point(171, 421);
+            this.saveLineBtn.Name = "saveLineBtn";
+            this.saveLineBtn.Size = new System.Drawing.Size(178, 32);
+            this.saveLineBtn.TabIndex = 7;
+            this.saveLineBtn.Text = "Profielpunten opslaan";
+            this.saveLineBtn.UseVisualStyleBackColor = true;
+            // 
             // elevationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeBtn;
-            this.ClientSize = new System.Drawing.Size(699, 452);
+            this.ClientSize = new System.Drawing.Size(715, 498);
             this.Controls.Add(this.saveLineBtn);
             this.Controls.Add(this.savePointsBtn);
             this.Controls.Add(this.addDhmBtn);
@@ -289,6 +357,7 @@
             this.statusBar.PerformLayout();
             this.GraphPanel.ResumeLayout(false);
             this.GraphPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.samplesNum)).EndInit();
             this.profileToolBar.ResumeLayout(false);
             this.profileToolBar.PerformLayout();
             this.ResumeLayout(false);
@@ -317,5 +386,9 @@
         private System.Windows.Forms.Button savePointsBtn;
         private System.Windows.Forms.Button saveLineBtn;
         private System.Windows.Forms.ToolStripComboBox symbolBtn;
+        private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.NumericUpDown samplesNum;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Label aantalSamplesNum;
     }
 }

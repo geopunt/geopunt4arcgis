@@ -179,7 +179,7 @@
     <Compile Include="Commands\geopuntBatchGeocodingTool.cs" />
     <Compile Include="Commands\geopuntMetaCatalogCmd.cs" />
     <Compile Include="Commands\geopuntElevationTool.cs" />
-    <Compile Include="geopuntElevationCmd.cs" />
+    <Compile Include="Commands\geopuntElevationCmd.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

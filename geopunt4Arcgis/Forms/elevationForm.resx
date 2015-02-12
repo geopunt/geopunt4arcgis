@@ -120,10 +120,21 @@
   <metadata name="statusBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="refreshBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAYAAAARfGZ1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAABHAAAARwAT0+7lwAAAABYktHRACIBR1IAAAAB3RJTUUH3gcVByURtgtK0gAAAQJJ
+        REFUSEu1VIsRhSAMYyd2Yid2cqf3SNpqRZTqHfF6fmjTNKgpglzyTy8XoKRF5CCuLfoGmKY9y1XO3wQY
+        uTYAGaJsxQXu5fmrJixoxELgCUchuaEG3MgBce0OvyYNWkyhllzI9Ww2mFWIuPobcpLegGtR8ozErsET
+        OdHypzkGeq/jU9VEGfKYm6fyr2DNrI7rqz5tIX+vPASKDoz32brd/DsgSTeReWwWtJIFKH4Aco73XPL5
+        ik4nUmVP6s/kR4MwOQpAYsHxldQ+9/fkAEnO6vyPCYdf260Jee/Un0lGocSYLozdhusU3iraEbakB4q0
+        kVx3Cq3BJ/IIlhE3xDYypT82hptAIi1FmwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="profileToolBar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>129, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="unZoomBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

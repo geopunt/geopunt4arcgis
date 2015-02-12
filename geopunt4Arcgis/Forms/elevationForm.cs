@@ -28,8 +28,11 @@ namespace geopunt4Arcgis
         ISpatialReference lam72;
         IFeatureClass pointsFC;
         IFeatureClass lineFC;
+        IPolyline polyLineLam72 = null;
         IElement lineGrapic;
         IElement pntGrapic;
+
+        dataHandler.dhm dhm;    
 
         ESRI.ArcGIS.Framework.ICommandItem oldCmd = null;
         ESRI.ArcGIS.Framework.ICommandItem mouseCmd = null;
@@ -43,10 +46,12 @@ namespace geopunt4Arcgis
         TextObj hlabel;
         double maxH;
         double minH;
+        double maxD;
 
         public elevationForm()
         {
             //set global objects
+            dhm = new dataHandler.dhm();
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
 
@@ -78,7 +83,6 @@ namespace geopunt4Arcgis
             grpCurve = profileGrp.GraphPane.AddCurve("", profileLine, Color.FromArgb(0,0,0,0), SymbolType.XCross);
             grpCurve.Symbol.Border.Color = Color.Black;
             grpCurve.Line.Fill = new Fill(Color.FromArgb(100, 227, 185, 113));
-            grpCurve.Line.IsSmooth = true;
 
             profileGrp.GraphPane.Y2Axis.MajorGrid.IsZeroLine = false;
             userClickCurve = profileGrp.GraphPane.AddCurve("", userClickrList, Color.Blue, SymbolType.None);
@@ -94,17 +98,25 @@ namespace geopunt4Arcgis
             symbolBtn.SelectedIndex = 0;
         }
 
-        public void setData(IPolyline profileLineGeom, List<List<double>> data )
+        public void getData(IPolyline profileLineGeom)
         {
-            profileData = data;
+            polyLineLam72 = (IPolyline)geopuntHelper.Transform((IGeometry)profileLineGeom, lam72);
+
+            int samplesCount = (int) samplesNum.Value;
+            datacontract.geojsonLine gjs = geopuntHelper.esri2geojsonLine(polyLineLam72);
+            profileData = dhm.getDataAlongLine(gjs, samplesCount, dataHandler.CRS.Lambert72);
+
             ArcMap.Application.CurrentTool = oldCmd;
+
             this.WindowState = FormWindowState.Normal;
 
-            maxH = data.Select(c => c[3]).Max();
-            minH = data.Where(c => c[3] > -999 ).Select(c => c[3]).Min();
+            maxH = profileData.Select(c => c[3]).Max();
+            minH = profileData.Where(c => c[3] > -999).Select(c => c[3]).Min();
+            maxD = profileData.Select(c => c[0]).Max();
             profileGrp.GraphPane.YAxis.Scale.Max = maxH;
             profileGrp.GraphPane.YAxis.Scale.Min = minH;
-
+            profileGrp.GraphPane.XAxis.Scale.Max = maxD;
+            
             addLineGrapic(profileLineGeom);
             createGraph(profileData);
         }
@@ -123,6 +135,7 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "event handlers"
+
         private void drawbtn_Click(object sender, EventArgs e)
         {
             if (mouseCmd == null)  return;
@@ -188,6 +201,13 @@ namespace geopunt4Arcgis
         private void closeBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            if (polyLineLam72 == null) return;
+            this.getData(polyLineLam72);
+            profileGrp.Refresh();
         }
 
         private void helpLink_Click(object sender, EventArgs e)
@@ -272,6 +292,11 @@ namespace geopunt4Arcgis
                     break;
             }
         }
+
+        private void addDhmBtn_Click(object sender, EventArgs e)
+        {
+            geopuntHelper.addWMS2map(view.FocusMap, "http://geo.agiv.be/inspire/wms/hoogte?");
+        }
         #endregion
 
         #region "private functions"
@@ -281,11 +306,13 @@ namespace geopunt4Arcgis
             if (lineGrapic == null) return;
             try
             {
-                IPolyline4 geom = (IPolyline4) lineGrapic.Geometry;
+                IPolyline4 geom = (IPolyline4) polyLineLam72;
                 IPoint pnt = new PointClass();
                 geom.QueryPoint(esriSegmentExtension.esriNoExtension, dist, false, pnt);
                 //check if null
                 if (pnt == null) return;
+
+                IGeometry mapPnt = geopuntHelper.Transform((IGeometry)pnt, map.SpatialReference);
 
                 IRgbColor rgb = new RgbColorClass() { Blue= 255 };
                 IRgbColor black = new RgbColorClass() { Blue= 0, Green= 0, Red= 0 };
@@ -295,7 +322,7 @@ namespace geopunt4Arcgis
                     graphicsContainer.DeleteElement(pntGrapic);
                     pntGrapic = null;
                 }
-                pntGrapic = geopuntHelper.AddGraphicToMap(view.FocusMap, (IGeometry)pnt, rgb, black, 6, true);
+                pntGrapic = geopuntHelper.AddGraphicToMap(map, mapPnt, rgb, black, 6, true);
                 view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
             }
             catch (Exception ex)

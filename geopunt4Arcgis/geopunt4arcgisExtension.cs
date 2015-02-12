@@ -18,7 +18,7 @@ namespace geopunt4Arcgis
         public IFeatureClass profileLineLayer = null;
         public IFeatureClass profilePointsLayer = null;
 
-        public int profileCounter = 0; 
+        public int profileCounter = 0;
 
         public zoekAdresForm zoekAdresDlg = null;
         public reverseZoekForm reverseDlg = null;

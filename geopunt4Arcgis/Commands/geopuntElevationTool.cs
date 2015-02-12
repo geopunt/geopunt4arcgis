@@ -15,28 +15,13 @@ namespace geopunt4Arcgis
     {
         IActiveView view;
         geopunt4arcgisExtension gpExtension;
-
-        ISpatialReferenceFactory spatialReferenceFactory;
-        ISpatialReference lam72;
         IPolyline polyline;
-        IElement grp;
-
         elevationForm dlg;
-
-        dataHandler.dhm dhm;
 
         public geopuntElevationTool()
         {
             view = ArcMap.Document.ActiveView;
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
-            
-            //CRS
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
-            lam72 = spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
-
-            dhm = new dataHandler.dhm();
         }
 
         protected override void  OnMouseDown(ESRI.ArcGIS.Desktop.AddIns.Tool.MouseEventArgs arg)
@@ -53,12 +38,7 @@ namespace geopunt4Arcgis
                 //Get the polyline object from the users mouse clicks
                 polyline = geopuntHelper.GetPolylineFromMouseClicks(view);
 
-                IPolyline polyLine72 = (IPolyline)geopuntHelper.Transform((IGeometry)polyline , lam72);
-
-                datacontract.geojsonLine gjs = geopuntHelper.esri2geojsonLine(polyLine72);
-                List<List<double>> prf = dhm.getDataAlongLine(gjs, 50, dataHandler.CRS.Lambert72);
-
-                dlg.setData(polyline, prf);
+                dlg.getData(polyline);
             }
             catch (Exception ex)
             {
@@ -68,11 +48,6 @@ namespace geopunt4Arcgis
             {
                 base.OnMouseDown(arg);
             }
-        }
-
-        protected override bool OnDeactivate()
-        {
-            return base.OnDeactivate();
         }
     
     }
