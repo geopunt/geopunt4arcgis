@@ -28,6 +28,8 @@ namespace geopunt4Arcgis
         ISpatialReference lam72;
         IFeatureClass pointsFC;
         IFeatureClass lineFC;
+        IElement lineGrapic;
+        IElement pntGrapic;
 
         ESRI.ArcGIS.Framework.ICommandItem oldCmd = null;
         ESRI.ArcGIS.Framework.ICommandItem mouseCmd = null;
@@ -35,8 +37,12 @@ namespace geopunt4Arcgis
         geopunt4arcgisExtension gpExtension;
         List<List<double>> profileData;
         LineItem grpCurve;
+        LineItem userClickCurve;
         PointPairList profileLine;
-        IElement grapic;
+        PointPairList userClickrList;
+        TextObj hlabel;
+        double maxH;
+        double minH;
 
         public elevationForm()
         {
@@ -67,10 +73,15 @@ namespace geopunt4Arcgis
         {
             //the GraphPane
             profileLine = new PointPairList();
+            userClickrList = new PointPairList();
             grpCurve = profileGrp.GraphPane.AddCurve("Profiel", profileLine, Color.Red, SymbolType.Diamond);
+            userClickCurve = profileGrp.GraphPane.AddCurve(" ", userClickrList, Color.Blue, SymbolType.None);
             profileGrp.GraphPane.Legend.IsVisible = false;
             profileGrp.GraphPane.XAxis.Title.Text = "Afstand (m)";
             profileGrp.GraphPane.YAxis.Title.Text = "Hoogte (m)";
+
+            hlabel = new TextObj() { ZOrder = ZOrder.A_InFront };
+            profileGrp.GraphPane.GraphObjList.Add(hlabel);
         }
 
         public void setData(IPolyline profileLineGeom, List<List<double>> data )
@@ -79,25 +90,13 @@ namespace geopunt4Arcgis
             ArcMap.Application.CurrentTool = oldCmd;
             this.WindowState = FormWindowState.Normal;
 
+            maxH = data.Select(c => c[3]).Max();
+            minH = data.Where(c => c[3] > -998 ).Select(c => c[3]).Min();
+            profileGrp.GraphPane.YAxis.Scale.Max = maxH;
+            profileGrp.GraphPane.YAxis.Scale.Min = minH;
+
             addLineGrapic(profileLineGeom);
             createGraph(profileData);
-        }
-
-        public void createGraph( List<List<double>> data )
-        {
-            // Set the Titles
-            profileGrp.GraphPane.Title.Text = "Hoogte Profiel 1";
-
-            // Make up some data arrays based on the Sine function
-            profileLine.Clear();
-            foreach (List<double> rec in data)
-            {
-                double x = rec[0];
-                double h = rec[3];
-                profileLine.Add(x, h);
-            }
-            // Tell the graph to refigure the axes since the data have changed
-            profileGrp.AxisChange();
         }
 
         #region "overrides"
@@ -114,7 +113,6 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "event handlers"
-
         private void drawbtn_Click(object sender, EventArgs e)
         {
             if (mouseCmd == null)  return;
@@ -125,6 +123,77 @@ namespace geopunt4Arcgis
             ArcMap.Application.CurrentTool = mouseCmd;
         }
 
+        private void profileGrp_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                int index = 0;
+                CurveItem nearestobject = null;
+                PointF clickedPoint = new PointF(e.X, e.Y);
+                profileGrp.GraphPane.FindNearestPoint(clickedPoint, grpCurve, out nearestobject, out index);
+
+                if (nearestobject == null)
+                {
+                    userClickCurve.IsVisible = false;
+                    hlabel.IsVisible = false;
+                    profileGrp.Refresh();
+                    if (pntGrapic != null)
+                    {
+                        IGraphicsContainer graphicsContainer = (IGraphicsContainer)map;
+                        graphicsContainer.DeleteElement(pntGrapic);
+                        pntGrapic = null;
+                        view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+                    }
+                    msgLbl.Text = "";
+                    return;
+                }
+                double x = nearestobject.Points[index].X;
+                double h = nearestobject.Points[index].Y;
+
+                userClickCurve.IsVisible = true;
+                hlabel.IsVisible = true;
+
+                //set the label
+                hlabel.Text = h.ToString("f2");
+                hlabel.Location.X = x;
+                hlabel.Location.Y = h;
+                hlabel.FontSpec.Fill = new Fill(Color.Azure);
+                //draw the line
+                userClickrList.Clear();
+                userClickrList.Add(x, h);
+                userClickrList.Add(x, profileGrp.GraphPane.YAxis.Scale.Min);
+
+                interpolateLineAndAddPoint(x);
+
+                profileGrp.Refresh();
+
+                msgLbl.Text = string.Format("Afstand: {0:0.00} m, Hoogte: {1:0.00} m", x, h);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " : " + ex.StackTrace);
+            }
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void setTitleBtn_Click(object sender, EventArgs e)
+        {
+            string title = inputForm.showInputDlg("Geef de titel van dit profiel op:", this);
+            if (title == null) return;
+            profileGrp.GraphPane.Title.Text = title;
+            profileGrp.Refresh();
+        }
+
+        private void savePrfAsImageBtn_Click(object sender, EventArgs e)
+        {
+            string prfPicName = profileGrp.GraphPane.Title.Text + ".png";
+            profileGrp.SaveAs(prfPicName);
+        }
+
         private void helpLink_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel");
@@ -132,24 +201,80 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "private functions"
+
+        private void interpolateLineAndAddPoint(double dist)
+        {
+            if (lineGrapic == null) return;
+            try
+            {
+                IPolyline4 geom = (IPolyline4) lineGrapic.Geometry;
+                IPoint pnt = new PointClass();
+                geom.QueryPoint(esriSegmentExtension.esriNoExtension, dist, false, pnt);
+                //check if null
+                if (pnt == null) return;
+
+                IRgbColor rgb = new RgbColorClass() { Blue= 255 };
+                IRgbColor black = new RgbColorClass() { Blue= 0, Green= 0, Red= 0 };
+                if (pntGrapic != null)
+                {
+                    IGraphicsContainer graphicsContainer = (IGraphicsContainer)map;
+                    graphicsContainer.DeleteElement(pntGrapic);
+                    pntGrapic = null;
+                }
+                pntGrapic = geopuntHelper.AddGraphicToMap(view.FocusMap, (IGeometry)pnt, rgb, black, 6, true);
+                view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message + " : " + ex.StackTrace );
+            }
+
+        }
+        
         private void addLineGrapic(IPolyline line)
         {
             IGeometry geom = (IGeometry)line;
             IRgbColor rgb = new RgbColorClass() { Red = 255 };
             clearGraphics();
-            grapic = (IElement)geopuntHelper.AddGraphicToMap(view.FocusMap, geom, rgb, rgb, 2, true);
+            lineGrapic = (IElement)geopuntHelper.AddGraphicToMap(view.FocusMap, geom, rgb, rgb, 2, true);
             view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+        }
+
+        private void createGraph(List<List<double>> data)
+        {
+            // Set the Title
+            gpExtension.profileCounter += 1;
+            profileGrp.GraphPane.Title.Text = string.Format("Hoogte Profiel {0}", gpExtension.profileCounter);
+
+            // Make the data array
+            profileLine.Clear();
+            foreach (List<double> rec in data)
+            {
+                double x = rec[0];
+                double h = rec[3];
+                profileLine.Add(x, h);
+            }
+            // Tell the graph to refigure the axes since the data have changed
+            profileGrp.AxisChange();
         }
 
         private void clearGraphics()
         {
             IGraphicsContainer graphicsContainer = (IGraphicsContainer)map;
 
-            if (grapic == null) return;
+            if (lineGrapic == null && pntGrapic == null) return;
             try
             {
-                graphicsContainer.DeleteElement(grapic);
-                grapic = null;
+                if (lineGrapic != null)
+                {
+                    graphicsContainer.DeleteElement(lineGrapic);
+                    lineGrapic = null;
+                }
+                if (pntGrapic != null)
+                {
+                    graphicsContainer.DeleteElement(pntGrapic);
+                    pntGrapic = null;
+                }
             }
             catch (Exception)
             {
@@ -157,6 +282,34 @@ namespace geopunt4Arcgis
             }
         }
         #endregion
+
+        private void unZoomBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.ZoomOutAll( profileGrp.GraphPane );
+        }
+
+        private void zoomRectActivateBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.ZoomModifierKeys = Keys.None;
+            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.PanModifierKeys = Keys.Control;
+        }
+
+        private void PanActivateBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.PanModifierKeys = Keys.None;
+            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.ZoomModifierKeys = Keys.Control;
+        }
+
+        private void prevZoomBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.ZoomOut(profileGrp.GraphPane);
+        }
+
+
 
     }
 }
