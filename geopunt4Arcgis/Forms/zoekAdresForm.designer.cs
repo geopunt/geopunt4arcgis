@@ -793,7 +793,6 @@
             this.gemeenteBox.Name = "gemeenteBox";
             this.gemeenteBox.Size = new System.Drawing.Size(160, 24);
             this.gemeenteBox.TabIndex = 5;
-            this.gemeenteBox.Text = "Antwerpen";
             this.gemeenteBox.SelectedIndexChanged += new System.EventHandler(this.gemeenteBox_SelectedIndexChanged);
             // 
             // closeBtn

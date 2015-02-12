@@ -74,14 +74,24 @@ namespace geopunt4Arcgis
             //the GraphPane
             profileLine = new PointPairList();
             userClickrList = new PointPairList();
-            grpCurve = profileGrp.GraphPane.AddCurve("Profiel", profileLine, Color.Red, SymbolType.Diamond);
-            userClickCurve = profileGrp.GraphPane.AddCurve(" ", userClickrList, Color.Blue, SymbolType.None);
+
+            grpCurve = profileGrp.GraphPane.AddCurve("", profileLine, Color.FromArgb(0,0,0,0), SymbolType.XCross);
+            grpCurve.Symbol.Border.Color = Color.Black;
+            grpCurve.Line.Fill = new Fill(Color.FromArgb(100, 227, 185, 113));
+            grpCurve.Line.IsSmooth = true;
+
+            profileGrp.GraphPane.Y2Axis.MajorGrid.IsZeroLine = false;
+            userClickCurve = profileGrp.GraphPane.AddCurve("", userClickrList, Color.Blue, SymbolType.None);
+ 
             profileGrp.GraphPane.Legend.IsVisible = false;
+            profileGrp.GraphPane.Title.Text = "Profiel Titel";
             profileGrp.GraphPane.XAxis.Title.Text = "Afstand (m)";
             profileGrp.GraphPane.YAxis.Title.Text = "Hoogte (m)";
 
             hlabel = new TextObj() { ZOrder = ZOrder.A_InFront };
             profileGrp.GraphPane.GraphObjList.Add(hlabel);
+
+            symbolBtn.SelectedIndex = 0;
         }
 
         public void setData(IPolyline profileLineGeom, List<List<double>> data )
@@ -91,7 +101,7 @@ namespace geopunt4Arcgis
             this.WindowState = FormWindowState.Normal;
 
             maxH = data.Select(c => c[3]).Max();
-            minH = data.Where(c => c[3] > -998 ).Select(c => c[3]).Min();
+            minH = data.Where(c => c[3] > -999 ).Select(c => c[3]).Min();
             profileGrp.GraphPane.YAxis.Scale.Max = maxH;
             profileGrp.GraphPane.YAxis.Scale.Min = minH;
 
@@ -180,6 +190,11 @@ namespace geopunt4Arcgis
             this.Close();
         }
 
+        private void helpLink_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel");
+        }
+        //toolbar
         private void setTitleBtn_Click(object sender, EventArgs e)
         {
             string title = inputForm.showInputDlg("Geef de titel van dit profiel op:", this);
@@ -194,9 +209,68 @@ namespace geopunt4Arcgis
             profileGrp.SaveAs(prfPicName);
         }
 
-        private void helpLink_Click(object sender, EventArgs e)
+        private void unZoomBtn_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel");
+            profileGrp.ZoomOutAll(profileGrp.GraphPane);
+        }
+
+        private void zoomRectActivateBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.ZoomModifierKeys = Keys.None;
+            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.PanModifierKeys = Keys.Control;
+        }
+
+        private void PanActivateBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.PanModifierKeys = Keys.None;
+            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
+            profileGrp.ZoomModifierKeys = Keys.Control;
+        }
+
+        private void prevZoomBtn_Click(object sender, EventArgs e)
+        {
+            profileGrp.ZoomOut(profileGrp.GraphPane);
+        }
+
+        private void fillBtn_Click(object sender, EventArgs e)
+        {
+            Color clr = grpCurve.Line.Fill.Color;
+            ColorDialog cDlg = new ColorDialog();
+            cDlg.Color = Color.FromArgb(255, clr);
+            cDlg.ShowDialog(this);
+            grpCurve.Line.Fill.Color = Color.FromArgb(100, cDlg.Color.R, cDlg.Color.G, cDlg.Color.B);
+        }
+
+        private void symbolBtn_Click(object sender, EventArgs e)
+        {
+            switch (symbolBtn.Text)
+            {
+                case "Diamant":
+                    grpCurve.Symbol.Type = SymbolType.Diamond;
+                    profileGrp.Refresh();
+                    break;
+                case "Kruisje":
+                    grpCurve.Symbol.Type = SymbolType.XCross;
+                    profileGrp.Refresh();
+                    break;
+                case "Cirkel":
+                    grpCurve.Symbol.Type = SymbolType.Circle;
+                    profileGrp.Refresh();
+                    break;
+                case "Driehoek":
+                    grpCurve.Symbol.Type = SymbolType.Triangle;
+                    profileGrp.Refresh();
+                    break;
+                case "Geen symbool":
+                    grpCurve.Symbol.Type = SymbolType.None;
+                    profileGrp.Refresh();
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 
@@ -282,34 +356,6 @@ namespace geopunt4Arcgis
             }
         }
         #endregion
-
-        private void unZoomBtn_Click(object sender, EventArgs e)
-        {
-            profileGrp.ZoomOutAll( profileGrp.GraphPane );
-        }
-
-        private void zoomRectActivateBtn_Click(object sender, EventArgs e)
-        {
-            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            profileGrp.ZoomModifierKeys = Keys.None;
-            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            profileGrp.PanModifierKeys = Keys.Control;
-        }
-
-        private void PanActivateBtn_Click(object sender, EventArgs e)
-        {
-            profileGrp.PanButtons = System.Windows.Forms.MouseButtons.Left;
-            profileGrp.PanModifierKeys = Keys.None;
-            profileGrp.ZoomButtons = System.Windows.Forms.MouseButtons.Left;
-            profileGrp.ZoomModifierKeys = Keys.Control;
-        }
-
-        private void prevZoomBtn_Click(object sender, EventArgs e)
-        {
-            profileGrp.ZoomOut(profileGrp.GraphPane);
-        }
-
-
 
     }
 }
