@@ -909,7 +909,7 @@ namespace geopunt4Arcgis
         /// <summary>Add a WMS to the map</summary>
         /// <param name="map">The map to add the wms to</param>
         /// <param name="WMSurl">the url point to the WMS</param>
-        public static void addWMS2map(IMap map, string WMSurl ) 
+        public static void addWMS2map(IMap map, string WMSurl, short transparency = 0) 
         {
 
             IWMSGroupLayer wmsLayerGroup = new WMSMapLayerClass();
@@ -950,6 +950,9 @@ namespace geopunt4Arcgis
             wmsLayerGroup.Expanded = true;
             lyr = (ILayer)wmsLayerGroup;
             lyr.Name = serviceDesc.WMSTitle;
+
+            ILayerEffects layerEffects = (ILayerEffects)lyr;
+            layerEffects.Transparency = transparency < 100 ? transparency : (short)100;
 
             map.AddLayer(lyr);
             view = (IActiveView)map;
@@ -1110,6 +1113,10 @@ namespace geopunt4Arcgis
                     lyr.Visible = true;
                     makeCompositeLayersVisibile(lyr);
                 }
+            }
+            else
+            {
+                layer.Visible = true;
             }
         }
         #endregion

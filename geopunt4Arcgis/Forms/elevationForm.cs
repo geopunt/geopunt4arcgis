@@ -109,6 +109,7 @@ namespace geopunt4Arcgis
             ArcMap.Application.CurrentTool = oldCmd;
 
             this.WindowState = FormWindowState.Normal;
+            this.Focus();
 
             maxH = profileData.Select(c => c[3]).Max();
             minH = profileData.Where(c => c[3] > -999).Select(c => c[3]).Min();
@@ -117,8 +118,8 @@ namespace geopunt4Arcgis
             profileGrp.GraphPane.YAxis.Scale.Min = minH;
             profileGrp.GraphPane.XAxis.Scale.Max = maxD;
             
-            addLineGrapic(profileLineGeom);
-            createGraph(profileData);
+            addLineGrapic();
+            createGraph();
         }
 
         #region "overrides"
@@ -135,7 +136,6 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "event handlers"
-
         private void drawbtn_Click(object sender, EventArgs e)
         {
             if (mouseCmd == null)  return;
@@ -295,7 +295,7 @@ namespace geopunt4Arcgis
 
         private void addDhmBtn_Click(object sender, EventArgs e)
         {
-            geopuntHelper.addWMS2map(view.FocusMap, "http://geo.agiv.be/inspire/wms/hoogte?");
+            geopuntHelper.addWMS2map(view.FocusMap, "http://geo.agiv.be/inspire/wms/hoogte?", 40);
         }
         #endregion
 
@@ -332,24 +332,35 @@ namespace geopunt4Arcgis
 
         }
         
-        private void addLineGrapic(IPolyline line)
+        private void addLineGrapic()
         {
-            IGeometry geom = (IGeometry)line;
-            IRgbColor rgb = new RgbColorClass() { Red = 255 };
-            clearGraphics();
-            lineGrapic = (IElement)geopuntHelper.AddGraphicToMap(view.FocusMap, geom, rgb, rgb, 2, true);
-            view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+            try
+            {
+                clearGraphics();
+                IGeometry lineLam72 = (IGeometry)polyLineLam72;
+                IGeometry mapLine = geopuntHelper.Transform(lineLam72, map.SpatialReference);
+
+                IRgbColor rgb = new RgbColorClass() { Red = 255 };
+                lineGrapic = (IElement)geopuntHelper.AddGraphicToMap(view.FocusMap, mapLine, rgb, rgb, 2, true);
+                view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message + " : " + ex.StackTrace );
+            }
         }
 
-        private void createGraph(List<List<double>> data)
+        private void createGraph()
         {
+            if (profileData == null) return;
+
             // Set the Title
             gpExtension.profileCounter += 1;
             profileGrp.GraphPane.Title.Text = string.Format("Hoogte Profiel {0}", gpExtension.profileCounter);
 
             // Make the data array
             profileLine.Clear();
-            foreach (List<double> rec in data)
+            foreach (List<double> rec in profileData)
             {
                 double x = rec[0];
                 double h = rec[3];
