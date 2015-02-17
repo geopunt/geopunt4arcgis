@@ -251,7 +251,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\geopuntReverseCmd.cs" />
+    <Compile Include="Commands\geopuntReverseTool.cs" />
     <AddInContent Include="Images\geopuntReverse.cur" />
   </ItemGroup>
   <ItemGroup>

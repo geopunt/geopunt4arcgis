@@ -310,9 +310,8 @@ namespace geopunt4Arcgis
             if (adres.Length > 254) adres = adres.Substring(0, 254);
 
             int adresIdx = adresFC.FindField("adres");
-            int adresTypeIdx = adresFC.FindField("adresType");
-
             feature.set_Value(adresIdx, adres);
+            int adresTypeIdx = adresFC.FindField("adresType");
             feature.set_Value(adresTypeIdx, adresType);
 
             feature.Store();
@@ -333,14 +332,14 @@ namespace geopunt4Arcgis
             }
             //get the adres XY, return if no result
             datacontract.locationResult loc = getAdres(searchString);
-            if (loc == null) { return; }
+            if (loc == null) return; 
             //if no adres feature class yet, create it.
             if (adresFC == null)
             {
                 this.Visible = false;
                 string fcPath = geopuntHelper.ShowSaveDataDialog("Save as ..");
                 this.Visible = true;
-                if (fcPath == null) { return; }
+                if (fcPath == null) return;
                 createAdresFeatureClass(fcPath, map.SpatialReference);
             }
             //reproject the point

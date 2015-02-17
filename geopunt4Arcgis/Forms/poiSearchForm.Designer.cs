@@ -204,12 +204,12 @@
             // keywordLbl
             // 
             this.keywordLbl.AutoSize = true;
-            this.keywordLbl.Location = new System.Drawing.Point(13, 182);
+            this.keywordLbl.Location = new System.Drawing.Point(36, 185);
             this.keywordLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.keywordLbl.Name = "keywordLbl";
-            this.keywordLbl.Size = new System.Drawing.Size(93, 17);
+            this.keywordLbl.Size = new System.Drawing.Size(72, 17);
             this.keywordLbl.TabIndex = 12;
-            this.keywordLbl.Text = "Sleutelwoord:";
+            this.keywordLbl.Text = "Zoekterm:";
             // 
             // cancelBtn
             // 

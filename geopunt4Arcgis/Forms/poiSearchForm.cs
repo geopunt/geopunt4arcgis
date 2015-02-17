@@ -62,7 +62,9 @@ namespace geopunt4Arcgis
             dataHandler.capakey capa = new dataHandler.capakey();
 
             municipalities = capa.getMunicipalities();
-            List<string> cities = (from datacontract.municipality t in municipalities.municipalities select t.municipalityName).ToList(); 
+            List<string> cities = (from datacontract.municipality t in municipalities.municipalities 
+                                   orderby t.municipalityName 
+                                   select t.municipalityName).ToList(); 
             cities.Insert(0, "");
             gemeenteCbx.DataSource = cities;
 
@@ -175,7 +177,7 @@ namespace geopunt4Arcgis
                 string themeCode = theme2code(theme);
 
                 datacontract.poiCategories qry = poiDH.listCategories(themeCode);
-                List<string> categoriesList = (from n in qry.categories select n.value).ToList<string>();
+                List<string> categoriesList = (from n in qry.categories orderby n.value select n.value).ToList<string>();
                 categoriesList.Insert(0, "");
                 categoryCbx.Items.Clear();
                 typeCbx.Items.Clear();
@@ -203,7 +205,7 @@ namespace geopunt4Arcgis
                 string catCode = cat2code(cat);
 
                 datacontract.poiCategories qry = poiDH.listPOItypes(themeCode, catCode);
-                List<string> poiTypeList = (from n in qry.categories select n.value).ToList<string>();
+                List<string> poiTypeList = (from n in qry.categories orderby n.value select n.value).ToList<string>();
                 poiTypeList.Insert(0, "");
 
                 typeCbx.Items.Clear();
@@ -501,11 +503,11 @@ namespace geopunt4Arcgis
 
         private void populateFilters()
         {
-            List<string> themeList = (from n in themes select n.value).ToList<string>();
+            List<string> themeList = (from n in themes orderby n.value select n.value).ToList<string>();
             themeList.Insert(0, "");
-            List<string> categoriesList = (from n in categories select n.value).ToList<string>();
+            List<string> categoriesList = (from n in categories orderby n.value select n.value).ToList<string>();
             categoriesList.Insert(0, "");
-            List<string> poiTypeList = (from n in poiTypes select n.value).ToList<string>();
+            List<string> poiTypeList = (from n in poiTypes orderby n.value select n.value).ToList<string>();
             poiTypeList.Insert(0, "");
 
             themeCbx.Items.Clear();

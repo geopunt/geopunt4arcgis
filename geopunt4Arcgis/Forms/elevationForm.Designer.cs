@@ -321,20 +321,22 @@
             this.savePointsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.savePointsBtn.Location = new System.Drawing.Point(12, 421);
             this.savePointsBtn.Name = "savePointsBtn";
-            this.savePointsBtn.Size = new System.Drawing.Size(153, 32);
+            this.savePointsBtn.Size = new System.Drawing.Size(183, 32);
             this.savePointsBtn.TabIndex = 6;
-            this.savePointsBtn.Text = "Profiellijn opslaan";
+            this.savePointsBtn.Text = "Profielpunten opslaan";
             this.savePointsBtn.UseVisualStyleBackColor = true;
+            this.savePointsBtn.Click += new System.EventHandler(this.savePointsBtn_Click);
             // 
             // saveLineBtn
             // 
             this.saveLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveLineBtn.Location = new System.Drawing.Point(171, 421);
+            this.saveLineBtn.Location = new System.Drawing.Point(201, 421);
             this.saveLineBtn.Name = "saveLineBtn";
             this.saveLineBtn.Size = new System.Drawing.Size(178, 32);
             this.saveLineBtn.TabIndex = 7;
-            this.saveLineBtn.Text = "Profielpunten opslaan";
+            this.saveLineBtn.Text = "Profiellijn opslaan";
             this.saveLineBtn.UseVisualStyleBackColor = true;
+            this.saveLineBtn.Click += new System.EventHandler(this.saveLineBtn_Click);
             // 
             // elevationForm
             // 

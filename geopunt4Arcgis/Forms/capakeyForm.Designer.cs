@@ -240,6 +240,7 @@
             // add2mapBtn
             // 
             this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.add2mapBtn.Enabled = false;
             this.add2mapBtn.Location = new System.Drawing.Point(267, 215);
             this.add2mapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.add2mapBtn.Name = "add2mapBtn";
@@ -252,6 +253,7 @@
             // addMarkerBtn
             // 
             this.addMarkerBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addMarkerBtn.Enabled = false;
             this.addMarkerBtn.Location = new System.Drawing.Point(375, 215);
             this.addMarkerBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addMarkerBtn.Name = "addMarkerBtn";

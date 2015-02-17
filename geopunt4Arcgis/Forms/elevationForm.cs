@@ -9,13 +9,13 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Catalog;
-
 using ZedGraph;
 
 namespace geopunt4Arcgis
@@ -214,6 +214,62 @@ namespace geopunt4Arcgis
         {
             System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel");
         }
+
+        private void savePointsBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (profileData == null) return;
+
+                if (pointsFC == null)
+                {
+                    this.Visible = false;
+                    string fcPath = geopuntHelper.ShowSaveDataDialog("Save as ...");
+                    this.Visible = true;
+
+                    if (fcPath == null) return;
+
+                    createFeatureClass(fcPath, map.SpatialReference, esriGeometryType.esriGeometryPoint);
+                }
+                string prfName = profileGrp.GraphPane.Title.Text;
+
+                addValuesToPointsFC(prfName);
+                view.Refresh();
+                msgLbl.Text = string.Format("{0} is opgeslagen naar {1}", prfName, pointsFC.AliasName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            }
+        }
+
+        private void saveLineBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (polyLineLam72 == null) return;
+
+                if (lineFC == null)
+                {
+                    this.Visible = false;
+                    string fcPath = geopuntHelper.ShowSaveDataDialog("Save as ...");
+                    this.Visible = true;
+
+                    if (fcPath == null) return;
+
+                    createFeatureClass(fcPath, map.SpatialReference, esriGeometryType.esriGeometryPolyline);
+                }
+                string prfName = profileGrp.GraphPane.Title.Text;
+
+                addValuesToLineFC(prfName);
+                view.Refresh();
+                msgLbl.Text = string.Format("{0} is opgeslagen naar {1}", prfName, lineFC.AliasName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            }
+        }
         //toolbar
         private void setTitleBtn_Click(object sender, EventArgs e)
         {
@@ -393,7 +449,106 @@ namespace geopunt4Arcgis
                 Console.Write("Element was already deleted");
             }
         }
-        #endregion
 
+        private void createFeatureClass(string fcPath, ISpatialReference srs, esriGeometryType geomType)
+        {
+            List<IField> attr = new List<IField>();
+            attr.Add(geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 255));
+            if (geomType == esriGeometryType.esriGeometryPoint)
+            {
+                attr.Add(geopuntHelper.createField("Afstand", esriFieldType.esriFieldTypeDouble));
+                attr.Add(geopuntHelper.createField("Hoogte", esriFieldType.esriFieldTypeDouble));
+            }
+            FileInfo fcInfo = new FileInfo(fcPath);
+
+            IFeatureClass lyr = null;
+            if (fcInfo.Extension == ".shp")
+            {
+                lyr = geopuntHelper.createShapeFile(fcInfo.FullName, attr, map.SpatialReference, geomType, true);
+            }
+            else if (fcInfo.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
+            {
+                lyr = geopuntHelper.createFeatureClass(fcInfo.DirectoryName, fcInfo.Name, attr, srs, geomType, true);
+            }
+            else
+            {
+                throw new Exception("Bestand is geen shapefile of FileGeodatabase Feature Class");
+            }
+
+            if (geomType == esriGeometryType.esriGeometryPolyline)
+            {
+                lineFC = lyr;
+                gpExtension.profileLineLayer = lineFC;
+                geopuntHelper.addFeatureClassToMap(view, lineFC);
+            }
+            else if (geomType == esriGeometryType.esriGeometryPoint)
+            {
+                pointsFC = lyr;
+                gpExtension.profilePointsLayer = pointsFC;
+                geopuntHelper.addFeatureClassToMap(view, pointsFC);
+            } 
+        }
+
+        private void addValuesToLineFC(string prfName)
+        {
+            if (profileData == null || lineFC == null) return;
+
+            IPolyline geom = geopuntHelper.Transform((IGeometry)polyLineLam72, map.SpatialReference ) as IPolyline;
+
+            IFeature feature = lineFC.CreateFeature();
+            feature.Shape = (IGeometry) geom;
+
+            if (prfName.Length > 255) prfName = prfName.Substring(0, 255);
+
+            int naamIdx = lineFC.FindField("naam");
+            feature.set_Value(naamIdx, prfName);
+            feature.Store();
+        }
+
+        private void addValuesToPointsFC(string prfName)
+        {
+            using (ComReleaser comReleaser = new ComReleaser())
+            {
+                if( pointsFC == null || profileData == null) return;
+
+                List<List<double>> data = profileData.Where(c => c[3] > -999).ToList();
+
+                //Spatialreference 
+                ISpatialReference srs = view.FocusMap.SpatialReference;
+                // Create a feature buffer.
+                IFeatureBuffer featureBuffer = pointsFC.CreateFeatureBuffer();
+                comReleaser.ManageLifetime(featureBuffer);
+
+                // Create an insert cursor.
+                IFeatureCursor insertCursor = pointsFC.Insert(true);
+                comReleaser.ManageLifetime(insertCursor);
+
+                foreach (List<double> row in data)
+                {
+                    IPoint fromXY; IPoint toXY;
+
+                    IPolyline4 geom = (IPolyline4)polyLineLam72;
+                    fromXY = new PointClass();
+                    geom.QueryPoint(esriSegmentExtension.esriNoExtension, row[0], false, fromXY);
+
+                    //reproject the point
+                    toXY = geopuntHelper.Transform(fromXY as IGeometry, map.SpatialReference) as IPoint;
+
+                    featureBuffer.Shape = toXY as IGeometry;
+
+                    int naamIdx = pointsFC.FindField("naam");
+                    featureBuffer.set_Value(naamIdx, prfName);
+                    int AfstandIdx = pointsFC.FindField("Afstand");
+                    featureBuffer.set_Value(AfstandIdx, row[0]);
+                    int HoogteIdx = pointsFC.FindField("Hoogte");
+                    featureBuffer.set_Value(HoogteIdx, row[3]);
+
+                    insertCursor.InsertFeature(featureBuffer);
+                }
+                insertCursor.Flush();
+            }
+        }
+
+        #endregion
     }
 }

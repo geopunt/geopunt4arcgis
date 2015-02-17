@@ -107,6 +107,15 @@ namespace geopunt4Arcgis
                 adresLocation.client.CancelAsync();
             }
             gpExtension.reverseDlg = null;
+
+            ESRI.ArcGIS.Framework.ICommandBars commandBars = ArcMap.Application.Document.CommandBars;
+            UID toolID = new UIDClass();
+            toolID.Value = "esriArcMapUI.SelectTool"; // example: "esriArcMapUI.ZoomInTool";
+            ESRI.ArcGIS.Framework.ICommandItem commandItem = commandBars.Find(toolID, false, false);
+
+            if (commandItem != null)
+                ArcMap.Application.CurrentTool = commandItem;
+
             clearGraphics();
             view.Refresh();
             base.OnClosed(e);
