@@ -3,6 +3,7 @@
 *.zip
 *.doc
 *.docx
+*.xlsx
 
 Deliverable/
 images/*.ico

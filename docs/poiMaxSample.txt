@@ -1,421 +1,318 @@
 {
-	"label": {
-		"term": "Count",
-		"value": "504"
+	"label" : {
+		"term" : "Count",
+		"value" : "58137"
 	},
-	"pois": [{
-		"id": "27552",
-		"created": "2013-11-21T13:56:00",
-		"updated": "2013-11-21T13:56:00",
-		"labels": [{
-			"term": "primary",
-			"value": "Vrije Basisschool -'t Grafiekje"
-		},
-		{
-			"term": "note",
-			"value": "hoofdzetel"
-		},
-		{
-			"term": "municipality",
-			"value": "Westerlo"
-		}],
-		"description": {
-			"value": "Tel.: 014 54 42 87<br />Fax: 014 54 23 39<br />E-mail: info@tgrafiekje.be"
-		},
-		"categories": [{
-			"type": "Thema",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Onderwijs",
-			"value": "Onderwijs"
-		},
-		{
-			"type": "Categorie",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "LagerOnderwijs",
-			"value": "Lager onderwijs"
-		},
-		{
-			"type": "Type",
-			"created": "2013-11-08T18:59:00",
-			"updated": "2013-11-08T18:59:00",
-			"term": "GewoonLagerOnderwijs",
-			"value": "Gewoon lager onderwijs"
-		}],
-		"links": [{
-			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
-			"created": "2013-11-21T13:56:00",
-			"updated": "2013-11-21T13:56:00",
-			"term": "related",
-			"value": "Dit is de link naar de schoolfiche"
-		}],
-		"location": {
-			"points": [{
-				"Point": {
-					"coordinates": [4.9141216014642213,
-					51.105598627229575],
-					"type": "Point",
-					"crs": {
-						"type": "link",
-						"properties": {
-							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
-						}
+	"pois" : [
+    {
+			"id" : "1",
+			"created" : "2014-10-14T09:30:00",
+			"updated" : "2014-10-14T09:30:00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Pippeloentje"
+				}, {
+					"term" : "municipality",
+					"value" : "Voeren"
+				}
+			],
+			"description" : { "value" : ""},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "KindEnGezin",
+					"value" : "Kind en gezin"
+				}, {
+					"type" : "Type",
+					"term" : "GroepsopvangBabysEnPeuters",
+					"value" : "Groepsopvang baby's en peuters"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.kindengezin.be/zoekopvang/details?id=910014473",
+					"created" : "2014-10-14T09:30:00",
+					"updated" : "2014-10-14T09:30:00",
+					"term" : "related",
+					"value" : "Meer info over Pippeloentje"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "grb-perceel",
+						"Point" : {
+							"coordinates" : [5.7600003376857,
+								50.75946809254507],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
 					}
-				},
-				"author": {
-					"term": "owner",
-					"value": "CRAB"
-				},
-				"term": "center",
-				"type": "Pinpoint"
-			}],
-			"address": {
-				"value": "Abdijstraat 3<br />2260 Westerlo",
-				"created": "2013-11-21T13:56:00",
-				"updated": "2013-11-21T13:56:00",
-				"term": "crab"
+				],
+				"address" : {
+					"street" : "1-Septemberstraat",
+					"streetnumber" : "2",
+					"boxnumber" : "",
+					"postalcode" : "3798",
+					"municipality" : "Voeren",
+					"created" : "2014-10-14T09:30:00",
+					"updated" : "2014-10-14T09:30:00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "Kind en Gezin"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
 			}
-		},
-		"authors": [{
-			"term": "owner",
-			"value": "Vlaams Ministerie van Onderwijs en Vorming"
-		}],
-		"license": {
-			"term": "Gratis_Open_Data_Licentie",
-			"value": "Open Data Licentie"
-		}
-	},
-	{
-		"id": "27553",
-		"created": "2013-11-21T13:57:00",
-		"updated": "2013-11-21T13:57:00",
-		"labels": [{
-			"term": "primary",
-			"value": "Vrije Basisschool -'t Grafiekje"
-		},
-		{
-			"term": "note",
-			"value": "vestiging"
-		},
-		{
-			"term": "municipality",
-			"value": "Westerlo"
-		}],
-		"description": {
-			"value": "Tel.: 014 54 13 03"
-		},
-		"categories": [{
-			"type": "Thema",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Onderwijs",
-			"value": "Onderwijs"
-		},
-		{
-			"type": "Categorie",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Kleuteronderwijs",
-			"value": "Kleuteronderwijs"
-		},
-		{
-			"type": "Type",
-			"created": "2013-11-08T18:59:00",
-			"updated": "2013-11-08T18:59:00",
-			"term": "GewoonKleuteronderwijs",
-			"value": "Gewoon kleuteronderwijs"
-		}],
-		"links": [{
-			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
-			"created": "2013-11-21T13:57:00",
-			"updated": "2013-11-21T13:57:00",
-			"term": "related",
-			"value": "Dit is de link naar de schoolfiche"
-		}],
-		"location": {
-			"points": [{
-				"Point": {
-					"coordinates": [4.9147409779624471,
-					51.105670276863705],
-					"type": "Point",
-					"crs": {
-						"type": "link",
-						"properties": {
-							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
-						}
+		}, 
+        {
+			"id" : "24317",
+			"phone" : "+3236669521",
+			"email" : "",
+			"created" : "2014-10-14T10: 58: 00",
+			"updated" : "2014-10-14T10: 58: 00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "VrijeBasisschool-denHeuvel"
+				}, {
+					"term" : "note",
+					"value" : "vestiging"
+				}, {
+					"term" : "municipality",
+					"value" : "Kalmthout"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Onderwijs",
+					"value" : "Onderwijs"
+				}, {
+					"type" : "Categorie",
+					"term" : "LagerOnderwijs",
+					"value" : "Lageronderwijs"
+				}, {
+					"type" : "Type",
+					"term" : "GewoonLagerOnderwijs",
+					"value" : "Gewoonlageronderwijs"
+				}
+			],
+			"links" : [{
+					"href" : "http: //www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=7914",
+					"created" : "2014-10-14T10: 58: 00",
+					"updated" : "2014-10-14T10: 58: 00",
+					"term" : "related",
+					"value" : "Linknaardeschoolfiche"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.4697027524428066, 51.395141302861141],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http: //www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
 					}
-				},
-				"author": {
-					"term": "owner",
-					"value": "CRAB"
-				},
-				"term": "center",
-				"type": "Pinpoint"
-			}],
-			"address": {
-				"value": "Abdijstraat 1<br />2260 Westerlo",
-				"created": "2013-11-21T13:57:00",
-				"updated": "2013-11-21T13:57:00",
-				"term": "crab"
+				],
+				"address" : {
+					"street" : "Schooldreef",
+					"streetnumber" : "41",
+					"boxnumber" : "",
+					"postalcode" : "2920",
+					"municipality" : "Kalmthout",
+					"created" : "2014-10-14T10: 58: 00",
+					"updated" : "2014-10-14T10: 58: 00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "VlaamsMinisterievanOnderwijsenVorming"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "GratisOpenDataLicentie"
 			}
-		},
-		"authors": [{
-			"term": "owner",
-			"value": "Vlaams Ministerie van Onderwijs en Vorming"
-		}],
-		"license": {
-			"term": "Gratis_Open_Data_Licentie",
-			"value": "Open Data Licentie"
-		}
-	},
-	{
-		"id": "27554",
-		"created": "2013-11-21T13:57:00",
-		"updated": "2013-11-21T13:57:00",
-		"labels": [{
-			"term": "primary",
-			"value": "Vrije Basisschool -'t Grafiekje"
-		},
-		{
-			"term": "note",
-			"value": "vestiging"
-		},
-		{
-			"term": "municipality",
-			"value": "Westerlo"
-		}],
-		"description": {
-			"value": "Tel.: 014 54 13 03"
-		},
-		"categories": [{
-			"type": "Thema",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Onderwijs",
-			"value": "Onderwijs"
-		},
-		{
-			"type": "Categorie",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "LagerOnderwijs",
-			"value": "Lager onderwijs"
-		},
-		{
-			"type": "Type",
-			"created": "2013-11-08T18:59:00",
-			"updated": "2013-11-08T18:59:00",
-			"term": "GewoonLagerOnderwijs",
-			"value": "Gewoon lager onderwijs"
-		}],
-		"links": [{
-			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=12914",
-			"created": "2013-11-21T13:57:00",
-			"updated": "2013-11-21T13:57:00",
-			"term": "related",
-			"value": "Dit is de link naar de schoolfiche"
-		}],
-		"location": {
-			"points": [{
-				"Point": {
-					"coordinates": [4.9147409779624471,
-					51.105670276863705],
-					"type": "Point",
-					"crs": {
-						"type": "link",
-						"properties": {
-							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
-						}
+		}, {
+			"id" : "62655",
+			"phone" : "",
+			"created" : "2014-10-16T09: 55: 00",
+			"updated" : "2015-02-08T07: 03: 00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "ParkingGanshof"
+				}, {
+					"term" : "municipality",
+					"value" : "Bilzen"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Mobiliteit",
+					"value" : "Mobiliteit"
+				}, {
+					"type" : "Categorie",
+					"term" : "TransportLand",
+					"value" : "Transportoverland"
+				}, {
+					"type" : "Type",
+					"term" : "OpenParking",
+					"value" : "Openparkings"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"Point" : {
+							"coordinates" : [5.51156, 50.87244],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http: //www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "distributor",
+							"value" : "HERE"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
 					}
-				},
-				"author": {
-					"term": "owner",
-					"value": "CRAB"
-				},
-				"term": "center",
-				"type": "Pinpoint"
-			}],
-			"address": {
-				"value": "Abdijstraat 1<br />2260 Westerlo",
-				"created": "2013-11-21T13:57:00",
-				"updated": "2013-11-21T13:57:00",
-				"term": "crab"
+				],
+				"address" : {
+					"street" : "ParkingGanshof",
+					"streetnumber" : "",
+					"postalcode" : "3740",
+					"municipality" : "Bilzen",
+					"created" : "2014-10-16T09: 55: 00",
+					"updated" : "2014-10-16T09: 55: 00",
+					"term" : "self_defined"
+				}
+			},
+			"authors" : [{
+					"term" : "distributor",
+					"value" : "HERE"
+				}
+			],
+			"license" : {
+				"term" : "Private_Licentie",
+				"value" : "EriseenspecifiekelicentietussenAGIVendedataleverancierHERE."
 			}
-		},
-		"authors": [{
-			"term": "owner",
-			"value": "Vlaams Ministerie van Onderwijs en Vorming"
-		}],
-		"license": {
-			"term": "Gratis_Open_Data_Licentie",
-			"value": "Open Data Licentie"
-		}
-	},
-	{
-		"id": "27559",
-		"created": "2013-11-21T13:57:00",
-		"updated": "2013-11-21T13:57:00",
-		"labels": [{
-			"term": "primary",
-			"value": "CVO Strombeek - Grimbergen"
-		},
-		{
-			"term": "note",
-			"value": "vestiging"
-		},
-		{
-			"term": "municipality",
-			"value": "Grimbergen"
-		}],
-		"description": {
-			"value": ""
-		},
-		"categories": [{
-			"type": "Thema",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Onderwijs",
-			"value": "Onderwijs"
-		},
-		{
-			"type": "Categorie",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "SecundairOnderwijs",
-			"value": "Secundair onderwijs"
-		},
-		{
-			"type": "Type",
-			"created": "2013-11-08T18:59:00",
-			"updated": "2013-11-08T18:59:00",
-			"term": "SecundairVolwassenenonderwijs",
-			"value": "Secundair volwassenenonderwijs"
-		}],
-		"links": [{
-			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=33498",
-			"created": "2013-11-21T13:57:00",
-			"updated": "2013-11-21T13:57:00",
-			"term": "related",
-			"value": "Dit is de link naar de schoolfiche"
-		}],
-		"location": {
-			"points": [{
-				"Point": {
-					"coordinates": [4.3685774003084035,
-					50.934735059130183],
-					"type": "Point",
-					"crs": {
-						"type": "link",
-						"properties": {
-							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
-						}
+		}, {
+			"id" : "41767",
+			"created" : "2014-11-06T10: 02: 00",
+			"updated" : "2014-11-06T10: 02: 00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Fietscrossparcours"
+				}, {
+					"term" : "alternate",
+					"value" : "GemeentelijkSportcentrumTerMuncken"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "CultuurSportEnToerisme",
+					"value" : "Cultuur,sportentoerisme"
+				}, {
+					"type" : "Categorie",
+					"term" : "Sportaccommodaties",
+					"value" : "Sportaccommodaties"
+				}, {
+					"type" : "Type",
+					"term" : "OpenluchtSportveld",
+					"value" : "Openluchtsportveld"
+				}
+			],
+			"links" : [{
+					"href" : "http: //www.bloso.be/sportdatabank/Pages/Home.aspx?InfraID=562CB745-25D1-46F1-929C-E4188DE1FB87",
+					"created" : "2014-11-06T10: 02: 00",
+					"updated" : "2014-11-06T10: 02: 00",
+					"term" : "related",
+					"value" : "MeerinfooverFietscrossparcours"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "",
+						"Point" : {
+							"coordinates" : [3.44406, 50.7665],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http: //www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "BLOSO"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
 					}
-				},
-				"author": {
-					"term": "owner",
-					"value": "CRAB"
-				},
-				"term": "center",
-				"type": "Pinpoint"
-			}],
-			"address": {
-				"value": "OPGELET: de positie op kaart kan onnauwkeurig zijn!<br />Abdijstraat <br />1850 Grimbergen",
-				"created": "2013-11-21T13:57:00",
-				"updated": "2013-11-21T13:57:00",
-				"term": "crab"
+				],
+				"address" : {
+					"street" : "Doorniksesteenweg",
+					"streetnumber" : "226",
+					"boxnumber" : "",
+					"postalcode" : "8580",
+					"municipality" : "Avelgem",
+					"created" : "2014-11-06T10: 02: 00",
+					"updated" : "2014-11-06T10: 02: 00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "BLOSO"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "GratisOpenDataLicentie"
 			}
-		},
-		"authors": [{
-			"term": "owner",
-			"value": "Vlaams Ministerie van Onderwijs en Vorming"
-		}],
-		"license": {
-			"term": "Gratis_Open_Data_Licentie",
-			"value": "Open Data Licentie"
 		}
-	},
-	{
-		"id": "27565",
-		"created": "2013-11-21T13:57:00",
-		"updated": "2013-11-21T13:57:00",
-		"labels": [{
-			"term": "primary",
-			"value": "Gemeentelijke Basisschool -'t Groentje"
-		},
-		{
-			"term": "note",
-			"value": "vestiging"
-		},
-		{
-			"term": "municipality",
-			"value": "Vilvoorde"
-		}],
-		"description": {
-			"value": "Tel.: 02 251 36 20"
-		},
-		"categories": [{
-			"type": "Thema",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Onderwijs",
-			"value": "Onderwijs"
-		},
-		{
-			"type": "Categorie",
-			"created": "2013-11-07T12:55:00",
-			"updated": "2013-11-07T12:55:00",
-			"term": "Kleuteronderwijs",
-			"value": "Kleuteronderwijs"
-		},
-		{
-			"type": "Type",
-			"created": "2013-11-08T18:59:00",
-			"updated": "2013-11-08T18:59:00",
-			"term": "GewoonKleuteronderwijs",
-			"value": "Gewoon kleuteronderwijs"
-		}],
-		"links": [{
-			"href": "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5462",
-			"created": "2013-11-21T13:57:00",
-			"updated": "2013-11-21T13:57:00",
-			"term": "related",
-			"value": "Dit is de link naar de schoolfiche"
-		}],
-		"location": {
-			"points": [{
-				"Point": {
-					"coordinates": [4.4347852480071737,
-					50.938536021373778],
-					"type": "Point",
-					"crs": {
-						"type": "link",
-						"properties": {
-							"href": "http://www.opengis.net/def/crs/EPSG/0/4326"
-						}
-					}
-				},
-				"author": {
-					"term": "owner",
-					"value": "CRAB"
-				},
-				"term": "center",
-				"type": "Pinpoint"
-			}],
-			"address": {
-				"value": "OPGELET: de positie op kaart kan onnauwkeurig zijn!<br />Abeelstraat <br />1800 Vilvoorde",
-				"created": "2013-11-21T13:57:00",
-				"updated": "2013-11-21T13:57:00",
-				"term": "crab"
-			}
-		},
-		"authors": [{
-			"term": "owner",
-			"value": "Vlaams Ministerie van Onderwijs en Vorming"
-		}],
-		"license": {
-			"term": "Gratis_Open_Data_Licentie",
-			"value": "Open Data Licentie"
-		}
-	}]
+	],
+	"clusters" : []
 }

@@ -224,6 +224,7 @@ namespace geopunt4Arcgis
                 graphic = geopuntHelper.AddGraphicToMap(map, toXY, rgb, 
                                 new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }, 8, true);
 
+                map.MapScale = 1000;
                 view.Extent = bbox;
                 geopuntHelper.ZoomByRatioAndRecenter(view, 1, toXY.X, toXY.Y);
 

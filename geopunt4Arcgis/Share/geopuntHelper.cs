@@ -271,7 +271,7 @@ namespace geopunt4Arcgis
         }
         #endregion    
 
-        #region "create a field"
+        #region "Create a field"
         /// <summary>
         /// create a single fieldClass 
         /// </summary>
@@ -292,7 +292,7 @@ namespace geopunt4Arcgis
 
         #endregion
 
-        #region "create ShapeFile / featureclass"
+        #region "Create ShapeFile / featureclass"
         /// <summary>Create a ESRI shapefile </summary>
         /// <param name="shapeFilePath">the path to the shapefile</param>
         /// <param name="field2add">List of Ifields</param>
@@ -435,7 +435,7 @@ namespace geopunt4Arcgis
         }
         #endregion
 
-        #region "add featureclass to map"
+        #region "Add featureclass to map"
         /// <summary> Add feature class to active View and then zoom to its extend </summary>
         /// <param name="view">the current active view</param>
         /// <param name="inFeatureClass">the feature class to add</param>
@@ -456,7 +456,7 @@ namespace geopunt4Arcgis
 
         #endregion
 
-        #region "internet available?"
+        #region "Internet available?"
         /// <summary>check if internet available </summary>
         public static bool IsConnectedToInternet
         {
