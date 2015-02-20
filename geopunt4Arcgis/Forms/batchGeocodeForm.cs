@@ -122,7 +122,7 @@ namespace geopunt4Arcgis
 
         private void sepCbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sepCbx.Text == "ANDER TEKEN") 
+            if (sepCbx.Text == "Ander teken") 
             {
                string sep = inputForm.showInputDlg("Geef het gewenste scheidingsteken op:", this);
                if ( sep != null )
@@ -455,6 +455,8 @@ namespace geopunt4Arcgis
             foreach (DataColumn column in csvDataTbl.Columns)
             {
                 csvDataGrid.Columns.Add(column.ColumnName, column.ColumnName);
+                csvDataGrid.Columns[column.ColumnName].SortMode = DataGridViewColumnSortMode.Automatic;
+
                 adresColCbx.Items.Add(column.ColumnName);
                 HuisNrCbx.Items.Add(column.ColumnName);
                 gemeenteColCbx.Items.Add(column.ColumnName);

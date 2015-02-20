@@ -3,8 +3,12 @@
 *.zip
 *.doc
 *.docx
+*.xlsx
 
 Deliverable/
+images/*.ico
+images/*.png
+images/*.emf
 
 ## bin ##
 
@@ -60,7 +64,6 @@ local.properties
 
 # User-specific files
 *.suo
-*.user
 *.sln.docstates
 
 # Build results

@@ -18,6 +18,8 @@ namespace geopunt4Arcgis.datacontract
     public class poiPoint : poiValueGroup
     {
         public geojsonPoint Point { get; set; }
+        public poiValueGroup author { get; set; }
+        public string pointQuality { get; set; }
     }
     public class poiCategories
     {
@@ -47,8 +49,8 @@ namespace geopunt4Arcgis.datacontract
 
     public class poiMinModel 
     {
-        public List<poiValueGroup> categories { get; set; }
         public int id { get; set; }
+        public List<poiValueGroup> categories { get; set; }
         public List<poiValueGroup> labels { get; set; }
         public List<poiLink> links { get; set; }
         public poiLocation location { get; set; }
@@ -57,6 +59,8 @@ namespace geopunt4Arcgis.datacontract
     public class poiMaxModel : poiMinModel
     {
         public List<poiValueGroup> authors { get; set; }
+        public string phone { get; set; }
+        public string email { get; set; }
         public DateTime created { get; set; }
         public DateTime updated { get; set; }
         public poiValueGroup description { get; set; }

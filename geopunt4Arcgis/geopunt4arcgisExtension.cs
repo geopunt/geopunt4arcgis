@@ -15,6 +15,10 @@ namespace geopunt4Arcgis
         public IFeatureClass poiLayer = null;
         public IFeatureClass poiMinLayer = null;
         public IFeatureClass parcelLayer = null;
+        public IFeatureClass profileLineLayer = null;
+        public IFeatureClass profilePointsLayer = null;
+
+        public int profileCounter = 0;
 
         public zoekAdresForm zoekAdresDlg = null;
         public reverseZoekForm reverseDlg = null;
@@ -22,8 +26,9 @@ namespace geopunt4Arcgis
         public gipodForm gipodDlg = null;
         public capakeyForm capakayDlg = null;
         public batchGeocodeForm batchGeocodeDlg = null;
+        public elevationForm elevationDlg = null;
+        public catalogForm catalogDLg = null;
         public AboutGeopunt4arcgisForm aboutDlg = null;
-
         public geopunt4arcgisExtension()
         {
             gpExtension = this;
@@ -61,6 +66,12 @@ namespace geopunt4Arcgis
 
             if (batchGeocodeDlg != null)
                 if (!batchGeocodeDlg.IsDisposed) batchGeocodeDlg.Dispose();
+
+            if (elevationDlg != null)
+                if (!elevationDlg.IsDisposed) elevationDlg.Dispose();
+
+            if (catalogDLg != null)
+                if (!catalogDLg.IsDisposed) batchGeocodeDlg.Dispose();
 
             if (aboutDlg != null)
                 if (!aboutDlg.IsDisposed) aboutDlg.Dispose();

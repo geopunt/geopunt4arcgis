@@ -80,6 +80,9 @@ namespace geopunt4Arcgis
             string gemeente = gemeenteCbx.Text;
             string niscode = municipality2nis(gemeente);
 
+            add2mapBtn.Enabled = false;
+            addMarkerBtn.Enabled = false;
+
             msgLbl.Text = "";
             perceel = null;
 
@@ -88,9 +91,9 @@ namespace geopunt4Arcgis
             try
             {
                 departments = capakey.getDepartments(int.Parse(niscode)).departments;
-                departementCbx.Items.Clear();
-                sectieCbx.Items.Clear();
-                parcelCbx.Items.Clear();
+                departementCbx.Items.Clear(); departementCbx.Text = "";
+                sectieCbx.Items.Clear(); sectieCbx.Text = "";
+                parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 departementCbx.Items.AddRange((from n in departments select n.departmentName).ToArray());
             }
             catch (Exception ex)
@@ -107,6 +110,9 @@ namespace geopunt4Arcgis
             string depName = departementCbx.Text;
             string depCode = department2code(depName);
 
+            add2mapBtn.Enabled = false;
+            addMarkerBtn.Enabled = false;
+
             msgLbl.Text = "";
             perceel = null;
 
@@ -115,8 +121,8 @@ namespace geopunt4Arcgis
             try
             {
                 List<datacontract.section> secties = capakey.getSecties(int.Parse(niscode), int.Parse(depCode)).sections;
-                sectieCbx.Items.Clear();
-                parcelCbx.Items.Clear();
+                sectieCbx.Items.Clear(); sectieCbx.Text = "";
+                parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 sectieCbx.Items.AddRange((from n in secties select n.sectionCode).ToArray());
             }
             catch (Exception ex)
@@ -135,6 +141,9 @@ namespace geopunt4Arcgis
 
             string sectie = sectieCbx.Text;
 
+            add2mapBtn.Enabled = false;
+            addMarkerBtn.Enabled = false;
+
             msgLbl.Text = "";
             perceel = null;
 
@@ -144,6 +153,7 @@ namespace geopunt4Arcgis
             try
             {
                 parcelCbx.Items.Clear();
+                parcelCbx.Text = "";
                 parcels = capakey.getParcels(int.Parse(niscode), int.Parse(depCode), sectie).parcels;
                 parcelCbx.Items.AddRange((from n in parcels select n.perceelnummer).ToArray());
             }
@@ -167,6 +177,9 @@ namespace geopunt4Arcgis
             if (niscode == "" || depCode == "" || sectie == "" || parcelNr == "" ||
                 niscode == null || depCode == null || sectie == null || parcelNr == null) return;
 
+            add2mapBtn.Enabled = true;
+            addMarkerBtn.Enabled = true;
+
             try
             {
                 perceel = capakey.getParcel(int.Parse(niscode), int.Parse(depCode), sectie, parcelNr,
@@ -185,11 +198,6 @@ namespace geopunt4Arcgis
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void helpLbl_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel");
         }
 
         private void gemeenteZoomBtn_Click(object sender, EventArgs e)
@@ -342,6 +350,11 @@ namespace geopunt4Arcgis
             geopuntHelper.AddTextElement(map, center, perceel.capakey + "\r\n" + adres);
 
             view.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+        }
+
+        private void helpLbl_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel");
         }
         #endregion
 

@@ -271,7 +271,7 @@ namespace geopunt4Arcgis
         }
         #endregion    
 
-        #region "create a field"
+        #region "Create a field"
         /// <summary>
         /// create a single fieldClass 
         /// </summary>
@@ -292,7 +292,7 @@ namespace geopunt4Arcgis
 
         #endregion
 
-        #region "create ShapeFile / featureclass"
+        #region "Create ShapeFile / featureclass"
         /// <summary>Create a ESRI shapefile </summary>
         /// <param name="shapeFilePath">the path to the shapefile</param>
         /// <param name="field2add">List of Ifields</param>
@@ -301,7 +301,7 @@ namespace geopunt4Arcgis
         /// <param name="deleteIfExists">Overwrite existing FeatureClass</param>
         /// <returns>the shapefile loaded in a IFeatureClass</returns>
         public static IFeatureClass createShapeFile(string shapeFilePath, List<IField> field2add , 
-                                                    ISpatialReference srs, esriGeometryType geomType, bool deleteIfExists = true )
+                                  ISpatialReference srs, esriGeometryType geomType, bool deleteIfExists = true)
         {
             FileInfo shapeInfo = new FileInfo(shapeFilePath);
 
@@ -361,7 +361,7 @@ namespace geopunt4Arcgis
         /// <param name="deleteIfExists">Overwrite existing FeatureClass</param>
         /// <returns>the Feuture Class loaded in a IFeatureClass</returns>
         public static IFeatureClass createFeatureClass(string FGDBPath, string FCname, List<IField> field2add,
-                                                    ISpatialReference srs, esriGeometryType geomType, bool deleteIfExists = true)
+                                              ISpatialReference srs, esriGeometryType geomType, bool deleteIfExists = true)
         {
             DirectoryInfo fgbInfo = new DirectoryInfo(FGDBPath);
 
@@ -435,7 +435,7 @@ namespace geopunt4Arcgis
         }
         #endregion
 
-        #region "add featureclass to map"
+        #region "Add featureclass to map"
         /// <summary> Add feature class to active View and then zoom to its extend </summary>
         /// <param name="view">the current active view</param>
         /// <param name="inFeatureClass">the feature class to add</param>
@@ -456,7 +456,7 @@ namespace geopunt4Arcgis
 
         #endregion
 
-        #region "internet available?"
+        #region "Internet available?"
         /// <summary>check if internet available </summary>
         public static bool IsConnectedToInternet
         {
@@ -464,7 +464,7 @@ namespace geopunt4Arcgis
             {
                 try 
                 {
-                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("http://loc.api.geopunt.be/"); 
+                    HttpWebRequest hwebRequest = (HttpWebRequest)WebRequest.Create("https://www.google.be/"); 
                     hwebRequest.Timeout = 5000; //5 seconds timeout to process the request.
                     HttpWebResponse hWebResponse = (HttpWebResponse)hwebRequest.GetResponse(); //Process the request.
                     if (hWebResponse.StatusCode == HttpStatusCode.OK) //Get the response.
@@ -476,6 +476,37 @@ namespace geopunt4Arcgis
                 catch (Exception ex) {
                     MessageBox.Show("Geen internet connectie", ex.Message);
                     return false;
+                }
+            }
+        }
+
+        public static bool websiteExists( string url, bool isWMS = false ){
+            HttpWebResponse response = null;
+
+            if (isWMS)
+            {
+                url = url.Split('?')[0] + "?request=GetCapabilities&service=WMS";
+            }
+
+            var hwebRequest = (HttpWebRequest)WebRequest.Create(url);
+
+            hwebRequest.Timeout = 8000;
+            //hwebRequest.Method = "HEAD";
+
+            try
+            {
+                response = (HttpWebResponse)hwebRequest.GetResponse();
+                return true;
+            }
+            catch (WebException)
+            {
+                return false;
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
                 }
             }
         }
@@ -714,8 +745,8 @@ namespace geopunt4Arcgis
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI point object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonPoint(IPoint esriPoint) 
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonPoint esri2geojsonPoint(IPoint esriPoint) 
         {
             int epsg;
             string epsgUri;
@@ -747,13 +778,22 @@ namespace geopunt4Arcgis
                 crs = JScrs
             };
 
-           return JsonConvert.SerializeObject(JSpoint);
+           return JSpoint;
+        }
+
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polygon object</param>
+        /// <returns>A geojson string</returns>
+        public static string esri2geojsonPointString(IPoint esriPoint)
+        {
+            datacontract.geojsonPoint gjs = esri2geojsonPoint(esriPoint);
+            return JsonConvert.SerializeObject(gjs);
         }
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI polyline object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonLine(IPolyline esriLine)
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonLine esri2geojsonLine(IPolyline esriLine)
         {
             int epsg;
             string epsgUri;
@@ -782,7 +822,7 @@ namespace geopunt4Arcgis
             datacontract.geojsonLine JSline = new datacontract.geojsonLine() {type = "Polyline", crs = JScrs };
             List<List<double>> coords = new List<List<double>>();
 
-            IPointCollection5 nodes = esriLine as IPointCollection5;
+            IPointCollection4 nodes = esriLine as IPointCollection4;
 
             for (int n = 0; n < nodes.PointCount; n++)
             {
@@ -792,13 +832,22 @@ namespace geopunt4Arcgis
             }
             JSline.coordinates = coords;
 
-            return JsonConvert.SerializeObject(JSline);
+            return JSline;
+        }
+
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polyline object</param>
+        /// <returns>A geojson String</returns>
+        public static string esri2geojsonLineString(IPolyline esriLine)
+        {
+            datacontract.geojsonLine gjsline = esri2geojsonLine(esriLine);
+            return JsonConvert.SerializeObject(gjsline);
         }
 
         /// <summary>Convert a ESRI geometry to geojson </summary>
         /// <param name="esriPoint">A ESRI polygon object</param>
-        /// <returns>A geojson string</returns>
-        public static string esri2geojsonPolygon(IPolygon esriPolygon)
+        /// <returns>A geojson Object</returns>
+        public static datacontract.geojsonPolygon esri2geojsonPolygon(IPolygon esriPolygon)
         {
             int epsg;
             string epsgUri;
@@ -842,7 +891,16 @@ namespace geopunt4Arcgis
             }
             JSpolygon.coordinates = coords;
 
-            return JsonConvert.SerializeObject(JSpolygon);
+            return JSpolygon;
+        }
+        
+        /// <summary>Convert a ESRI geometry to geojson </summary>
+        /// <param name="esriPoint">A ESRI polygon object</param>
+        /// <returns>A geojson string</returns>
+        public static string esri2geojsonPolygonString(IPolygon esriPoly)
+        {
+            datacontract.geojsonPolygon gjsline = esri2geojsonPolygon(esriPoly);
+            return JsonConvert.SerializeObject(gjsline);
         }
 
         #endregion
@@ -851,7 +909,7 @@ namespace geopunt4Arcgis
         /// <summary>Add a WMS to the map</summary>
         /// <param name="map">The map to add the wms to</param>
         /// <param name="WMSurl">the url point to the WMS</param>
-        public static void addWMS2map(IMap map, string WMSurl ) 
+        public static void addWMS2map(IMap map, string WMSurl, short transparency = 0) 
         {
 
             IWMSGroupLayer wmsLayerGroup = new WMSMapLayerClass();
@@ -892,6 +950,9 @@ namespace geopunt4Arcgis
             wmsLayerGroup.Expanded = true;
             lyr = (ILayer)wmsLayerGroup;
             lyr.Name = serviceDesc.WMSTitle;
+
+            ILayerEffects layerEffects = (ILayerEffects)lyr;
+            layerEffects.Transparency = transparency < 100 ? transparency : (short)100;
 
             map.AddLayer(lyr);
             view = (IActiveView)map;
@@ -941,7 +1002,7 @@ namespace geopunt4Arcgis
                 qrylyr = (ILayer)wmsMapLayer.CreateWMSGroupLayers(layerDesc);
                 wmsMapLayer.InsertLayer(qrylyr, 0);
             }
-            makeCompositeLayersVisibile(qrylyr, false);
+            makeCompositeLayersVisibile(qrylyr);
 
             wmsMapLayer.Expanded = true;
             ((IWMSMapLayer)wmsMapLayer).BackgroundColor = new RgbColor() { NullColor = true };
@@ -971,7 +1032,7 @@ namespace geopunt4Arcgis
             wmsLayer.Visible = true;
             wmsMapLayer.Expanded = true;
             wmsLayer.Name = serviceDesc.WMSTitle;
-            makeCompositeLayersVisibile( wmsLayer , false);
+            makeCompositeLayersVisibile( wmsLayer);
             return wmsLayer;
         }
 
@@ -1035,7 +1096,7 @@ namespace geopunt4Arcgis
         /// <param name="activeView">An IActiveView interface.</param>
         /// <param name="layer">The composite layer as Ilayer</param>
         /// <param name="onlyGroupLayer">Only turn on all composite layers or all layers</param>
-        public static void makeCompositeLayersVisibile(ILayer layer, bool onlyGroupLayer = true)
+        public static void makeCompositeLayersVisibile(ILayer layer)
         {
             //return if not composite
             if (layer is ICompositeLayer2)
@@ -1049,9 +1110,13 @@ namespace geopunt4Arcgis
                 for (int compositeLayerIndex = 0; compositeLayerIndex < compositeLayer2.Count; compositeLayerIndex++)
                 {
                     ILayer lyr = compositeLayer2.get_Layer(compositeLayerIndex);
-                    lyr.Visible = ! onlyGroupLayer;
-                    makeCompositeLayersVisibile(lyr, onlyGroupLayer);
+                    lyr.Visible = true;
+                    makeCompositeLayersVisibile(lyr);
                 }
+            }
+            else
+            {
+                layer.Visible = true;
             }
         }
         #endregion
@@ -1075,16 +1140,16 @@ namespace geopunt4Arcgis
 
             switch (separator)
             {
-                case "COMMA":
+                case "Comma":
                     sep = ",";
                     break;
-                case "PUNTCOMMA":
+                case "Puntcomma":
                     sep = ";";
                     break;
-                case "SPATIE":
+                case "Spatie":
                     sep = " ";
                     break;
-                case "TAB":
+                case "Tab":
                     sep = "/t";
                     break;
                 default:
@@ -1134,6 +1199,26 @@ namespace geopunt4Arcgis
             return tbl;
         }
         #endregion
+
+        #region "Get Polyline From Mouse Clicks"
+        ///<summary>Create a polyline geometry object using the RubberBand.TrackNew method when a user click the mouse on the map control.</summary>
+        ///<param name="activeView">An ESRI.ArcGIS.Carto.IActiveView interface that will user will interace with to draw a polyline.</param>
+        ///<returns>An ESRI.ArcGIS.Geometry.IPolyline interface that is the polyline the user drew</returns>
+        ///<remarks>Double click the left mouse button to end tracking the polyline.</remarks>
+        public static IPolyline GetPolylineFromMouseClicks(IActiveView activeView)
+        {
+            IScreenDisplay screenDisplay = activeView.ScreenDisplay;
+
+            IRubberBand rubberBand = new RubberLineClass();
+            IGeometry geometry = rubberBand.TrackNew(screenDisplay, null);
+
+            IPolyline polyline = (IPolyline)geometry;
+
+            return polyline;
+
+        }
+        #endregion
+
     }
 
     #region "exceptions"

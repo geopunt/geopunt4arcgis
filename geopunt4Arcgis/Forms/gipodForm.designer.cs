@@ -47,7 +47,6 @@
             this.closeBtn = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.messageLbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.progress = new System.Windows.Forms.ToolStripProgressBar();
             this.HelpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.useExtendChk = new System.Windows.Forms.CheckBox();
             this.saveAsShapeBtn = new System.Windows.Forms.Button();
@@ -57,136 +56,150 @@
             // 
             // cityCombo
             // 
-            this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityCombo.FormattingEnabled = true;
-            this.cityCombo.Location = new System.Drawing.Point(106, 100);
+            this.cityCombo.Location = new System.Drawing.Point(141, 123);
+            this.cityCombo.Margin = new System.Windows.Forms.Padding(4);
             this.cityCombo.Name = "cityCombo";
-            this.cityCombo.Size = new System.Drawing.Size(392, 21);
+            this.cityCombo.Size = new System.Drawing.Size(521, 24);
             this.cityCombo.TabIndex = 0;
             // 
             // provinceCombo
             // 
-            this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.provinceCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.provinceCombo.FormattingEnabled = true;
-            this.provinceCombo.Location = new System.Drawing.Point(106, 73);
+            this.provinceCombo.Location = new System.Drawing.Point(141, 90);
+            this.provinceCombo.Margin = new System.Windows.Forms.Padding(4);
             this.provinceCombo.Name = "provinceCombo";
-            this.provinceCombo.Size = new System.Drawing.Size(392, 21);
+            this.provinceCombo.Size = new System.Drawing.Size(521, 24);
             this.provinceCombo.TabIndex = 1;
             this.provinceCombo.SelectedIndexChanged += new System.EventHandler(this.provinceCombo_SelectedIndexChanged);
             // 
             // citylbl
             // 
             this.citylbl.AutoSize = true;
-            this.citylbl.Location = new System.Drawing.Point(68, 103);
+            this.citylbl.Location = new System.Drawing.Point(91, 127);
+            this.citylbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.citylbl.Name = "citylbl";
-            this.citylbl.Size = new System.Drawing.Size(32, 13);
+            this.citylbl.Size = new System.Drawing.Size(41, 17);
             this.citylbl.TabIndex = 2;
             this.citylbl.Text = "Stad:";
             // 
             // provinceLbl
             // 
             this.provinceLbl.AutoSize = true;
-            this.provinceLbl.Location = new System.Drawing.Point(46, 76);
+            this.provinceLbl.Location = new System.Drawing.Point(61, 94);
+            this.provinceLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.provinceLbl.Name = "provinceLbl";
-            this.provinceLbl.Size = new System.Drawing.Size(54, 13);
+            this.provinceLbl.Size = new System.Drawing.Size(70, 17);
             this.provinceLbl.TabIndex = 3;
             this.provinceLbl.Text = "Provincie:";
             // 
             // startdatePicker
             // 
-            this.startdatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.startdatePicker.Location = new System.Drawing.Point(106, 192);
+            this.startdatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.startdatePicker.Location = new System.Drawing.Point(141, 236);
+            this.startdatePicker.Margin = new System.Windows.Forms.Padding(4);
             this.startdatePicker.Name = "startdatePicker";
-            this.startdatePicker.Size = new System.Drawing.Size(392, 20);
+            this.startdatePicker.Size = new System.Drawing.Size(521, 22);
             this.startdatePicker.TabIndex = 4;
             // 
             // enddatePicker
             // 
-            this.enddatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.enddatePicker.Location = new System.Drawing.Point(106, 218);
+            this.enddatePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.enddatePicker.Location = new System.Drawing.Point(141, 268);
+            this.enddatePicker.Margin = new System.Windows.Forms.Padding(4);
             this.enddatePicker.Name = "enddatePicker";
-            this.enddatePicker.Size = new System.Drawing.Size(392, 20);
+            this.enddatePicker.Size = new System.Drawing.Size(521, 22);
             this.enddatePicker.TabIndex = 5;
             this.enddatePicker.ValueChanged += new System.EventHandler(this.enddatePicker_ValueChanged);
             // 
             // ownerCombo
             // 
-            this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ownerCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ownerCombo.FormattingEnabled = true;
-            this.ownerCombo.Location = new System.Drawing.Point(106, 129);
+            this.ownerCombo.Location = new System.Drawing.Point(141, 159);
+            this.ownerCombo.Margin = new System.Windows.Forms.Padding(4);
             this.ownerCombo.Name = "ownerCombo";
-            this.ownerCombo.Size = new System.Drawing.Size(392, 21);
+            this.ownerCombo.Size = new System.Drawing.Size(521, 24);
             this.ownerCombo.TabIndex = 6;
             // 
             // startdateLbl
             // 
             this.startdateLbl.AutoSize = true;
-            this.startdateLbl.Location = new System.Drawing.Point(39, 192);
+            this.startdateLbl.Location = new System.Drawing.Point(52, 236);
+            this.startdateLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.startdateLbl.Name = "startdateLbl";
-            this.startdateLbl.Size = new System.Drawing.Size(61, 13);
+            this.startdateLbl.Size = new System.Drawing.Size(81, 17);
             this.startdateLbl.TabIndex = 7;
             this.startdateLbl.Text = "Startdatum:";
             // 
             // enddatelbl
             // 
             this.enddatelbl.AutoSize = true;
-            this.enddatelbl.Location = new System.Drawing.Point(39, 218);
+            this.enddatelbl.Location = new System.Drawing.Point(52, 268);
+            this.enddatelbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.enddatelbl.Name = "enddatelbl";
-            this.enddatelbl.Size = new System.Drawing.Size(60, 13);
+            this.enddatelbl.Size = new System.Drawing.Size(79, 17);
             this.enddatelbl.TabIndex = 8;
             this.enddatelbl.Text = "Einddatum:";
             // 
             // ownerLbl
             // 
             this.ownerLbl.AutoSize = true;
-            this.ownerLbl.Location = new System.Drawing.Point(48, 132);
+            this.ownerLbl.Location = new System.Drawing.Point(64, 162);
+            this.ownerLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ownerLbl.Name = "ownerLbl";
-            this.ownerLbl.Size = new System.Drawing.Size(52, 13);
+            this.ownerLbl.Size = new System.Drawing.Size(69, 17);
             this.ownerLbl.TabIndex = 9;
             this.ownerLbl.Text = "Eigenaar:";
             // 
             // eventtypeLbl
             // 
             this.eventtypeLbl.AutoSize = true;
-            this.eventtypeLbl.Location = new System.Drawing.Point(7, 162);
+            this.eventtypeLbl.Location = new System.Drawing.Point(9, 199);
+            this.eventtypeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.eventtypeLbl.Name = "eventtypeLbl";
-            this.eventtypeLbl.Size = new System.Drawing.Size(93, 13);
+            this.eventtypeLbl.Size = new System.Drawing.Size(124, 17);
             this.eventtypeLbl.TabIndex = 10;
             this.eventtypeLbl.Text = "Type manifestatie:";
             // 
             // eventTypeCombo
             // 
-            this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.eventTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.eventTypeCombo.Enabled = false;
             this.eventTypeCombo.FormattingEnabled = true;
-            this.eventTypeCombo.Location = new System.Drawing.Point(106, 159);
+            this.eventTypeCombo.Location = new System.Drawing.Point(141, 196);
+            this.eventTypeCombo.Margin = new System.Windows.Forms.Padding(4);
             this.eventTypeCombo.Name = "eventTypeCombo";
-            this.eventTypeCombo.Size = new System.Drawing.Size(392, 21);
+            this.eventTypeCombo.Size = new System.Drawing.Size(521, 24);
             this.eventTypeCombo.TabIndex = 11;
             // 
             // gipodTypeGroup
             // 
-            this.gipodTypeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gipodTypeGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gipodTypeGroup.Controls.Add(this.manifestationRadio);
             this.gipodTypeGroup.Controls.Add(this.workassignmentRadio);
-            this.gipodTypeGroup.Location = new System.Drawing.Point(10, 13);
+            this.gipodTypeGroup.Location = new System.Drawing.Point(13, 16);
+            this.gipodTypeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.gipodTypeGroup.Name = "gipodTypeGroup";
-            this.gipodTypeGroup.Size = new System.Drawing.Size(488, 51);
+            this.gipodTypeGroup.Padding = new System.Windows.Forms.Padding(4);
+            this.gipodTypeGroup.Size = new System.Drawing.Size(651, 63);
             this.gipodTypeGroup.TabIndex = 12;
             this.gipodTypeGroup.TabStop = false;
             this.gipodTypeGroup.Text = "Type";
@@ -195,9 +208,10 @@
             // 
             this.manifestationRadio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.manifestationRadio.AutoSize = true;
-            this.manifestationRadio.Location = new System.Drawing.Point(234, 19);
+            this.manifestationRadio.Location = new System.Drawing.Point(316, 23);
+            this.manifestationRadio.Margin = new System.Windows.Forms.Padding(4);
             this.manifestationRadio.Name = "manifestationRadio";
-            this.manifestationRadio.Size = new System.Drawing.Size(82, 17);
+            this.manifestationRadio.Size = new System.Drawing.Size(105, 21);
             this.manifestationRadio.TabIndex = 1;
             this.manifestationRadio.Text = "Manifestatie";
             this.manifestationRadio.UseVisualStyleBackColor = true;
@@ -206,9 +220,10 @@
             // 
             this.workassignmentRadio.AutoSize = true;
             this.workassignmentRadio.Checked = true;
-            this.workassignmentRadio.Location = new System.Drawing.Point(32, 19);
+            this.workassignmentRadio.Location = new System.Drawing.Point(43, 23);
+            this.workassignmentRadio.Margin = new System.Windows.Forms.Padding(4);
             this.workassignmentRadio.Name = "workassignmentRadio";
-            this.workassignmentRadio.Size = new System.Drawing.Size(93, 17);
+            this.workassignmentRadio.Size = new System.Drawing.Size(118, 21);
             this.workassignmentRadio.TabIndex = 0;
             this.workassignmentRadio.TabStop = true;
             this.workassignmentRadio.Text = "Werkopdracht";
@@ -219,9 +234,10 @@
             // 
             this.closeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.closeBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeBtn.Location = new System.Drawing.Point(423, 264);
+            this.closeBtn.Location = new System.Drawing.Point(564, 325);
+            this.closeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBtn.Size = new System.Drawing.Size(100, 28);
             this.closeBtn.TabIndex = 13;
             this.closeBtn.Text = "Sluiten";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -231,46 +247,40 @@
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.messageLbl,
-            this.progress,
             this.HelpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 301);
+            this.statusBar.Location = new System.Drawing.Point(0, 368);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(510, 22);
+            this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusBar.Size = new System.Drawing.Size(680, 23);
             this.statusBar.TabIndex = 14;
             this.statusBar.Text = "statusStrip1";
             // 
             // messageLbl
             // 
-            this.messageLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.messageLbl.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.messageLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.messageLbl.Name = "messageLbl";
-            this.messageLbl.Size = new System.Drawing.Size(365, 17);
+            this.messageLbl.Size = new System.Drawing.Size(624, 18);
             this.messageLbl.Spring = true;
             this.messageLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // progress
-            // 
-            this.progress.MarqueeAnimationSpeed = 0;
-            this.progress.Name = "progress";
-            this.progress.Size = new System.Drawing.Size(100, 16);
-            this.progress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             // 
             // HelpLbl
             // 
             this.HelpLbl.IsLink = true;
             this.HelpLbl.Name = "HelpLbl";
-            this.HelpLbl.Size = new System.Drawing.Size(28, 17);
+            this.HelpLbl.Size = new System.Drawing.Size(36, 18);
             this.HelpLbl.Text = "Help";
             this.HelpLbl.Click += new System.EventHandler(this.HelpLbl_Click);
             // 
             // useExtendChk
             // 
             this.useExtendChk.AutoSize = true;
-            this.useExtendChk.Location = new System.Drawing.Point(42, 244);
+            this.useExtendChk.Location = new System.Drawing.Point(56, 300);
+            this.useExtendChk.Margin = new System.Windows.Forms.Padding(4);
             this.useExtendChk.Name = "useExtendChk";
-            this.useExtendChk.Size = new System.Drawing.Size(219, 17);
+            this.useExtendChk.Size = new System.Drawing.Size(288, 21);
             this.useExtendChk.TabIndex = 15;
             this.useExtendChk.Text = "Beperk zoekresultaten tot huidige extend";
             this.useExtendChk.UseVisualStyleBackColor = true;
@@ -278,9 +288,10 @@
             // saveAsShapeBtn
             // 
             this.saveAsShapeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveAsShapeBtn.Location = new System.Drawing.Point(333, 264);
+            this.saveAsShapeBtn.Location = new System.Drawing.Point(444, 325);
+            this.saveAsShapeBtn.Margin = new System.Windows.Forms.Padding(4);
             this.saveAsShapeBtn.Name = "saveAsShapeBtn";
-            this.saveAsShapeBtn.Size = new System.Drawing.Size(84, 23);
+            this.saveAsShapeBtn.Size = new System.Drawing.Size(112, 28);
             this.saveAsShapeBtn.TabIndex = 16;
             this.saveAsShapeBtn.Text = "Opslaan";
             this.saveAsShapeBtn.UseVisualStyleBackColor = true;
@@ -288,10 +299,10 @@
             // 
             // gipodForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeBtn;
-            this.ClientSize = new System.Drawing.Size(510, 323);
+            this.ClientSize = new System.Drawing.Size(680, 391);
             this.Controls.Add(this.saveAsShapeBtn);
             this.Controls.Add(this.useExtendChk);
             this.Controls.Add(this.cityCombo);
@@ -310,8 +321,9 @@
             this.Controls.Add(this.provinceLbl);
             this.Controls.Add(this.citylbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(1200, 350);
-            this.MinimumSize = new System.Drawing.Size(420, 350);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1597, 423);
+            this.MinimumSize = new System.Drawing.Size(557, 423);
             this.Name = "gipodForm";
             this.Text = "GIPOD";
             this.gipodTypeGroup.ResumeLayout(false);
@@ -345,7 +357,6 @@
         private System.Windows.Forms.ToolStripStatusLabel messageLbl;
         private System.Windows.Forms.CheckBox useExtendChk;
         private System.Windows.Forms.Button saveAsShapeBtn;
-        private System.Windows.Forms.ToolStripProgressBar progress;
         private System.Windows.Forms.ToolStripStatusLabel HelpLbl;
     }
 }

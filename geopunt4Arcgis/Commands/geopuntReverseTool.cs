@@ -14,13 +14,13 @@ using ESRI.ArcGIS.Display;
 
 namespace geopunt4Arcgis
 {
-    public class geopuntReverseCmd : ESRI.ArcGIS.Desktop.AddIns.Tool
+    public class geopuntReverseTool : ESRI.ArcGIS.Desktop.AddIns.Tool
     {
         IActiveView view;
         reverseZoekForm resultForm;
         geopunt4arcgisExtension gpExtension;
 
-        public geopuntReverseCmd()
+        public geopuntReverseTool()
         {
             view = ArcMap.Document.ActiveView;
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
@@ -83,5 +83,6 @@ namespace geopunt4Arcgis
                 base.OnMouseDown(arg);
             }
         }
+
     }
 }

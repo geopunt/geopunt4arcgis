@@ -11,9 +11,7 @@ namespace geopunt4Arcgis.dataHandler
     class dhm
     {
         public WebClient client;
-        NameValueCollection qryValues;
         string baseUri;
-
 
         public dhm(string proxyUrl = "", int port = 80)
         {
@@ -26,13 +24,13 @@ namespace geopunt4Arcgis.dataHandler
                 client = new WebClient() { Encoding = System.Text.Encoding.UTF8, 
                                            Proxy = new System.Net.WebProxy(proxyUrl, port) };
             }
-            client.Headers["Content-type"] = "application/json";
-            qryValues = new NameValueCollection();
             baseUri = "http://dhm.beta.agiv.be/api/elevation/v1/";
         }
 
         public List<List<double>> getDataAlongLine( datacontract.geojsonLine profileLine, int nrSamples = 30, CRS srs = CRS.WGS84)
         {
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
+
             Uri dhmUri = new Uri(baseUri + "DHMVMIXED/request/");
             datacontract.dhmRequest dhmMsg = new datacontract.dhmRequest() { 
                 Samples = nrSamples, LineString = profileLine, SrsIn= (int)srs , SrsOut= (int)srs };
