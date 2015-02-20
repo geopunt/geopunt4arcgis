@@ -554,7 +554,7 @@ namespace geopunt4Arcgis
                         return true;
                     }
                     IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(featureClassPath.Name);
-                    IDataset ds = featureClass as IDataset;
+                    IDataset ds = (IDataset) featureClass;
                     if (ds.CanDelete())
                     {
                         ds.Delete();
@@ -573,42 +573,6 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "open / save dialogs"
-        /// <summary> Shows dialog for opening map layers / data.</summary>
-        /// <param name="filters"> for example:
-        ///       IGxObjectFilter ipFilter1 = new GxFilterFGDBFeatureClassesClass() ;
-        ///       List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { ipFilter1 });</param>
-        /// <param name="dialogTitle"> The title of the dialog </param>
-        /// <returns> IGxObject: object that contains the map layer. Must be cast to the correct layer type. </returns>
-        public static IGxObject ShowAddDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
-        {
-
-            IGxDialog pGxDialog = new GxDialogClass();
-            pGxDialog.Title = dialogTitle;
-            pGxDialog.AllowMultiSelect = false;
-
-            // Create a filter collection for the dialog.
-            IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
-
-            foreach (IGxObjectFilter filt in filters)
-            {
-                pFilterCol.AddFilter(filt, false);
-            }
-
-            // Open the dialog
-            IEnumGxObject pEnumGx = null;
-            if (!pGxDialog.DoModalOpen(0, out pEnumGx))
-            {
-                return null;
-            }
-
-            // Retrieve the layer, via an IGXObject
-            // pGxObject it the first and only element of the selection returned by the dialog.
-            pEnumGx.Reset();
-            IGxObject pGxObject = pEnumGx.Next();
-
-            return pGxObject;
-        }
-
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="filters"> for example:
         ///       IGxObjectFilter ipFilter1 = new GxFilterFGDBFeatureClassesClass() ;
@@ -617,7 +581,6 @@ namespace geopunt4Arcgis
         /// <returns> the path to the file to save </returns>
         public static string ShowSaveDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
         {
-
             IGxDialog pGxDialog = new GxDialogClass();
             pGxDialog.Title = dialogTitle;
             pGxDialog.AllowMultiSelect = false;
@@ -635,9 +598,55 @@ namespace geopunt4Arcgis
             {
                 return null;
             }
-            string path = pGxDialog.FinalLocation.FullName + "\\" + pGxDialog.Name;
+            string dirPath = pGxDialog.FinalLocation.FullName;
+            string path = dirPath + "\\" + pGxDialog.Name;
+
+            try
+            {
+                if (dirPath.ToLowerInvariant().EndsWith(".gdb"))
+                {
+                    IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IWorkspace2 ws = (IWorkspace2)featureWorkspace;
+
+                    IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
+                    if (!fc.CanDelete())
+                    {
+                        MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                    "Feature Class in gebruik");
+                        return null;
+                    }
+
+                    if (ws.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
+                    {
+                        DialogResult dlg = MessageBox.Show(pGxDialog.Name + " bestaat al, wilt u dit overschrijven?",
+                                    "Feature Class bestaat al", MessageBoxButtons.YesNo);
+                        if (dlg == DialogResult.No)
+                        {
+                            return null;
+                        }
+                    }
+                }
+                else if (Directory.Exists(dirPath))
+                {
+                    IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
+                    if (!fc.CanDelete())
+                    {
+                        MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                    "Feature Class in gebruik");
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
+            }
             return path;
         }
+
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="dialogTitle">The title of the dialog</param>
         /// <returns> the path to the file to save </returns>
@@ -645,7 +654,7 @@ namespace geopunt4Arcgis
         {
             IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
             IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
-            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter });
+            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { shpFilter, gdbFilter});
 
             return ShowSaveDataDialog(gxFilterList, dialogTitle);
         }
