@@ -77,7 +77,7 @@
             this.add2MapBtn.Name = "add2MapBtn";
             this.add2MapBtn.Size = new System.Drawing.Size(132, 28);
             this.add2MapBtn.TabIndex = 2;
-            this.add2MapBtn.Text = "Markeer Locatie";
+            this.add2MapBtn.Text = "Markeer locatie";
             this.add2MapBtn.UseVisualStyleBackColor = true;
             this.add2MapBtn.Click += new System.EventHandler(this.add2MapBtn_Click);
             // 

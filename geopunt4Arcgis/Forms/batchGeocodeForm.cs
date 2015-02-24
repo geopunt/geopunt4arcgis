@@ -420,6 +420,10 @@ namespace geopunt4Arcgis
         #region "private functions"
         private void loadCSV2table()
         {
+            System.Text.Encoding codex = System.Text.Encoding.Default;
+            if (encodingCbx.Text == "UTF-8") codex = System.Text.Encoding.UTF8;
+            else if (encodingCbx.Text == "ANSI") codex = System.Text.Encoding.ASCII;
+
             string csvPath = csvPathTxt.Text;
             DataGridViewComboBoxColumn validatedRow;
 
@@ -438,7 +442,7 @@ namespace geopunt4Arcgis
             
             try
             {
-                csvDataTbl = geopuntHelper.loadCSV2datatable(csvPath, sepator);
+                csvDataTbl = geopuntHelper.loadCSV2datatable(csvPath, sepator, 500, codex);
             }
             catch (Exception csvEx)
             {

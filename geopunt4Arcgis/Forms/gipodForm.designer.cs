@@ -280,9 +280,9 @@
             this.useExtendChk.Location = new System.Drawing.Point(56, 300);
             this.useExtendChk.Margin = new System.Windows.Forms.Padding(4);
             this.useExtendChk.Name = "useExtendChk";
-            this.useExtendChk.Size = new System.Drawing.Size(288, 21);
+            this.useExtendChk.Size = new System.Drawing.Size(322, 21);
             this.useExtendChk.TabIndex = 15;
-            this.useExtendChk.Text = "Beperk zoekresultaten tot huidige extend";
+            this.useExtendChk.Text = "Beperk zoekresultaten tot huidige zoomniveau";
             this.useExtendChk.UseVisualStyleBackColor = true;
             // 
             // saveAsShapeBtn

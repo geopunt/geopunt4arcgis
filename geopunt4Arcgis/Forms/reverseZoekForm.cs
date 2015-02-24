@@ -216,7 +216,7 @@ namespace geopunt4Arcgis
 
      #endregion
 
-     #region "shared functions"
+     #region "public functions"
         public void setText(string adrestext, double diffValue = 0, string statustext = "")
         {
             adresBox.Text = adrestext;

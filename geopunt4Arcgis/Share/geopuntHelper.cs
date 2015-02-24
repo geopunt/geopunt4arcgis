@@ -581,28 +581,28 @@ namespace geopunt4Arcgis
         /// <returns> the path to the file to save </returns>
         public static string ShowSaveDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
         {
-            IGxDialog pGxDialog = new GxDialogClass();
-            pGxDialog.Title = dialogTitle;
-            pGxDialog.AllowMultiSelect = false;
-
-            // Create a filter collection for the dialog.
-            IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
-
-            foreach (IGxObjectFilter filt in filters)
-            {
-                pFilterCol.AddFilter(filt, false);
-            }
-
-            // Open the dialog
-            if (!pGxDialog.DoModalSave(0))
-            {
-                return null;
-            }
-            string dirPath = pGxDialog.FinalLocation.FullName;
-            string path = dirPath + "\\" + pGxDialog.Name;
-
             try
             {
+                IGxDialog pGxDialog = new GxDialogClass();
+                pGxDialog.Title = dialogTitle;
+                pGxDialog.AllowMultiSelect = false;
+
+                // Create a filter collection for the dialog.
+                IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
+
+                foreach (IGxObjectFilter filt in filters)
+                {
+                    pFilterCol.AddFilter(filt, false);
+                }
+
+                // Open the dialog
+                if (!pGxDialog.DoModalSave(0))
+                {
+                    return null;
+                }
+                string dirPath = pGxDialog.FinalLocation.FullName;
+                string path = dirPath + "\\" + pGxDialog.Name;
+
                 if (dirPath.ToLowerInvariant().EndsWith(".gdb"))
                 {
                     IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
@@ -639,12 +639,13 @@ namespace geopunt4Arcgis
                         return null;
                     }
                 }
+                return path;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " " + ex.StackTrace);
+                return null;
             }
-            return path;
         }
 
         /// <summary> Shows dialog for saving data.</summary>
@@ -1136,11 +1137,15 @@ namespace geopunt4Arcgis
         /// <param name="separator">the character separating the values, can be "COMMA", "PUNTCOMMA", "SPATIE" or "TAB", 
         /// for any sepator string the the input is used</param>
         /// <returns>a datable containing the values form the file</returns>
-        public static DataTable loadCSV2datatable(string csvPath, string separator, int maxRows = 500 )
+        public static DataTable loadCSV2datatable(string csvPath, string separator, int maxRows = 500, 
+            System.Text.Encoding codex = null)
         {
             FileInfo csv = new FileInfo(csvPath);
             string sep;
             DataTable tbl = new DataTable();
+
+            System.Text.Encoding textEncoding = System.Text.Encoding.Default;
+            if (codex != null) textEncoding = codex;
 
             if (!csv.Exists)
                 throw new csvException("Deze csv-file bestaat niet: " + csv.Name);
@@ -1166,7 +1171,7 @@ namespace geopunt4Arcgis
                     break;
             }
             using (Microsoft.VisualBasic.FileIO.TextFieldParser csvParser =
-                            new Microsoft.VisualBasic.FileIO.TextFieldParser(csv.FullName))
+                            new Microsoft.VisualBasic.FileIO.TextFieldParser(csv.FullName, textEncoding, true))
             {
                 csvParser.Delimiters = new string[] { sep };
                 csvParser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;

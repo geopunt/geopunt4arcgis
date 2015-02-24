@@ -97,4 +97,3 @@ copy /Y geopuntGipod32x32.png ..\geopunt4arcgis\Images\geopuntGipodCmd.png
 copy /Y geopuntPoi32x32.png ..\geopunt4arcgis\Images\geopuntPoiCmd.png
 copy /Y geopuntReverse32x32.png ..\geopunt4arcgis\Images\geopuntReverseCmd.png
 
-DEL *.png
