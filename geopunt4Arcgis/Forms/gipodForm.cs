@@ -33,7 +33,6 @@ namespace geopunt4Arcgis
         public gipodForm()
         {
             //globals 
-            gipod = new dataHandler.gipod();
             view = ArcMap.Document.ActiveView;
 
             Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
@@ -44,6 +43,7 @@ namespace geopunt4Arcgis
             lam72 = spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
+            gipod = new dataHandler.gipod(timeout: gpExtension.timeout);
 
             InitializeComponent();
             // set the rest of the GUI
@@ -52,7 +52,7 @@ namespace geopunt4Arcgis
 
         private void initGUI() 
         {
-            dataHandler.capakey capakey = new dataHandler.capakey();
+            dataHandler.capakey capakey = new dataHandler.capakey(timeout: gpExtension.timeout);
             municipality = capakey.getMunicipalities();
             var qry = from datacontract.municipality t in municipality.municipalities select t.municipalityName;
 

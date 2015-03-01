@@ -99,7 +99,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.keywordTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.keywordTxt.Location = new System.Drawing.Point(13, 18);
-            this.keywordTxt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keywordTxt.Margin = new System.Windows.Forms.Padding(4);
             this.keywordTxt.Name = "keywordTxt";
             this.keywordTxt.Size = new System.Drawing.Size(613, 22);
             this.keywordTxt.TabIndex = 1;
@@ -108,7 +108,7 @@
             // 
             this.zoekBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zoekBtn.Location = new System.Drawing.Point(635, 15);
-            this.zoekBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zoekBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoekBtn.Name = "zoekBtn";
             this.zoekBtn.Size = new System.Drawing.Size(85, 28);
             this.zoekBtn.TabIndex = 3;
@@ -202,6 +202,8 @@
             // 
             // typeCbx
             // 
+            this.typeCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.typeCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.typeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.typeCbx.FormattingEnabled = true;
             this.typeCbx.Location = new System.Drawing.Point(144, 110);
@@ -212,6 +214,8 @@
             // 
             // INSPIREserviceCbx
             // 
+            this.INSPIREserviceCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.INSPIREserviceCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.INSPIREserviceCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREserviceCbx.FormattingEnabled = true;
             this.INSPIREserviceCbx.Location = new System.Drawing.Point(497, 74);
@@ -222,6 +226,8 @@
             // 
             // bronCatCbx
             // 
+            this.bronCatCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.bronCatCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.bronCatCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bronCatCbx.FormattingEnabled = true;
             this.bronCatCbx.Location = new System.Drawing.Point(144, 74);
@@ -232,6 +238,8 @@
             // 
             // INSPIREthemeCbx
             // 
+            this.INSPIREthemeCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.INSPIREthemeCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.INSPIREthemeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREthemeCbx.FormattingEnabled = true;
             this.INSPIREthemeCbx.Location = new System.Drawing.Point(497, 38);
@@ -242,6 +250,8 @@
             // 
             // orgNameCbx
             // 
+            this.orgNameCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.orgNameCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.orgNameCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orgNameCbx.FormattingEnabled = true;
             this.orgNameCbx.Location = new System.Drawing.Point(144, 38);
@@ -252,6 +262,8 @@
             // 
             // INSPIREannexCbx
             // 
+            this.INSPIREannexCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.INSPIREannexCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.INSPIREannexCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.INSPIREannexCbx.FormattingEnabled = true;
             this.INSPIREannexCbx.Location = new System.Drawing.Point(497, 2);
@@ -262,6 +274,8 @@
             // 
             // GDIthemeCbx
             // 
+            this.GDIthemeCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.GDIthemeCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.GDIthemeCbx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GDIthemeCbx.FormattingEnabled = true;
             this.GDIthemeCbx.Location = new System.Drawing.Point(144, 2);
@@ -314,6 +328,7 @@
             // 
             this.searchResultsList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.searchResultsList.FormattingEnabled = true;
+            this.searchResultsList.HorizontalScrollbar = true;
             this.searchResultsList.ItemHeight = 16;
             this.searchResultsList.Location = new System.Drawing.Point(0, 0);
             this.searchResultsList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -401,7 +416,7 @@
             this.Controls.Add(this.keywordTxt);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(600, 497);
             this.Name = "catalogForm";
             this.Text = "Geopunt-catalogus";

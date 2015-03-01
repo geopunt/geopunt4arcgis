@@ -330,7 +330,6 @@ namespace geopunt4Arcgis
             IWorkspace workspace = workspaceFactory.OpenFromFile( shapeInfo.DirectoryName , 0);
             IFeatureWorkspace featureWorkspace = (IFeatureWorkspace) workspace; // Explict Cast
 
-            IWorkspace2 ws = (IWorkspace2)featureWorkspace;
             if ( shapeInfo.Exists )
             {
                 if (deleteIfExists)
@@ -403,7 +402,7 @@ namespace geopunt4Arcgis
             
             IWorkspaceFactory2 workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
             IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(FGDBPath, 0);
-            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     // Explict Cast
+            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     
 
             if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, FCname))
             {
@@ -606,23 +605,22 @@ namespace geopunt4Arcgis
                 if (dirPath.ToLowerInvariant().EndsWith(".gdb"))
                 {
                     IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
-                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(dirPath, 0);
-                    IWorkspace2 ws = (IWorkspace2)featureWorkspace;
+                    IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;
 
-                    IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
-                    if (!fc.CanDelete())
+                    if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
                     {
-                        MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
-                                    "Feature Class in gebruik");
-                        return null;
-                    }
-
-                    if (ws.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
-                    {
+                        IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
                         DialogResult dlg = MessageBox.Show(pGxDialog.Name + " bestaat al, wilt u dit overschrijven?",
                                     "Feature Class bestaat al", MessageBoxButtons.YesNo);
                         if (dlg == DialogResult.No)
                         {
+                            return null;
+                        }
+                        else if (!fc.CanDelete())
+                        {
+                            MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                        "Feature Class in gebruik");
                             return null;
                         }
                     }
@@ -630,13 +628,19 @@ namespace geopunt4Arcgis
                 else if (Directory.Exists(dirPath))
                 {
                     IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
-                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspaceFactory.OpenFromFile(dirPath, 0);
-                    IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
-                    if (!fc.CanDelete())
+                    IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;
+
+                    if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
                     {
-                        MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
-                                    "Feature Class in gebruik");
-                        return null;
+                        IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
+
+                        if (!fc.CanDelete())
+                        {
+                            MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                        "Feature Class in gebruik");
+                            return null;
+                        }
                     }
                 }
                 return path;
@@ -655,7 +659,7 @@ namespace geopunt4Arcgis
         {
             IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
             IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
-            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { shpFilter, gdbFilter});
+            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter});
 
             return ShowSaveDataDialog(gxFilterList, dialogTitle);
         }
@@ -1148,9 +1152,9 @@ namespace geopunt4Arcgis
             if (codex != null) textEncoding = codex;
 
             if (!csv.Exists)
-                throw new csvException("Deze csv-file bestaat niet: " + csv.Name);
+                throw new Exception("Deze csv-file bestaat niet: " + csv.Name);
             if( separator == "" || separator == null ) 
-                throw new csvException("Deze separator is niet toegelaten");
+                throw new Exception("Deze separator is niet toegelaten");
 
             switch (separator)
             {
@@ -1189,9 +1193,9 @@ namespace geopunt4Arcgis
                 {
                     try
                     {
-                        if (counter > maxRows)
+                        if (counter >= maxRows)
                         {
-                            throw new csvException("maximaal aantal rijen van "+ maxRows.ToString() + " overschreden.");
+                            return tbl;
                         }
                         counter++;
 
@@ -1199,14 +1203,14 @@ namespace geopunt4Arcgis
 
                         if (tbl.Columns.Count != row.Count())
                         {
-                            throw new csvException("Niet alle rijen hebben hetzelfde aantal kolommen, op eerste lijn: " +
+                            throw new Exception("Niet alle rijen hebben hetzelfde aantal kolommen, op eerste lijn: " +
                              tbl.Rows.Count.ToString() + " gevonden: " + row.Count() + " op lijn: " + string.Join(sep, row));
                         }
                         tbl.Rows.Add(row);
                     }
                     catch (Microsoft.VisualBasic.FileIO.MalformedLineException ex)
                     {
-                        throw new csvException("CSV is kan niet worden gelezen, het heeft niet de correcte vorm: " + csvParser.ErrorLine, ex);
+                        throw new Exception("CSV is kan niet worden gelezen, het heeft niet de correcte vorm: " + csvParser.ErrorLine, ex);
                     }
                 }
             }
@@ -1232,20 +1236,5 @@ namespace geopunt4Arcgis
 
         }
         #endregion
-
     }
-
-    #region "exceptions"
-    [Serializable]
-    public class csvException : Exception
-    {
-        public string csvMessage;
-        public csvException(string message) : base(message) { }
-        public csvException(string message, Exception inner) : base(message, inner) { }
-        //protected csvException(
-        //  System.Runtime.Serialization.SerializationInfo info,
-        //  System.Runtime.Serialization.StreamingContext context)
-        //    : base(info, context) { }
-    }
-    #endregion
 }

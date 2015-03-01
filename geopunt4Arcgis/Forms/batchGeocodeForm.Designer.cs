@@ -91,7 +91,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(500, 21);
+            this.msgLbl.Size = new System.Drawing.Size(469, 21);
             this.msgLbl.Spring = true;
             // 
             // progressBar

@@ -58,7 +58,7 @@
             // 
             this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityCombo.FormattingEnabled = true;
             this.cityCombo.Location = new System.Drawing.Point(141, 123);
@@ -71,7 +71,7 @@
             // 
             this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.provinceCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.provinceCombo.FormattingEnabled = true;
             this.provinceCombo.Location = new System.Drawing.Point(141, 90);
@@ -126,7 +126,7 @@
             // 
             this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.ownerCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ownerCombo.FormattingEnabled = true;
             this.ownerCombo.Location = new System.Drawing.Point(141, 159);
@@ -179,7 +179,7 @@
             // 
             this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.eventTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.eventTypeCombo.Enabled = false;
             this.eventTypeCombo.FormattingEnabled = true;

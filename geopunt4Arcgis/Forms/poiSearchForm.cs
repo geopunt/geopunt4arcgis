@@ -46,7 +46,7 @@ namespace geopunt4Arcgis
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
-            poiDH = new dataHandler.poi();
+            poiDH = new dataHandler.poi(timeout: gpExtension.timeout);
 
             graphics = new List<IElement>();
 
@@ -59,7 +59,7 @@ namespace geopunt4Arcgis
             rows = new SortableBindingList<poiDataRow>();
             resultGrid.DataSource = rows;
 
-            dataHandler.capakey capa = new dataHandler.capakey();
+            dataHandler.capakey capa = new dataHandler.capakey(timeout: gpExtension.timeout);
 
             municipalities = capa.getMunicipalities();
             List<string> cities = (from datacontract.municipality t in municipalities.municipalities 

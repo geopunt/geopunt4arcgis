@@ -53,8 +53,8 @@ namespace geopunt4Arcgis
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
-            loc = new dataHandler.adresLocation();
-            sug = new dataHandler.adresSuggestion();
+            loc = new dataHandler.adresLocation( timeout: gpExtension.timeout);
+            sug = new dataHandler.adresSuggestion( timeout: gpExtension.timeout);
 
             graphics = new List<IElement>();
 
@@ -67,6 +67,7 @@ namespace geopunt4Arcgis
         {
             sepCbx.SelectedIndex = 0;
             sepator = sepCbx.Text;
+            encodingCbx.SelectedIndex = 0;
 
             ESRI.ArcGIS.Framework.ICommandBars commandBars = ArcMap.Application.Document.CommandBars;
             UID toolID = new UIDClass();
@@ -442,10 +443,20 @@ namespace geopunt4Arcgis
             
             try
             {
-                csvDataTbl = geopuntHelper.loadCSV2datatable(csvPath, sepator, 500, codex);
+                int maxRowCount = gpExtension.csvMaxRows;
+                csvDataTbl = geopuntHelper.loadCSV2datatable(csvPath, sepator, maxRowCount, codex);
+
+                if (csvDataTbl.Rows.Count == maxRowCount)
+                {
+                    string msg =  String.Format(
+                      "Maximaal aantal van {0} rijen overschreden, enkel de eerste {0} rijen worden getoont.", maxRowCount);
+                    MessageBox.Show(msg, "Maximaal aantal rijen overschreden." );
+                    csvErrorLbl.Text = msg;
+                }
             }
             catch (Exception csvEx)
-            {
+            { 
+                MessageBox.Show(csvEx.Message, "Error" );
                 csvErrorLbl.Text = csvEx.Message;
                 return;
             }

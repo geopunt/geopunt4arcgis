@@ -51,8 +51,8 @@ namespace geopunt4Arcgis
             adresFC = gpExtension.adresLayer;
 
             //dataHandlers
-            adresSuggestion = new dataHandler.adresSuggestion(sugCallback);
-            adresLocation = new dataHandler.adresLocation();
+            adresSuggestion = new dataHandler.adresSuggestion(sugCallback, timeout: gpExtension.timeout);
+            adresLocation = new dataHandler.adresLocation(timeout: gpExtension.timeout);
 
             //init UI
             InitializeComponent();

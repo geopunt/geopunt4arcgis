@@ -47,7 +47,7 @@ namespace geopunt4Arcgis
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
-            capakey = new dataHandler.capakey();
+            capakey = new dataHandler.capakey(timeout: gpExtension.timeout);
 
             InitializeComponent();
 

@@ -180,6 +180,13 @@
     <Compile Include="Commands\geopuntMetaCatalogCmd.cs" />
     <Compile Include="Commands\geopuntElevationTool.cs" />
     <Compile Include="Commands\geopuntElevationCmd.cs" />
+    <Compile Include="Commands\geopuntSettingsCmd.cs" />
+    <Compile Include="Forms\settingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settingsForm.Designer.cs">
+      <DependentUpon>settingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +237,9 @@
     </Compile>
     <Compile Include="Forms\reverseZoekForm.designer.cs">
       <DependentUpon>reverseZoekForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Share\gpWebClient.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Share\SortableBindingList.cs" />
   </ItemGroup>
@@ -304,6 +314,9 @@
     <EmbeddedResource Include="Forms\poiSearchForm.resx">
       <DependentUpon>poiSearchForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settingsForm.resx">
+      <DependentUpon>settingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\zoekAdresForm.resx">
       <DependentUpon>zoekAdresForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -333,6 +346,7 @@
     <AddInContent Include="Images\getMousePointTool.cur" />
     <AddInContent Include="Images\geopuntReverseCmd.png" />
     <AddInContent Include="Images\geopuntElevationCmd.png" />
+    <AddInContent Include="Images\geopuntSettingCmd.png" />
     <Content Include="Images\gipod.png" />
     <Content Include="Images\logogeopunt.png" />
     <Content Include="Images\magnifyingGlassSmall.png" />

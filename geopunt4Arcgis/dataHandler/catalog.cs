@@ -29,16 +29,16 @@ namespace geopunt4Arcgis.dataHandler
         
         public List<string> inpireAnnex = new List<string>(){ "", "i","ii","iii"};
 
-        public catalog(string proxyUrl = "", int port = 80)
+        public catalog(string proxyUrl = "", int port = 80, int timeout = 5000)
         {
             if (proxyUrl == null || proxyUrl == "")
             {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
+                client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, timeout= timeout };
             }
             else
             {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, 
-                                           Proxy = new System.Net.WebProxy(proxyUrl, port) };
+                client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, 
+                                           Proxy = new System.Net.WebProxy(proxyUrl, port), timeout= timeout };
             }
             client.Headers["Content-type"] = "application/json";
             qryValues = new NameValueCollection();

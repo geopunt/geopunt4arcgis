@@ -40,10 +40,10 @@ namespace geopunt4Arcgis
         {
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
-            adresLocation = new dataHandler.adresLocation(adresCallback);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
             reverseFC = gpExtension.reverseLayer;
+            adresLocation = new dataHandler.adresLocation(adresCallback, timeout: gpExtension.timeout);
 
             InitializeComponent();
         }

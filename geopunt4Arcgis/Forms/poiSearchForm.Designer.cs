@@ -130,7 +130,7 @@
             // 
             this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.gemeenteCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteCbx.FormattingEnabled = true;
             this.gemeenteCbx.Location = new System.Drawing.Point(116, 49);

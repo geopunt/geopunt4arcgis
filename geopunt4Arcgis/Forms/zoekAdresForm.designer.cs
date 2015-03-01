@@ -127,7 +127,7 @@
             // 
             // gemeenteBox
             // 
-            this.gemeenteBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.gemeenteBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteBox.FormattingEnabled = true;
             this.gemeenteBox.Items.AddRange(new object[] {
