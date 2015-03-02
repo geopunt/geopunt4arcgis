@@ -5,60 +5,58 @@
   <style>body {font-size: 80%}</style>
 </head>
 <body>
-<h1>Geopunt4Arcgis</h1>
 
-<h2>Doelstelling:</h2>
-
-<p>'Geopunt voor ArcGIS' is een add-in voor ESRI ArcGIS desktop, die de webservices van het Vlaamse geoportaal Geopunt ontsluit naar desktop ArcGIS-gebruikers.</p>
-
-<p>Het Vlaamse Geoportaal Geopunt bied een aantal geografische diensten (web-services) aan die mogen gebruikt worden door derden zoals andere overheden en bedrijven. Deze tool implementeert de geolocatie publieke dienst als een arcgis deskop addin. 
-
-<p>De webservices, die zijn gebaseerd op de OGC standaard WMS en kunnen gemakkelijk worden toegevoegd aan ArcGIS desktop. GIS-gebruikers kunnen deze diensten ontdekken via het metadatacenter. De achterliggende zoekservice voor deze diensten is niet direct bruikbaar in ArcGIS en wordt in deze plug-in ingebouwd.
-Sommige diensten aangeboden door Geopunt zijn niet gebaseerd op een open standaard omdat het gaat om diensten die geen open standaard hebben. Deze publieke webservices zijn opgesteld volgens een REST-volle API, die eenvoudiger in gebruik is voor programmeurs dan OGC-diensten, maar omdat ze niet gestandaardiseerd zijn kunnen ze niet zomaar binnen getrokken worden in desktop software.</p>
-
-<span>Het gaat onder andere over:</span>
+<h1>Geopunt4Qgis</h1>
+<h2>Functies</h2>
 <ul>
-    <li>Geocoderen, gebaseerd op de officiële CRAB adressen-databank.</li>
-    <li>Locaties zoeken, door koppeling van adressen aan de CRAB-databank, bijvoorbeeld de scholendatabank van de Vlaamse overheid. (documentatie nog niet beschikbaar).</li>
-    <li>Innames van openbaar domein, van het Generiek Informatieplatform Openbaar Domein (GIPOD) GIPOD, de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.</li>
-    <li>Hoogteprofiel, een dienst waarmee de hoogte, in digitaal hoogtemodel Vlaanderen, langsheen een lijn kan worden opgevraagd.</li>
-    <li>Metadata zoekdienst, deze diensten worden gebruik in het metadatacenter van Geopunt en bevat ondermeer metadatafiches van AGIV, het samenwerkingsverband MercatorNet en DOV.</li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres" > Zoek een Adres</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart" > Prik een Adres op kaart</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/csv-bestanden-geocoderen" > CSV-adresbestanden geocoderen</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/poi" > Zoek een Plaats - interesse punt</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" > GIPOD</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel" > Hoogteprofiel</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel" > Zoek een perceel</a></li>
+<li><a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/catalogus" > Geopunt catalogus</a></li>
+</ul>
+<h2>Systeem vereisten</h2>
+<ul>
+<li>Minimaal: Windows XP, ArcGIS Destkop versie 10.0 sp4 of hoger, .net-framework versie 3.5</li>
+<li>Aanbevolen: Windows7, ArcGIS Destkop versie 10.2 of hoger, .net-framework versie 4.0</li>
+<li>Een verbinding met het Internet, restrictieve firewalls kunnen mogelijk de connectie blokkeren.</li>
+</ul>
+<h2>Doelstelling</h2>
+<p>Geopunt4arcgis - 'Geopunt voor ArcGIS' is een add-in voor ESRI ArcGIS desktop, die de webservices van het Vlaamse geoportaal Geopunt ontsluit naar desktop ArcGIS-gebruikers.</p>
+<p>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan die mogen gebruikt worden door derden zoals andere overheden en bedrijven.</p>
+<p>De kaartdiensten zijn gebaseerd op de OGC open standaard WMS of WMTS en kunnen gemakkelijk worden toegevoegd aan desktop GIS. GIS-gebruikers kunnen deze diensten ontdekken via het <a href="https://metadata.geopunt.be">metadatacenter</a>.
+De achterliggende zoekservice voor deze diensten is niet direct bruikbaar in QGIS en wordt in deze plugin ingebouwd.</p>
+<p>Sommige diensten aangeboden door geopunt zijn niet gebaseerd op een open standaard omdat het gaat om diensten die geen  courant gebruikte open standaard hebben. Deze publieke webdiensten zijn opgesteld volgens een REST-volle API, die eenvoudiger in gebruik is voor programmeurs dan OGC-diensten, maar omdat ze niet gestandaardiseerd zijn, kunnen ze niet zomaar binnen getrokken worden in desktop software.</p>
+<p>Het gaat onder andere over:</p>
+<ul>
+<li><strong>Geocoderen</strong>, gebaseerd op de officiële <a href="https://www.agiv.be/producten/crab">CRAB</a> adressen-databank.</li>
+<li><strong>Locaties zoeken</strong>, door koppeling van adressen aan de crab-databank, bijvoorbeeld de scholendatabank van de Vlaamse overheid. (documentatie  nog niet beschikbaar)</li>
+<li><strong>Innames van openbaar domein</strong>, van het Generiek Informatieplatform Openbaar Domein (GIPOD)  <a href="hhttp://gipod.api.agiv.be/#!index.md">GIPOD</a>, de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.</li>
+<li><strong>Hoogteprofiel</strong>, een dienst waarmee de hoogte, in digitaal hoogte model Vlaanderen, langsheen een lijn kan worden opgevraagd. De brondata is <a href="https://www.agiv.be/producten/digitaal-hoogtemodel-vlaanderen">DHM-Vlaanderen</a>.</li>
+<li><strong>Percelen zoeken</strong>, op getrapte wijze op de basis van gemeente naar departement, sectie dan naar perceelnummer in KADMAP.</li>
+<li><strong>Metadata zoekdienst</strong>, deze diensten worden gebruik in het <a href="https://metadata.geopunt.be">metadatacenter</a> van geopunt en bevat ondermeer metadatafiches van AGIV, het samenwerkingsverband MercatorNet en DOV.</li>
+</ul>
+<p>Om GIS gebruikers binnen en buiten de Vlaamse Overheid dezelfde functionaliteit ter beschikking te stellen als aangeboden in Geopunt, wenst AGIV deze gebruikers te voorzien van software plug-ins die deze functionaliteit geïntegreerd aanbieden binnen de meest gangbare GIS desktop  omgevingen.
+Op basis van voorafgaand overleg met de GDI-Vlaanderen gemeenschap werd volgende GIS software geselecteerd: Quantum GIS (QGIS) v2.0 Dufour en ESRI ArcMap v10.</p>
+<h2>Wat is Geopunt ?</h2>
+<p><a href="http://www.geopunt.be/">Geopunt</a> is de centrale toegangspoort tot geografische overheidsinformatie, en het uithangbord van het samenwerkingsverband voor geografische informatie in Vlaanderen (GDI-Vlaanderen). Het portaal richt zich met een uitgebreid data-, diensten- en toepassingenaanbod naar een breed en divers publiek. Van burgers op zoek naar een geschikte bouwgrond tot de GIS-coördinator of het studiebureau die een milieu-studie wensen uit te voeren. Het geoportaal maakt laagdrempelig gebruik van geografische informatie door zowel overheidsinstanties, burgers, organisaties als bedrijven mogelijk. Maatschappelijk relevante geografische gegevens en diensten worden op een slimme en gebruiksvriendelijke wijze bijeengebracht.</p>
+<p>Alle componenten (metadata-cataloog, downloadapplicatie, e-commerce-applicatie, data en netwerkdiensten) worden rechtstreeks en geïntegreerd aangeboden. Het geoportaal vormt het Vlaams knooppunt in een Europese geografische data-infrastructuur en voldoet aan de vereisten van de <a href="http://inspire-geoportal.ec.europa.eu/">European INSPIRE richtlijn</a>.</p>
+<p>Geopunt is de website van het samenwerkingsverband voor geografische informatie binnen de Vlaamse overheid, GDI-Vlaanderen (GDI = Geografische Data Infrastructuur). In de rol van geografische dienstenintegrator en als uitvoerend orgaan van het samenwerkingsverband GDI-Vlaanderen staat het Agentschap voor Geografische Informatie Vlaanderen (AGIV) in voor de realisatie en het onderhoud van Geopunt.</p>
+<h2>Over de auteur</h2>
+<p><a href="http://kgis.be">Kay Warrie</a></p>
+<p>Ik ben geodata analyst en programmeur, werkzaam als freelance GIS consultant en bij de Studiedienst van stad Antwerpen.</p>
+<p>Professioneel werk ik op desktop GIS, voornamelijk Arcgis en QGIS en op webmapping met ESRI Arcgis-server of opensource webGIS en Maptiling Systemen. Ik beheer ook mee de centrale geodatabases van het stad en INSPIRE-compliant metadata in kader van GDI, Voor de rest doe ik vooral allerlei GIS analyses op data van het Stad. De meeste analyses zijn gerelateerd aan adressering-geocoding, ruimtelijke relaties, nabijheidsanalyses (routing, service area's ed.) voor onder andere MER studies, ruimtelijke ordening of bouwvergunningen.</p>
+<p><a href="mailto:kaywarrie@gmail.com">Contact mij</a></p>
+<p><a href="http://warrieka.github.io/#!aboutMe.md">Meer over mij</a></p>
+<h4>Online Bronnen:</h4>
+<ul>
+<li><em><a href="http://www.geopunt.be/voor-experts/geopunt-plugins">http://www.geopunt.be</a></em></li>
+<li><em><a href="https://www.agiv.be/">https://www.agiv.be/</a></em></li>
 </ul>
 
-<p>Om GIS-gebruikers binnen en buiten de Vlaamse Overheid dezelfde functionaliteit ter beschikking te stellen als aangeboden in Geopunt, wenst AGIV deze gebruikers te voorzien van software plug-ins die deze functionaliteit geïntegreerd aanbieden binnen de meest gangbare GIS-desktop omgevingen. </p>
 
-<h2>Systeemvereisten</h2>
-
-<ul>
-    <li>Minimaal: ArcGIS Destkop versie 10.0 sp4 of hoger, Gewenst: ArcGIS Destkop versie 10.2 of hoger</li>
-    <li>Het .net-framework versie 3.5 voor ArcGIS 10.0, .net-framework versie 4.0 voor alle andere versies. (normaal gezien samen met arcgis geïnstalleerd) </li>
-    <li>Een verbinding met het Internet.</li>
-</ul>
-
-<h2>Functionaliteit</h2>
-
-<p><strong>Zoeken op  adres (Geocoding)</strong> 
-Op basis van een input string wordt gezocht naar een adres in CRAB. Je kiest de gemeente uit een selectielijst en geeft een adres op als input tekst. De input tekst bevat verplicht een straatnaam en optioneel een huisnummer. 
-Als output krijg je een lijst van strings in de vorm (straatnaam huisnummer, gemeente) die voldoen aan de selectie criteria. Het maximaal aantal elementen in de lijst is 12. Het maximaal aantal elementen in de lijst is 25. Je kan het gewenste adres selecteren door erop te klikken, de locatie van het adres licht dan even op. Je kan een geselecteerd adres ook  toevoegen  als graphic of Feature Class of zoomen naar het adres. </p>
-
-<p><strong>Een adres Identificeren op een lokatie op de kaart (Reverse geocoding)</strong> 
-Met deze tool kan je op een locatie in Vlaanderen op de kaart klikken om het correcte adres in CRAB te weten te komen. Het gevonden adres verschijnt in een popup. Je kan de locatie van dit adres toevoegen als graphic of Feature Class.</p>
-
-<p><strong>Zoeken naar interessepunten</strong>
-Met deze tool kan je de Geopunt POI-service doorzoeken en de resultaten opslaan als een Feature Class of graphic.</p>
-
-<p><strong>GIPOD</strong>
-Met deze kan zoeken op innames van openbaar domein, van het Generiek Informatieplatform Openbaar Domein (GIPOD) GIPOD, de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.
-Je kunt deze gegevens opslaan als Feature Class.</p>
-
-<p><strong>CSV-bestanden geocoderen</strong>
-Met deze tool kan je een CSV-bestand geocoderen, omzetten naar een kaartlaag. Een CSV-bestand (Comma Seperated Values) is een tekstbestand waarin de waarden door een teken (de separator) meestal een komma of puntkomma gescheiden zijn. Als je CSV-bestand adresgegevens bevat, kan je die met deze tool op de kaart weergeven en opslaan als Feature CLass met hun correct CRAB-adres.</p>
-
-<ul>
-<li><a href='http://www.geopunt.be/over-geopunt/' target='_blank'>Over Geopunt</a></li>
-<li><a href='http://kgis.be/pages/over-mij.html' target='_blank'>Over de auteur</a></li>
-<li><a href='http://resources.arcgis.com/en/help/main/10.1/index.html#//014p0000001m000000' target='_blank'>Add-ins voor Arcgis</a></li>
-<li><a href='https://github.com/warrieka/geopunt4arcgis/' target='_blank'>Broncode</a></li>
-</ul>
 </body>
 </html>
