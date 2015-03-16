@@ -181,6 +181,12 @@
     <Compile Include="Commands\geopuntElevationTool.cs" />
     <Compile Include="Commands\geopuntElevationCmd.cs" />
     <Compile Include="Commands\geopuntSettingsCmd.cs" />
+    <Compile Include="Forms\layerSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\layerSelectionForm.Designer.cs">
+      <DependentUpon>layerSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\settingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +248,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Share\SortableBindingList.cs" />
+    <Compile Include="Share\versionChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <AddInContent Include="Config.esriaddinx">
@@ -311,6 +318,9 @@
     <EmbeddedResource Include="Forms\inputForm.resx">
       <DependentUpon>inputForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\layerSelectionForm.resx">
+      <DependentUpon>layerSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\poiSearchForm.resx">
       <DependentUpon>poiSearchForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -358,7 +368,12 @@
     <Content Include="Images\validAll.png" />
     <Content Include="Images\zoek.png" />
     <Content Include="Images\zoom.png" />
-    <AddInContent Include="Resources\about.html" />
+    <AddInContent Include="Resources\about.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AddInContent>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ABOUT.md" />
   </ItemGroup>
   <PropertyGroup>
     <ZipFileExtension>esriAddIn</ZipFileExtension>

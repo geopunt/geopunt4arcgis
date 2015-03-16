@@ -39,11 +39,7 @@ namespace geopunt4Arcgis
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
 
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
-
-            wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
+            wgs = geopuntHelper.wgs84;
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
@@ -354,7 +350,8 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel");
+            System.Diagnostics.Process.Start(
+                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-perceel");
         }
         #endregion
 

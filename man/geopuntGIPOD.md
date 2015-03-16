@@ -1,7 +1,7 @@
 GIPOD
 =====
 
-![](images/geopuntGIPOD.png)  Dit is een tool om [GIPOD](http://www.agiv.be/gis/diensten/?catid=158) data te importeren. Via [Hinder op kaart](http://www.geopunt.be/hinder-in-kaart) of de [publieke webservice](http://gipod.api.agiv.be/) kan iedereen de GIPOD-data raadplegen. Deze tool gaat deze data ophalen via de publieke webservice voor gebruik in analyses en cartografie. 
+![](geopuntGipodCmd.png)  Dit is een tool om [GIPOD](http://www.agiv.be/gis/diensten/?catid=158) data te importeren. Via [Hinder op kaart](http://www.geopunt.be/hinder-in-kaart) of de [publieke webservice](http://gipod.api.agiv.be/) kan iedereen de GIPOD-data raadplegen. Deze tool gaat deze data ophalen via de publieke webservice voor gebruik in analyses en cartografie. 
 
 Selecteer eerst of je manifestaties of werkopdrachten wilt doorzoeken.
 Je kunt kiezen uit verschillende filter opties, selecteer een waarde uit de keuzelijst:

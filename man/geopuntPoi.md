@@ -1,7 +1,7 @@
 Zoek een Plaats - interesse punt
 ================================
 
-![](../images/geopuntPoi24x24.png) Met deze tool kan je naar interesse punten (POI: Points of Intrest) in de geopunt POI-diensten zoeken. Je kunt kiezen kiezen om je zoekresultaten te beperken tot het huidige zoomniveau of een specifieke gemeente. Verder kan je ook filteren op Thema/Categorie/Type en op specifieke zoektermen.
+![](geopuntPoiCmd.png) Met deze tool kan je naar interesse punten (POI: Points of Intrest) in de geopunt POI-diensten zoeken. Je kunt kiezen kiezen om je zoekresultaten te beperken tot het huidige zoomniveau of een specifieke gemeente. Verder kan je ook filteren op Thema/Categorie/Type en op specifieke zoektermen.
 
 Er wordt een tabel met gevonden POI's weergegeven, inclusief de naam, de categorie en het correcte crab-adres. Er worden maximaal 32 resultaten getoond.
 

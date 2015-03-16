@@ -1,7 +1,7 @@
 Hoogteprofiel
 =============
 
-![](../images/geopuntElevation24x24.png) De hoogteprofiel-dienst van geopunt, laat toe om hoogte informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn. 
+![](geopuntElevationCmd.png) De hoogteprofiel-dienst van geopunt, laat toe om hoogte informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn. 
 Met deze tool kan je deze informatie ophalen, uitzetten op grafiek en opslaan als kaartlaag.
 
 De knop rechts bovenaan laat toe om het onderliggende hoogtemodel in te laden als laag.
@@ -19,4 +19,4 @@ Je kunt ook het aantal profielpunten langsheen de lijn instellen. Dit kan met he
 
 Helemaal onderaan vind je de knoppen die toelaten om de enerzijds de opgehaalde profielpunten op te slaan als een puntenlaag en de getekende profiellijn als een lijnenlaag. Bijvoorbeeld om op een kaartafdruk te plaatsen of om andere analyse op te doen.
 
-<!-- ![](images/geopunt4qgisElevation.gif "Het hoogteprofiel")-->
+![](geopuntElevation.gif "Het hoogteprofiel")

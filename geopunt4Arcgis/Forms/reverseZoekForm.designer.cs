@@ -114,7 +114,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(492, 22);
+            this.infoLabel.Size = new System.Drawing.Size(461, 22);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

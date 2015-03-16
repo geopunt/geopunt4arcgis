@@ -54,11 +54,7 @@ namespace geopunt4Arcgis
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
 
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
-
-            lam72 = spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
+            lam72 = geopuntHelper.lam72;
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
             lineFC = gpExtension.profileLineLayer;
@@ -212,7 +208,7 @@ namespace geopunt4Arcgis
 
         private void helpLink_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/hoogteprofiel");
         }
 
         private void savePointsBtn_Click(object sender, EventArgs e)

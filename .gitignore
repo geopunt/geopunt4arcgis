@@ -1,5 +1,5 @@
 ## KW ##
-
+*.webm
 *.zip
 *.doc
 *.docx
@@ -9,6 +9,8 @@ Deliverable/
 images/*.ico
 images/*.png
 images/*.emf
+
+man/*.png
 
 ## bin ##
 

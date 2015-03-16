@@ -136,6 +136,7 @@
             this.Controls.Add(this.timeOutnum);
             this.Controls.Add(this.timeoutLbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(320, 240);
             this.MinimumSize = new System.Drawing.Size(320, 240);
             this.Name = "settingsForm";

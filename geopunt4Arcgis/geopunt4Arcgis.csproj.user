@@ -18,8 +18,4 @@
     <StartProgram>C:\Program Files\ArcGIS\Desktop10.0\bin\ArcMap.exe</StartProgram>
     <StartAction>Program</StartAction>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arcgis10.0|x86'">
-    <StartProgram>C:\Program Files\ArcGIS\Desktop10.0\bin\ArcMap.exe</StartProgram>
-    <StartAction>Program</StartAction>
-  </PropertyGroup>
 </Project>

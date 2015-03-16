@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 
+
 namespace geopunt4Arcgis.dataHandler
 {
     class catalog
@@ -128,7 +129,7 @@ namespace geopunt4Arcgis.dataHandler
             if (q != "" && q != null) qryValues.Add("any", "*" + q + "*");
             qryValues.Add("from", start.ToString());
             qryValues.Add("to", to.ToString());
-            if (themekey != "") qryValues.Add("themekey", themekey);
+            if (themekey != "") qryValues.Add("themekey", ("\"" + themekey + "\"").Replace("&", "%26"));
             if (orgName != "") qryValues.Add("orgName", "\"" + orgName + "\"" );
             if (dataType != "") qryValues.Add("type", dataType);
             if (siteId != "") qryValues.Add("siteId", siteId);

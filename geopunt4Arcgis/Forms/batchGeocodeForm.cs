@@ -118,7 +118,8 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/csv-bestanden-geocoderen");
+            System.Diagnostics.Process.Start(
+                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/qgis%20plugin/functionaliteiten/csv-bestanden-geocoderen");
         }
 
         private void sepCbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,8 +264,23 @@ namespace geopunt4Arcgis
                 else
                 {
                     validCell.Items.Clear();
-                    validCell.Items.AddRange(suggestions.ToArray());
-                    clr = ColorTranslator.FromHtml("#F5F6CE");
+
+                    string huisnr = "";
+                    string street = (string)rows2validate[count].Cells[straatCol].Value;
+                    if (huisnrCol >= 0) huisnr = (string)rows2validate[count].Cells[huisnrCol].Value;
+
+                    string streetNrValid = suggestions[0].Split(',').First();
+
+                    if (streetNrValid.ToLowerInvariant() == street.ToLowerInvariant() + " " + huisnr.ToLowerInvariant())
+                    {
+                        validCell.Items.AddRange(suggestions[0]);
+                        clr = ColorTranslator.FromHtml("#F5F6CE");
+                    }
+                    else
+                    {
+                        validCell.Items.AddRange(suggestions.ToArray());
+                        clr = ColorTranslator.FromHtml("#F5F6CE");
+                    }
                     validCell.Value = validCell.Items[0];
                 }
                 foreach (DataGridViewCell cel in rows2validate[count].Cells)
@@ -396,7 +412,8 @@ namespace geopunt4Arcgis
                 else if (points.PointCount == 1)
                 {
                     IPoint xy = points.get_Point(0);
-                    geopuntHelper.ZoomByRatioAndRecenter(view, 0.5, xy.X, xy.Y);
+                    geopuntHelper.ZoomByRatioAndRecenter(view, 1, xy.X, xy.Y);
+                    map.MapScale = 1000;
                     view.Refresh();
                 }
                 else
@@ -423,7 +440,6 @@ namespace geopunt4Arcgis
         {
             System.Text.Encoding codex = System.Text.Encoding.Default;
             if (encodingCbx.Text == "UTF-8") codex = System.Text.Encoding.UTF8;
-            else if (encodingCbx.Text == "ANSI") codex = System.Text.Encoding.ASCII;
 
             string csvPath = csvPathTxt.Text;
             DataGridViewComboBoxColumn validatedRow;

@@ -1,7 +1,7 @@
 Geopunt-catalogus
 =============
 
-![](../images/geopuntCatalog24x24.png) Met de deze tool kan je de data in het [metadatacenter](https://metadata.geopunt.be) van Geopunt raadplegen. 
+![](geopuntBatchGeocodingCmd.png) Met de deze tool kan je de data in het [metadatacenter](https://metadata.geopunt.be) van Geopunt raadplegen. 
 Je kunt zoeken op keyword met de toolbalk bovenaan. 
 Je kunt ook filteren op GDI-thema, organisatie die eigenaar de data heeft aangemaakt, de catalogus waaruit de data afkomstig is en het type in de catalogus.
 
@@ -13,4 +13,4 @@ Indien een fiche een bijhorende WMS, WFS of download link heeft, kan je die via 
 
 Let op de typen "Dataset", "Datasetserie" en "Service" van de fiches kunnen een bijhorende service hebben, niet alleen de Service.
 
-<!-- ![](images/geopunt4qgisDataCatalogus.gif "Geopunt-catalogus") -->
+ ![](geopuntDatacatalog.gif "Geopunt-catalogus")

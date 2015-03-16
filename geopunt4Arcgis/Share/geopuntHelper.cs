@@ -24,6 +24,28 @@ namespace geopunt4Arcgis
     static class geopuntHelper
     {
         #region "geometry operations"
+        public static ISpatialReference lam72
+        {
+            get 
+            {
+                Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+                System.Object obj = Activator.CreateInstance(factoryType);
+                ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+                return spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
+            }
+        }
+
+        public static ISpatialReference wgs84
+        {
+            get
+            {
+                Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+                System.Object obj = Activator.CreateInstance(factoryType);
+                ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+                return spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
+            }
+        }
+
         /// <summary>
         /// Reproject geometry to wanted crs, optimized for Lam72
         /// </summary>
@@ -40,7 +62,29 @@ namespace geopunt4Arcgis
             System.Object obj = Activator.CreateInstance(factoryType);
             ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
 
-            if (toSrs.FactoryCode == 31370)
+            if (toSrs.FactoryCode == 31370 && 
+                    (geom.SpatialReference.FactoryCode == 3812 ||  //=lam2008
+                     geom.SpatialReference.FactoryCode == 4937 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 4258 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 25831))
+            {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation(
+                   (int)esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+            }
+
+            else if (toSrs.FactoryCode == 31370 && 
+                   (geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
+                    geom.SpatialReference.FactoryCode == 4258 ||   //=ETRS89
+                    geom.SpatialReference.FactoryCode == 32631 ||  //= WGS utm 31n
+                    geom.SpatialReference.FactoryCode == 3043 ||   //= ETRS89 utm 31n
+                    geom.SpatialReference.FactoryCode == 3857 ||   //= web mercator
+                    geom.SpatialReference.FactoryCode == 102100 || //= 3857
+                    geom.SpatialReference.FactoryCode == 900913) ) //= 3857
             {
                 IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
@@ -50,7 +94,29 @@ namespace geopunt4Arcgis
 
                 return geometry as IGeometry;
             }
-            if (geom.SpatialReference.FactoryCode == 31370)
+            else if (geom.SpatialReference.FactoryCode == 31370 && 
+                    (toSrs.FactoryCode == 3812 ||  //=lam2008
+                     toSrs.FactoryCode == 4937 ||  //=ETRS89
+                     toSrs.FactoryCode == 4258 ||  //=ETRS89
+                     toSrs.FactoryCode == 25831))  // = utm31n erts89
+            {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation(
+                    (int)esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+            }
+
+            else if (geom.SpatialReference.FactoryCode == 31370 &&
+                   (toSrs.FactoryCode == 4326 ||   //= wgs84
+                    toSrs.FactoryCode == 4258 ||   //=ETRS89
+                    toSrs.FactoryCode == 32631 ||  //= WGS utm 31n
+                    toSrs.FactoryCode == 3043 ||   //= ETRS89 utm 31n
+                    toSrs.FactoryCode == 3857 ||   //= web mercator
+                    toSrs.FactoryCode == 102100 || //= 3857
+                    toSrs.FactoryCode == 900913))  //= 3857
             {
                 IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
@@ -64,42 +130,6 @@ namespace geopunt4Arcgis
             {
                 IGeometry geometry = geom; //clone geom
                 geometry.Project(toSrs);
-                return geometry;
-            }
-        }
-
-        /// <summary>
-        /// Reproject geometry to wanted WGS84, optimized for Lam72
-        /// </summary>
-        /// <param name="geom">the geometry to project</param>
-        /// <returns>the projected geometry</returns>
-        public static IGeometry Transform2WGS(IGeometry geom)
-        {
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory3;
-            ISpatialReference wgs = spatialReferenceFactory2.CreateGeographicCoordinateSystem(4326);
-
-            if (geom.SpatialReference.FactoryCode == 4326)
-            {
-                return geom;
-            }
-
-            if (geom.SpatialReference.FactoryCode == 31370)
-            {
-
-                IGeoTransformation geoTransformation = spatialReferenceFactory2.CreateGeoTransformation((int)
-                    esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
-
-                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
-                geometry.ProjectEx(wgs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
-
-                return geometry as IGeometry;
-            }
-            else
-            {
-                IGeometry geometry = geom; //clone geom
-                geometry.Project(wgs);
                 return geometry;
             }
         }
@@ -121,7 +151,7 @@ namespace geopunt4Arcgis
                 return geom;
             }
 
-            if (geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
+            if (    geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
                     geom.SpatialReference.FactoryCode == 4258 ||   //=ETRS89
                     geom.SpatialReference.FactoryCode == 32631 ||  //= WGS utm 31n
                     geom.SpatialReference.FactoryCode == 3043 ||   //= ETRS89 utm 31n
@@ -138,9 +168,22 @@ namespace geopunt4Arcgis
 
                 return geometry as IGeometry;
             }
+            else if (geom.SpatialReference.FactoryCode == 3812 ||  //=lam2008
+                     geom.SpatialReference.FactoryCode == 4937 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 4258 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 25831 )  //=UTM31n-ERTS89
+	        {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
+                    esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(lam72, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+	        }
             else
             {
-                IGeometry geometry = geom; //clone geom
+                IGeometry2 geometry = (IGeometry2) geom; //clone geom
                 geometry.Project(lam72);
                 return geometry;
             }
@@ -478,7 +521,10 @@ namespace geopunt4Arcgis
                 }
             }
         }
-
+        /// <summary>Check if a url refers to a existing site </summary>
+        /// <param name="url">the url</param>
+        /// <param name="isWMS">indicate if the url is wms</param>
+        /// <returns>true if exists</returns>
         public static bool websiteExists( string url, bool isWMS = false ){
             HttpWebResponse response = null;
 
@@ -1236,5 +1282,57 @@ namespace geopunt4Arcgis
 
         }
         #endregion
+
+        #region "Translate strings"
+        /// <summary>Translate the adresType string into u more userfriendly string</summary>
+        /// <param name="adresTypeString">the string to translate</param>
+        /// <returns>the translated string or the input string if none is found</returns>
+        public static string adresTypeStringTranslate(string adresTypeString)
+        {
+            switch (adresTypeString)
+            {
+                case "crab_straat":
+                     return  "locatie van centrum straat";         
+                case "crab_huisnummer_afgeleidVanGebouw":
+                     return  "locatie o.b.v. gebouw";
+                case "crab_huisnummer_afgeleidVanGemeente":
+                     return  "locatie o.b.v. centrum gemeente";
+                case "crab_huisnummer_afgeleidVanPerceelGrb":
+                     return  "locatie o.b.v. GRB-perceel";
+                case "crab_huisnummer_afgeleidVanPerceelKadaster":
+                     return  "locatie o.b.v. kadasterperceel";
+                case "crab_huisnummer_afgeleidVanStraat":
+                     return  "locatie o.b.v. centrum straat";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersGebouw":
+                     return  "locatie o.b.v. interpollatie tussen gebouwen";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersPerceelGrb":
+                     return  "locatie o.b.v. interpollatie tussen GRB-percelen";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersPerceelKadaster":
+                     return  "locatie o.b.v. interpollatie tussen kadasterpercelen";
+                case "crab_huisnummer_geinterpoleerdObvWegverbinding":
+                     return  "locatie o.b.v. wegverbinding";
+                case "crab_huisnummer_manueleAanduidingVanBrievenbus":
+                     return  "locatie o.b.v. manuele aanduiding van brievenbus";
+                case "crab_huisnummer_manueleAanduidingVanGebouw":
+                     return  "locatie o.b.v. manuele aanduiding van gebouw";
+                case "crab_huisnummer_manueleAanduidingVanIngangVanGebouw":
+                     return  "locatie o.b.v. manuele aanduiding van ingang gebouw";
+                case "crab_huisnummer_manueleAanduidingVanLigplaats":
+                    return  "locatie o.b.v. manuele aanduiding van ligplaats";
+                case "crab_huisnummer_manueleAanduidingVanLot":
+                     return  "locatie o.b.v. manuele aanduiding van lot";
+                case "crab_huisnummer_manueleAanduidingVanNutsaansluiting":
+                    return  "locatie o.b.v. manuele aanduiding van nutsaansluiting";
+                case "crab_huisnummer_manueleAanduidingVanPerceel":
+                     return  "locatie o.b.v. manuele aanduiding van perceel";
+                case "crab_huisnummer_manueleAanduidingVanStandplaats":
+                    return  "locatie o.b.v. manuele aanduiding van standplaats";
+                case "crab_huisnummer_manueleAanduidingVanToegangTotDeWeg":
+                    return  "locatie o.b.v. manuele aanduiding van toegang tot de weg";
+                default:
+                    return adresTypeString;
+            }
+        #endregion
+        }
     }
 }

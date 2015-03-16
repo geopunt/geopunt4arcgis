@@ -44,7 +44,7 @@
             // 
             this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
             this.logoPictureBox.Location = new System.Drawing.Point(16, 15);
-            this.logoPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logoPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(311, 103);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -57,7 +57,7 @@
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.okButton.Location = new System.Drawing.Point(683, 562);
-            this.okButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.okButton.Margin = new System.Windows.Forms.Padding(4);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(117, 27);
             this.okButton.TabIndex = 24;
@@ -88,7 +88,7 @@
             this.tableLayoutPanel1.Controls.Add(this.labelAuthor, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelVersion, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(335, 15);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -136,10 +136,8 @@
             this.descriptionWebBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.descriptionWebBox.Location = new System.Drawing.Point(12, 113);
-            this.descriptionWebBox.MinimumSize = new System.Drawing.Size(20, 20);
             this.descriptionWebBox.Location = new System.Drawing.Point(16, 139);
-            this.descriptionWebBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.descriptionWebBox.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionWebBox.MinimumSize = new System.Drawing.Size(27, 25);
             this.descriptionWebBox.Name = "descriptionWebBox";
             this.descriptionWebBox.Size = new System.Drawing.Size(780, 416);
@@ -156,12 +154,10 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.logoPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutGeopunt4arcgisForm";
-
-            this.Padding = new System.Windows.Forms.Padding(9);
             this.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

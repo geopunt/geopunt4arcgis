@@ -331,7 +331,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(331, 485);
             this.Name = "poiSearchForm";
-            this.Text = "Zoek naar interessante plaats";
+            this.Text = "Zoek een interessante plaats via Geopunt";
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

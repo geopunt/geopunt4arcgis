@@ -76,7 +76,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(664, 18);
+            this.msgLbl.Size = new System.Drawing.Size(633, 18);
             this.msgLbl.Spring = true;
             // 
             // helpLink

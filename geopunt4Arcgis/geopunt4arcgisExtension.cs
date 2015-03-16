@@ -85,6 +85,22 @@ namespace geopunt4Arcgis
             return gpExtension;
         }
 
+        protected override void OnStartup()
+        {
+            try
+            {
+                versionChecker vrs = new versionChecker();
+                vrs.checkVersion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message +": "+ ex.StackTrace);
+            }
+
+            
+            base.OnStartup();
+        }
+
         protected override void OnShutdown()
         {
             //trash every form and its resources still open on shutdown.

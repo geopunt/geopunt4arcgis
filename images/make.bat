@@ -86,6 +86,16 @@ convert -background none geopuntPoi32x32.png geopuntPoi48x48.png geopuntPoi256x2
 convert -background none geopuntReverse32x32.png geopuntReverse48x48.png geopuntReverse256x256.png geopuntReverse.ico
 convert -background none geopuntSetting32x32.png geopuntSetting48x48.png geopuntSetting256x256.png geopuntSetting.ico
 
+REM copy to manual
+copy /Y geopuntAddress24x24.png ..\man\geopuntAddressCmd.png
+copy /Y geopuntCatalog24x24.png ..\man\geopuntDataCatalogusCmd.png
+copy /Y geopuntPerceel24x24.png ..\man\geopuntPerceelCmd.png
+copy /Y geopuntBatch24x24.png ..\man\geopuntBatchGeocodingCmd.png
+copy /Y geopuntElevation24x24.png ..\man\geopuntElevationCmd.png
+copy /Y geopuntGipod24x24.png ..\man\geopuntGipodCmd.png
+copy /Y geopuntPoi24x24.png ..\man\geopuntPoiCmd.png
+copy /Y geopuntReverse24x24.png ..\man\geopuntReverseCmd.png
+copy /Y geopuntSetting24x24.png ..\man\geopuntSettingCmd.png
 
 REM copy to addincontent
 copy /Y geopuntAddress32x32.png ..\geopunt4arcgis\Images\geopuntAddressCmd.png

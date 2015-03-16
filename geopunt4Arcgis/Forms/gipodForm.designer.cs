@@ -84,12 +84,12 @@
             // citylbl
             // 
             this.citylbl.AutoSize = true;
-            this.citylbl.Location = new System.Drawing.Point(91, 127);
+            this.citylbl.Location = new System.Drawing.Point(53, 126);
             this.citylbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.citylbl.Name = "citylbl";
-            this.citylbl.Size = new System.Drawing.Size(41, 17);
+            this.citylbl.Size = new System.Drawing.Size(78, 17);
             this.citylbl.TabIndex = 2;
-            this.citylbl.Text = "Stad:";
+            this.citylbl.Text = "Gemeente:";
             // 
             // provinceLbl
             // 
@@ -325,7 +325,7 @@
             this.MaximumSize = new System.Drawing.Size(1597, 423);
             this.MinimumSize = new System.Drawing.Size(557, 423);
             this.Name = "gipodForm";
-            this.Text = "GIPOD";
+            this.Text = "Bevraag GIPOD";
             this.gipodTypeGroup.ResumeLayout(false);
             this.gipodTypeGroup.PerformLayout();
             this.statusBar.ResumeLayout(false);

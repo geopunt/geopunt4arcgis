@@ -90,7 +90,7 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/prik-een-adres-op-kaart");
         }
 
         private void LARALink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -221,7 +221,7 @@ namespace geopunt4Arcgis
         {
             adresBox.Text = adrestext;
             diffBox.Text = string.Format("{0:0.##} meter", diffValue);
-            infoLabel.Text = statustext;
+            infoLabel.Text = geopuntHelper.adresTypeStringTranslate( statustext );
         }
 
         public void reverseGeocode(IPoint xyLam72)
