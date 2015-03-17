@@ -58,7 +58,7 @@
             // 
             this.cityCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cityCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cityCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityCombo.FormattingEnabled = true;
             this.cityCombo.Location = new System.Drawing.Point(141, 123);
@@ -71,7 +71,7 @@
             // 
             this.provinceCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.provinceCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.provinceCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.provinceCombo.FormattingEnabled = true;
             this.provinceCombo.Location = new System.Drawing.Point(141, 90);
@@ -84,12 +84,12 @@
             // citylbl
             // 
             this.citylbl.AutoSize = true;
-            this.citylbl.Location = new System.Drawing.Point(91, 127);
+            this.citylbl.Location = new System.Drawing.Point(53, 126);
             this.citylbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.citylbl.Name = "citylbl";
-            this.citylbl.Size = new System.Drawing.Size(41, 17);
+            this.citylbl.Size = new System.Drawing.Size(78, 17);
             this.citylbl.TabIndex = 2;
-            this.citylbl.Text = "Stad:";
+            this.citylbl.Text = "Gemeente:";
             // 
             // provinceLbl
             // 
@@ -126,7 +126,7 @@
             // 
             this.ownerCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ownerCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.ownerCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ownerCombo.FormattingEnabled = true;
             this.ownerCombo.Location = new System.Drawing.Point(141, 159);
@@ -179,7 +179,7 @@
             // 
             this.eventTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.eventTypeCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.eventTypeCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.eventTypeCombo.Enabled = false;
             this.eventTypeCombo.FormattingEnabled = true;
@@ -280,9 +280,9 @@
             this.useExtendChk.Location = new System.Drawing.Point(56, 300);
             this.useExtendChk.Margin = new System.Windows.Forms.Padding(4);
             this.useExtendChk.Name = "useExtendChk";
-            this.useExtendChk.Size = new System.Drawing.Size(288, 21);
+            this.useExtendChk.Size = new System.Drawing.Size(322, 21);
             this.useExtendChk.TabIndex = 15;
-            this.useExtendChk.Text = "Beperk zoekresultaten tot huidige extend";
+            this.useExtendChk.Text = "Beperk zoekresultaten tot huidige zoomniveau";
             this.useExtendChk.UseVisualStyleBackColor = true;
             // 
             // saveAsShapeBtn
@@ -325,7 +325,7 @@
             this.MaximumSize = new System.Drawing.Size(1597, 423);
             this.MinimumSize = new System.Drawing.Size(557, 423);
             this.Name = "gipodForm";
-            this.Text = "GIPOD";
+            this.Text = "Bevraag GIPOD";
             this.gipodTypeGroup.ResumeLayout(false);
             this.gipodTypeGroup.PerformLayout();
             this.statusBar.ResumeLayout(false);

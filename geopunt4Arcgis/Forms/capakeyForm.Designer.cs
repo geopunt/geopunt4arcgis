@@ -64,7 +64,7 @@
             // 
             this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.gemeenteCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteCbx.FormattingEnabled = true;
             this.gemeenteCbx.Location = new System.Drawing.Point(132, 36);
@@ -78,7 +78,7 @@
             // 
             this.departementCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.departementCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.departementCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.departementCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.departementCbx.FormattingEnabled = true;
             this.departementCbx.Location = new System.Drawing.Point(132, 81);
@@ -102,7 +102,7 @@
             // 
             this.sectieCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.sectieCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.sectieCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.sectieCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.sectieCbx.FormattingEnabled = true;
             this.sectieCbx.Location = new System.Drawing.Point(132, 127);
@@ -169,7 +169,7 @@
             // 
             this.parcelCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.parcelCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.parcelCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.parcelCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.parcelCbx.FormattingEnabled = true;
             this.parcelCbx.Location = new System.Drawing.Point(132, 171);

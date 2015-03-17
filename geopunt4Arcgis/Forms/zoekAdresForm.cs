@@ -41,18 +41,14 @@ namespace geopunt4Arcgis
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
 
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
-
-            wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
+            wgs = geopuntHelper.wgs84;
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
             adresFC = gpExtension.adresLayer;
 
             //dataHandlers
-            adresSuggestion = new dataHandler.adresSuggestion(sugCallback);
-            adresLocation = new dataHandler.adresLocation();
+            adresSuggestion = new dataHandler.adresSuggestion(sugCallback, timeout: gpExtension.timeout);
+            adresLocation = new dataHandler.adresLocation(timeout: gpExtension.timeout);
 
             //init UI
             InitializeComponent();
@@ -124,7 +120,7 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/nl/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-adres");
         }
 
         private void LARALink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -160,6 +156,7 @@ namespace geopunt4Arcgis
                 datacontract.crabSuggestion sug = JsonConvert.DeserializeObject<datacontract.crabSuggestion>(e.Result);
                 suggestions = sug.SuggestionResult;
                 suggestionList.DataSource = suggestions;
+                infoLabel.Text = "";
             }
             else
             {
@@ -224,6 +221,8 @@ namespace geopunt4Arcgis
                 graphic = geopuntHelper.AddGraphicToMap(map, toXY, rgb, 
                                 new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }, 8, true);
 
+                infoLabel.Text = geopuntHelper.adresTypeStringTranslate( loc[0].LocationType );
+
                 map.MapScale = 1000;
                 view.Extent = bbox;
                 geopuntHelper.ZoomByRatioAndRecenter(view, 1, toXY.X, toXY.Y);
@@ -267,6 +266,9 @@ namespace geopunt4Arcgis
                 outlineClr = new RgbColor() { Red = 0, Blue = 0, Green = 0 };
                 geopuntHelper.AddGraphicToMap(map, toXY, innerClr, outlineClr, 12, false);
                 geopuntHelper.AddTextElement(map , toXY, loc.FormattedAddress);
+
+                infoLabel.Text = geopuntHelper.adresTypeStringTranslate(loc.LocationType);
+
                 view.Refresh();
                 return true;
             }

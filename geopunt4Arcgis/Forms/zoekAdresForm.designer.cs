@@ -127,7 +127,7 @@
             // 
             // gemeenteBox
             // 
-            this.gemeenteBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.gemeenteBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteBox.FormattingEnabled = true;
             this.gemeenteBox.Items.AddRange(new object[] {
@@ -863,7 +863,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(550, 300);
             this.Name = "zoekAdresForm";
-            this.Text = "Zoek een adres";
+            this.Text = "Zoek een adres via Geopunt";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.ResumeLayout(false);

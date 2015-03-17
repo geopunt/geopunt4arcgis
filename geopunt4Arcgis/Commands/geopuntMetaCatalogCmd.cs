@@ -25,26 +25,11 @@ namespace geopunt4Arcgis
 
         protected override void OnClick()
         {
-            //try
-            //{
-            //    dataHandler.catalog clg = new dataHandler.catalog();
-            //    string[] keys = clg.getSources().Select( c => c.Key ).ToArray<string>();
-            //    MessageBox.Show(String.Join(",", keys));
-
-            //    MessageBox.Show(String.Join(",", clg.inspireKeywords().ToArray() ));
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show( ex.Message +" : "+ ex.StackTrace );
-            //}
-
             try
             {
                 if (view.FocusMap.SpatialReference == null)
                 {
-                    MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
-                    return;
+                    view.FocusMap.SpatialReference = geopuntHelper.lam72;
                 }
                 if (catalogDlg != null)
                 {

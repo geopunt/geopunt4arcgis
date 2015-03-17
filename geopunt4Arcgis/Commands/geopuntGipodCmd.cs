@@ -30,8 +30,7 @@ namespace geopunt4Arcgis
             {
                 if (view.FocusMap.SpatialReference == null)
                 {
-                    MessageBox.Show("Je moet eerst een Coördinaatsysteem instellen");
-                    return;
+                    view.FocusMap.SpatialReference = geopuntHelper.lam72;
                 }
                 if (gipodFormDlg != null)
                 {

@@ -11,7 +11,6 @@ https://github.com/warrieka/geopunt4Qgis
 
 ####Nederlands:
 
-
 ##Doelstelling:
 
 Geopunt4arcgis - 'Geopunt voor ArcGIS' is een add-in voor ESRI ArcGIS desktop, die de webservices van het Vlaamse geoportaal Geopunt ontsluit naar desktop ArcGIS-gebruikers.
@@ -32,8 +31,8 @@ Het gaat onder andere over:
 Om GIS-gebruikers binnen en buiten de Vlaamse Overheid dezelfde functionaliteit ter beschikking te stellen als aangeboden in Geopunt, wenst AGIV deze gebruikers te voorzien van software plug-ins die deze functionaliteit geïntegreerd aanbieden binnen de meest gangbare GIS-desktop omgevingen. 
 
 ##Systeemvereisten
-- Minimaal: ArcGIS Destkop versie 10.0 sp4 of hoger, Gewenst: ArcGIS Destkop versie 10.2 of hoger
-- Het .net-framework versie 3.5 voor ArcGIS 10.0, .net-framework versie 4.0 voor alle andere versies. (normaal gezien samen met arcgis geïnstalleerd) 
+- Minimaal: Windows XP, ArcGIS Destkop versie 10.0 sp4 of hoger, .net-framework versie 3.5
+- Aanbevolen: Windows7, ArcGIS Destkop versie 10.2 of hoger, .net-framework versie 4.0
 - Een verbinding met het Internet.
 
 ##Functionaliteit
@@ -48,18 +47,21 @@ Met deze tool kan je op een locatie in Vlaanderen op de kaart klikken om het cor
 **Zoeken naar interessepunten**
 Met deze tool kan je de Geopunt POI-service doorzoeken en de resultaten opslaan als een Feature Class of graphic.
 
+**CSV-bestanden geocoderen**
+Met deze tool kan je een CSV-bestand geocoderen, omzetten naar een kaartlaag. Een CSV-bestand (Comma Seperated Values) is een tekstbestand waarin de waarden door een teken (de separator) meestal een komma of puntkomma gescheiden zijn. Als je CSV-bestand adresgegevens bevat, kan je die met deze tool op de kaart weergeven en opslaan als Feature CLass met hun correct CRAB-adres.
+
 **GIPOD**
 Met deze kan zoeken op innames van openbaar domein, van het Generiek Informatieplatform Openbaar Domein (GIPOD) GIPOD, de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.
 Je kunt deze gegevens opslaan als Feature Class.
 
-**CSV-bestanden geocoderen**
-Met deze tool kan je een CSV-bestand geocoderen, omzetten naar een kaartlaag. Een CSV-bestand (Comma Seperated Values) is een tekstbestand waarin de waarden door een teken (de separator) meestal een komma of puntkomma gescheiden zijn. Als je CSV-bestand adresgegevens bevat, kan je die met deze tool op de kaart weergeven en opslaan als Feature CLass met hun correct CRAB-adres.
-
-####TODO:
-
 **Hoogte profiel**
+De hoogteprofielservice van Geopunt laat toe om hoogte-informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn. De brondata is [DHM-Vlaanderen](https://www.agiv.be/producten/digitaal-hoogtemodel-vlaanderen).
+
+**Zoeken naar percelen**
+Zoek een kadastraal perceel op via gemeente, departement, sectie en perceelnummer.
 
 **Metadata Catalogus**
+Zoek in de Geopunt-catalogus naar datasets en voeg ze toe aan je project. Het is gebaseerd op de webdiensten van het [metadatacenter](https://metadata.geopunt.be) van geopunt en bevat ondermeer metadatafiches van AGIV, het samenwerkingsverband MercatorNet en DOV. 
 
 ##Gerelateerde links
 

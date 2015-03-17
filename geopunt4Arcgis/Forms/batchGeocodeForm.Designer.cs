@@ -60,6 +60,7 @@
             this.otherSepBox = new System.Windows.Forms.TextBox();
             this.validationWorker = new System.ComponentModel.BackgroundWorker();
             this.csvBox = new System.Windows.Forms.GroupBox();
+            this.encodingCbx = new System.Windows.Forms.ComboBox();
             this.csvErrorLbl = new System.Windows.Forms.Label();
             this.add2mapBtn = new System.Windows.Forms.Button();
             this.statusBar.SuspendLayout();
@@ -76,10 +77,10 @@
             this.msgLbl,
             this.progressBar,
             this.helpLbl});
-            this.statusBar.Location = new System.Drawing.Point(0, 642);
+            this.statusBar.Location = new System.Drawing.Point(0, 596);
             this.statusBar.Name = "statusBar";
             this.statusBar.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusBar.Size = new System.Drawing.Size(731, 26);
+            this.statusBar.Size = new System.Drawing.Size(907, 26);
             this.statusBar.TabIndex = 0;
             this.statusBar.Text = "statusStrip1";
             // 
@@ -90,7 +91,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(540, 21);
+            this.msgLbl.Size = new System.Drawing.Size(716, 21);
             this.msgLbl.Spring = true;
             // 
             // progressBar
@@ -109,7 +110,7 @@
             // openBtn
             // 
             this.openBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.openBtn.Location = new System.Drawing.Point(603, 20);
+            this.openBtn.Location = new System.Drawing.Point(674, 16);
             this.openBtn.Margin = new System.Windows.Forms.Padding(4);
             this.openBtn.Name = "openBtn";
             this.openBtn.Size = new System.Drawing.Size(83, 28);
@@ -122,7 +123,7 @@
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(619, 596);
+            this.cancelBtn.Location = new System.Drawing.Point(795, 550);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(96, 28);
@@ -141,7 +142,7 @@
             this.gridPanel.Location = new System.Drawing.Point(16, 261);
             this.gridPanel.Margin = new System.Windows.Forms.Padding(4);
             this.gridPanel.Name = "gridPanel";
-            this.gridPanel.Size = new System.Drawing.Size(699, 327);
+            this.gridPanel.Size = new System.Drawing.Size(875, 281);
             this.gridPanel.TabIndex = 5;
             // 
             // csvDataGrid
@@ -154,7 +155,7 @@
             this.csvDataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.csvDataGrid.Name = "csvDataGrid";
             this.csvDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.csvDataGrid.Size = new System.Drawing.Size(699, 302);
+            this.csvDataGrid.Size = new System.Drawing.Size(875, 256);
             this.csvDataGrid.TabIndex = 6;
             // 
             // gridTools
@@ -168,7 +169,7 @@
             this.zoom2selBtn});
             this.gridTools.Location = new System.Drawing.Point(0, 0);
             this.gridTools.Name = "gridTools";
-            this.gridTools.Size = new System.Drawing.Size(699, 25);
+            this.gridTools.Size = new System.Drawing.Size(875, 25);
             this.gridTools.TabIndex = 5;
             this.gridTools.Text = "Tabel tools";
             // 
@@ -212,9 +213,9 @@
             this.manualLocBtn.Image = ((System.Drawing.Image)(resources.GetObject("manualLocBtn.Image")));
             this.manualLocBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.manualLocBtn.Name = "manualLocBtn";
-            this.manualLocBtn.Size = new System.Drawing.Size(116, 22);
-            this.manualLocBtn.Text = "Prik de locatie";
-            this.manualLocBtn.ToolTipText = "Duid de locatie op de kaart aan, van de geselecteerde records";
+            this.manualLocBtn.Size = new System.Drawing.Size(175, 22);
+            this.manualLocBtn.Text = "Prik de locatie op kaart";
+            this.manualLocBtn.ToolTipText = "Duid de locatie van de geselecteerde records op de kaart aan";
             this.manualLocBtn.Click += new System.EventHandler(this.manualLocBtn_Click);
             // 
             // zoom2selBtn
@@ -236,11 +237,11 @@
             // 
             this.csvPathTxt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.csvPathTxt.Location = new System.Drawing.Point(12, 23);
+            this.csvPathTxt.Location = new System.Drawing.Point(12, 20);
             this.csvPathTxt.Margin = new System.Windows.Forms.Padding(4);
             this.csvPathTxt.Name = "csvPathTxt";
             this.csvPathTxt.ReadOnly = true;
-            this.csvPathTxt.Size = new System.Drawing.Size(582, 22);
+            this.csvPathTxt.Size = new System.Drawing.Size(654, 22);
             this.csvPathTxt.TabIndex = 6;
             this.csvPathTxt.Text = "< input CSV-file >";
             this.csvPathTxt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -248,12 +249,12 @@
             // adresColLbl
             // 
             this.adresColLbl.AutoSize = true;
-            this.adresColLbl.Location = new System.Drawing.Point(8, 55);
+            this.adresColLbl.Location = new System.Drawing.Point(113, 55);
             this.adresColLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.adresColLbl.Name = "adresColLbl";
-            this.adresColLbl.Size = new System.Drawing.Size(95, 17);
+            this.adresColLbl.Size = new System.Drawing.Size(130, 17);
             this.adresColLbl.TabIndex = 7;
-            this.adresColLbl.Text = "Straat kolom: ";
+            this.adresColLbl.Text = "Straatnaam kolom: ";
             // 
             // adresColCbx
             // 
@@ -261,10 +262,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.adresColCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.adresColCbx.FormattingEnabled = true;
-            this.adresColCbx.Location = new System.Drawing.Point(152, 52);
+            this.adresColCbx.Location = new System.Drawing.Point(258, 52);
             this.adresColCbx.Margin = new System.Windows.Forms.Padding(4);
             this.adresColCbx.Name = "adresColCbx";
-            this.adresColCbx.Size = new System.Drawing.Size(538, 24);
+            this.adresColCbx.Size = new System.Drawing.Size(493, 24);
             this.adresColCbx.TabIndex = 8;
             // 
             // adresSettingsBox
@@ -286,7 +287,7 @@
             this.adresSettingsBox.MinimumSize = new System.Drawing.Size(400, 151);
             this.adresSettingsBox.Name = "adresSettingsBox";
             this.adresSettingsBox.Padding = new System.Windows.Forms.Padding(4);
-            this.adresSettingsBox.Size = new System.Drawing.Size(699, 151);
+            this.adresSettingsBox.Size = new System.Drawing.Size(760, 151);
             this.adresSettingsBox.TabIndex = 9;
             this.adresSettingsBox.TabStop = false;
             this.adresSettingsBox.Text = "Adres Instellingen";
@@ -294,12 +295,12 @@
             // singleColAdresRadio
             // 
             this.singleColAdresRadio.AutoSize = true;
-            this.singleColAdresRadio.Location = new System.Drawing.Point(224, 23);
+            this.singleColAdresRadio.Location = new System.Drawing.Point(258, 23);
             this.singleColAdresRadio.Margin = new System.Windows.Forms.Padding(4);
             this.singleColAdresRadio.Name = "singleColAdresRadio";
-            this.singleColAdresRadio.Size = new System.Drawing.Size(119, 21);
+            this.singleColAdresRadio.Size = new System.Drawing.Size(187, 21);
             this.singleColAdresRadio.TabIndex = 14;
-            this.singleColAdresRadio.Text = "Adres op 1 lijn";
+            this.singleColAdresRadio.Text = "Volledig adres in 1 kolom";
             this.singleColAdresRadio.UseVisualStyleBackColor = true;
             this.singleColAdresRadio.CheckedChanged += new System.EventHandler(this.adresRadio_CheckedChanged);
             // 
@@ -307,13 +308,13 @@
             // 
             this.multiColAdresRadio.AutoSize = true;
             this.multiColAdresRadio.Checked = true;
-            this.multiColAdresRadio.Location = new System.Drawing.Point(12, 23);
+            this.multiColAdresRadio.Location = new System.Drawing.Point(29, 23);
             this.multiColAdresRadio.Margin = new System.Windows.Forms.Padding(4);
             this.multiColAdresRadio.Name = "multiColAdresRadio";
-            this.multiColAdresRadio.Size = new System.Drawing.Size(203, 21);
+            this.multiColAdresRadio.Size = new System.Drawing.Size(214, 21);
             this.multiColAdresRadio.TabIndex = 13;
             this.multiColAdresRadio.TabStop = true;
-            this.multiColAdresRadio.Text = "Adres in meerdere kolomen";
+            this.multiColAdresRadio.Text = "Adres in meerdere kolommen";
             this.multiColAdresRadio.UseVisualStyleBackColor = true;
             this.multiColAdresRadio.CheckedChanged += new System.EventHandler(this.adresRadio_CheckedChanged);
             // 
@@ -323,21 +324,21 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.HuisNrCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HuisNrCbx.FormattingEnabled = true;
-            this.HuisNrCbx.Location = new System.Drawing.Point(152, 85);
+            this.HuisNrCbx.Location = new System.Drawing.Point(258, 85);
             this.HuisNrCbx.Margin = new System.Windows.Forms.Padding(4);
             this.HuisNrCbx.Name = "HuisNrCbx";
-            this.HuisNrCbx.Size = new System.Drawing.Size(538, 24);
+            this.HuisNrCbx.Size = new System.Drawing.Size(493, 24);
             this.HuisNrCbx.TabIndex = 12;
             // 
             // huisNrColLbl
             // 
             this.huisNrColLbl.AutoSize = true;
-            this.huisNrColLbl.Location = new System.Drawing.Point(8, 78);
+            this.huisNrColLbl.Location = new System.Drawing.Point(35, 88);
             this.huisNrColLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.huisNrColLbl.Name = "huisNrColLbl";
-            this.huisNrColLbl.Size = new System.Drawing.Size(136, 34);
+            this.huisNrColLbl.Size = new System.Drawing.Size(208, 17);
             this.huisNrColLbl.TabIndex = 11;
-            this.huisNrColLbl.Text = "Huisnummer kolom: \r\n(optioneel)";
+            this.huisNrColLbl.Text = "Huisnummer kolom (optioneel): ";
             // 
             // gemeenteColCbx
             // 
@@ -345,27 +346,27 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.gemeenteColCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gemeenteColCbx.FormattingEnabled = true;
-            this.gemeenteColCbx.Location = new System.Drawing.Point(152, 118);
+            this.gemeenteColCbx.Location = new System.Drawing.Point(258, 118);
             this.gemeenteColCbx.Margin = new System.Windows.Forms.Padding(4);
             this.gemeenteColCbx.Name = "gemeenteColCbx";
-            this.gemeenteColCbx.Size = new System.Drawing.Size(538, 24);
+            this.gemeenteColCbx.Size = new System.Drawing.Size(493, 24);
             this.gemeenteColCbx.TabIndex = 10;
             // 
             // GemeenteColLbl
             // 
             this.GemeenteColLbl.AutoSize = true;
-            this.GemeenteColLbl.Location = new System.Drawing.Point(8, 112);
+            this.GemeenteColLbl.Location = new System.Drawing.Point(42, 121);
             this.GemeenteColLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.GemeenteColLbl.Name = "GemeenteColLbl";
-            this.GemeenteColLbl.Size = new System.Drawing.Size(123, 34);
+            this.GemeenteColLbl.Size = new System.Drawing.Size(201, 17);
             this.GemeenteColLbl.TabIndex = 9;
-            this.GemeenteColLbl.Text = "Gemeente kolom: \r\n(of postcode)";
+            this.GemeenteColLbl.Text = "Gemeente of postcode kolom: \r\n";
             // 
             // sepLbl
             // 
             this.sepLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.sepLbl.AutoSize = true;
-            this.sepLbl.Location = new System.Drawing.Point(411, 59);
+            this.sepLbl.Location = new System.Drawing.Point(587, 59);
             this.sepLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.sepLbl.Name = "sepLbl";
             this.sepLbl.Size = new System.Drawing.Size(79, 17);
@@ -383,7 +384,7 @@
             "Spatie",
             "Tab",
             "Ander teken"});
-            this.sepCbx.Location = new System.Drawing.Point(498, 54);
+            this.sepCbx.Location = new System.Drawing.Point(674, 54);
             this.sepCbx.Margin = new System.Windows.Forms.Padding(4);
             this.sepCbx.Name = "sepCbx";
             this.sepCbx.Size = new System.Drawing.Size(143, 24);
@@ -394,7 +395,7 @@
             // 
             this.otherSepBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.otherSepBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.otherSepBox.Location = new System.Drawing.Point(658, 55);
+            this.otherSepBox.Location = new System.Drawing.Point(834, 55);
             this.otherSepBox.Margin = new System.Windows.Forms.Padding(4);
             this.otherSepBox.Name = "otherSepBox";
             this.otherSepBox.ReadOnly = true;
@@ -413,6 +414,7 @@
             // 
             this.csvBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.csvBox.Controls.Add(this.encodingCbx);
             this.csvBox.Controls.Add(this.csvErrorLbl);
             this.csvBox.Controls.Add(this.otherSepBox);
             this.csvBox.Controls.Add(this.csvPathTxt);
@@ -424,10 +426,23 @@
             this.csvBox.MinimumSize = new System.Drawing.Size(400, 92);
             this.csvBox.Name = "csvBox";
             this.csvBox.Padding = new System.Windows.Forms.Padding(4);
-            this.csvBox.Size = new System.Drawing.Size(699, 92);
+            this.csvBox.Size = new System.Drawing.Size(875, 92);
             this.csvBox.TabIndex = 0;
             this.csvBox.TabStop = false;
             this.csvBox.Text = "CSV instellingen";
+            // 
+            // encodingCbx
+            // 
+            this.encodingCbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.encodingCbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.encodingCbx.FormattingEnabled = true;
+            this.encodingCbx.Items.AddRange(new object[] {
+            "ANSI",
+            "UTF-8"});
+            this.encodingCbx.Location = new System.Drawing.Point(764, 20);
+            this.encodingCbx.Name = "encodingCbx";
+            this.encodingCbx.Size = new System.Drawing.Size(102, 24);
+            this.encodingCbx.TabIndex = 14;
             // 
             // csvErrorLbl
             // 
@@ -437,13 +452,13 @@
             this.csvErrorLbl.Location = new System.Drawing.Point(8, 52);
             this.csvErrorLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.csvErrorLbl.Name = "csvErrorLbl";
-            this.csvErrorLbl.Size = new System.Drawing.Size(395, 37);
+            this.csvErrorLbl.Size = new System.Drawing.Size(571, 37);
             this.csvErrorLbl.TabIndex = 13;
             // 
             // add2mapBtn
             // 
             this.add2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.add2mapBtn.Location = new System.Drawing.Point(333, 596);
+            this.add2mapBtn.Location = new System.Drawing.Point(495, 550);
             this.add2mapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.add2mapBtn.Name = "add2mapBtn";
             this.add2mapBtn.Size = new System.Drawing.Size(278, 28);
@@ -457,7 +472,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(731, 668);
+            this.ClientSize = new System.Drawing.Size(907, 622);
             this.Controls.Add(this.add2mapBtn);
             this.Controls.Add(this.csvBox);
             this.Controls.Add(this.adresSettingsBox);
@@ -468,7 +483,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(450, 485);
             this.Name = "batchGeocodeForm";
-            this.Text = "CSV-bestanden geocoderen";
+            this.Text = "CSV-adresbestanden geocoderen";
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
             this.gridPanel.ResumeLayout(false);
@@ -520,5 +535,6 @@
         private System.Windows.Forms.ToolStripButton manualLocBtn;
         private System.Windows.Forms.ToolStripButton zoom2selBtn;
         private System.Windows.Forms.ToolStripButton cancelValidationBtn;
+        private System.Windows.Forms.ComboBox encodingCbx;
     }
 }

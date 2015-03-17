@@ -1,0 +1,23 @@
+
+
+-          Voor check van versie kan een file geplaatst worden op het netwerk van agiv. 
+Dit kan gebeuren op de geopunt pagina’s. 
+Kay, als je een file klaar hebt voor test, stuur die dan door, dan kijken we waar die kan staan. 
+Voorlopig is de afspraak dat bij een update de nieuwe file naar Laura gestuurd wordt zodat die op de juiste plek geplaatst kan worden.
+
+-          Vertaaltabel voor kwaliteiten punten: zie bijlage
+
+-          Prikken op kaart (zowel voor reverse geocoding als csv) zou ook voor lambert 2008 correct moeten werken. (testen vb mbv ngi-wms die zo wordt aangeboden)
+
+-          Zodra nieuwe poi-service beschikbaar is in beta wordt link doorgestuurd samen met de foutmelding die gegeven moet worden als er een warning in het antwoord van de service zit.
+
+-          Ondertussen kunnen we bevestigen dat hoogteservice en geolocation op korte termijn gewoon ongewijzigd blijven.
+
+-          In de instellingen pagina worden enkel volgende zaken aangeboden
+
+o   Max aantal elementen voor csv geocodering (default 500 max 5000)
+
+o   Timeout
+
+
+-          De help pagina’s worden reeds op voorhand opgebouwd in geopunt . de oude worden uitgeschakeld na de release

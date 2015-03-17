@@ -40,10 +40,10 @@ namespace geopunt4Arcgis
         {
             view = ArcMap.Document.ActiveView;
             map = view.FocusMap;
-            adresLocation = new dataHandler.adresLocation(adresCallback);
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
             reverseFC = gpExtension.reverseLayer;
+            adresLocation = new dataHandler.adresLocation(adresCallback, timeout: gpExtension.timeout);
 
             InitializeComponent();
         }
@@ -90,7 +90,7 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/prik-een-adres-op-kaart");
         }
 
         private void LARALink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -216,12 +216,12 @@ namespace geopunt4Arcgis
 
      #endregion
 
-     #region "shared functions"
+     #region "public functions"
         public void setText(string adrestext, double diffValue = 0, string statustext = "")
         {
             adresBox.Text = adrestext;
             diffBox.Text = string.Format("{0:0.##} meter", diffValue);
-            infoLabel.Text = statustext;
+            infoLabel.Text = geopuntHelper.adresTypeStringTranslate( statustext );
         }
 
         public void reverseGeocode(IPoint xyLam72)

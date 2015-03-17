@@ -1,5 +1,5 @@
 
-Niet tonen in toolbox, wel bij klik op toolbar
+Niet tonen in toolbox, wel bij klik op toolbar:
 
 -- Bij reverse geocode: geen resultaat --> bij <double>.toString() -> <double>.toString(CultureInfo.InvariantCulture) of string.Format( CultureInfo.InvariantCulture , ... )
 

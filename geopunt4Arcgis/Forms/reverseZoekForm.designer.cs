@@ -77,7 +77,7 @@
             this.add2MapBtn.Name = "add2MapBtn";
             this.add2MapBtn.Size = new System.Drawing.Size(132, 28);
             this.add2MapBtn.TabIndex = 2;
-            this.add2MapBtn.Text = "Markeer Locatie";
+            this.add2MapBtn.Text = "Markeer locatie";
             this.add2MapBtn.UseVisualStyleBackColor = true;
             this.add2MapBtn.Click += new System.EventHandler(this.add2MapBtn_Click);
             // 
@@ -114,7 +114,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.infoLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.infoLabel.Name = "infoLabel";
-            this.infoLabel.Size = new System.Drawing.Size(492, 22);
+            this.infoLabel.Size = new System.Drawing.Size(461, 22);
             this.infoLabel.Spring = true;
             this.infoLabel.Text = "   ";
             this.infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

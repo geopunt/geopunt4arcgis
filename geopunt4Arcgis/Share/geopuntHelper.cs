@@ -24,6 +24,28 @@ namespace geopunt4Arcgis
     static class geopuntHelper
     {
         #region "geometry operations"
+        public static ISpatialReference lam72
+        {
+            get 
+            {
+                Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+                System.Object obj = Activator.CreateInstance(factoryType);
+                ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+                return spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
+            }
+        }
+
+        public static ISpatialReference wgs84
+        {
+            get
+            {
+                Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
+                System.Object obj = Activator.CreateInstance(factoryType);
+                ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
+                return spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
+            }
+        }
+
         /// <summary>
         /// Reproject geometry to wanted crs, optimized for Lam72
         /// </summary>
@@ -40,7 +62,29 @@ namespace geopunt4Arcgis
             System.Object obj = Activator.CreateInstance(factoryType);
             ISpatialReferenceFactory3 spatialReferenceFactory = obj as ISpatialReferenceFactory3;
 
-            if (toSrs.FactoryCode == 31370)
+            if (toSrs.FactoryCode == 31370 && 
+                    (geom.SpatialReference.FactoryCode == 3812 ||  //=lam2008
+                     geom.SpatialReference.FactoryCode == 4937 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 4258 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 25831))
+            {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation(
+                   (int)esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+            }
+
+            else if (toSrs.FactoryCode == 31370 && 
+                   (geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
+                    geom.SpatialReference.FactoryCode == 4258 ||   //=ETRS89
+                    geom.SpatialReference.FactoryCode == 32631 ||  //= WGS utm 31n
+                    geom.SpatialReference.FactoryCode == 3043 ||   //= ETRS89 utm 31n
+                    geom.SpatialReference.FactoryCode == 3857 ||   //= web mercator
+                    geom.SpatialReference.FactoryCode == 102100 || //= 3857
+                    geom.SpatialReference.FactoryCode == 900913) ) //= 3857
             {
                 IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
@@ -50,7 +94,29 @@ namespace geopunt4Arcgis
 
                 return geometry as IGeometry;
             }
-            if (geom.SpatialReference.FactoryCode == 31370)
+            else if (geom.SpatialReference.FactoryCode == 31370 && 
+                    (toSrs.FactoryCode == 3812 ||  //=lam2008
+                     toSrs.FactoryCode == 4937 ||  //=ETRS89
+                     toSrs.FactoryCode == 4258 ||  //=ETRS89
+                     toSrs.FactoryCode == 25831))  // = utm31n erts89
+            {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation(
+                    (int)esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+            }
+
+            else if (geom.SpatialReference.FactoryCode == 31370 &&
+                   (toSrs.FactoryCode == 4326 ||   //= wgs84
+                    toSrs.FactoryCode == 4258 ||   //=ETRS89
+                    toSrs.FactoryCode == 32631 ||  //= WGS utm 31n
+                    toSrs.FactoryCode == 3043 ||   //= ETRS89 utm 31n
+                    toSrs.FactoryCode == 3857 ||   //= web mercator
+                    toSrs.FactoryCode == 102100 || //= 3857
+                    toSrs.FactoryCode == 900913))  //= 3857
             {
                 IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
@@ -64,42 +130,6 @@ namespace geopunt4Arcgis
             {
                 IGeometry geometry = geom; //clone geom
                 geometry.Project(toSrs);
-                return geometry;
-            }
-        }
-
-        /// <summary>
-        /// Reproject geometry to wanted WGS84, optimized for Lam72
-        /// </summary>
-        /// <param name="geom">the geometry to project</param>
-        /// <returns>the projected geometry</returns>
-        public static IGeometry Transform2WGS(IGeometry geom)
-        {
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            ISpatialReferenceFactory2 spatialReferenceFactory2 = obj as ISpatialReferenceFactory3;
-            ISpatialReference wgs = spatialReferenceFactory2.CreateGeographicCoordinateSystem(4326);
-
-            if (geom.SpatialReference.FactoryCode == 4326)
-            {
-                return geom;
-            }
-
-            if (geom.SpatialReference.FactoryCode == 31370)
-            {
-
-                IGeoTransformation geoTransformation = spatialReferenceFactory2.CreateGeoTransformation((int)
-                    esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
-
-                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
-                geometry.ProjectEx(wgs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
-
-                return geometry as IGeometry;
-            }
-            else
-            {
-                IGeometry geometry = geom; //clone geom
-                geometry.Project(wgs);
                 return geometry;
             }
         }
@@ -121,7 +151,7 @@ namespace geopunt4Arcgis
                 return geom;
             }
 
-            if (geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
+            if (    geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
                     geom.SpatialReference.FactoryCode == 4258 ||   //=ETRS89
                     geom.SpatialReference.FactoryCode == 32631 ||  //= WGS utm 31n
                     geom.SpatialReference.FactoryCode == 3043 ||   //= ETRS89 utm 31n
@@ -138,9 +168,22 @@ namespace geopunt4Arcgis
 
                 return geometry as IGeometry;
             }
+            else if (geom.SpatialReference.FactoryCode == 3812 ||  //=lam2008
+                     geom.SpatialReference.FactoryCode == 4937 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 4258 ||  //=ETRS89
+                     geom.SpatialReference.FactoryCode == 25831 )  //=UTM31n-ERTS89
+	        {
+                IGeoTransformation geoTransformation = spatialReferenceFactory.CreateGeoTransformation((int)
+                    esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
+
+                IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
+                geometry.ProjectEx(lam72, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
+
+                return geometry as IGeometry;
+	        }
             else
             {
-                IGeometry geometry = geom; //clone geom
+                IGeometry2 geometry = (IGeometry2) geom; //clone geom
                 geometry.Project(lam72);
                 return geometry;
             }
@@ -330,7 +373,6 @@ namespace geopunt4Arcgis
             IWorkspace workspace = workspaceFactory.OpenFromFile( shapeInfo.DirectoryName , 0);
             IFeatureWorkspace featureWorkspace = (IFeatureWorkspace) workspace; // Explict Cast
 
-            IWorkspace2 ws = (IWorkspace2)featureWorkspace;
             if ( shapeInfo.Exists )
             {
                 if (deleteIfExists)
@@ -403,7 +445,7 @@ namespace geopunt4Arcgis
             
             IWorkspaceFactory2 workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
             IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(FGDBPath, 0);
-            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     // Explict Cast
+            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     
 
             if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, FCname))
             {
@@ -479,7 +521,10 @@ namespace geopunt4Arcgis
                 }
             }
         }
-
+        /// <summary>Check if a url refers to a existing site </summary>
+        /// <param name="url">the url</param>
+        /// <param name="isWMS">indicate if the url is wms</param>
+        /// <returns>true if exists</returns>
         public static bool websiteExists( string url, bool isWMS = false ){
             HttpWebResponse response = null;
 
@@ -554,7 +599,7 @@ namespace geopunt4Arcgis
                         return true;
                     }
                     IFeatureClass featureClass = featureWorkspace.OpenFeatureClass(featureClassPath.Name);
-                    IDataset ds = featureClass as IDataset;
+                    IDataset ds = (IDataset) featureClass;
                     if (ds.CanDelete())
                     {
                         ds.Delete();
@@ -573,42 +618,6 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "open / save dialogs"
-        /// <summary> Shows dialog for opening map layers / data.</summary>
-        /// <param name="filters"> for example:
-        ///       IGxObjectFilter ipFilter1 = new GxFilterFGDBFeatureClassesClass() ;
-        ///       List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { ipFilter1 });</param>
-        /// <param name="dialogTitle"> The title of the dialog </param>
-        /// <returns> IGxObject: object that contains the map layer. Must be cast to the correct layer type. </returns>
-        public static IGxObject ShowAddDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
-        {
-
-            IGxDialog pGxDialog = new GxDialogClass();
-            pGxDialog.Title = dialogTitle;
-            pGxDialog.AllowMultiSelect = false;
-
-            // Create a filter collection for the dialog.
-            IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
-
-            foreach (IGxObjectFilter filt in filters)
-            {
-                pFilterCol.AddFilter(filt, false);
-            }
-
-            // Open the dialog
-            IEnumGxObject pEnumGx = null;
-            if (!pGxDialog.DoModalOpen(0, out pEnumGx))
-            {
-                return null;
-            }
-
-            // Retrieve the layer, via an IGXObject
-            // pGxObject it the first and only element of the selection returned by the dialog.
-            pEnumGx.Reset();
-            IGxObject pGxObject = pEnumGx.Next();
-
-            return pGxObject;
-        }
-
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="filters"> for example:
         ///       IGxObjectFilter ipFilter1 = new GxFilterFGDBFeatureClassesClass() ;
@@ -617,27 +626,78 @@ namespace geopunt4Arcgis
         /// <returns> the path to the file to save </returns>
         public static string ShowSaveDataDialog(List<IGxObjectFilter> filters, string dialogTitle)
         {
-
-            IGxDialog pGxDialog = new GxDialogClass();
-            pGxDialog.Title = dialogTitle;
-            pGxDialog.AllowMultiSelect = false;
-
-            // Create a filter collection for the dialog.
-            IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
-
-            foreach (IGxObjectFilter filt in filters)
+            try
             {
-                pFilterCol.AddFilter(filt, false);
+                IGxDialog pGxDialog = new GxDialogClass();
+                pGxDialog.Title = dialogTitle;
+                pGxDialog.AllowMultiSelect = false;
+
+                // Create a filter collection for the dialog.
+                IGxObjectFilterCollection pFilterCol = (IGxObjectFilterCollection)pGxDialog;
+
+                foreach (IGxObjectFilter filt in filters)
+                {
+                    pFilterCol.AddFilter(filt, false);
+                }
+
+                // Open the dialog
+                if (!pGxDialog.DoModalSave(0))
+                {
+                    return null;
+                }
+                string dirPath = pGxDialog.FinalLocation.FullName;
+                string path = dirPath + "\\" + pGxDialog.Name;
+
+                if (dirPath.ToLowerInvariant().EndsWith(".gdb"))
+                {
+                    IWorkspaceFactory workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
+                    IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;
+
+                    if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
+                    {
+                        IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
+                        DialogResult dlg = MessageBox.Show(pGxDialog.Name + " bestaat al, wilt u dit overschrijven?",
+                                    "Feature Class bestaat al", MessageBoxButtons.YesNo);
+                        if (dlg == DialogResult.No)
+                        {
+                            return null;
+                        }
+                        else if (!fc.CanDelete())
+                        {
+                            MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                        "Feature Class in gebruik");
+                            return null;
+                        }
+                    }
+                }
+                else if (Directory.Exists(dirPath))
+                {
+                    IWorkspaceFactory workspaceFactory = new ShapefileWorkspaceFactoryClass();
+                    IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(dirPath, 0);
+                    IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;
+
+                    if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, pGxDialog.Name))
+                    {
+                        IDataset fc = (IDataset)featureWorkspace.OpenFeatureClass(pGxDialog.Name);
+
+                        if (!fc.CanDelete())
+                        {
+                            MessageBox.Show(pGxDialog.Name + " is al in gebruik, u kunt dit niet overschrijven.",
+                                        "Feature Class in gebruik");
+                            return null;
+                        }
+                    }
+                }
+                return path;
             }
-
-            // Open the dialog
-            if (!pGxDialog.DoModalSave(0))
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
                 return null;
             }
-            string path = pGxDialog.FinalLocation.FullName + "\\" + pGxDialog.Name;
-            return path;
         }
+
         /// <summary> Shows dialog for saving data.</summary>
         /// <param name="dialogTitle">The title of the dialog</param>
         /// <returns> the path to the file to save </returns>
@@ -645,7 +705,7 @@ namespace geopunt4Arcgis
         {
             IGxObjectFilter shpFilter = new GxFilterShapefilesClass();
             IGxObjectFilter gdbFilter = new GxFilterFGDBFeatureClassesClass();
-            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter });
+            List<IGxObjectFilter> gxFilterList = new List<IGxObjectFilter>(new IGxObjectFilter[] { gdbFilter, shpFilter});
 
             return ShowSaveDataDialog(gxFilterList, dialogTitle);
         }
@@ -1127,16 +1187,20 @@ namespace geopunt4Arcgis
         /// <param name="separator">the character separating the values, can be "COMMA", "PUNTCOMMA", "SPATIE" or "TAB", 
         /// for any sepator string the the input is used</param>
         /// <returns>a datable containing the values form the file</returns>
-        public static DataTable loadCSV2datatable(string csvPath, string separator, int maxRows = 500 )
+        public static DataTable loadCSV2datatable(string csvPath, string separator, int maxRows = 500, 
+            System.Text.Encoding codex = null)
         {
             FileInfo csv = new FileInfo(csvPath);
             string sep;
             DataTable tbl = new DataTable();
 
+            System.Text.Encoding textEncoding = System.Text.Encoding.Default;
+            if (codex != null) textEncoding = codex;
+
             if (!csv.Exists)
-                throw new csvException("Deze csv-file bestaat niet: " + csv.Name);
+                throw new Exception("Deze csv-file bestaat niet: " + csv.Name);
             if( separator == "" || separator == null ) 
-                throw new csvException("Deze separator is niet toegelaten");
+                throw new Exception("Deze separator is niet toegelaten");
 
             switch (separator)
             {
@@ -1157,7 +1221,7 @@ namespace geopunt4Arcgis
                     break;
             }
             using (Microsoft.VisualBasic.FileIO.TextFieldParser csvParser =
-                            new Microsoft.VisualBasic.FileIO.TextFieldParser(csv.FullName))
+                            new Microsoft.VisualBasic.FileIO.TextFieldParser(csv.FullName, textEncoding, true))
             {
                 csvParser.Delimiters = new string[] { sep };
                 csvParser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;
@@ -1175,9 +1239,9 @@ namespace geopunt4Arcgis
                 {
                     try
                     {
-                        if (counter > maxRows)
+                        if (counter >= maxRows)
                         {
-                            throw new csvException("maximaal aantal rijen van "+ maxRows.ToString() + " overschreden.");
+                            return tbl;
                         }
                         counter++;
 
@@ -1185,14 +1249,14 @@ namespace geopunt4Arcgis
 
                         if (tbl.Columns.Count != row.Count())
                         {
-                            throw new csvException("Niet alle rijen hebben hetzelfde aantal kolommen, op eerste lijn: " +
+                            throw new Exception("Niet alle rijen hebben hetzelfde aantal kolommen, op eerste lijn: " +
                              tbl.Rows.Count.ToString() + " gevonden: " + row.Count() + " op lijn: " + string.Join(sep, row));
                         }
                         tbl.Rows.Add(row);
                     }
                     catch (Microsoft.VisualBasic.FileIO.MalformedLineException ex)
                     {
-                        throw new csvException("CSV is kan niet worden gelezen, het heeft niet de correcte vorm: " + csvParser.ErrorLine, ex);
+                        throw new Exception("CSV is kan niet worden gelezen, het heeft niet de correcte vorm: " + csvParser.ErrorLine, ex);
                     }
                 }
             }
@@ -1219,19 +1283,56 @@ namespace geopunt4Arcgis
         }
         #endregion
 
+        #region "Translate strings"
+        /// <summary>Translate the adresType string into u more userfriendly string</summary>
+        /// <param name="adresTypeString">the string to translate</param>
+        /// <returns>the translated string or the input string if none is found</returns>
+        public static string adresTypeStringTranslate(string adresTypeString)
+        {
+            switch (adresTypeString)
+            {
+                case "crab_straat":
+                     return  "locatie van centrum straat";         
+                case "crab_huisnummer_afgeleidVanGebouw":
+                     return  "locatie o.b.v. gebouw";
+                case "crab_huisnummer_afgeleidVanGemeente":
+                     return  "locatie o.b.v. centrum gemeente";
+                case "crab_huisnummer_afgeleidVanPerceelGrb":
+                     return  "locatie o.b.v. GRB-perceel";
+                case "crab_huisnummer_afgeleidVanPerceelKadaster":
+                     return  "locatie o.b.v. kadasterperceel";
+                case "crab_huisnummer_afgeleidVanStraat":
+                     return  "locatie o.b.v. centrum straat";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersGebouw":
+                     return  "locatie o.b.v. interpollatie tussen gebouwen";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersPerceelGrb":
+                     return  "locatie o.b.v. interpollatie tussen GRB-percelen";
+                case "crab_huisnummer_geinterpoleerdObvNevenliggendeHuisnummersPerceelKadaster":
+                     return  "locatie o.b.v. interpollatie tussen kadasterpercelen";
+                case "crab_huisnummer_geinterpoleerdObvWegverbinding":
+                     return  "locatie o.b.v. wegverbinding";
+                case "crab_huisnummer_manueleAanduidingVanBrievenbus":
+                     return  "locatie o.b.v. manuele aanduiding van brievenbus";
+                case "crab_huisnummer_manueleAanduidingVanGebouw":
+                     return  "locatie o.b.v. manuele aanduiding van gebouw";
+                case "crab_huisnummer_manueleAanduidingVanIngangVanGebouw":
+                     return  "locatie o.b.v. manuele aanduiding van ingang gebouw";
+                case "crab_huisnummer_manueleAanduidingVanLigplaats":
+                    return  "locatie o.b.v. manuele aanduiding van ligplaats";
+                case "crab_huisnummer_manueleAanduidingVanLot":
+                     return  "locatie o.b.v. manuele aanduiding van lot";
+                case "crab_huisnummer_manueleAanduidingVanNutsaansluiting":
+                    return  "locatie o.b.v. manuele aanduiding van nutsaansluiting";
+                case "crab_huisnummer_manueleAanduidingVanPerceel":
+                     return  "locatie o.b.v. manuele aanduiding van perceel";
+                case "crab_huisnummer_manueleAanduidingVanStandplaats":
+                    return  "locatie o.b.v. manuele aanduiding van standplaats";
+                case "crab_huisnummer_manueleAanduidingVanToegangTotDeWeg":
+                    return  "locatie o.b.v. manuele aanduiding van toegang tot de weg";
+                default:
+                    return adresTypeString;
+            }
+        #endregion
+        }
     }
-
-    #region "exceptions"
-    [Serializable]
-    public class csvException : Exception
-    {
-        public string csvMessage;
-        public csvException(string message) : base(message) { }
-        public csvException(string message, Exception inner) : base(message, inner) { }
-        //protected csvException(
-        //  System.Runtime.Serialization.SerializationInfo info,
-        //  System.Runtime.Serialization.StreamingContext context)
-        //    : base(info, context) { }
-    }
-    #endregion
 }

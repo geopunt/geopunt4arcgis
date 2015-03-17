@@ -46,7 +46,7 @@ namespace geopunt4Arcgis
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
 
-            poiDH = new dataHandler.poi();
+            poiDH = new dataHandler.poi(timeout: gpExtension.timeout);
 
             graphics = new List<IElement>();
 
@@ -59,7 +59,7 @@ namespace geopunt4Arcgis
             rows = new SortableBindingList<poiDataRow>();
             resultGrid.DataSource = rows;
 
-            dataHandler.capakey capa = new dataHandler.capakey();
+            dataHandler.capakey capa = new dataHandler.capakey(timeout: gpExtension.timeout);
 
             municipalities = capa.getMunicipalities();
             List<string> cities = (from datacontract.municipality t in municipalities.municipalities 
@@ -87,7 +87,7 @@ namespace geopunt4Arcgis
             boundingBox extent;
             if (extentCkb.Checked) {
                 IEnvelope env = view.Extent;
-                IEnvelope prjEnv = geopuntHelper.Transform2WGS((IGeometry)env).Envelope; 
+                IEnvelope prjEnv = geopuntHelper.Transform((IGeometry)env, wgs).Envelope; 
                 extent = new boundingBox(prjEnv);
                 nis = null;
             }
@@ -287,7 +287,8 @@ namespace geopunt4Arcgis
                 else if (points.PointCount == 1)
                 {
                     IPoint xy = points.get_Point(0);
-                    geopuntHelper.ZoomByRatioAndRecenter(view, 0.5, xy.X, xy.Y);
+                    geopuntHelper.ZoomByRatioAndRecenter(view, 1, xy.X, xy.Y);
+                    map.MapScale = 1000;
                 }
                 else
                 {
@@ -377,7 +378,7 @@ namespace geopunt4Arcgis
             if (extentCkb.Checked)
             {
                 IEnvelope env = view.Extent;
-                IEnvelope prjEnv = geopuntHelper.Transform2WGS((IGeometry)env).Envelope;
+                IEnvelope prjEnv = geopuntHelper.Transform((IGeometry)env, wgs).Envelope;
                 extent = new boundingBox(prjEnv);
                 nis = null;
             }
@@ -435,7 +436,7 @@ namespace geopunt4Arcgis
 
         private void helpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/catalogus");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/poi");
         }
         #endregion
 

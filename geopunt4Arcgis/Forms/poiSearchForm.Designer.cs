@@ -130,7 +130,7 @@
             // 
             this.gemeenteCbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.gemeenteCbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.gemeenteCbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.gemeenteCbx.FormattingEnabled = true;
             this.gemeenteCbx.Location = new System.Drawing.Point(116, 49);
@@ -331,7 +331,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(331, 485);
             this.Name = "poiSearchForm";
-            this.Text = "Zoek naar interessante plaats";
+            this.Text = "Zoek een interessante plaats via Geopunt";
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

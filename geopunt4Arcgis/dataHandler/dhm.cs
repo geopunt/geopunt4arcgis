@@ -13,16 +13,16 @@ namespace geopunt4Arcgis.dataHandler
         public WebClient client;
         string baseUri;
 
-        public dhm(string proxyUrl = "", int port = 80)
+        public dhm(string proxyUrl = "", int port = 80, int timeout= 5000)
         {
             if (proxyUrl == null || proxyUrl == "")
             {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8 };
+                client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8 , timeout= timeout};
             }
             else
             {
-                client = new WebClient() { Encoding = System.Text.Encoding.UTF8, 
-                                           Proxy = new System.Net.WebProxy(proxyUrl, port) };
+                client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, 
+                                           Proxy = new System.Net.WebProxy(proxyUrl, port), timeout= timeout };
             }
             baseUri = "http://dhm.beta.agiv.be/api/elevation/v1/";
         }

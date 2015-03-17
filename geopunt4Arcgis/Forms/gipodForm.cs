@@ -33,17 +33,13 @@ namespace geopunt4Arcgis
         public gipodForm()
         {
             //globals 
-            gipod = new dataHandler.gipod();
             view = ArcMap.Document.ActiveView;
 
-            Type factoryType = Type.GetTypeFromProgID("esriGeometry.SpatialReferenceEnvironment");
-            System.Object obj = Activator.CreateInstance(factoryType);
-            spatialReferenceFactory = obj as ISpatialReferenceFactory3;
-
-            wgs = spatialReferenceFactory.CreateGeographicCoordinateSystem(4326);
-            lam72 = spatialReferenceFactory.CreateProjectedCoordinateSystem(31370);
+            wgs = geopuntHelper.wgs84;
+            lam72 = geopuntHelper.lam72;
 
             gpExtension = geopunt4arcgisExtension.getGeopuntExtension();
+            gipod = new dataHandler.gipod(timeout: gpExtension.timeout);
 
             InitializeComponent();
             // set the rest of the GUI
@@ -52,7 +48,7 @@ namespace geopunt4Arcgis
 
         private void initGUI() 
         {
-            dataHandler.capakey capakey = new dataHandler.capakey();
+            dataHandler.capakey capakey = new dataHandler.capakey(timeout: gpExtension.timeout);
             municipality = capakey.getMunicipalities();
             var qry = from datacontract.municipality t in municipality.municipalities select t.municipalityName;
 
@@ -212,7 +208,7 @@ namespace geopunt4Arcgis
 
         private void HelpLbl_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod");
+            System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/gipod");
         }
         #endregion
 
@@ -325,7 +321,7 @@ namespace geopunt4Arcgis
             //set bounds
             if (useExtendChk.Checked)
             {
-                IEnvelope arcGIsBbox = geopuntHelper.Transform2Lam72(view.Extent) as IEnvelope;
+                IEnvelope arcGIsBbox = geopuntHelper.Transform(view.Extent, lam72) as IEnvelope;
                 param.bbox = new boundingBox(arcGIsBbox);
             }
             else
