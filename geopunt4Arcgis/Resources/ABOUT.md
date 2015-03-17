@@ -4,21 +4,21 @@ Geopunt4Qgis
 Functies
 --------
 
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-adres" > Zoek een Adres</a> 
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/prik-een-adres-op-kaart" > Prik een Adres op kaart</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/csv-bestanden-geocoderen" > CSV-adresbestanden geocoderen</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/poi" > Zoek een Plaats - interesse punt</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/gipod" > GIPOD</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/hoogteprofiel" > Hoogteprofiel</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/zoek-een-perceel" > Zoek een perceel</a>
-  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/functionaliteiten/catalogus" > Geopunt catalogus</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-adres" > Zoek een Adres</a> 
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/prik-een-adres-op-kaart" > Prik een Adres op kaart</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/csv-bestanden-geocoderen" > CSV-adresbestanden geocoderen</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/poi" > Zoek een Plaats - interesse punt</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/gipod" > GIPOD</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/hoogteprofiel" > Hoogteprofiel</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-perceel" > Zoek een perceel</a>
+  * <a href="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/catalogus" > Geopunt catalogus</a>
  
 Systeem vereisten
 -----------------
 
 - Minimaal: Windows XP, ArcGIS Destkop versie 10.0 sp4 of hoger, .net-framework versie 3.5
 - Aanbevolen: Windows7, ArcGIS Destkop versie 10.2 of hoger, .net-framework versie 4.0
-- Een verbinding met het Internet, restrictieve firewalls kunnen mogelijk de connectie blokkeren.
+- Een verbinding met het internet, restrictieve firewalls kunnen mogelijk de connectie blokkeren.
 
 Doelstelling
 -----------
@@ -30,16 +30,16 @@ Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-servi
 De kaartdiensten zijn gebaseerd op de OGC open standaard WMS of WMTS en kunnen gemakkelijk worden toegevoegd aan desktop GIS. GIS-gebruikers kunnen deze diensten ontdekken via het [metadatacenter](https://metadata.geopunt.be). 
 De achterliggende zoekservice voor deze diensten is niet direct bruikbaar in QGIS en wordt in deze plugin ingebouwd.
 
-Sommige diensten aangeboden door geopunt zijn niet gebaseerd op een open standaard omdat het gaat om diensten die geen  courant gebruikte open standaard hebben. Deze publieke webdiensten zijn opgesteld volgens een REST-volle API, die eenvoudiger in gebruik is voor programmeurs dan OGC-diensten, maar omdat ze niet gestandaardiseerd zijn, kunnen ze niet zomaar binnen getrokken worden in desktop software.
+Sommige diensten aangeboden door geopunt zijn niet gebaseerd op een open standaard omdat het gaat om diensten die geen  courant gebruikte open standaard hebben. Deze publieke webdiensten bieden een REST-interface aan, die eenvoudiger in gebruik is voor programmeurs dan OGC-diensten, maar omdat ze niet gestandaardiseerd zijn, kunnen ze niet zomaar binnen getrokken worden in desktop software.
 
 Het gaat onder andere over:
 
 - **Geocoderen**, gebaseerd op de officiële [CRAB](https://www.agiv.be/producten/crab) adressen-databank.
-- **Locaties zoeken**, door koppeling van adressen aan de crab-databank, bijvoorbeeld de scholendatabank van de Vlaamse overheid. (documentatie  nog niet beschikbaar)
-- **Innames van openbaar domein**, van het Generiek Informatieplatform Openbaar Domein (GIPOD)  [GIPOD](hhttp://gipod.api.agiv.be/#!index.md), de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.
-- **Hoogteprofiel**, een dienst waarmee de hoogte, in digitaal hoogte model Vlaanderen, langsheen een lijn kan worden opgevraagd. De brondata is [DHM-Vlaanderen](https://www.agiv.be/producten/digitaal-hoogtemodel-vlaanderen).
+- **Interessante locaties zoeken** (points of interest). Typisch locaties beschikbaar gesteld door Vlaamse instanties.
+- **Innames van openbaar domein**, van het Generiek Informatieplatform Openbaar Domein. Het [GIPOD](http://gipod.api.agiv.be/#!index.md) is de officiële databank met manifestaties, wegenwerken en andere obstructies op het openbaar domein.
+- **Hoogteprofiel**, een dienst waarmee de hoogte, in digitaal hoogte model Vlaanderen, langsheen een lijn kan worden opgevraagd en gepresenteerd. De brondata is [DHM-Vlaanderen](https://www.agiv.be/producten/digitaal-hoogtemodel-vlaanderen).
 - **Percelen zoeken**, op getrapte wijze op de basis van gemeente naar departement, sectie dan naar perceelnummer in KADMAP.
-- **Metadata zoekdienst**, deze diensten worden gebruik in het [metadatacenter](https://metadata.geopunt.be) van geopunt en bevat ondermeer metadatafiches van AGIV, het samenwerkingsverband MercatorNet en DOV. 
+- **Metadata zoekdienst**, dienst om datasets te zoeken via het [metadatacenter](https://metadata.geopunt.be) van Geopunt. Deze bevat ondermeer metadatasets van AGIV, het samenwerkingsverband MercatorNet en DOV. 
 
 Om GIS gebruikers binnen en buiten de Vlaamse Overheid dezelfde functionaliteit ter beschikking te stellen als aangeboden in Geopunt, wenst AGIV deze gebruikers te voorzien van software plug-ins die deze functionaliteit geïntegreerd aanbieden binnen de meest gangbare GIS desktop  omgevingen. 
 Op basis van voorafgaand overleg met de GDI-Vlaanderen gemeenschap werd volgende GIS software geselecteerd: Quantum GIS (QGIS) v2.0 Dufour en ESRI ArcMap v10. 

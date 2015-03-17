@@ -10,8 +10,6 @@ images/*.ico
 images/*.png
 images/*.emf
 
-man/*.png
-
 ## bin ##
 
 *.exe 

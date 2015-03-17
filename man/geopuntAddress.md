@@ -8,8 +8,7 @@ Met de knop **Toevoegen aan kaart** kan je het adres toevoegen als laag aan de k
 
 Als je meerdere adressen toevoegt komen die in dezelfde laag terecht. De laag bevat een attribuut '*type*' dat aangeeft hoe de locatie in crab bepaald werd en geeft dus een indicatie van de nauwkeurigheid.
 
-<!--![](images/geopunt4qgisAdres.gif "Zoek een Adres")-->
+![](geopuntAddress.gif "Zoek een adres") 
 
 [Foute adressen kunt u melden via LARA (enkel voor GDI-Vlaanderen)](http://crab.agiv.be/Lara) 
 
-![](geopuntAddress.gif "Zoek een adres") 

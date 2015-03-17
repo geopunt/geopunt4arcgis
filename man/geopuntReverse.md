@@ -8,6 +8,6 @@ Met de knop **Opslaan** kan je het adres opslaan als Shapefile of in een File Ge
 
 Als je meerdere adressen toevoegt komen die in dezelfde laag terecht. De laag bevat een attribuut '*type*' dat aangeeft hoe de locatie in crab bepaald werd en geeft dus een indicatie van de nauwkeurigheid.
 
-<!-- ![](images/geopunt4qgisReverse.gif "Prik een Adres op kaart") -->
+![](geopuntReverse.gif "Prik een Adres op kaart")
 
 [Foute adressen kunt u melden via LARA (enkel voor GDI-Vlaanderen)](http://crab.agiv.be/Lara) 

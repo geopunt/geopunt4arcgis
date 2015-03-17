@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,29 +13,39 @@ namespace geopunt4Arcgis
 {
     class versionChecker
     {
-        public gpWebClient client;
+        gpWebClient gpClient;
+        System.Diagnostics.Process prs;
 
         string versionJSurl = "http://www.geopunt.be/~/media/geopunt/voor-experts/plugins/bestanden/arcgis%20plugin/geopunt4arcgis.json";
+        string dlAddinUri = "http://www.geopunt.be/~/media/geopunt/voor-experts/plugins/bestanden/arcgis%20plugin%20bestand/geopunt4arcgis.esriAddIn";
 
         public versionChecker(string proxyUrl = "", int port = 80, int timeout = 5000) 
         {
             if (proxyUrl == null || proxyUrl == "")
             {
-                client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, timeout = timeout };
+                gpClient = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, timeout = timeout };
             }
             else
             {
-                client = new gpWebClient()
+                gpClient = new gpWebClient()
                 {
                     Encoding = System.Text.Encoding.UTF8,
                     Proxy = new System.Net.WebProxy(proxyUrl, port),
                     timeout = timeout
                 };
             }
-            client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(client_DownloadStringCompleted);
+            gpClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(client_DownloadStringCompleted);
+
+            prs = new System.Diagnostics.Process();
+            prs.StartInfo.UseShellExecute = false;           
         }
 
-        void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        public void checkVersion()
+        {
+            gpClient.DownloadStringAsync(new Uri(versionJSurl));
+        }
+
+        private void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Error == null)
             {
@@ -41,22 +53,47 @@ namespace geopunt4Arcgis
                 string currentVersion = ThisAddIn.Version;
                 Dictionary<string, string> versionJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                if (currentVersion != versionJson["Version"])
+                if ( Double.Parse( currentVersion ) < Double.Parse( versionJson["Version"]))
                 {
-                    DialogResult dlg = MessageBox.Show("De geopunt plugin is niet meer up to date, wenst u de nieuwe versie te downloaden? "
-                                        , ThisAddIn.Name + " " + currentVersion, MessageBoxButtons.YesNo);
+                    DialogResult dlg = MessageBox.Show("De geopunt plugin is niet meer up to date, wenst u de nieuwe versie te downloaden? ", 
+                        ThisAddIn.Name + " " + currentVersion, MessageBoxButtons.YesNo);
 
                     if (dlg == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start("http://www.geopunt.be/voor-experts");
+                        try
+                        {
+                            reInstall();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show( ex.Message +" "+  ex.StackTrace);
+                        }
+
                     }
                 }
             }
         }
 
-        public void checkVersion() 
+        private void reInstall()
         {
-            client.DownloadStringAsync( new Uri ( versionJSurl) );
+            RegistryKey regVersion = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ESRI\\ArcGis", false);
+            string InstallDir = (string)regVersion.GetValue("InstallDir", "");
+
+            string tempLoc = Path.Combine(Path.GetTempPath(), "geopunt4arcgis.esriAddIn");
+            string regAddin = Path.Combine(InstallDir, "bin\\ESRIRegAddIn.exe");
+
+            gpClient.DownloadFile(dlAddinUri, tempLoc);
+
+            prs.StartInfo.FileName = regAddin;
+            prs.StartInfo.Arguments = "/s /u " + ThisAddIn.AddInID;
+            prs.Start();
+            System.Threading.Thread.Sleep(500);
+
+            prs.StartInfo.Arguments = "/s " + tempLoc;
+            prs.Start();
+
+            MessageBox.Show(
+                "De plugin geopunt4Arcgis werd geherinstalleerd, u dient nu ArcGIS te herstarten om deze updates toe te passen.", "Herstart Vereist");
         }
 
     }
