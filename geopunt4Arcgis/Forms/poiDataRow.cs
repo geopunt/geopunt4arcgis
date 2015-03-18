@@ -11,9 +11,11 @@ namespace geopunt4Arcgis
        public string Theme { get; set; }
        public string Category { get; set; }
        public string Type { get; set; }
-       public string Naam { get; set; }
+       public string Label { get; set; }
+       public string Omschrijving { get; set; }
        public string Straat { get; set; }
        public string Huisnummer { get; set; }
+       public string busnr { get; set; }
        public string Gemeente { get; set; }
        public string Postcode { get; set; } 
     }

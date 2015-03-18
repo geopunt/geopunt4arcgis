@@ -19,7 +19,6 @@ namespace geopunt4Arcgis
 {
     public partial class catalogForm : Form
     {
-        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         IMap map;
         ISpatialReference wgs;

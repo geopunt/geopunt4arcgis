@@ -13,7 +13,7 @@ namespace geopunt4Arcgis
 {
     class versionChecker
     {
-        gpWebClient gpClient;
+        WebClient gpClient;
         System.Diagnostics.Process prs;
 
         string versionJSurl = "http://www.geopunt.be/~/media/geopunt/voor-experts/plugins/bestanden/arcgis%20plugin/geopunt4arcgis.json";

@@ -22,7 +22,6 @@ namespace geopunt4Arcgis
 {
     public partial class elevationForm : Form
     {
-        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         IMap map;
         ISpatialReference lam72;

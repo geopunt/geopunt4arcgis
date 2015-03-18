@@ -1,0 +1,88 @@
+{
+	"labels" : [{
+			"term" : "Count",
+			"value" : "2"
+		}
+	],
+	"pois" : [{
+			"id" : "89563",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Station Aalter"
+				}
+			],
+			"categories" : [{
+					"type" : "Type",
+					"term" : "Treinstation",
+					"value" : "Treinstations"
+				}
+			],
+			"links" : [{
+					"href" : "http://poi.beta.geopunt.be/v1/core?id=89563",
+					"term" : "via"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"Point" : {
+							"coordinates" : [3.44913, 51.09217],
+							"type" : "Point"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Stationsplein",
+					"streetnumber" : "",
+					"postalcode" : "9880",
+					"municipality" : "Aalter"
+				}
+			},
+			"distance" : {
+				"term" : "birds_eye_distance",
+				"value" : "0"
+			}
+		}, {
+			"id" : "89508",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Station Bellem"
+				}
+			],
+			"categories" : [{
+					"type" : "Type",
+					"term" : "Treinstation",
+					"value" : "Treinstations"
+				}
+			],
+			"links" : [{
+					"href" : "http://poi.beta.geopunt.be/v1/core?id=89508",
+					"term" : "via"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"Point" : {
+							"coordinates" : [3.48924, 51.08503],
+							"type" : "Point"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Lotenhullestraat",
+					"streetnumber" : "",
+					"postalcode" : "9881",
+					"municipality" : "Aalter"
+				}
+			},
+			"distance" : {
+				"term" : "birds_eye_distance",
+				"value" : "0"
+			}
+		}
+	],
+	"clusters" : []
+}

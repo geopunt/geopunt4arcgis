@@ -1,0 +1,351 @@
+{
+	"labels" : [{
+			"term" : "Count",
+			"value" : "-1"
+		}, {
+			"term" : "Warning",
+			"value" : "Warning 01: The number of results that match the selection criteria could not be determined. Keyword parameter is too ambiguous. Only a fraction of the results is given in the poi- and clusterlist. Refine Keyword search parameters to avoid this."
+		}
+	],
+	"pois" : [{
+			"id" : "23260",
+			"phone" : "+32 2 453 98 62",
+			"email" : "gbs.relegem@skynet.be",
+			"created" : "2014-10-03T08:45:00",
+			"updated" : "2014-10-03T08:45:00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Gemeentelijke Basisschool"
+				}, {
+					"term" : "note",
+					"value" : "hoofdzetel"
+				}, {
+					"term" : "municipality",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Onderwijs",
+					"value" : "Onderwijs"
+				}, {
+					"type" : "Categorie",
+					"term" : "LagerOnderwijs",
+					"value" : "Lager onderwijs"
+				}, {
+					"type" : "Type",
+					"term" : "GewoonLagerOnderwijs",
+					"value" : "Gewoon lager onderwijs"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5521",
+					"created" : "2014-10-03T08:45:00",
+					"updated" : "2014-10-03T08:45:00",
+					"term" : "related",
+					"value" : "Link naar de schoolfiche"
+				}, {
+					"href" : "http://www.gbsrelegem.be/",
+					"created" : "2014-10-03T08:45:00",
+					"updated" : "2014-10-03T08:45:00",
+					"term" : "related",
+					"value" : "Website van Gemeentelijke Basisschool"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.2825338765669905, 50.901310629360474],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Dorpsstraat",
+					"streetnumber" : "1",
+					"boxnumber" : "",
+					"postalcode" : "1731",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T08:45:00",
+					"updated" : "2014-10-03T08:45:00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "Vlaams Ministerie van Onderwijs en Vorming"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "Gratis Open Data Licentie"
+			}
+		}, {
+			"id" : "25993",
+			"phone" : "+32 2 452 50 73",
+			"email" : "gbsmollem@skynet.be",
+			"created" : "2014-10-03T08:50:00",
+			"updated" : "2014-10-03T08:50:00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Gemeentelijke Basisschool"
+				}, {
+					"term" : "note",
+					"value" : "hoofdzetel"
+				}, {
+					"term" : "municipality",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Onderwijs",
+					"value" : "Onderwijs"
+				}, {
+					"type" : "Categorie",
+					"term" : "LagerOnderwijs",
+					"value" : "Lager onderwijs"
+				}, {
+					"type" : "Type",
+					"term" : "GewoonLagerOnderwijs",
+					"value" : "Gewoon lager onderwijs"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5091",
+					"created" : "2014-10-03T08:50:00",
+					"updated" : "2014-10-03T08:50:00",
+					"term" : "related",
+					"value" : "Link naar de schoolfiche"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.2244522018767885, 50.932420025151444],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Kasteelstraat",
+					"streetnumber" : "49",
+					"boxnumber" : "",
+					"postalcode" : "1730",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T08:50:00",
+					"updated" : "2014-10-03T08:50:00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "Vlaams Ministerie van Onderwijs en Vorming"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "Gratis Open Data Licentie"
+			}
+		}, {
+			"id" : "28261",
+			"phone" : "+32 2 452 95 24",
+			"email" : "gbscentrum@skynet.be",
+			"created" : "2014-10-03T08:56:00",
+			"updated" : "2014-10-03T08:56:00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Gemeentelijke Basisschool"
+				}, {
+					"term" : "note",
+					"value" : "hoofdzetel"
+				}, {
+					"term" : "municipality",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Onderwijs",
+					"value" : "Onderwijs"
+				}, {
+					"type" : "Categorie",
+					"term" : "LagerOnderwijs",
+					"value" : "Lager onderwijs"
+				}, {
+					"type" : "Type",
+					"term" : "GewoonLagerOnderwijs",
+					"value" : "Gewoon lager onderwijs"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5066",
+					"created" : "2014-10-03T08:56:00",
+					"updated" : "2014-10-03T08:56:00",
+					"term" : "related",
+					"value" : "Link naar de schoolfiche"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.1978542279591142, 50.911888811955279],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Mollestraat",
+					"streetnumber" : "31",
+					"boxnumber" : "",
+					"postalcode" : "1730",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T08:56:00",
+					"updated" : "2014-10-03T08:56:00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "Vlaams Ministerie van Onderwijs en Vorming"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "Gratis Open Data Licentie"
+			}
+		}, {
+			"id" : "28902",
+			"phone" : "+32 2 452 95 25",
+			"email" : "",
+			"created" : "2014-10-03T08:58:00",
+			"updated" : "2014-10-03T08:58:00",
+			"labels" : [{
+					"term" : "primary",
+					"value" : "Gemeentelijke Basisschool"
+				}, {
+					"term" : "note",
+					"value" : "vestiging"
+				}, {
+					"term" : "municipality",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "Onderwijs",
+					"value" : "Onderwijs"
+				}, {
+					"type" : "Categorie",
+					"term" : "LagerOnderwijs",
+					"value" : "Lager onderwijs"
+				}, {
+					"type" : "Type",
+					"term" : "GewoonLagerOnderwijs",
+					"value" : "Gewoon lager onderwijs"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.ond.vlaanderen.be/onderwijsaanbod/adres.asp?sn=5066",
+					"created" : "2014-10-03T08:58:00",
+					"updated" : "2014-10-03T08:58:00",
+					"term" : "related",
+					"value" : "Link naar de schoolfiche"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.1862538550729234, 50.922281102784581],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"term" : "owner",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Oude Dendermondsebaan",
+					"streetnumber" : "17",
+					"boxnumber" : "",
+					"postalcode" : "1730",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T08:58:00",
+					"updated" : "2014-10-03T08:58:00",
+					"term" : "crab"
+				}
+			},
+			"authors" : [{
+					"term" : "owner",
+					"value" : "Vlaams Ministerie van Onderwijs en Vorming"
+				}
+			],
+			"license" : {
+				"term" : "Gratis_Open_Data_Licentie",
+				"value" : "Gratis Open Data Licentie"
+			}
+		}
+	],
+	"clusters" : []
+}

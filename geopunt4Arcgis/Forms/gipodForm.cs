@@ -20,7 +20,6 @@ namespace geopunt4Arcgis
 {
     public partial class gipodForm : Form
     {
-        ISpatialReferenceFactory spatialReferenceFactory;
         IActiveView view;
         dataHandler.gipod gipod;
         datacontract.municipalityList municipality;

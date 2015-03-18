@@ -50,6 +50,7 @@
             this.msgLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.filterbox = new System.Windows.Forms.GroupBox();
+            this.clusteringChk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.filterbox.SuspendLayout();
@@ -70,7 +71,7 @@
             this.resultGrid.Name = "resultGrid";
             this.resultGrid.ReadOnly = true;
             this.resultGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.resultGrid.Size = new System.Drawing.Size(619, 196);
+            this.resultGrid.Size = new System.Drawing.Size(583, 185);
             this.resultGrid.TabIndex = 0;
             this.resultGrid.SelectionChanged += new System.EventHandler(this.resultGrid_SelectionChanged);
             this.resultGrid.DoubleClick += new System.EventHandler(this.zoom2selBtn_Click);
@@ -79,7 +80,7 @@
             // 
             this.zoekBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.zoekBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.zoekBtn.Location = new System.Drawing.Point(535, 240);
+            this.zoekBtn.Location = new System.Drawing.Point(499, 240);
             this.zoekBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoekBtn.Name = "zoekBtn";
             this.zoekBtn.Size = new System.Drawing.Size(100, 28);
@@ -97,7 +98,7 @@
             this.themeCbx.Location = new System.Drawing.Point(116, 82);
             this.themeCbx.Margin = new System.Windows.Forms.Padding(4);
             this.themeCbx.Name = "themeCbx";
-            this.themeCbx.Size = new System.Drawing.Size(493, 24);
+            this.themeCbx.Size = new System.Drawing.Size(457, 24);
             this.themeCbx.TabIndex = 2;
             this.themeCbx.SelectedIndexChanged += new System.EventHandler(this.themeCbx_SelectedIndexChanged);
             // 
@@ -110,7 +111,7 @@
             this.categoryCbx.Location = new System.Drawing.Point(116, 116);
             this.categoryCbx.Margin = new System.Windows.Forms.Padding(4);
             this.categoryCbx.Name = "categoryCbx";
-            this.categoryCbx.Size = new System.Drawing.Size(493, 24);
+            this.categoryCbx.Size = new System.Drawing.Size(457, 24);
             this.categoryCbx.TabIndex = 3;
             this.categoryCbx.SelectedIndexChanged += new System.EventHandler(this.categoryCbx_SelectedIndexChanged);
             // 
@@ -123,7 +124,7 @@
             this.typeCbx.Location = new System.Drawing.Point(116, 149);
             this.typeCbx.Margin = new System.Windows.Forms.Padding(4);
             this.typeCbx.Name = "typeCbx";
-            this.typeCbx.Size = new System.Drawing.Size(493, 24);
+            this.typeCbx.Size = new System.Drawing.Size(457, 24);
             this.typeCbx.TabIndex = 4;
             // 
             // gemeenteCbx
@@ -136,7 +137,7 @@
             this.gemeenteCbx.Location = new System.Drawing.Point(116, 49);
             this.gemeenteCbx.Margin = new System.Windows.Forms.Padding(4);
             this.gemeenteCbx.Name = "gemeenteCbx";
-            this.gemeenteCbx.Size = new System.Drawing.Size(493, 24);
+            this.gemeenteCbx.Size = new System.Drawing.Size(457, 24);
             this.gemeenteCbx.TabIndex = 5;
             // 
             // GemeenteLbl
@@ -198,7 +199,7 @@
             this.keywordTxt.Location = new System.Drawing.Point(116, 182);
             this.keywordTxt.Margin = new System.Windows.Forms.Padding(4);
             this.keywordTxt.Name = "keywordTxt";
-            this.keywordTxt.Size = new System.Drawing.Size(493, 22);
+            this.keywordTxt.Size = new System.Drawing.Size(457, 22);
             this.keywordTxt.TabIndex = 11;
             // 
             // keywordLbl
@@ -215,7 +216,7 @@
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(467, 516);
+            this.cancelBtn.Location = new System.Drawing.Point(431, 505);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(4);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(168, 28);
@@ -227,10 +228,10 @@
             // addSelection2mapBtn
             // 
             this.addSelection2mapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addSelection2mapBtn.Location = new System.Drawing.Point(251, 480);
+            this.addSelection2mapBtn.Location = new System.Drawing.Point(191, 469);
             this.addSelection2mapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addSelection2mapBtn.Name = "addSelection2mapBtn";
-            this.addSelection2mapBtn.Size = new System.Drawing.Size(208, 28);
+            this.addSelection2mapBtn.Size = new System.Drawing.Size(232, 28);
             this.addSelection2mapBtn.TabIndex = 14;
             this.addSelection2mapBtn.Text = "Selectie opslaan";
             this.addSelection2mapBtn.UseVisualStyleBackColor = true;
@@ -239,7 +240,7 @@
             // zoom2selBtn
             // 
             this.zoom2selBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.zoom2selBtn.Location = new System.Drawing.Point(467, 480);
+            this.zoom2selBtn.Location = new System.Drawing.Point(431, 469);
             this.zoom2selBtn.Margin = new System.Windows.Forms.Padding(4);
             this.zoom2selBtn.Name = "zoom2selBtn";
             this.zoom2selBtn.Size = new System.Drawing.Size(168, 28);
@@ -251,10 +252,10 @@
             // addAll2MapBtn
             // 
             this.addAll2MapBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.addAll2MapBtn.Location = new System.Drawing.Point(251, 516);
+            this.addAll2MapBtn.Location = new System.Drawing.Point(191, 505);
             this.addAll2MapBtn.Margin = new System.Windows.Forms.Padding(4);
             this.addAll2MapBtn.Name = "addAll2MapBtn";
-            this.addAll2MapBtn.Size = new System.Drawing.Size(208, 28);
+            this.addAll2MapBtn.Size = new System.Drawing.Size(232, 28);
             this.addAll2MapBtn.TabIndex = 16;
             this.addAll2MapBtn.Text = "Alle punten opslaan";
             this.addAll2MapBtn.UseVisualStyleBackColor = true;
@@ -265,10 +266,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msgLbl,
             this.helpLbl});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 562);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 575);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(651, 23);
+            this.statusStrip1.Size = new System.Drawing.Size(615, 23);
             this.statusStrip1.TabIndex = 17;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -279,7 +280,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.msgLbl.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.msgLbl.Name = "msgLbl";
-            this.msgLbl.Size = new System.Drawing.Size(595, 18);
+            this.msgLbl.Size = new System.Drawing.Size(559, 18);
             this.msgLbl.Spring = true;
             // 
             // helpLbl
@@ -309,16 +310,31 @@
             this.filterbox.Margin = new System.Windows.Forms.Padding(4);
             this.filterbox.Name = "filterbox";
             this.filterbox.Padding = new System.Windows.Forms.Padding(4);
-            this.filterbox.Size = new System.Drawing.Size(619, 218);
+            this.filterbox.Size = new System.Drawing.Size(583, 218);
             this.filterbox.TabIndex = 18;
             this.filterbox.TabStop = false;
             this.filterbox.Text = "Filters";
+            // 
+            // clusteringChk
+            // 
+            this.clusteringChk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clusteringChk.AutoSize = true;
+            this.clusteringChk.Checked = true;
+            this.clusteringChk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.clusteringChk.Location = new System.Drawing.Point(191, 540);
+            this.clusteringChk.Name = "clusteringChk";
+            this.clusteringChk.Size = new System.Drawing.Size(239, 21);
+            this.clusteringChk.TabIndex = 19;
+            this.clusteringChk.Text = "Resultaten geclusterd toevoegen";
+            this.clusteringChk.UseVisualStyleBackColor = true;
+            this.clusteringChk.CheckedChanged += new System.EventHandler(this.clusteringChk_CheckedChanged);
             // 
             // poiSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 585);
+            this.ClientSize = new System.Drawing.Size(615, 598);
+            this.Controls.Add(this.clusteringChk);
             this.Controls.Add(this.filterbox);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.addAll2MapBtn);
@@ -329,7 +345,7 @@
             this.Controls.Add(this.resultGrid);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(331, 485);
+            this.MinimumSize = new System.Drawing.Size(480, 485);
             this.Name = "poiSearchForm";
             this.Text = "Zoek een interessante plaats via Geopunt";
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
@@ -365,5 +381,6 @@
         private System.Windows.Forms.ToolStripStatusLabel msgLbl;
         private System.Windows.Forms.GroupBox filterbox;
         private System.Windows.Forms.ToolStripStatusLabel helpLbl;
+        private System.Windows.Forms.CheckBox clusteringChk;
     }
 }

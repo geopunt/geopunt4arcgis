@@ -11,7 +11,6 @@ namespace geopunt4Arcgis
 {
     public partial class AboutGeopunt4arcgisForm : Form
     {
-        string htmlLocation;
         geopunt4arcgisExtension gpExtension;
 
         public AboutGeopunt4arcgisForm()

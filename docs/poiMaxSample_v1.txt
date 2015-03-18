@@ -1,0 +1,2922 @@
+{
+	"labels" : [{
+			"term" : "Count",
+			"value" : "48"
+		}
+	],
+	"pois" : [{
+			"id" : "77728",
+			"created" : "2014-10-28T09:51:00",
+			"updated" : "2014-10-28T09:51:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK ZUID-WEST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Kortrijk"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+                ],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:51:00",
+					"updated" : "2014-10-28T09:51:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK ZUID-WEST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "grb-perceel",
+						"Point" : {
+							"coordinates" : [3.2575508559865547, 50.8277193671028],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Beheerstraat",
+					"streetnumber" : "46",
+					"boxnumber" : "",
+					"postalcode" : "8500",
+					"municipality" : "Kortrijk",
+					"created" : "2014-10-03T07:45:00",
+					"updated" : "2014-10-03T07:45:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77803",
+			"created" : "2014-10-28T09:51:00",
+			"updated" : "2014-10-28T09:51:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK NOORD-WEST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Brugge"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:51:00",
+					"updated" : "2014-10-28T09:51:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK NOORD-WEST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [3.2290874553753994, 51.2057563077338],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Garenmarkt",
+					"streetnumber" : "3",
+					"boxnumber" : "",
+					"postalcode" : "8000",
+					"municipality" : "Brugge",
+					"created" : "2014-10-03T07:46:00",
+					"updated" : "2014-10-03T07:46:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77843",
+			"created" : "2014-10-28T09:51:00",
+			"updated" : "2014-10-28T09:51:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK DE KEMPEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Herentals"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:51:00",
+					"updated" : "2014-10-28T09:51:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK DE KEMPEN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "grb-perceel",
+						"Point" : {
+							"coordinates" : [4.8351723206645874, 51.178702143891428],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Hofkwartier",
+					"streetnumber" : "23",
+					"boxnumber" : "",
+					"postalcode" : "2200",
+					"municipality" : "Herentals",
+					"created" : "2014-10-03T07:47:00",
+					"updated" : "2014-10-03T07:47:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77861",
+			"created" : "2014-10-28T09:51:00",
+			"updated" : "2014-10-28T09:51:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "TELE-ONTHAAL ANTWERPEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Antwerpen"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:51:00",
+					"updated" : "2014-10-28T09:51:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over TELE-ONTHAAL ANTWERPEN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.4051737674159659, 51.206698727624556],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Jozef De Bomstraat",
+					"streetnumber" : "25",
+					"boxnumber" : "",
+					"postalcode" : "2018",
+					"municipality" : "Antwerpen",
+					"created" : "2014-10-03T07:47:00",
+					"updated" : "2014-10-03T07:47:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77919",
+			"created" : "2014-10-28T09:51:00",
+			"updated" : "2014-10-28T09:51:00",
+			"labels" : [{
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Antwerpen"
+				}, {
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK ANTWERPEN"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:51:00",
+					"updated" : "2014-10-28T09:51:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK ANTWERPEN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.4061848588818631, 51.2007750189618],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Lange Lozanastraat",
+					"streetnumber" : "200",
+					"boxnumber" : "",
+					"postalcode" : "2018",
+					"municipality" : "Antwerpen",
+					"created" : "2014-10-03T07:48:00",
+					"updated" : "2014-10-03T07:48:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77948",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Mechelen"
+				}, {
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK BOOM MECHELEN LIER"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK BOOM MECHELEN LIER"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.474214000678038, 51.036787906915407],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Maurits Sabbestraat",
+					"streetnumber" : "119",
+					"boxnumber" : "",
+					"postalcode" : "2800",
+					"municipality" : "Mechelen",
+					"created" : "2014-10-03T07:48:00",
+					"updated" : "2014-10-03T07:48:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "77966",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Roeselare"
+				}, {
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK CENTRAAL-WEST-VLAANDEREN"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK CENTRAAL-WEST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [3.1336106845128211, 50.948283064066537],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Nijverheidsstraat",
+					"streetnumber" : "11",
+					"boxnumber" : "",
+					"postalcode" : "8800",
+					"municipality" : "Roeselare",
+					"created" : "2014-10-03T07:49:00",
+					"updated" : "2014-10-03T07:49:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78004",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK HALLE - VILVOORDE"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK HALLE - VILVOORDE"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.2735094567908138, 50.892934587116166],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Poverstraat",
+					"streetnumber" : "75",
+					"boxnumber" : "",
+					"postalcode" : "1731",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78005",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK BRUSSEL"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Brussel"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK BRUSSEL"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "urbis",
+						"Point" : {
+							"coordinates" : [4.3486047133197028, 50.84344812774448],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Priemstraat",
+					"streetnumber" : "19",
+					"boxnumber" : "",
+					"postalcode" : "1000",
+					"municipality" : "Brussel",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "urbis",
+					"typedescription" : "Adres volgens URBIS databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78010",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "TELE-ONTHAAL VLAAMS-BRABANT EN BRUSSEL"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Leuven"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over TELE-ONTHAAL VLAAMS-BRABANT EN BRUSSEL"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.7109959968237387, 50.879239240195325],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Ravenstraat",
+					"streetnumber" : "98",
+					"boxnumber" : "",
+					"postalcode" : "3000",
+					"municipality" : "Leuven",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78011",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK OOST-BRABANT"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Leuven"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK OOST-BRABANT"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.6968004662517524, 50.875117711199223],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Redingenstraat",
+					"streetnumber" : "6",
+					"boxnumber" : "",
+					"postalcode" : "3000",
+					"municipality" : "Leuven",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78019",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "TELE-ONTHAAL OOST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Gent"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over TELE-ONTHAAL OOST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [3.7017010444538689, 51.036020189375265],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Roosakker",
+					"streetnumber" : "6",
+					"boxnumber" : "",
+					"postalcode" : "9000",
+					"municipality" : "Gent",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78028",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "TELE-ONTHAAL WEST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Brugge"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over TELE-ONTHAAL WEST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [3.2480104595691679, 51.187679484767514],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "'s-Heer Boudewijnsburg",
+					"streetnumber" : "110",
+					"boxnumber" : "",
+					"postalcode" : "8310",
+					"municipality" : "Brugge",
+					"created" : "2014-10-07T07:38:00",
+					"updated" : "2014-10-07T07:38:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78059",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Genk"
+				}, {
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK LIMBURG"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK LIMBURG"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [5.4986761707819767, 50.968180364569534],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Stoffelsbergstraat",
+					"streetnumber" : "4",
+					"boxnumber" : "",
+					"postalcode" : "3600",
+					"municipality" : "Genk",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78064",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "TELE-ONTHAAL LIMBURG"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Hasselt"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over TELE-ONTHAAL LIMBURG"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [5.3388625651794515, 50.925692191439339],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Toekomststraat",
+					"streetnumber" : "33",
+					"boxnumber" : "",
+					"postalcode" : "3500",
+					"municipality" : "Hasselt",
+					"created" : "2014-10-07T07:39:00",
+					"updated" : "2014-10-07T07:39:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "78077",
+			"created" : "2014-10-28T09:52:00",
+			"updated" : "2014-10-28T09:52:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CENTRUM ALGEMEEN WELZIJNSWERK OOST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Gent"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://welzijnensamenleving.be/",
+					"created" : "2014-10-28T09:52:00",
+					"updated" : "2014-10-28T09:52:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CENTRUM ALGEMEEN WELZIJNSWERK OOST-VLAANDEREN"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [3.73797865297881, 51.046090129956063],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Visserij",
+					"streetnumber" : "153",
+					"boxnumber" : "",
+					"postalcode" : "9000",
+					"municipality" : "Gent",
+					"created" : "2014-10-07T07:40:00",
+					"updated" : "2014-10-07T07:40:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.welzijnensamenleving.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Afdeling Welzijn en Samenleving"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80591",
+			"created" : "2014-10-03T07:49:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Christelijke Mutualiteit Antwerpen"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE CHRISTELIJKE MUTUALITEIT ANTWERPEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Antwerpen"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Christelijke Mutualiteit Antwerpen"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.4151325269838182, 51.220627221861115],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Molenbergstraat",
+					"streetnumber" : "2",
+					"boxnumber" : "",
+					"postalcode" : "2000",
+					"municipality" : "Antwerpen",
+					"created" : "2014-10-03T07:49:00",
+					"updated" : "2014-10-03T07:49:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80592",
+			"created" : "2014-10-03T07:49:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Christelijke Mutualiteit Brugge"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE CHRISTELIJKE MUTUALITEIT BRUGGE"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Brugge"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Christelijke Mutualiteit Brugge"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [3.2247979919970775, 51.206775655193255],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Oude Burg",
+					"streetnumber" : "19",
+					"boxnumber" : "",
+					"postalcode" : "8000",
+					"municipality" : "Brugge",
+					"created" : "2014-10-03T07:49:00",
+					"updated" : "2014-10-03T07:49:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80593",
+			"created" : "2014-10-03T07:50:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Christelijk Ziekenfonds Leuven"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN HET CHRISTELIJK ZIEKENFONDS LEUVEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Leuven"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Christelijk Ziekenfonds Leuven"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.7494847985049633, 50.88570979954995],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Platte Lostraat",
+					"streetnumber" : "541",
+					"boxnumber" : "",
+					"postalcode" : "3010",
+					"municipality" : "Leuven",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80594",
+			"created" : "2014-10-03T07:50:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Christelijke Mutualiteit Limburg"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE CHRISTELIJKE MUTUALITEIT LIMBURG"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Hasselt"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Christelijke Mutualiteit Limburg"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [5.328317931612073, 50.917139400178513],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Prins-Bisschopssingel",
+					"streetnumber" : "75",
+					"boxnumber" : "",
+					"postalcode" : "3500",
+					"municipality" : "Hasselt",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80595",
+			"created" : "2014-10-03T07:47:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Christelijke Mutualiteit Oostende"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE CHRISTELIJKE MUTUALITEIT OOSTENDE"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Oostende"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Christelijke Mutualiteit Oostende"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [2.9150028552261094, 51.227043883634913],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Ieperstraat",
+					"streetnumber" : "10",
+					"boxnumber" : "",
+					"postalcode" : "8400",
+					"municipality" : "Oostende",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80596",
+			"created" : "2014-10-03T07:45:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "Dienst Maatschappelijk Werk De Voorzorg"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW 'DE VOORZORG' HASSELT"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Hasselt"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over Dienst Maatschappelijk Werk De Voorzorg"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [5.339390581428181, 50.927836454017921],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Capucienenstraat",
+					"streetnumber" : "10",
+					"boxnumber" : "",
+					"postalcode" : "3500",
+					"municipality" : "Hasselt",
+					"created" : "2014-10-03T07:45:00",
+					"updated" : "2014-10-03T07:45:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80597",
+			"created" : "2014-10-03T07:48:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Liberale Mutualiteit Provincie Antwerpen"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-SOCIALE DIENST VAN DE LIBERALE MUTUALITEIT PROVINCIE ANTWERPEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Antwerpen"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Liberale Mutualiteit Provincie Antwerpen"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.4126411031797081, 51.2196574413457],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Lange Nieuwstraat",
+					"streetnumber" : "109",
+					"boxnumber" : "",
+					"postalcode" : "2000",
+					"municipality" : "Antwerpen",
+					"created" : "2014-10-03T07:48:00",
+					"updated" : "2014-10-03T07:48:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80598",
+			"created" : "2014-10-03T07:46:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Liberale Mutualiteit Limburg"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE LIBERALE MUTUALITEIT LIMBURG"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Hasselt"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Liberale Mutualiteit Limburg"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [5.3301818930362455, 50.931058746560339],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Geraetsstraat",
+					"streetnumber" : "20",
+					"boxnumber" : "",
+					"postalcode" : "3500",
+					"municipality" : "Hasselt",
+					"created" : "2014-10-03T07:46:00",
+					"updated" : "2014-10-03T07:46:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80599",
+			"created" : "2014-10-03T07:45:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE LIBERALE MUTUALITEIT OOST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Gent"
+				}, {
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Liberale Mutualiteit Oost-Vlaanderen"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Liberale Mutualiteit Oost-Vlaanderen"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [3.7314099464168495, 51.049893233632112],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Brabantdam",
+					"streetnumber" : "109",
+					"boxnumber" : "",
+					"postalcode" : "9000",
+					"municipality" : "Gent",
+					"created" : "2014-10-03T07:45:00",
+					"updated" : "2014-10-03T07:45:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80600",
+			"created" : "2014-10-03T07:46:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Socialistische Mutualiteit Halle-Vilvoorde"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW SOCIALISTISCHE MUTUALITEIT VILVOORDE"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Vilvoorde"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Socialistische Mutualiteit Halle-Vilvoorde"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [4.4224359097714991, 50.929169165248],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Grote Markt",
+					"streetnumber" : "1",
+					"boxnumber" : "",
+					"postalcode" : "1800",
+					"municipality" : "Vilvoorde",
+					"created" : "2014-10-03T07:46:00",
+					"updated" : "2014-10-03T07:46:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80601",
+			"created" : "2014-10-03T07:48:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Socialistische Mutualiteit Leuven"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW SOCIALISTISCHE MUTUALITEIT LEUVEN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Leuven"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Socialistische Mutualiteit Leuven"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.6991387897989068, 50.882329722091363],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Mechelsestraat",
+					"streetnumber" : "70",
+					"boxnumber" : "",
+					"postalcode" : "3000",
+					"municipality" : "Leuven",
+					"created" : "2014-10-03T07:48:00",
+					"updated" : "2014-10-03T07:48:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80602",
+			"created" : "2014-10-03T07:45:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW NEUTRAAL ZIEKENFONDS"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-SOCIALE DIENST VAN HET NEUTRAAL ZIEKENFONDS"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Lier"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW NEUTRAAL ZIEKENFONDS"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "manueel",
+						"Point" : {
+							"coordinates" : [4.5651155619685806, 51.134730445358457],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Antwerpsestraat",
+					"streetnumber" : "145",
+					"boxnumber" : "",
+					"postalcode" : "2500",
+					"municipality" : "Lier",
+					"created" : "2014-10-03T07:45:00",
+					"updated" : "2014-10-03T07:45:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80603",
+			"created" : "2014-10-03T07:50:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW West-Vlaams Liberaal Ziekenfonds"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE LIBERALE MUTUALITEIT WEST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Brugge"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW West-Vlaams Liberaal Ziekenfonds"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [3.2025663887484952, 51.214505268077296],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Revillpark",
+					"streetnumber" : "1",
+					"boxnumber" : "",
+					"postalcode" : "8000",
+					"municipality" : "Brugge",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80604",
+			"created" : "2014-10-03T07:50:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "Dienst Maatschappelijk Werk Liberale Mutualiteit Vlaams Gewest"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "DIENST MAATSCHAPPELIJK WERK VAN DE LIBERALE MUTUALITEIT VLAAMS GEWEST"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Asse"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over Dienst Maatschappelijk Werk Liberale Mutualiteit Vlaams Gewest"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "gebouw",
+						"Point" : {
+							"coordinates" : [4.19678386583427, 50.912965979839051],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Prieelstraat",
+					"streetnumber" : "22",
+					"boxnumber" : "",
+					"postalcode" : "1730",
+					"municipality" : "Asse",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80679",
+			"created" : "2014-10-03T07:48:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW LIBERALE MUTUALITEIT VLAAMS-BRABANT"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW-DIENST MAATSCHAPPELIJK WERK VAN DE LIBERALE MUTUALITEIT VLAAMS-BRABANT"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Schaarbeek"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW LIBERALE MUTUALITEIT VLAAMS-BRABANT"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "multiple roadsegments",
+						"Point" : {
+							"coordinates" : [4.3693906900054627, 50.859026651288396],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "Koninginneplein",
+					"streetnumber" : "51",
+					"boxnumber" : "",
+					"postalcode" : "1030",
+					"municipality" : "Schaarbeek",
+					"created" : "2014-10-03T07:48:00",
+					"updated" : "2014-10-03T07:48:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}, {
+			"id" : "80680",
+			"created" : "2014-10-03T07:50:00",
+			"updated" : "2014-11-03T09:23:00",
+			"labels" : [{
+					"term" : "primary",
+					"typedescription" : "Primair labelveld (naam van POI)",
+					"value" : "CAW Bond Moyson West-Vlaanderen"
+				}, {
+					"term" : "alternate",
+					"typedescription" : "Alternatieve naam",
+					"value" : "CAW 'BOND MOYSON' WEST-VLAANDEREN"
+				}, {
+					"term" : "municipality",
+					"typedescription" : "Gemeente",
+					"value" : "Kortrijk"
+				}
+			],
+			"description" : {
+				"value" : ""
+			},
+			"categories" : [{
+					"type" : "Thema",
+					"term" : "WelzijnGezondheidEnGezin",
+					"value" : "Welzijn, gezondheid en gezin"
+				}, {
+					"type" : "Categorie",
+					"term" : "Maatschappij",
+					"value" : "Maatschappij"
+				}, {
+					"type" : "Type",
+					"term" : "AlgemeenWelzijnswerk",
+					"value" : "Algemeen welzijnswerk"
+				}
+			],
+			"links" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"created" : "2014-11-03T09:23:00",
+					"updated" : "2014-11-03T09:23:00",
+					"term" : "related",
+					"typedescription" : "Bijkomende informatie",
+					"value" : "Meer info over CAW Bond Moyson West-Vlaanderen"
+				}
+			],
+			"location" : {
+				"points" : [{
+						"pointQuality" : "grb-perceel",
+						"Point" : {
+							"coordinates" : [3.2728030180108432, 50.802554051795219],
+							"type" : "Point",
+							"crs" : {
+								"type" : "link",
+								"properties" : {
+									"href" : "http://www.opengis.net/def/crs/EPSG/0/4326"
+								}
+							}
+						},
+						"author" : {
+							"href" : "http://www.agiv.be/",
+							"term" : "owner",
+							"typedescription" : "Eigenaar van de data",
+							"value" : "CRAB"
+						},
+						"term" : "center",
+						"typedescription" : "Centraal punt",
+						"type" : "Pinpoint"
+					}
+				],
+				"address" : {
+					"street" : "President Kennedypark",
+					"streetnumber" : "2",
+					"boxnumber" : "",
+					"postalcode" : "8500",
+					"municipality" : "Kortrijk",
+					"created" : "2014-10-03T07:50:00",
+					"updated" : "2014-10-03T07:50:00",
+					"term" : "crab",
+					"typedescription" : "Adres volgens CRAB databank"
+				}
+			},
+			"authors" : [{
+					"href" : "http://www.zorg-en-gezondheid.be/",
+					"term" : "owner",
+					"typedescription" : "Eigenaar van de data",
+					"value" : "Vlaams Agentschap Zorg en Gezondheid"
+				}
+			],
+			"license" : {
+				"href" : "http://www4.vlaanderen.be/wvg/data/",
+				"term" : "Gratis_Open_Data_Licentie",
+				"typedescription" : "Data die vrij beschikbaar wordt gesteld volgens open data licentie",
+				"value" : "\"Bevat data die ter beschikking worden gesteld door de Vlaamse overheid\""
+			}
+		}
+	],
+	"clusters" : []
+}

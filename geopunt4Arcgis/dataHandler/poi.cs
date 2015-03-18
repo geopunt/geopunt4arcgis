@@ -15,6 +15,8 @@ namespace geopunt4Arcgis.dataHandler
         NameValueCollection qryValues;
         string baseUrl;
 
+        Uri poiUri = new Uri("http://poi.beta.geopunt.be/v1/core");
+
         public poi(string proxyUrl = "", int port = 80, int timeout = 5000)
         {
             if (proxyUrl == null || proxyUrl == "")
@@ -64,6 +66,10 @@ namespace geopunt4Arcgis.dataHandler
             {
                 poiUri = new Uri(baseUrl + string.Format("/themes/{0}/categories/{1}/poitypes", themeid, categoryid));
             }
+            else if (categoryid != "" && categoryid != null)
+            {
+                poiUri = new Uri(baseUrl + string.Format("/categories/{0}/poitypes", categoryid));
+            }
             else
             {
                 poiUri = new Uri(baseUrl +"/poitypes");
@@ -83,8 +89,6 @@ namespace geopunt4Arcgis.dataHandler
             setQueryValues(q, 1000, false, theme, category, POItype, srs, id, niscode, bbox );
             client.QueryString = qryValues;
 
-            Uri poiUri = new Uri("http://poi.api.geopunt.be/core");
-
             string json = client.DownloadString(poiUri);
 
             datacontract.poiMinResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMinResponse>(json);
@@ -100,8 +104,6 @@ namespace geopunt4Arcgis.dataHandler
             setQueryValues(q, c, true, theme, category, POItype, srs, id, niscode, bbox);
             client.QueryString = qryValues;
 
-            Uri poiUri = new Uri("http://poi.api.geopunt.be/core");
-
             string json = client.DownloadString(poiUri);
 
             datacontract.poiMaxResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMaxResponse>(json);
@@ -115,8 +117,9 @@ namespace geopunt4Arcgis.dataHandler
              string theme = null, string category = null, string POItype = null, CRS srs = CRS.WGS84, 
              int? id = null, string niscode = null, boundingBox bbox = null)
         {
+            qryValues.Clear();
+
             if (q != null || q != "") qryValues.Add("keyword", q);
-            
             //srs
             qryValues.Add("srsIn", Convert.ToString((int)srs));
             qryValues.Add("srsOut", Convert.ToString((int)srs));
