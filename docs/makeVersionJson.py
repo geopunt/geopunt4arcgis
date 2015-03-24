@@ -5,8 +5,8 @@ def main( outPath ):
     version = {}
     version["AddInID"] = "{9473f72a-33ce-402e-85c7-170c29b08419}"
     version["Name"] = "geopunt4Arcgis"
-    version["Version"] = "1.5"
-    version["Date"] = "1/03/2015"
+    version["Version"] = "1.7.1"
+    version["Date"] = "23/03/2015"
 
     outPath = open( outPath , 'w' )
     outPath.write( json.dumps( version ) )

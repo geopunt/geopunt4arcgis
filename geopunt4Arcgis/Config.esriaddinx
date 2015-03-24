@@ -3,11 +3,12 @@
   <AddInID>{9473f72a-33ce-402e-85c7-170c29b08419}</AddInID>
   <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
 die met deze add-in geïntegreed worden in Arcgis.</Description>
-  <Version>1.6</Version>  <!-- REMARK: must double -->
+  <Version>1.7.1</Version>
+  <!-- REMARK: must double -->
   <Image>Images\geopunt4Arcgis.png</Image>
   <Author>Kay Warrie</Author>
   <Company>AGIV</Company>
-  <Date>1/03/2015</Date>
+  <Date>23/03/2015</Date>
   <Targets>
     <!--<Target name="Desktop" version="10.0" />-->
     <Target name="Desktop" version="10.2" />
@@ -16,68 +17,40 @@ die met deze add-in geïntegreed worden in Arcgis.</Description>
     <!--<AddIn language="CLR4.0" library="geopunt4Arcgis.dll" namespace="geopunt4Arcgis">-->
     <ArcMap>
       <Commands>
-        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" 
-                message="Zoek een adres op en toon dit op de kaart of voeg het als laag toe aan je project." 
-                caption="Zoek een adres via geopunt" tip="Zoek een adres via geopunt" category="geopunt" image="Images\geopuntAddressCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntAddressCmd" class="geopuntAddressCmd" message="Zoek een adres op en toon dit op de kaart of voeg het als laag toe aan je project." caption="Zoek een adres via geopunt" tip="Zoek een adres via geopunt" category="geopunt" image="Images\geopuntAddressCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-adres" />
         </Button>
-        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseTool" 
-              message="Selecteer een locatie op je kaart en bepaal het dichtstbijzijnde CRAB-adres." 
-              caption="Prik een adres op de kaart" tip="Prik een adres op de kaart" category="geopunt" 
-              image="Images\geopuntReverseCmd.png" cursor="Images\geopuntReverse.cur">
+        <Tool id="KGIS_geopunt4Arcgis_geopuntReverse" class="geopuntReverseTool" message="Selecteer een locatie op je kaart en bepaal het dichtstbijzijnde CRAB-adres." caption="Prik een adres op de kaart" tip="Prik een adres op de kaart" category="geopunt" image="Images\geopuntReverseCmd.png" cursor="Images\geopuntReverse.cur">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/prik-een-adres-op-kaart" />
         </Tool>
-        <Button id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingCmd" class="geopuntBatchGeocodingCmd" 
-                message="Met deze tool kan je een CSV-bestand geocoderen en omzetten naar een kaartlaag." 
-                caption="CSV-adresbestanden geocoderen" tip="CSV-adresbestanden geocoderen" category="geopunt" 
-                image="Images\geopuntBatchGeocodingCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingCmd" class="geopuntBatchGeocodingCmd" message="Met deze tool kan je een CSV-bestand geocoderen en omzetten naar een kaartlaag." caption="CSV-adresbestanden geocoderen" tip="CSV-adresbestanden geocoderen" category="geopunt" image="Images\geopuntBatchGeocodingCmd.png">
           <Help source="http://www.geopunt.be/nl/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/csv-bestanden-geocoderen" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" 
-                message="Haal GIPOD-data op met betrekking tot geplande werkzaamheden of manifestaties." 
-                caption="Bevraag GIPOD" tip="Bevraag GIPOD" category="geopunt" image="Images\geopuntGipodCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntGipodCmd" class="geopuntGipodCmd" message="Haal GIPOD-data op met betrekking tot geplande werkzaamheden of manifestaties." caption="Bevraag GIPOD" tip="Bevraag GIPOD" category="geopunt" image="Images\geopuntGipodCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/gipod" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" 
-                message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-dienst zoeken." 
-                caption="Zoek een interssante plaats" tip="Zoek een interssante plaats" category="geopunt" image="Images\geopuntPoiCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntPoiCmd" class="geopuntPoiCmd" message="Met deze tool kan je naar interessante plaatsen (POI: Points of Interest) in de Geopunt POI-dienst zoeken." caption="Zoek een interssante plaats" tip="Zoek een interssante plaats" category="geopunt" image="Images\geopuntPoiCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/poi" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_capakeyCmd" class="geopuntCapakeyCmd" 
-                message="Zoek een kadastraal perceel op via gemeente, departement, sectie en perceelnummer." 
-                caption="Zoek een perceel" tip="Zoek een perceel" category="geopunt" image="Images\geopuntPerceelCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_capakeyCmd" class="geopuntCapakeyCmd" message="Zoek een kadastraal perceel op via gemeente, departement, sectie en perceelnummer." caption="Zoek een perceel" tip="Zoek een perceel" category="geopunt" image="Images\geopuntPerceelCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/zoek-een-perceel" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntElevation" class="geopuntElevationCmd" 
-                message="De hoogteprofielservice van Geopunt laat toe om hoogte-informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn." 
-                caption="Hoogteprofiel" tip="Hoogteprofiel" category="geopunt" image="Images\geopuntElevationCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntElevation" class="geopuntElevationCmd" message="De hoogteprofielservice van Geopunt laat toe om hoogte-informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn." caption="Hoogteprofiel" tip="Hoogteprofiel" category="geopunt" image="Images\geopuntElevationCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/hoogteprofiel" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntMetaCatalog" class="geopuntMetaCatalogCmd" 
-                message="Zoek in de Geopunt-catalogus naar datasets en voeg ze toe aan je project. " 
-                caption="Geopunt-catalogus" tip="Geopunt-catalogus" category="geopunt" image="Images\geopuntDataCatalogusCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntMetaCatalog" class="geopuntMetaCatalogCmd" message="Zoek in de Geopunt-catalogus naar datasets en voeg ze toe aan je project. " caption="Geopunt-catalogus" tip="Geopunt-catalogus" category="geopunt" image="Images\geopuntDataCatalogusCmd.png">
           <Help source="http://www.geopunt.be/nl/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/catalogus" />
         </Button>
-        <Button id="KGIS_geopunt4Arcgis_geopuntSettings" class="geopuntSettingsCmd"
-                message="Instellingen voor timout en maximaal aantal elementen voor csv geocodering."
-                caption="Instellingen" tip="Instellingen"
-                category="geopunt" image="Images\geopuntSettingCmd.png" />
-        <Button id="KGIS_geopunt4Arcgis_about" class="aboutCmd" caption="Over geopunt voor Arcgis" 
-                tip="Over geopunt voor Arcgis" category="geopunt" image="Images\geopuntAboutCmd.png">
+        <Button id="KGIS_geopunt4Arcgis_geopuntSettings" class="geopuntSettingsCmd" message="Instellingen voor timout en maximaal aantal elementen voor csv geocodering." caption="Instellingen" tip="Instellingen" category="geopunt" image="Images\geopuntSettingCmd.png" />
+        <Button id="KGIS_geopunt4Arcgis_about" class="aboutCmd" caption="Over geopunt voor Arcgis" tip="Over geopunt voor Arcgis" category="geopunt" image="Images\geopuntAboutCmd.png">
           <Help source="http://www.geopunt.be/voor-experts/geopunt-plug-ins" />
         </Button>
         <!--Hulp tools, niet toevoegen aan UI-->
-        <Tool id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingTool" class="geopuntBatchGeocodingTool" 
-              message="Hulptool om CSV-bestanden te geocoderen, niet toevoegen aan een taakbalk." cursor="Images\geopuntReverse.cur" 
-              caption="Hulp tool om CSV-bestanden geocoderen." category="geopunt" image="Images\geopuntBatchGeocodingTool.png" />
-        <Tool id="KGIS_geopunt4Arcgis_geopuntElevationTool" class="geopuntElevationTool" 
-              message="De hoogteprofielservice van Geopunt laat toe om hoogte-informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn." 
-              caption="Hoogteprofiel" tip="Hoogteprofiel" category="geopunt" image="Images\geopuntElevationTool.png" 
-              cursor="Images\geopuntElevationTool.cur" />
+        <Tool id="KGIS_geopunt4Arcgis_geopuntBatchGeocodingTool" class="geopuntBatchGeocodingTool" message="Hulptool om CSV-bestanden te geocoderen, niet toevoegen aan een taakbalk." cursor="Images\geopuntReverse.cur" caption="Hulp tool om CSV-bestanden geocoderen." category="geopunt" image="Images\geopuntBatchGeocodingTool.png" />
+        <Tool id="KGIS_geopunt4Arcgis_geopuntElevationTool" class="geopuntElevationTool" message="De hoogteprofielservice van Geopunt laat toe om hoogte-informatie van het digitaal hoogtemodel Vlaanderen op te halen langs een lijn." caption="Hoogteprofiel" tip="Hoogteprofiel" category="geopunt" image="Images\geopuntElevationTool.png" cursor="Images\geopuntElevationTool.cur" />
       </Commands>
       <Extensions>
-        <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" 
-                   productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
+        <Extension id="KGIS_geopunt4Arcgis_geopunt4arcgisExtension" class="geopunt4arcgisExtension" productName="Geopunt voor arcgis" showInExtensionDialog="true" autoLoad="true">
           <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
 die met deze add-in toegevoegd worden in Arcgis.</Description>
         </Extension>

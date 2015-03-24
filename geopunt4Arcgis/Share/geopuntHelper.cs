@@ -388,7 +388,9 @@ namespace geopunt4Arcgis
                 }
             }
 
-            IFeatureClass featureClass = featureWorkspace.CreateFeatureClass(shapeInfo.Name, fields, 
+            IFields validatedFields = validateFields((IWorkspace)workspace, fields);
+
+            IFeatureClass featureClass = featureWorkspace.CreateFeatureClass(shapeInfo.Name, validatedFields, 
                                                ocDescription.InstanceCLSID,  ocDescription.ClassExtensionCLSID, 
                                                esriFeatureType.esriFTSimple, fcDescription.ShapeFieldName, "");
 
@@ -445,36 +447,63 @@ namespace geopunt4Arcgis
             
             IWorkspaceFactory2 workspaceFactory = new ESRI.ArcGIS.DataSourcesGDB.FileGDBWorkspaceFactoryClass();
             IWorkspace2 workspace = (IWorkspace2)workspaceFactory.OpenFromFile(FGDBPath, 0);
-            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;     
+            IFeatureWorkspace featureWorkspace = (IFeatureWorkspace)workspace;
 
-            if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, FCname))
+            string validatedName = ValidateTableName((IWorkspace)workspace, FCname);
+
+            if (workspace.get_NameExists(esriDatasetType.esriDTFeatureClass, validatedName))
             {
                 if (deleteIfExists)
                 {
-                    if (!deleteFeatureClass(fgbInfo.FullName +"\\"+ FCname ))
+                    if (!deleteFeatureClass(fgbInfo.FullName + "\\" + validatedName))
                     {
-                        throw new Exception(FCname + " exists and cannot be deleted");
+                        throw new Exception(validatedName + " exists and cannot be deleted");
                     }
                 }
                 else
                 {
-                    throw new Exception(FCname + " exists");
+                    throw new Exception(validatedName + " exists");
                 }
             }
 
-            // Use IFieldChecker to create a validated fields collection.
-            IFieldChecker fieldChecker = new FieldCheckerClass();
-            IEnumFieldError enumFieldError = null;
-            IFields validatedFields = null;
-            fieldChecker.ValidateWorkspace = (IWorkspace)workspace;
-            fieldChecker.Validate(fields, out enumFieldError, out validatedFields);
+            IFields validatedFields = validateFields((IWorkspace) workspace, fields);
 
             //create the feature class
-            featureClass = featureWorkspace.CreateFeatureClass(FCname, validatedFields,
+            featureClass = featureWorkspace.CreateFeatureClass(validatedName, validatedFields,
                                        ocDescription.InstanceCLSID, ocDescription.ClassExtensionCLSID,
                                        esriFeatureType.esriFTSimple, shapeField.Name, "");
             return featureClass;
         }
+
+        /// <summary>return a validated set of fields</summary>
+        /// <param name="workspace">the input workspace</param>
+        /// <param name="fields">the input fields</param>
+        /// <returns></returns>
+        public static IFields validateFields( IWorkspace workspace, IFields fields)
+        {
+            // Use IFieldChecker to create a validated fields collection.
+            IFieldChecker fieldChecker = new FieldCheckerClass();
+            IEnumFieldError enumFieldError = null;
+            IFields validatedFields = null;
+            fieldChecker.ValidateWorkspace = workspace;
+            fieldChecker.Validate(fields, out enumFieldError, out validatedFields);
+            return validatedFields;
+        }
+
+        /// <summary>returns a validated table name</summary>
+        /// <param name="workspace">the input workspace of the tablenaam</param>
+        /// <param name="tableName">the input tablename</param>
+        /// <returns>the output laundered tablenaam</returns>
+        public static String ValidateTableName(IWorkspace workspace, String tableName)
+        {
+            // Create a field checker to validate the table name.
+            IFieldChecker fieldChecker = new FieldCheckerClass();
+            String validatedName = null;
+            fieldChecker.ValidateWorkspace = workspace;
+            fieldChecker.ValidateTableName(tableName, out validatedName);
+            validatedName = validatedName.Replace("\"", "_").Replace("\'", "_");
+            return validatedName;
+        }   
         #endregion
 
         #region "Add featureclass to map"
@@ -1332,7 +1361,8 @@ namespace geopunt4Arcgis
                 default:
                     return adresTypeString;
             }
-        #endregion
         }
+        #endregion
+
     }
 }

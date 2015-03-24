@@ -84,6 +84,7 @@ namespace geopunt4Arcgis
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
             string nis;
+            bool cluster = clusteringChk.Checked ;
             boundingBox extent;
             if (extentCkb.Checked) {
                 IEnvelope env = view.Extent;
@@ -102,7 +103,7 @@ namespace geopunt4Arcgis
             try
             {
                 //get the data
-                poiData = poiDH.getMaxmodel( 
+                poiData = poiDH.getMaxmodel( Clustering: cluster,
                     q: keyWord, theme: themeCode, category: catCode, POItype: poiTypeCode, niscode: nis,
                     c: count, bbox: extent, srs: dataHandler.CRS.WGS84);
 
@@ -976,7 +977,7 @@ namespace geopunt4Arcgis
                     //set others to null
                     int idIdx = poiFC.FindField("poiID");
                     featureBuffer.set_Value(idIdx, null);
-                    int labelIdx = poiFC.FindField("naam");
+                    int labelIdx = poiFC.FindField("label");
                     featureBuffer.set_Value(labelIdx, null);
                     int linkIdx = poiFC.FindField("link");
                     featureBuffer.set_Value(linkIdx, null);

@@ -31,6 +31,6 @@ Bij rode rijen werden geen resultaten gevonden. Je kan proberen door de tekst in
 
 Als je alle adressen die wenst toe te voegen, hebt gevalideerd, kan je deze toevoegen via de knop **Voeg alle gevalideerde adressen toe**. De resulterende kaartlaag bevat alle kolommen van de CSV plus de gevalideerde adressen.
 
-![](geopuntDatacatalog.gif "CSV-adresbestanden geocoderen")
+![](geopuntBatchGeocode.gif "CSV-adresbestanden geocoderen")
 
 [Foute adressen kunt u melden via LARA (enkel voor GDI-Vlaanderen)](http://crab.agiv.be/Lara) 

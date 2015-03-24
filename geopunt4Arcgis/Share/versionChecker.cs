@@ -47,47 +47,48 @@ namespace geopunt4Arcgis
 
         private void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Error == null)
+            try
             {
-                string json = e.Result;
-                string currentVersion = ThisAddIn.Version;
-                Dictionary<string, string> versionJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-
-                if ( Double.Parse( currentVersion ) < Double.Parse( versionJson["Version"]))
+                if (e.Error == null)
                 {
-                    DialogResult dlg = MessageBox.Show("De geopunt plugin is niet meer up to date, wenst u de nieuwe versie te downloaden? ", 
-                        ThisAddIn.Name + " " + currentVersion, MessageBoxButtons.YesNo);
+                    string json = e.Result;
+                    string currentVersion = ThisAddIn.Version;
+                    Dictionary<string, string> versionJson = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                    if (dlg == DialogResult.Yes)
+                    if (currentVersion.CompareTo( versionJson["Version"]) < 0)
                     {
-                        try
+                        DialogResult dlg = MessageBox.Show("De geopunt plugin is niet meer up to date, wenst u de nieuwe versie te downloaden? ",
+                            ThisAddIn.Name + " " + currentVersion, MessageBoxButtons.YesNo);
+
+                        if (dlg == DialogResult.Yes)
                         {
                             reInstall();
                         }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show( ex.Message +" "+  ex.StackTrace);
-                        }
-
                     }
                 }
+                else
+                {
+                    MessageBox.Show( e.Error.Message );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.StackTrace);
             }
         }
 
         private void reInstall()
-        {
-            RegistryKey regVersion = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ESRI\\ArcGis", false);
-            string InstallDir = (string)regVersion.GetValue("InstallDir", "");
-
+        {   
             string tempLoc = Path.Combine(Path.GetTempPath(), "geopunt4arcgis.esriAddIn");
-            string regAddin = Path.Combine(InstallDir, "bin\\ESRIRegAddIn.exe");
+            string commonFiles = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles);
+            string regAddin = "\"" + commonFiles + "\\ArcGIS\\bin\\ESRIRegAddIn.exe" + "\"";
+            MessageBox.Show( regAddin );
 
             gpClient.DownloadFile(dlAddinUri, tempLoc);
 
-            prs.StartInfo.FileName = regAddin;
+            prs.StartInfo.FileName =  regAddin;
             prs.StartInfo.Arguments = "/s /u " + ThisAddIn.AddInID;
             prs.Start();
-            System.Threading.Thread.Sleep(500);
 
             prs.StartInfo.Arguments = "/s " + tempLoc;
             prs.Start();

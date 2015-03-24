@@ -13,7 +13,7 @@ namespace geopunt4Arcgis.dataHandler
     {
         public WebClient client;
         NameValueCollection qryValues;
-        string baseUrl;
+        string baseUrl = "http://poi.beta.geopunt.be/v1/core";
 
         Uri poiUri = new Uri("http://poi.beta.geopunt.be/v1/core");
 
@@ -32,7 +32,6 @@ namespace geopunt4Arcgis.dataHandler
             client.Headers["Content-type"] = "application/json";
 
             qryValues = new NameValueCollection();
-            baseUrl = "http://poi.api.geopunt.be/core";
         }
 
         public datacontract.poiCategories listThemes()
@@ -83,10 +82,10 @@ namespace geopunt4Arcgis.dataHandler
             return poiResponse;
         }
 
-        public datacontract.poiMinResponse getMinmodel(string q = null, string theme = null, string category = null, 
+        public datacontract.poiMinResponse getMinmodel(string q = null, bool Clustering=false, string theme = null, string category = null, 
             string POItype = null, CRS srs = CRS.WGS84, int? id = null, string niscode = null, boundingBox bbox = null)
         {
-            setQueryValues(q, 1000, false, theme, category, POItype, srs, id, niscode, bbox );
+            setQueryValues(q, 1024, Clustering, false, theme, category, POItype, srs, id, niscode, bbox );
             client.QueryString = qryValues;
 
             string json = client.DownloadString(poiUri);
@@ -98,10 +97,10 @@ namespace geopunt4Arcgis.dataHandler
             return poiResponse;
         }
 
-        public datacontract.poiMaxResponse getMaxmodel(string q = null, int c = 30, string theme = null, string category = null,
+        public datacontract.poiMaxResponse getMaxmodel(string q = null, int c = 30, bool Clustering = false, string theme = null, string category = null,
             string POItype = null, CRS srs = CRS.WGS84, int? id = null, string niscode = null, boundingBox bbox = null)
         {
-            setQueryValues(q, c, true, theme, category, POItype, srs, id, niscode, bbox);
+            setQueryValues(q, c, Clustering, true, theme, category, POItype, srs, id, niscode, bbox);
             client.QueryString = qryValues;
 
             string json = client.DownloadString(poiUri);
@@ -113,13 +112,16 @@ namespace geopunt4Arcgis.dataHandler
             return poiResponse;
         }
 
-        private void setQueryValues( string q = "", int c = 30 , bool maxModel = false,
+        private void setQueryValues(string q = "", int c = 30, bool Clustering = false, bool maxModel = false,
              string theme = null, string category = null, string POItype = null, CRS srs = CRS.WGS84, 
              int? id = null, string niscode = null, boundingBox bbox = null)
         {
             qryValues.Clear();
 
             if (q != null || q != "") qryValues.Add("keyword", q);
+
+            if (Clustering && !maxModel ) qryValues.Add("Clustering", "true");
+            else qryValues.Add("Clustering", "false");
             //srs
             qryValues.Add("srsIn", Convert.ToString((int)srs));
             qryValues.Add("srsOut", Convert.ToString((int)srs));
