@@ -74,6 +74,7 @@ namespace geopunt4Arcgis
         }
 
         /// <summary>Get the extensions object</summary>
+        /// <returns>the extension object of this addin</returns>
         internal static geopunt4arcgisExtension getGeopuntExtension()
         {
             if (gpExtension == null)

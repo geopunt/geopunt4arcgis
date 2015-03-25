@@ -599,8 +599,8 @@ namespace geopunt4Arcgis
             IField licentieUrl = geopuntHelper.createField("lic_url", esriFieldType.esriFieldTypeString, 100);
             fields.Add(licentieUrl);
 
-            IField naam = geopuntHelper.createField("label", esriFieldType.esriFieldTypeString, 254);
-            fields.Add(naam);
+            IField label = geopuntHelper.createField("label", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(label);
             IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
             fields.Add(info);
 
@@ -624,6 +624,9 @@ namespace geopunt4Arcgis
             fields.Add(update);
 
             //adres
+            IField kwaliteit = geopuntHelper.createField("kwaliteit", esriFieldType.esriFieldTypeString, 80);
+            fields.Add(kwaliteit);
+
             IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 254);
             fields.Add(straat);
             IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 80);
@@ -835,6 +838,11 @@ namespace geopunt4Arcgis
                     DateTime updateDate = row.updated;
                     int updateDateIdx = poiFC.FindField("wijziging");
                     featureBuffer.set_Value(updateDateIdx, updateDate);
+
+                    //kwaliteit
+                    string kwaliteit = row.location.points[0].pointQuality;
+                    int kwaliteitIdx = poiFC.FindField("kwaliteit");
+                    featureBuffer.set_Value(kwaliteitIdx, kwaliteit);
 
                     //adres
                     if (row.location.address != null)

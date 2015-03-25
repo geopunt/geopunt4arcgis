@@ -82,7 +82,6 @@ namespace geopunt4Arcgis
             string tempLoc = Path.Combine(Path.GetTempPath(), "geopunt4arcgis.esriAddIn");
             string commonFiles = Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFiles);
             string regAddin = "\"" + commonFiles + "\\ArcGIS\\bin\\ESRIRegAddIn.exe" + "\"";
-            MessageBox.Show( regAddin );
 
             gpClient.DownloadFile(dlAddinUri, tempLoc);
 
@@ -93,8 +92,14 @@ namespace geopunt4Arcgis
             prs.StartInfo.Arguments = "/s " + tempLoc;
             prs.Start();
 
-            MessageBox.Show(
-                "De plugin geopunt4Arcgis werd geherinstalleerd, u dient nu ArcGIS te herstarten om deze updates toe te passen.", "Herstart Vereist");
+            DialogResult dlg = MessageBox.Show(
+                "De plugin geopunt4Arcgis werd geherinstalleerd, u dient nu ArcGIS te herstarten om deze updates toe te passen."+ 
+                "\nWilt u nu afsluiten? Opnieuw opstarten moet u manueel doen." , 
+                "Herstart Vereist", MessageBoxButtons.YesNo);
+            if (dlg == DialogResult.Yes)
+            {
+                ArcMap.Application.Shutdown();
+            }
         }
 
     }
