@@ -53,6 +53,7 @@ namespace geopunt4Arcgis
                 gipodFormDlg.WindowState = FormWindowState.Normal;
                 gipodFormDlg.Focus();
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace);

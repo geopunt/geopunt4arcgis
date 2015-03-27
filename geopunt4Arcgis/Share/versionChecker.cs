@@ -93,13 +93,8 @@ namespace geopunt4Arcgis
             prs.Start();
 
             DialogResult dlg = MessageBox.Show(
-                "De plugin geopunt4Arcgis werd geherinstalleerd, u dient nu ArcGIS te herstarten om deze updates toe te passen."+ 
-                "\nWilt u nu afsluiten? Opnieuw opstarten moet u manueel doen." , 
-                "Herstart Vereist", MessageBoxButtons.YesNo);
-            if (dlg == DialogResult.Yes)
-            {
-                ArcMap.Application.Shutdown();
-            }
+                "De plugin geopunt4Arcgis werd geherinstalleerd, u dient nu ArcGIS te herstarten om deze updates toe te passen.", 
+                "Herstart Vereist");
         }
 
     }

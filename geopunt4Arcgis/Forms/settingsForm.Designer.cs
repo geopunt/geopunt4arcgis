@@ -60,7 +60,7 @@
             this.timeOutnum.Size = new System.Drawing.Size(129, 22);
             this.timeOutnum.TabIndex = 1;
             this.timeOutnum.Value = new decimal(new int[] {
-            5,
+            15,
             0,
             0,
             0});

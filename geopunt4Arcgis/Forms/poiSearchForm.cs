@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
@@ -98,12 +99,11 @@ namespace geopunt4Arcgis
                 extent = null;
             }
             int count = 32;
-            //if (keyWord != "") count = 100;
 
             try
             {
                 //get the data
-                poiData = poiDH.getMaxmodel( Clustering: cluster,
+                poiData = poiDH.getMaxmodel(Clustering: cluster,
                     q: keyWord, theme: themeCode, category: catCode, POItype: poiTypeCode, niscode: nis,
                     c: count, bbox: extent, srs: dataHandler.CRS.WGS84);
 
@@ -111,7 +111,7 @@ namespace geopunt4Arcgis
 
                 rows.Clear();
 
-                int  poiAllCount = int.Parse( poiData.labels.First().value );
+                int poiAllCount = int.Parse(poiData.labels.First().value);
 
                 if (poiAllCount > 0)
                 {
@@ -126,18 +126,34 @@ namespace geopunt4Arcgis
                         addAll2MapBtn.Text = string.Format("Voeg de eerste 1024 punten toe", poiAllCount);
                     }
                 }
+                else if (poiAllCount == 0)
+                {
+                    msgLbl.Text = "Geen resultaten gevonden voor de opgegeven selectie criteria";
+                }
                 else
                 {
-                    MessageBox.Show( "Het aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", "Waarschuwing" );
-                    msgLbl.Text = string.Format("Aantal getoond:{0}, aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", pois.Count );
+                    MessageBox.Show("Het aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", "Waarschuwing");
+                    msgLbl.Text = string.Format("Aantal getoond:{0}, aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", pois.Count);
                     addAll2MapBtn.Text = string.Format("Voeg alle punten toe");
                 }
 
                 updateDataGrid(pois);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            catch (WebException wex) {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken."+
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n"+
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if ( wex.Response != null )
+	            {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show( resp  , wex.Message);
+	            }            
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message + ": " + ex.StackTrace, "Error");
             }
         }
 
@@ -180,6 +196,20 @@ namespace geopunt4Arcgis
                 typeCbx.Items.Clear();
                 categoryCbx.Items.AddRange(categoriesList.ToArray());
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show( ex.Message +": "+ ex.StackTrace );
@@ -207,6 +237,20 @@ namespace geopunt4Arcgis
 
                 typeCbx.Items.Clear();
                 typeCbx.Items.AddRange(poiTypeList.ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -294,6 +338,20 @@ namespace geopunt4Arcgis
                 }
                 view.Refresh();
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -356,6 +414,20 @@ namespace geopunt4Arcgis
                 populateMaxFields(gpExtension.poiLayer, pois);
                 view.Refresh();
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                  MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -389,7 +461,7 @@ namespace geopunt4Arcgis
             {
                 //get the data
                 datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode, 
-                                             POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
+                        Clustering: clusteringChk.Checked, POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
 
                 List<datacontract.poiMinModel> pois = poiMinData.pois;
                 List<datacontract.cluster> clusters = poiMinData.clusters;
@@ -424,6 +496,20 @@ namespace geopunt4Arcgis
                 }
                 populateMinFields(gpExtension.poiMinLayer, pois, clusters);
                 view.Refresh();
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {

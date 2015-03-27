@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -81,7 +82,7 @@ namespace geopunt4Arcgis
             msgLbl.Text = "";
             perceel = null;
 
-            if (niscode == ""|| niscode == null) return;
+            if (niscode == "" || niscode == null) return;
 
             try
             {
@@ -90,6 +91,20 @@ namespace geopunt4Arcgis
                 sectieCbx.Items.Clear(); sectieCbx.Text = "";
                 parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 departementCbx.Items.AddRange((from n in departments select n.departmentName).ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -119,6 +134,20 @@ namespace geopunt4Arcgis
                 sectieCbx.Items.Clear(); sectieCbx.Text = "";
                 parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 sectieCbx.Items.AddRange((from n in secties select n.sectionCode).ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -152,6 +181,20 @@ namespace geopunt4Arcgis
                 parcels = capakey.getParcels(int.Parse(niscode), int.Parse(depCode), sectie).parcels;
                 parcelCbx.Items.AddRange((from n in parcels select n.perceelnummer).ToArray());
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -182,6 +225,20 @@ namespace geopunt4Arcgis
 
                 msgLbl.Text = string.Join(" - ", perceel.adres.ToArray());
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 perceel = null;
@@ -210,6 +267,20 @@ namespace geopunt4Arcgis
 
                 createGrapicAndZoomTo(municipality.geometry.shape, municipalityGeom);
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -233,6 +304,20 @@ namespace geopunt4Arcgis
                 datacontract.geojson depGeom = JsonConvert.DeserializeObject<datacontract.geojson>(dep.geometry.shape);
 
                 createGrapicAndZoomTo(dep.geometry.shape, depGeom);
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -260,6 +345,20 @@ namespace geopunt4Arcgis
                 datacontract.geojson secGeom = JsonConvert.DeserializeObject<datacontract.geojson>(sec.geometry.shape);
 
                 createGrapicAndZoomTo(sec.geometry.shape, secGeom);
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -318,6 +417,20 @@ namespace geopunt4Arcgis
                 }
                 appendParcelField(gpExtension.parcelLayer);
                 view.Refresh();
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)  
             {

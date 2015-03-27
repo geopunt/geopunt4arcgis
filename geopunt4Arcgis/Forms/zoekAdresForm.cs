@@ -81,6 +81,7 @@ namespace geopunt4Arcgis
 
         private void gemeenteBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            zoekText.Text = "";
             updateSuggestions();
         }
 

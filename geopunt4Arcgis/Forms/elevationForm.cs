@@ -95,26 +95,48 @@ namespace geopunt4Arcgis
 
         public void getData(IPolyline profileLineGeom)
         {
-            polyLineLam72 = (IPolyline)geopuntHelper.Transform((IGeometry)profileLineGeom, lam72);
+            try
+            {
+                polyLineLam72 = (IPolyline)geopuntHelper.Transform((IGeometry)profileLineGeom, lam72);
 
-            int samplesCount = (int) samplesNum.Value;
-            datacontract.geojsonLine gjs = geopuntHelper.esri2geojsonLine(polyLineLam72);
-            profileData = dhm.getDataAlongLine(gjs, samplesCount, dataHandler.CRS.Lambert72);
+                int samplesCount = (int)samplesNum.Value;
+                datacontract.geojsonLine gjs = geopuntHelper.esri2geojsonLine(polyLineLam72);
+                profileData = dhm.getDataAlongLine(gjs, samplesCount, dataHandler.CRS.Lambert72);
 
-            ArcMap.Application.CurrentTool = oldCmd;
+                ArcMap.Application.CurrentTool = oldCmd;
 
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+                this.WindowState = FormWindowState.Normal;
+                this.Focus();
 
-            maxH = profileData.Select(c => c[3]).Max();
-            minH = profileData.Where(c => c[3] > -999).Select(c => c[3]).Min();
-            maxD = profileData.Select(c => c[0]).Max();
-            profileGrp.GraphPane.YAxis.Scale.Max = maxH;
-            profileGrp.GraphPane.YAxis.Scale.Min = minH;
-            profileGrp.GraphPane.XAxis.Scale.Max = maxD;
-            
-            addLineGrapic();
-            createGraph();
+                maxH = profileData.Select(c => c[3]).Max();
+                minH = profileData.Where(c => c[3] > -999).Select(c => c[3]).Min();
+                maxD = profileData.Select(c => c[0]).Max();
+                profileGrp.GraphPane.YAxis.Scale.Max = maxH;
+                profileGrp.GraphPane.YAxis.Scale.Min = minH;
+                profileGrp.GraphPane.XAxis.Scale.Max = maxD;
+
+                addLineGrapic();
+                createGraph();
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message +" "+ ex.StackTrace, "Error");
+            }
+
         }
 
         #region "overrides"
