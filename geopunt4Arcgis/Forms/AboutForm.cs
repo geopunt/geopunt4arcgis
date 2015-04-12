@@ -54,7 +54,7 @@ namespace geopunt4Arcgis
           <style>body {font-size: 80%}</style>
         </head>
         <body>
-          <h1>Geopunt4Qgis</h1>
+          <h1>Geopunt voor ArcGIS</h1>
           <h2>Functies</h2>
           <ul>
             <li>

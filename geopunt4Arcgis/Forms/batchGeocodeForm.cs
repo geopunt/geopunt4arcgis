@@ -120,7 +120,7 @@ namespace geopunt4Arcgis
         private void helpLbl_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(
-                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/qgis%20plugin/functionaliteiten/csv-bestanden-geocoderen");
+                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/csv-bestanden-geocoderen");
         }
 
         private void sepCbx_SelectedIndexChanged(object sender, EventArgs e)

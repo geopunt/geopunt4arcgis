@@ -1,4 +1,4 @@
-Geopunt4Qgis
+Geopunt voor Arcgis
 ============
 
 Functies

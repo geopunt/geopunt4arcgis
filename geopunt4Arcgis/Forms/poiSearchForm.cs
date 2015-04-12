@@ -116,15 +116,7 @@ namespace geopunt4Arcgis
                 if (poiAllCount > 0)
                 {
                     msgLbl.Text = string.Format("Aantal getoond:{0} - gevonden:{1}", pois.Count, poiAllCount);
-
-                    if (clusteringChk.Checked)
-                    {
-                        addAll2MapBtn.Text = string.Format("Voeg alle {0} punten toe", poiAllCount);
-                    }
-                    else
-                    {
-                        addAll2MapBtn.Text = string.Format("Voeg de eerste 1024 punten toe", poiAllCount);
-                    }
+                    setAddAllLabel();
                 }
                 else if (poiAllCount == 0)
                 {
@@ -132,8 +124,9 @@ namespace geopunt4Arcgis
                 }
                 else
                 {
-                    MessageBox.Show("Het aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", "Waarschuwing");
-                    msgLbl.Text = string.Format("Aantal getoond:{0}, aantal gevonden kon niet worden bepaald, te complexe zoekopdracht.", pois.Count);
+                    MessageBox.Show("Het aantal gevonden plaatsen kon niet worden bepaald, de zoekterm is te vaag. "+
+                                        " Het resultaat is mogelijk niet compleet",  "Waarschuwing");
+                    msgLbl.Text = string.Format("Aantal getoond:{0}, aantal gevonden kon niet worden bepaald.", pois.Count);
                     addAll2MapBtn.Text = string.Format("Voeg alle punten toe");
                 }
 
@@ -141,8 +134,8 @@ namespace geopunt4Arcgis
             }
             catch (WebException wex) {
                 if (wex.Status == WebExceptionStatus.Timeout)
-                    MessageBox.Show("De connectie werd afgebroken."+
-                        " Het duurde te lang voor de server een resultaat terug gaf.\n"+
+                    MessageBox.Show("De connectie werd afgebroken. "+
+                        "Het duurde te lang voor de server een resultaat terug gaf.\n"+
                         "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
                 else if ( wex.Response != null )
 	            {
@@ -161,14 +154,8 @@ namespace geopunt4Arcgis
         {
             if (poiData == null) return;
 
-            if (clusteringChk.Checked)
-            {
-                addAll2MapBtn.Text = string.Format("Voeg alle {0} punten toe", poiData.labels.First().value);
-            }
-            else
-            {
-                addAll2MapBtn.Text = string.Format("Voeg de eerste 1024 punten toe", poiData.labels.First().value);
-            }
+            int poiAllCount = int.Parse(poiData.labels.First().value);
+            setAddAllLabel();
         }
 
         private void extentCkb_CheckedChanged(object sender, EventArgs e)
@@ -442,6 +429,7 @@ namespace geopunt4Arcgis
             string catCode = cat2code(categoryCbx.Text);
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
+            bool clustering = clusteringChk.Checked;
             string nis;
             boundingBox extent;
             if (extentCkb.Checked)
@@ -460,8 +448,8 @@ namespace geopunt4Arcgis
             try
             {
                 //get the data
-                datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode, 
-                        Clustering: clusteringChk.Checked, POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
+                datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode,
+                        Clustering: clustering, POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
 
                 List<datacontract.poiMinModel> pois = poiMinData.pois;
                 List<datacontract.cluster> clusters = poiMinData.clusters;
@@ -583,6 +571,35 @@ namespace geopunt4Arcgis
             if (niscodes.Count() == 0) return "";
 
             return niscodes.First<string>();
+        }
+
+        private void setAddAllLabel()
+        {
+            int poiAllCount;  
+
+            if (poiData == null) return;
+ 
+            if( int.TryParse(poiData.labels.First().value, out poiAllCount) == false ) return;
+
+            var warning02s = poiData.labels.Where(c => c.value.StartsWith("Warning 02"));
+            if ( warning02s != null && warning02s.Count() != 0) 
+            {
+                addAll2MapBtn.Text = "Voeg de eerste 1024 punten toe";
+                return;
+            }
+
+            if (clusteringChk.Checked == false && poiAllCount >= 1024)
+            {
+                addAll2MapBtn.Text = "Voeg de eerste 1024 punten toe";
+            }
+            else if (poiAllCount < 0)
+	        {
+                addAll2MapBtn.Text = string.Format("Voeg alle punten toe");
+	        }
+            else
+            {
+                addAll2MapBtn.Text = string.Format("Voeg alle {0} punten toe", poiAllCount);
+            }
         }
 
         private void populateFilters()
