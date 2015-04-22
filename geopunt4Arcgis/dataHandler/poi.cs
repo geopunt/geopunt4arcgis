@@ -13,9 +13,7 @@ namespace geopunt4Arcgis.dataHandler
     {
         public WebClient client;
         NameValueCollection qryValues;
-        string baseUrl = "http://poi.beta.geopunt.be/v1/core";
-
-        Uri poiUri = new Uri("http://poi.beta.geopunt.be/v1/core");
+        string baseUrl = "http://poi.api.geopunt.be/v1/core";
 
         public poi(string proxyUrl = "", int port = 80, int timeout = 5000)
         {
@@ -88,7 +86,7 @@ namespace geopunt4Arcgis.dataHandler
             setQueryValues(q, 1024, Clustering, false, theme, category, POItype, srs, id, niscode, bbox );
             client.QueryString = qryValues;
 
-            string json = client.DownloadString(poiUri);
+            string json = client.DownloadString(baseUrl);
 
             datacontract.poiMinResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMinResponse>(json);
 
@@ -103,7 +101,7 @@ namespace geopunt4Arcgis.dataHandler
             setQueryValues(q, c, Clustering, true, theme, category, POItype, srs, id, niscode, bbox);
             client.QueryString = qryValues;
 
-            string json = client.DownloadString(poiUri);
+            string json = client.DownloadString(baseUrl);
 
             datacontract.poiMaxResponse poiResponse = JsonConvert.DeserializeObject<datacontract.poiMaxResponse>(json);
 

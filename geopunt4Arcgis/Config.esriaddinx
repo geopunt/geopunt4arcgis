@@ -3,11 +3,11 @@
   <AddInID>{9473f72a-33ce-402e-85c7-170c29b08419}</AddInID>
   <Description>Het Vlaamse Geoportaal Geopunt biedt een aantal geografische diensten (web-services) aan, 
 die met deze add-in geïntegreed worden in Arcgis.</Description>
-  <Version>1.7.4</Version>
+  <Version>1.8.0</Version>
   <Image>Images\geopunt4Arcgis.png</Image>
   <Author>Kay Warrie</Author>
   <Company>AGIV</Company>
-  <Date>24/03/2015</Date>
+  <Date>24/04/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.0" />
     <!--<Target name="Desktop" version="10.2" />-->

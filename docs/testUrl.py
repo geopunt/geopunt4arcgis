@@ -1,6 +1,6 @@
 import urllib2, json
 
-u = r'http://a8da9008116d4b0b8ee34d6b6e1f21db.cloudapp.net/v1/core?maxModel=true'
+u = r'http://poi.beta.geopunt.be/v1/core/categories'
 
 req = urllib2.Request( u, headers = {"Content-Type":"application/json"} )
 
