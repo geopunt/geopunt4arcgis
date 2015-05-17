@@ -78,11 +78,11 @@ namespace geopunt4Arcgis
             }
 
             else if (toSrs.FactoryCode == 31370 && 
-                   (geom.SpatialReference.FactoryCode == 4326 ||   //= wgs84
-                    geom.SpatialReference.FactoryCode == 4258 ||   //=ETRS89
-                    geom.SpatialReference.FactoryCode == 32631 ||  //= WGS utm 31n
-                    geom.SpatialReference.FactoryCode == 3043 ||   //= ETRS89 utm 31n
-                    geom.SpatialReference.FactoryCode == 3857 ||   //= web mercator
+                   (geom.SpatialReference.FactoryCode == 4326   || //= wgs84
+                    geom.SpatialReference.FactoryCode == 4258   || //=ETRS89
+                    geom.SpatialReference.FactoryCode == 32631  || //= WGS utm 31n
+                    geom.SpatialReference.FactoryCode == 3043   || //= ETRS89 utm 31n
+                    geom.SpatialReference.FactoryCode == 3857   || //= web mercator
                     geom.SpatialReference.FactoryCode == 102100 || //= 3857
                     geom.SpatialReference.FactoryCode == 900913) ) //= 3857
             {
@@ -104,17 +104,17 @@ namespace geopunt4Arcgis
                     (int)esriSRGeoTransformation2Type.esriSRGeoTransformation_Belge_1972_To_ETRS_1989_1) as IGeoTransformation;
 
                 IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
-                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
 
                 return geometry as IGeometry;
             }
 
             else if (geom.SpatialReference.FactoryCode == 31370 &&
-                   (toSrs.FactoryCode == 4326 ||   //= wgs84
-                    toSrs.FactoryCode == 4258 ||   //=ETRS89
-                    toSrs.FactoryCode == 32631 ||  //= WGS utm 31n
-                    toSrs.FactoryCode == 3043 ||   //= ETRS89 utm 31n
-                    toSrs.FactoryCode == 3857 ||   //= web mercator
+                   (toSrs.FactoryCode == 4326   || //= wgs84
+                    toSrs.FactoryCode == 4258   || //=ETRS89
+                    toSrs.FactoryCode == 32631  || //= WGS utm 31n
+                    toSrs.FactoryCode == 3043   || //= ETRS89 utm 31n
+                    toSrs.FactoryCode == 3857   || //= web mercator
                     toSrs.FactoryCode == 102100 || //= 3857
                     toSrs.FactoryCode == 900913))  //= 3857
             {
@@ -122,7 +122,7 @@ namespace geopunt4Arcgis
                     esriSRGeoTransformation3Type.esriSRGeoTransformation_Belge_1972_To_WGS_1984_2) as IGeoTransformation;
 
                 IGeometry2 geometry = geom as IGeometry2; //clone geom as IGeometry2
-                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformForward, geoTransformation, false, 0, 0);
+                geometry.ProjectEx(toSrs, esriTransformDirection.esriTransformReverse, geoTransformation, false, 0, 0);
 
                 return geometry as IGeometry;
             }

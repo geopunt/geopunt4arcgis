@@ -53,7 +53,7 @@
             // gemeenteLbl
             // 
             this.gemeenteLbl.AutoSize = true;
-            this.gemeenteLbl.Location = new System.Drawing.Point(45, 36);
+            this.gemeenteLbl.Location = new System.Drawing.Point(46, 36);
             this.gemeenteLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gemeenteLbl.Name = "gemeenteLbl";
             this.gemeenteLbl.Size = new System.Drawing.Size(78, 17);
@@ -91,12 +91,12 @@
             // departementLbl
             // 
             this.departementLbl.AutoSize = true;
-            this.departementLbl.Location = new System.Drawing.Point(29, 81);
+            this.departementLbl.Location = new System.Drawing.Point(59, 84);
             this.departementLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.departementLbl.Name = "departementLbl";
-            this.departementLbl.Size = new System.Drawing.Size(94, 17);
+            this.departementLbl.Size = new System.Drawing.Size(63, 17);
             this.departementLbl.TabIndex = 2;
-            this.departementLbl.Text = "Departement:";
+            this.departementLbl.Text = "Afdeling:";
             // 
             // sectieCbx
             // 
