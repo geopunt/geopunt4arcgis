@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
@@ -28,7 +29,7 @@ namespace geopunt4Arcgis
         List<datacontract.poiValueGroup> categories;
         List<datacontract.poiValueGroup> poiTypes;
         dataHandler.poi poiDH;
-        datacontract.poiMaxResponse poiData;
+        datacontract.poiMaxResponse poiData = null;
         datacontract.municipalityList municipalities;
         List<IElement> graphics;
 
@@ -84,6 +85,7 @@ namespace geopunt4Arcgis
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
             string nis;
+            bool cluster = clusteringChk.Checked ;
             boundingBox extent;
             if (extentCkb.Checked) {
                 IEnvelope env = view.Extent;
@@ -97,12 +99,11 @@ namespace geopunt4Arcgis
                 extent = null;
             }
             int count = 32;
-            if (keyWord != "") count = 100;
 
             try
             {
                 //get the data
-                poiData = poiDH.getMaxmodel( 
+                poiData = poiDH.getMaxmodel(Clustering: cluster,
                     q: keyWord, theme: themeCode, category: catCode, POItype: poiTypeCode, niscode: nis,
                     c: count, bbox: extent, srs: dataHandler.CRS.WGS84);
 
@@ -110,52 +111,51 @@ namespace geopunt4Arcgis
 
                 rows.Clear();
 
-                msgLbl.Text = string.Format("Aantal getoond:{0} - gevonden:{1}", pois.Count, poiData.label.value);
+                int poiAllCount = int.Parse(poiData.labels.First().value);
 
-                //parse results
-                foreach (datacontract.poiMaxModel poi in pois)
+                if (poiAllCount > 0)
                 {
-                    poiDataRow row = new poiDataRow();
-                    List<string> qry;
-                    datacontract.poiAddress adres;
-
-                    row.id = poi.id;
-
-                    qry = ( from datacontract.poiValueGroup n in poi.categories
-                            where n.type == "Type"
-                            select n.value).ToList();
-                    if (qry.Count > 0) row.Type = qry[0];
-
-                    qry = (  from datacontract.poiValueGroup n in poi.categories
-                             where n.type == "Categorie"
-                             select n.value).ToList();
-                    if (qry.Count > 0) row.Category = qry[0];
-
-                    qry = ( from datacontract.poiValueGroup n in poi.categories
-                            where n.type == "Thema"
-                            select n.value).ToList();
-                    if (qry.Count > 0) row.Theme = qry[0];
-              
-                    qry = (
-                     from datacontract.poiValueGroup n in poi.labels 
-                     select n.value).ToList();
-                    if (qry.Count > 0) row.Naam = qry[0];
-
-                    adres = poi.location.address;
-                    if (adres != null)
-                    {
-                        row.Straat = adres.street;
-                        row.Huisnummer = adres.streetnumber;
-                        row.Postcode = adres.postalcode;
-                        row.Gemeente = adres.municipality;
-                    }
-                    rows.Add(row);
+                    msgLbl.Text = string.Format("Aantal getoond:{0} - gevonden:{1}", pois.Count, poiAllCount);
+                    setAddAllLabel();
                 }
+                else if (poiAllCount == 0)
+                {
+                    msgLbl.Text = "Geen resultaten gevonden voor de opgegeven selectie criteria";
+                }
+                else
+                {
+                    MessageBox.Show("Het aantal gevonden plaatsen kon niet worden bepaald, de zoekterm is te vaag. "+
+                                        " Het resultaat is mogelijk niet compleet",  "Waarschuwing");
+                    msgLbl.Text = string.Format("Aantal getoond:{0}, aantal gevonden kon niet worden bepaald.", pois.Count);
+                    addAll2MapBtn.Text = string.Format("Voeg alle punten toe");
+                }
+
+                updateDataGrid(pois);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ": " + ex.StackTrace);
+            catch (WebException wex) {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken. "+
+                        "Het duurde te lang voor de server een resultaat terug gaf.\n"+
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if ( wex.Response != null )
+	            {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show( resp  , wex.Message);
+	            }            
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message + ": " + ex.StackTrace, "Error");
+            }
+        }
+
+        private void clusteringChk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (poiData == null) return;
+
+            int poiAllCount = int.Parse(poiData.labels.First().value);
+            setAddAllLabel();
         }
 
         private void extentCkb_CheckedChanged(object sender, EventArgs e)
@@ -182,6 +182,20 @@ namespace geopunt4Arcgis
                 categoryCbx.Items.Clear();
                 typeCbx.Items.Clear();
                 categoryCbx.Items.AddRange(categoriesList.ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -210,6 +224,20 @@ namespace geopunt4Arcgis
 
                 typeCbx.Items.Clear();
                 typeCbx.Items.AddRange(poiTypeList.ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -297,6 +325,20 @@ namespace geopunt4Arcgis
                 }
                 view.Refresh();
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -359,6 +401,20 @@ namespace geopunt4Arcgis
                 populateMaxFields(gpExtension.poiLayer, pois);
                 view.Refresh();
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                  MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -373,6 +429,7 @@ namespace geopunt4Arcgis
             string catCode = cat2code(categoryCbx.Text);
             string poiTypeCode = poitype2code(typeCbx.Text);
             string keyWord = keywordTxt.Text;
+            bool clustering = clusteringChk.Checked;
             string nis;
             boundingBox extent;
             if (extentCkb.Checked)
@@ -391,8 +448,8 @@ namespace geopunt4Arcgis
             try
             {
                 //get the data
-                datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode, 
-                                             POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
+                datacontract.poiMinResponse poiMinData = poiDH.getMinmodel( q: keyWord, theme: themeCode, category: catCode,
+                        Clustering: clustering, POItype: poiTypeCode, niscode: nis, bbox: extent, srs: dataHandler.CRS.WGS84);
 
                 List<datacontract.poiMinModel> pois = poiMinData.pois;
                 List<datacontract.cluster> clusters = poiMinData.clusters;
@@ -416,7 +473,7 @@ namespace geopunt4Arcgis
                     else if (featureClassPath.DirectoryName.ToLowerInvariant().EndsWith(".gdb"))
                     {
                         poiFC = geopuntHelper.createFeatureClass(featureClassPath.DirectoryName, featureClassPath.Name,
-                                                            fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint, true);
+                                                   fields, view.FocusMap.SpatialReference, esriGeometryType.esriGeometryPoint, true);
                     }
                     else
                     {
@@ -427,6 +484,20 @@ namespace geopunt4Arcgis
                 }
                 populateMinFields(gpExtension.poiMinLayer, pois, clusters);
                 view.Refresh();
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -502,6 +573,35 @@ namespace geopunt4Arcgis
             return niscodes.First<string>();
         }
 
+        private void setAddAllLabel()
+        {
+            int poiAllCount;  
+
+            if (poiData == null) return;
+ 
+            if( int.TryParse(poiData.labels.First().value, out poiAllCount) == false ) return;
+
+            var warning02s = poiData.labels.Where(c => c.value.StartsWith("Warning 02"));
+            if ( warning02s != null && warning02s.Count() != 0) 
+            {
+                addAll2MapBtn.Text = "Voeg de eerste 1024 punten toe";
+                return;
+            }
+
+            if (clusteringChk.Checked == false && poiAllCount >= 1024)
+            {
+                addAll2MapBtn.Text = "Voeg de eerste 1024 punten toe";
+            }
+            else if (poiAllCount < 0)
+	        {
+                addAll2MapBtn.Text = string.Format("Voeg alle punten toe");
+	        }
+            else
+            {
+                addAll2MapBtn.Text = string.Format("Voeg alle {0} punten toe", poiAllCount);
+            }
+        }
+
         private void populateFilters()
         {
             List<string> themeList = (from n in themes orderby n.value select n.value).ToList<string>();
@@ -539,6 +639,50 @@ namespace geopunt4Arcgis
             graphics.Clear();
         }
 
+        private void updateDataGrid(List<datacontract.poiMaxModel> pois)
+        {
+            //parse results
+            foreach (datacontract.poiMaxModel poi in pois)
+            {
+                poiDataRow row = new poiDataRow();
+                List<string> qry;
+                datacontract.poiAddress adres;
+
+                row.id = poi.id;
+                row.Omschrijving = poi.description.value;
+
+                qry = (from datacontract.poiValueGroup n in poi.categories
+                       where n.type == "Type"
+                       select n.value).ToList();
+                if (qry.Count > 0) row.Type = qry[0];
+
+                qry = (from datacontract.poiValueGroup n in poi.categories
+                       where n.type == "Categorie"
+                       select n.value).ToList();
+                if (qry.Count > 0) row.Category = qry[0];
+
+                qry = (from datacontract.poiValueGroup n in poi.categories
+                       where n.type == "Thema"
+                       select n.value).ToList();
+                if (qry.Count > 0) row.Theme = qry[0];
+
+                qry = (
+                    from datacontract.poiValueGroup n in poi.labels
+                    select n.value).ToList();
+                row.Label = string.Join(", ", qry.ToArray());
+
+                adres = poi.location.address;
+                if (adres != null)
+                {
+                    row.Straat = adres.street;
+                    row.Huisnummer = adres.streetnumber;
+                    row.Postcode = adres.postalcode;
+                    row.Gemeente = adres.municipality;
+                }
+                rows.Add(row);
+            }
+        }
+
         /// <summary>Create the the fields for the poi MaxModel Features</summary>
         private List<IField> poiIMaxFields()
         {
@@ -548,8 +692,25 @@ namespace geopunt4Arcgis
             fields.Add(poiID);
             IField auteur = geopuntHelper.createField("auteur", esriFieldType.esriFieldTypeString, 100);
             fields.Add(auteur);
-            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 100);
-            fields.Add(naam);
+            IField auteurUrl = geopuntHelper.createField("auteururl", esriFieldType.esriFieldTypeString, 100);
+            fields.Add(auteurUrl);
+            
+            IField licentie = geopuntHelper.createField("licentie", esriFieldType.esriFieldTypeString, 100);
+            fields.Add(licentie);
+            IField licentieterm = geopuntHelper.createField("lic_term", esriFieldType.esriFieldTypeString, 100);
+            fields.Add(licentieterm);
+            IField licentieUrl = geopuntHelper.createField("lic_url", esriFieldType.esriFieldTypeString, 100);
+            fields.Add(licentieUrl);
+
+            IField label = geopuntHelper.createField("label", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(label);
+            IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(info);
+
+            IField telefoon = geopuntHelper.createField("telefoon", esriFieldType.esriFieldTypeString, 80);
+            fields.Add(telefoon);
+            IField email = geopuntHelper.createField("email", esriFieldType.esriFieldTypeString, 254);
+            fields.Add(email);
 
             IField poithema = geopuntHelper.createField("thema", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poithema);
@@ -557,8 +718,6 @@ namespace geopunt4Arcgis
             fields.Add(poiCategory);
             IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poitype);
-            //IField info = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, 254);
-            //fields.Add(info);
             IField detail = geopuntHelper.createField("link", esriFieldType.esriFieldTypeString, 254);
             fields.Add(detail);
             //datumes
@@ -568,6 +727,9 @@ namespace geopunt4Arcgis
             fields.Add(update);
 
             //adres
+            IField kwaliteit = geopuntHelper.createField("kwaliteit", esriFieldType.esriFieldTypeString, 80);
+            fields.Add(kwaliteit);
+
             IField straat = geopuntHelper.createField("straat", esriFieldType.esriFieldTypeString, 254);
             fields.Add(straat);
             IField huisnr = geopuntHelper.createField("huisnr", esriFieldType.esriFieldTypeString, 80);
@@ -589,7 +751,7 @@ namespace geopunt4Arcgis
             IField poiID = geopuntHelper.createField("poiID", esriFieldType.esriFieldTypeInteger);
             fields.Add(poiID);
 
-            IField naam = geopuntHelper.createField("naam", esriFieldType.esriFieldTypeString, 100);
+            IField naam = geopuntHelper.createField("label", esriFieldType.esriFieldTypeString, 254);
             fields.Add(naam);
             IField poitype = geopuntHelper.createField("poitype", esriFieldType.esriFieldTypeString, 80);
             fields.Add(poitype);
@@ -644,17 +806,69 @@ namespace geopunt4Arcgis
                     int idIdx = poiFC.FindField("poiID");
                     featureBuffer.set_Value(idIdx, id);
 
+                    string telefoon = row.phone;
+                    int telefoonIdx = poiFC.FindField("telefoon");
+                    featureBuffer.set_Value(telefoonIdx, telefoon);
+
+                    string email = row.email;
+                    if ( email != null && email.Length > 254)
+                        email = email.Substring(0, 254);
+                    int emailIdx = poiFC.FindField("email");
+                    featureBuffer.set_Value(emailIdx, email);
+
+                    if (row.description != null)
+                    {
+                        string info = row.description.value;
+                        if (info != null && info.Length > 254)
+                            info = info.Substring(0, 254);
+                        int infoIdx = poiFC.FindField("info");
+                        featureBuffer.set_Value(infoIdx, info);
+                    }
+
+                    if (row.license != null)
+                    {
+                        string license = row.license.value ;
+                        string licenseTerm = row.license.term;
+                        string licenseUrl = row.license.href;
+
+                        if (license != null &&  license.Length > 100)
+                            license = license.Substring(0, 100);
+                        int licenseIdx = poiFC.FindField("licentie");
+                        featureBuffer.set_Value(licenseIdx, license);
+
+                        if (licenseTerm != null &&  licenseTerm.Length > 100)
+                            licenseTerm = licenseTerm.Substring(0, 100);
+                        int licenseTermIdx = poiFC.FindField("lic_term");
+                        featureBuffer.set_Value(licenseTermIdx, licenseTerm);
+
+                        if (licenseUrl  != null && licenseUrl.Length > 100)
+                            licenseUrl = licenseUrl.Substring(0, 100);
+                        int licenseUrlIdx = poiFC.FindField("lic_url");
+                        featureBuffer.set_Value(licenseUrlIdx, licenseUrl);
+
+                    }
+
                     if ( row.authors != null  )
                     {
                         List<string> authorQry = (from n in row.authors
                                                   select n.value).ToList<string>();
+                        List<string> authorUrls = (from n in row.authors
+                                                  select n.href).ToList<string>();
                         if (authorQry.Count > 0)
                         {
                             string owner = authorQry[0];
-                            if (owner.Length > 100)
-                                owner = owner.Substring(0, 80);
+                            if (owner != null && owner.Length > 100)
+                                owner = owner.Substring(0, 100);
                             int ownerIdx = poiFC.FindField("auteur");
                             featureBuffer.set_Value(ownerIdx, owner);
+                        }
+                        if (authorUrls.Count > 0)
+                        {
+                            string ownerUrl = authorUrls[0];
+                            if (ownerUrl != null && ownerUrl.Length > 100)
+                                ownerUrl = ownerUrl.Substring(0, 100);
+                            int ownerUrlIdx = poiFC.FindField("auteururl");
+                            featureBuffer.set_Value(ownerUrlIdx, ownerUrl);
                         }
                     }
                     if ( row.labels != null )
@@ -663,10 +877,10 @@ namespace geopunt4Arcgis
                                                  select n.value).ToList<string>();
                         if (labelQry.Count > 0)
                         {
-                            string label = labelQry[0];
-                            if (label.Length > 100)
-                                label = label.Substring(0, 100);
-                            int labelIdx = poiFC.FindField("naam");
+                            string label = string.Join( ", ", labelQry.ToArray());
+                            if (label != null && label.Length > 254)
+                                label = label.Substring(0, 254);
+                            int labelIdx = poiFC.FindField("label");
                             featureBuffer.set_Value(labelIdx, label);
                         }
                     }
@@ -685,7 +899,7 @@ namespace geopunt4Arcgis
                         if (poithemeQry.Count > 0)
                         {
                             string poitype = poithemeQry[0];
-                            if (poitype.Length > 80)
+                            if ( poitype != null && poitype.Length > 80)
                                 poitype = poitype.Substring(0, 80);
                             int poitypeIdx = poiFC.FindField("thema");
                             featureBuffer.set_Value(poitypeIdx, poitype);
@@ -693,7 +907,7 @@ namespace geopunt4Arcgis
                         if (poiCatQry.Count > 0)
                         {
                             string poitype = poiCatQry[0];
-                            if (poitype.Length > 80)
+                            if (poitype != null && poitype.Length > 80)
                                 poitype = poitype.Substring(0, 80);
                             int poitypeIdx = poiFC.FindField("categorie");
                             featureBuffer.set_Value(poitypeIdx, poitype);
@@ -701,7 +915,7 @@ namespace geopunt4Arcgis
                         if (poitypeQry.Count > 0)
                         {
                             string poitype = poitypeQry[0];
-                            if (poitype.Length > 80)
+                            if (poitype != null && poitype.Length > 80)
                                 poitype = poitype.Substring(0, 80);
                             int poitypeIdx = poiFC.FindField("poitype");
                             featureBuffer.set_Value(poitypeIdx, poitype);
@@ -727,6 +941,11 @@ namespace geopunt4Arcgis
                     DateTime updateDate = row.updated;
                     int updateDateIdx = poiFC.FindField("wijziging");
                     featureBuffer.set_Value(updateDateIdx, updateDate);
+
+                    //kwaliteit
+                    string kwaliteit = row.location.points[0].pointQuality;
+                    int kwaliteitIdx = poiFC.FindField("kwaliteit");
+                    featureBuffer.set_Value(kwaliteitIdx, kwaliteit);
 
                     //adres
                     if (row.location.address != null)
@@ -754,7 +973,7 @@ namespace geopunt4Arcgis
             }
         }
 
-        private void populateMinFields(IFeatureClass poiFC, List<datacontract.poiMinModel> pois , List<datacontract.cluster> clusters)
+        private void populateMinFields(IFeatureClass poiFC, List<datacontract.poiMinModel> pois ,  List<datacontract.cluster> clusters)
         {
             using (ComReleaser comReleaser = new ComReleaser())
             {
@@ -790,10 +1009,10 @@ namespace geopunt4Arcgis
                                                  select n.value).ToList<string>();
                         if (labelQry.Count > 0)
                         {
-                            string label = labelQry[0];
-                            if (label.Length > 100)
-                                label = label.Substring(0, 100);
-                            int labelIdx = poiFC.FindField("naam");
+                            string label = string.Join(", ", labelQry.ToArray()); ;
+                            if (label.Length > 254)
+                                label = label.Substring(0, 254);
+                            int labelIdx = poiFC.FindField("label");
                             featureBuffer.set_Value(labelIdx, label);
                         }
                     }
@@ -869,7 +1088,7 @@ namespace geopunt4Arcgis
                     //set others to null
                     int idIdx = poiFC.FindField("poiID");
                     featureBuffer.set_Value(idIdx, null);
-                    int labelIdx = poiFC.FindField("naam");
+                    int labelIdx = poiFC.FindField("label");
                     featureBuffer.set_Value(labelIdx, null);
                     int linkIdx = poiFC.FindField("link");
                     featureBuffer.set_Value(linkIdx, null);

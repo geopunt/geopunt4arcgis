@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -119,7 +120,7 @@ namespace geopunt4Arcgis
         private void helpLbl_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(
-                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/qgis%20plugin/functionaliteiten/csv-bestanden-geocoderen");
+                "http://www.geopunt.be/voor-experts/geopunt-plug-ins/arcgis%20plugin/functionaliteiten/csv-bestanden-geocoderen");
         }
 
         private void sepCbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -329,6 +330,20 @@ namespace geopunt4Arcgis
                 populateFields(csvFC);
                 geopuntHelper.addFeatureClassToMap(view, csvFC, false);
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show( ex.Message +" : "+ ex.StackTrace );
@@ -346,8 +361,7 @@ namespace geopunt4Arcgis
 
         private void zoom2selBtn_Click(object sender, EventArgs e)
         {
-            if (mouseCmd == null || csvDataGrid.SelectedRows.Count == 0)
-                return;
+            if (mouseCmd == null || csvDataGrid.SelectedRows.Count == 0) return;
 
             int maxCount = 30;
             int i = 0;
@@ -422,6 +436,20 @@ namespace geopunt4Arcgis
                     view.Extent = extent;
                     view.Refresh();
                 }
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {

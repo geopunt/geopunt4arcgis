@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,6 @@ namespace geopunt4Arcgis
 {
     public partial class capakeyForm : Form
     {
-        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         IMap map;
         ISpatialReference wgs;
@@ -82,7 +82,7 @@ namespace geopunt4Arcgis
             msgLbl.Text = "";
             perceel = null;
 
-            if (niscode == ""|| niscode == null) return;
+            if (niscode == "" || niscode == null) return;
 
             try
             {
@@ -91,6 +91,20 @@ namespace geopunt4Arcgis
                 sectieCbx.Items.Clear(); sectieCbx.Text = "";
                 parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 departementCbx.Items.AddRange((from n in departments select n.departmentName).ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -120,6 +134,20 @@ namespace geopunt4Arcgis
                 sectieCbx.Items.Clear(); sectieCbx.Text = "";
                 parcelCbx.Items.Clear(); parcelCbx.Text = "";
                 sectieCbx.Items.AddRange((from n in secties select n.sectionCode).ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -153,6 +181,20 @@ namespace geopunt4Arcgis
                 parcels = capakey.getParcels(int.Parse(niscode), int.Parse(depCode), sectie).parcels;
                 parcelCbx.Items.AddRange((from n in parcels select n.perceelnummer).ToArray());
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -179,9 +221,23 @@ namespace geopunt4Arcgis
             try
             {
                 perceel = capakey.getParcel(int.Parse(niscode), int.Parse(depCode), sectie, parcelNr,
-                                                    dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);
+                                                    dataHandler.CRS.Lambert72, dataHandler.capakeyGeometryType.full);
 
                 msgLbl.Text = string.Join(" - ", perceel.adres.ToArray());
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -206,10 +262,24 @@ namespace geopunt4Arcgis
             try
             {
                 datacontract.municipality municipality = capakey.getMunicipalitiy(int.Parse(niscode), 
-                                                        dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);
+                                                        dataHandler.CRS.Lambert72, dataHandler.capakeyGeometryType.full);
                 datacontract.geojson municipalityGeom = JsonConvert.DeserializeObject<datacontract.geojson>(municipality.geometry.shape);
 
                 createGrapicAndZoomTo(municipality.geometry.shape, municipalityGeom);
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -230,10 +300,24 @@ namespace geopunt4Arcgis
             try
             {
                 datacontract.department dep = capakey.getDepartment(int.Parse(niscode), int.Parse(depCode), 
-                                                        dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);
+                                                        dataHandler.CRS.Lambert72, dataHandler.capakeyGeometryType.full);
                 datacontract.geojson depGeom = JsonConvert.DeserializeObject<datacontract.geojson>(dep.geometry.shape);
 
                 createGrapicAndZoomTo(dep.geometry.shape, depGeom);
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -257,10 +341,24 @@ namespace geopunt4Arcgis
             try
             {
                 datacontract.section sec = capakey.getSectie(int.Parse(niscode), int.Parse(depCode), sectie,
-                                                        dataHandler.CRS.WGS84, dataHandler.capakeyGeometryType.full);
+                                                        dataHandler.CRS.Lambert72, dataHandler.capakeyGeometryType.full);
                 datacontract.geojson secGeom = JsonConvert.DeserializeObject<datacontract.geojson>(sec.geometry.shape);
 
                 createGrapicAndZoomTo(sec.geometry.shape, secGeom);
+            }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
             }
             catch (Exception ex)
             {
@@ -320,6 +418,20 @@ namespace geopunt4Arcgis
                 appendParcelField(gpExtension.parcelLayer);
                 view.Refresh();
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)  
             {
                   MessageBox.Show(ex.Message + ": " + ex.StackTrace);
@@ -331,8 +443,8 @@ namespace geopunt4Arcgis
             if (perceel == null) return;
 
             datacontract.geojsonPolygon jsPoly = JsonConvert.DeserializeObject<datacontract.geojsonPolygon>(perceel.geometry.shape);
-            IPolygon wgsShape = geopuntHelper.geojson2esriPolygon(jsPoly, (int)dataHandler.CRS.WGS84);
-            IPolygon mapShape = (IPolygon)geopuntHelper.Transform(wgsShape, map.SpatialReference);
+            IPolygon lbShape = geopuntHelper.geojson2esriPolygon(jsPoly, (int)dataHandler.CRS.Lambert72);
+            IPolygon mapShape = (IPolygon)geopuntHelper.Transform(lbShape, map.SpatialReference);
 
             string adres = string.Join("-", perceel.adres.ToArray()) ;
             if (adres.Length > 120) adres = adres.Substring(0, 120);
@@ -371,9 +483,9 @@ namespace geopunt4Arcgis
                 clearGraphics();
                 foreach (datacontract.geojsonPolygon poly in muniPolygons.toPolygonList())
                 {
-                    IPolygon wgsPoly = geopuntHelper.geojson2esriPolygon(poly, (int)dataHandler.CRS.WGS84);
-                    wgsPoly.SimplifyPreserveFromTo();
-                    IGeometry prjGeom = geopuntHelper.Transform((IGeometry)wgsPoly, map.SpatialReference);
+                    IPolygon lbPoly = geopuntHelper.geojson2esriPolygon(poly, (int)dataHandler.CRS.Lambert72);
+                    lbPoly.SimplifyPreserveFromTo();
+                    IGeometry prjGeom = geopuntHelper.Transform((IGeometry)lbPoly, map.SpatialReference);
 
                     IElement muniGrapic = geopuntHelper.AddGraphicToMap(map, prjGeom, inClr, outLine, 2, true);
                     graphics.Add(muniGrapic);
@@ -387,9 +499,9 @@ namespace geopunt4Arcgis
             {
                 datacontract.geojsonPolygon municipalityPolygon =
                             JsonConvert.DeserializeObject<datacontract.geojsonPolygon>(capakeyResponse);
-                IPolygon wgsPoly = geopuntHelper.geojson2esriPolygon(municipalityPolygon, (int)dataHandler.CRS.WGS84);
-                wgsPoly.SimplifyPreserveFromTo();
-                IPolygon prjPoly = (IPolygon)geopuntHelper.Transform((IGeometry)wgsPoly, map.SpatialReference);
+                IPolygon lbPoly = geopuntHelper.geojson2esriPolygon(municipalityPolygon, (int)dataHandler.CRS.Lambert72);
+                lbPoly.SimplifyPreserveFromTo();
+                IPolygon prjPoly = (IPolygon)geopuntHelper.Transform((IGeometry)lbPoly, map.SpatialReference);
                 view.Extent = prjPoly.Envelope;
 
                 clearGraphics();
@@ -415,7 +527,7 @@ namespace geopunt4Arcgis
             fields.Add(macht);
             IField bisnr = geopuntHelper.createField("bisnr", esriFieldType.esriFieldTypeInteger);
             fields.Add(bisnr);
-            IField perceeltype = geopuntHelper.createField("perceeltype", esriFieldType.esriFieldTypeString, 8);
+            IField perceeltype = geopuntHelper.createField("type", esriFieldType.esriFieldTypeString, 8);
             fields.Add(perceeltype);
             IField adres = geopuntHelper.createField("adres", esriFieldType.esriFieldTypeString, 254);
             fields.Add(adres);
@@ -430,8 +542,8 @@ namespace geopunt4Arcgis
             IFeatureCursor insertCursor = parcelFC.Insert(false);
 
             datacontract.geojsonPolygon jsPoly = JsonConvert.DeserializeObject<datacontract.geojsonPolygon>(perceel.geometry.shape);
-            IPolygon wgsShape = geopuntHelper.geojson2esriPolygon( jsPoly , (int)dataHandler.CRS.WGS84 );
-            IPolygon mapShape = (IPolygon) geopuntHelper.Transform(wgsShape, map.SpatialReference);
+            IPolygon lbShape = geopuntHelper.geojson2esriPolygon( jsPoly , (int)dataHandler.CRS.Lambert72 );
+            IPolygon mapShape = (IPolygon)geopuntHelper.Transform(lbShape, map.SpatialReference);
 
             IFeature feature = parcelFC.CreateFeature();
             feature.Shape = (IGeometry)mapShape;
@@ -454,7 +566,7 @@ namespace geopunt4Arcgis
             int bisnrIdx = parcelFC.FindField("bisnr");
             feature.set_Value(bisnrIdx, perceel.bisnummer);
 
-            int perceeltypeIdx = parcelFC.FindField("perceeltype");
+            int perceeltypeIdx = parcelFC.FindField("type");
             feature.set_Value(perceeltypeIdx, perceel.type);
 
             string adres = string.Join("-", perceel.adres.ToArray()) ;

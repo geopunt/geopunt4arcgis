@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,6 @@ namespace geopunt4Arcgis
 {
     public partial class catalogForm : Form
     {
-        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         IMap map;
         ISpatialReference wgs;
@@ -87,7 +87,6 @@ namespace geopunt4Arcgis
         }
 
         #region "eventHandlers"
-
         private void zoekBtn_Click(object sender, EventArgs e)
         {
             search();
@@ -133,9 +132,9 @@ namespace geopunt4Arcgis
         {
             updateFilter();
         }
-
         #endregion
 
+        #region "private functions"
         private void updateFilter()
         {
             string filterTxt = filterResultsCbx.Text;
@@ -222,6 +221,20 @@ namespace geopunt4Arcgis
                 addWMSbtn.Enabled = false;
                 OpenDownloadBtn.Enabled = false;
             }
+            catch (WebException wex)
+            {
+                if (wex.Status == WebExceptionStatus.Timeout)
+                    MessageBox.Show("De connectie werd afgebroken." +
+                        " Het duurde te lang voor de server een resultaat terug gaf.\n" +
+                        "U kunt via de instellingen de 'timout'-tijd optrekken.", wex.Message);
+                else if (wex.Response != null)
+                {
+                    string resp = new StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+                    MessageBox.Show(resp, wex.Message);
+                }
+                else
+                    MessageBox.Show(wex.Message, "Error");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " : " + ex.StackTrace, "Error");
@@ -303,6 +316,6 @@ namespace geopunt4Arcgis
                 }
             }
         }
-
+        #endregion 
     }
 }

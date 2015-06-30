@@ -11,7 +11,6 @@ namespace geopunt4Arcgis
 {
     public partial class AboutGeopunt4arcgisForm : Form
     {
-        string htmlLocation;
         geopunt4arcgisExtension gpExtension;
 
         public AboutGeopunt4arcgisForm()
@@ -55,7 +54,7 @@ namespace geopunt4Arcgis
           <style>body {font-size: 80%}</style>
         </head>
         <body>
-          <h1>Geopunt4Qgis</h1>
+          <h1>Geopunt voor ArcGIS</h1>
           <h2>Functies</h2>
           <ul>
             <li>
@@ -85,8 +84,8 @@ namespace geopunt4Arcgis
           </ul>
           <h2>Systeem vereisten</h2>
           <ul>
-            <li>Minimaal: Windows XP, ArcGIS Destkop versie 10.0 sp4 of hoger, .net-framework versie 3.5</li>
-            <li>Aanbevolen: Windows7, ArcGIS Destkop versie 10.2 of hoger, .net-framework versie 4.0</li>
+            <li>Minimaal: Windows XP, ArcGIS Desktop versie 10.0 sp4 of hoger, .net-framework versie 3.5</li>
+            <li>Aanbevolen: Windows7, ArcGIS Desktop versie 10.2 of hoger, .net-framework versie 4.0</li>
             <li>Een verbinding met het internet, restrictieve firewalls kunnen mogelijk de connectie blokkeren.</li>
           </ul>
           <h2>Doelstelling</h2>
@@ -134,7 +133,7 @@ namespace geopunt4Arcgis
           <p>
             <a href='http://kgis.be'>Kay Warrie</a>
           </p>
-          <p>Ik ben geodata analyst en programmeur, werkzaam als freelance GIS consultant en bij de Studiedienst van stad Antwerpen.</p>
+          <p>Ik ben geodata analist en programmeur, werkzaam als freelance GIS consultant en bij de Studiedienst van stad Antwerpen.</p>
           <p>Professioneel werk ik op desktop GIS, voornamelijk Arcgis en QGIS en op webmapping met ESRI Arcgis-server of opensource webGIS en Maptiling Systemen. Ik beheer ook mee de centrale geodatabases van het stad en INSPIRE-compliant metadata in kader van GDI, Voor de rest doe ik vooral allerlei GIS analyses op data van het Stad. De meeste analyses zijn gerelateerd aan adressering-geocoding, ruimtelijke relaties, nabijheidsanalyses (routing, service area's ed.) voor onder andere MER studies, ruimtelijke ordening of bouwvergunningen.</p>
           <p>
             <a href='mailto:kaywarrie@gmail.com'>Contact mij</a>

@@ -24,7 +24,7 @@ namespace geopunt4Arcgis.dataHandler
                 client = new gpWebClient() { Encoding = System.Text.Encoding.UTF8, 
                                            Proxy = new System.Net.WebProxy(proxyUrl, port), timeout= timeout };
             }
-            baseUri = "http://dhm.beta.agiv.be/api/elevation/v1/";
+            baseUri = "http://dhm.agiv.be/api/elevation/v1/";
         }
 
         public List<List<double>> getDataAlongLine( datacontract.geojsonLine profileLine, int nrSamples = 30, CRS srs = CRS.WGS84)

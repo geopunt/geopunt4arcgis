@@ -13,4 +13,4 @@ Als er meer dan 32 resultaten zijn, kan je alle POI’s toevoegen die voldoen aa
 
 De POI-zoekdienst van geopunt ontsluit het POI overheidsaanbod, aangevuld met POI's van de commerciële provider HERE (het vroegere navteq). De publieke POI’s mogen hergebruikt worden, de HERE POI’s niet.
 
-<!-- ![](images/geopunt4qgisPoi.gif "Zoek een Plaats - interesse punt") -->
+![](geopuntPoi.gif "Zoek een Plaats - interesse punt")

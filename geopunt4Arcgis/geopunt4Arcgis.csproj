@@ -368,9 +368,6 @@
     <Content Include="Images\validAll.png" />
     <Content Include="Images\zoek.png" />
     <Content Include="Images\zoom.png" />
-    <AddInContent Include="Resources\about.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AddInContent>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ABOUT.md" />

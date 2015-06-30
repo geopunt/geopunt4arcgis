@@ -41,9 +41,7 @@ namespace geopunt4Arcgis
         
         public geopunt4arcgisExtension()
         {
-            gpExtension = this;
-            //cannot access app.config from addin -> using registry instead
-            geopuntKey = Registry.CurrentUser.CreateSubKey("Software\\geopunt");
+            gpExtension = this;       
             loadSettings();
         }
 
@@ -51,8 +49,9 @@ namespace geopunt4Arcgis
         {
             try
             {
+                geopuntKey = Registry.CurrentUser.CreateSubKey("Software\\geopunt");
                 csvMaxRows = (int)geopuntKey.GetValue("csvMaxRows", 500);
-                timeout = (int)geopuntKey.GetValue("timeOut", 5000);
+                timeout = (int)geopuntKey.GetValue("timeOut", 15000);
             }
             catch (Exception ex)
             {
@@ -74,6 +73,7 @@ namespace geopunt4Arcgis
         }
 
         /// <summary>Get the extensions object</summary>
+        /// <returns>the extension object of this addin</returns>
         internal static geopunt4arcgisExtension getGeopuntExtension()
         {
             if (gpExtension == null)
@@ -96,8 +96,6 @@ namespace geopunt4Arcgis
             {
                 MessageBox.Show( ex.Message +": "+ ex.StackTrace);
             }
-
-            
             base.OnStartup();
         }
 

@@ -15,12 +15,12 @@ using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.ArcMapUI;
 
 namespace geopunt4Arcgis
 {
     public partial class gipodForm : Form
     {
-        ISpatialReferenceFactory spatialReferenceFactory;
         IActiveView view;
         dataHandler.gipod gipod;
         datacontract.municipalityList municipality;
@@ -152,7 +152,9 @@ namespace geopunt4Arcgis
 
                     populateGipodShape(gipodFC, gipodRecords, param.gipodType);
 
-                    geopuntHelper.addFeatureClassToMap(view, gipodFC, false);
+                    IFeatureLayer gipodLayer = geopuntHelper.addFeatureClassToMap(view, gipodFC, false);
+                    styleGipodLyr(gipodLayer as IGeoFeatureLayer);
+
                     view.Refresh();
                     this.Close();
                 }
@@ -213,6 +215,40 @@ namespace geopunt4Arcgis
         #endregion
 
         #region "private functions"
+        private void styleGipodLyr( IGeoFeatureLayer geolayer )
+        {
+            IUniqueValueRenderer renderer = new UniqueValueRendererClass();
+            renderer.FieldCount = 1;
+            renderer.set_Field(0, "hinder");
+            renderer.set_FieldType(0, false);
+            //renderer.UseDefaultSymbol = true;
+            renderer.DefaultLabel = "other";
+
+            ISimpleMarkerSymbol trueMarkerSymbol = new SimpleMarkerSymbolClass();
+            trueMarkerSymbol.Color = new RgbColorClass(){Red= 255, Blue= 0, Green= 255 };
+            trueMarkerSymbol.Outline = true;
+            trueMarkerSymbol.OutlineColor = new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }; ;
+            trueMarkerSymbol.Size = 5;
+            trueMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle;
+
+            ISimpleMarkerSymbol falseMarkerSymbol = new SimpleMarkerSymbolClass();
+            falseMarkerSymbol.Color = new RgbColorClass() { Red = 255, Blue = 0, Green = 0 };
+            falseMarkerSymbol.Outline = true;
+            falseMarkerSymbol.OutlineColor = new RgbColorClass() { Red = 0, Blue = 0, Green = 0 }; ;
+            falseMarkerSymbol.Size = 5;
+            falseMarkerSymbol.Style = esriSimpleMarkerStyle.esriSMSCircle;
+
+            renderer.AddValue("0","", falseMarkerSymbol as ISymbol);
+            renderer.set_Label("0", "Geen hinder");
+            renderer.AddValue("1", "", trueMarkerSymbol as ISymbol);
+            renderer.set_Label("1", "Veel hinder");
+
+            geolayer.Renderer = renderer as IFeatureRenderer;
+
+            IMxDocument mxDoc = ArcMap.Document;
+            mxDoc.CurrentContentsView.Refresh(null);
+        }
+        
         private List<datacontract.gipodResponse> fetchGipod(dataHandler.gipodParam param)
         {
             //get parameters form GUI
@@ -266,26 +302,26 @@ namespace geopunt4Arcgis
 
             IField gipodID = geopuntHelper.createField("gipodID", esriFieldType.esriFieldTypeInteger);
             fields.Add(gipodID);
-            IField eigenaar = geopuntHelper.createField("eigenaar", esriFieldType.esriFieldTypeString, 254);
+            IField eigenaar = geopuntHelper.createField("owner", esriFieldType.esriFieldTypeString, 254);
             fields.Add(eigenaar);
 
             int descriptLen = 1600;
             if (shp) descriptLen = 254;
             IField descript = geopuntHelper.createField("info", esriFieldType.esriFieldTypeString, descriptLen);
             fields.Add(descript);
-            IField startDate = geopuntHelper.createField("start", esriFieldType.esriFieldTypeDate);
+            IField startDate = geopuntHelper.createField("beginDate", esriFieldType.esriFieldTypeDate);
             fields.Add(startDate);
-            IField endDate = geopuntHelper.createField("einde", esriFieldType.esriFieldTypeDate);
+            IField endDate = geopuntHelper.createField("endDate", esriFieldType.esriFieldTypeDate);
             fields.Add(endDate);
             IField hinder = geopuntHelper.createField("hinder", esriFieldType.esriFieldTypeSmallInteger);
             fields.Add(hinder);
-            IField detail = geopuntHelper.createField("detail", esriFieldType.esriFieldTypeString, 254);
+            IField detail = geopuntHelper.createField("link", esriFieldType.esriFieldTypeString, 254);
             fields.Add(detail);
             IField cities = geopuntHelper.createField("cities", esriFieldType.esriFieldTypeString, 254);
             fields.Add(cities);
 
             if (gtype == dataHandler.gipodtype.manifestation) {
-                IField initiator = geopuntHelper.createField("initiator", esriFieldType.esriFieldTypeString, 254);
+                IField initiator = geopuntHelper.createField("initiatief", esriFieldType.esriFieldTypeString, 254);
                 fields.Add(initiator);
                 IField eventType = geopuntHelper.createField("eventType", esriFieldType.esriFieldTypeString, 254);
                 fields.Add(eventType);
@@ -365,11 +401,11 @@ namespace geopunt4Arcgis
 
                     string owner = row.owner;
                     if (owner.Length > 254) owner = owner.Substring(0, 254);
-                    int ownerIdx = gipodFC.FindField("eigenaar");
+                    int ownerIdx = gipodFC.FindField("owner");
                     featureBuffer.set_Value(ownerIdx, owner);
 
                     //sometime very long, handle that
-                    string description = row.description;
+                    string description = row.description.Replace("\n", " ").Replace("\r", "");
                     int descriptionIdx = gipodFC.FindField("info");
                     int maxLen = featureBuffer.Fields.get_Field(descriptionIdx).Length;
                     if (description.Length > maxLen)
@@ -379,20 +415,20 @@ namespace geopunt4Arcgis
                     featureBuffer.set_Value(descriptionIdx, description);
 
                     DateTime startDate = row.startDateTime;
-                    int startDateIdx = gipodFC.FindField("start");
+                    int startDateIdx = gipodFC.FindField("beginDate");
                     featureBuffer.set_Value(startDateIdx, startDate);
 
                     DateTime endDate = row.endDateTime;
-                    int endDateIdx = gipodFC.FindField("einde");
+                    int endDateIdx = gipodFC.FindField("endDate");
                     featureBuffer.set_Value(endDateIdx, endDate);
 
                     int hinder = row.importantHindrance ? 1 : 0;
                     int hinderIdx = gipodFC.FindField("hinder");
                     featureBuffer.set_Value(hinderIdx, hinder);
 
-                    string detail = row.detail;
+                    string detail = String.Format("http://www.geopunt.be/kaart?app=Hinder_in_kaart_app&GIPODID={0}&maximize=1", row.gipodId);//row.detail;
                     if (detail.Length > 254) detail = detail.Substring(0, 254);
-                    int detailIdx = gipodFC.FindField("detail");
+                    int detailIdx = gipodFC.FindField("link");
                     featureBuffer.set_Value(detailIdx, detail);
 
                     string cities = string.Join(", ", row.cities.ToArray());
@@ -405,7 +441,7 @@ namespace geopunt4Arcgis
                         string initiator = row.initiator ;
                         if (initiator != null) {
                             if (initiator.Length > 254) initiator = initiator.Substring(0, 254);
-                            int initiatorIdx = gipodFC.FindField("initiator");
+                            int initiatorIdx = gipodFC.FindField("initiatief");
                             featureBuffer.set_Value(initiatorIdx, initiator);
                         }
                         string eventType = row.eventType ;

@@ -22,7 +22,6 @@ namespace geopunt4Arcgis
 {
     public partial class zoekAdresForm : Form
     {
-        ISpatialReferenceFactory3 spatialReferenceFactory;
         IActiveView view;
         IMap map;
         ISpatialReference wgs;
@@ -82,6 +81,7 @@ namespace geopunt4Arcgis
 
         private void gemeenteBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //zoekText.Text = "";
             updateSuggestions();
         }
 

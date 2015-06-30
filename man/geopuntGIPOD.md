@@ -16,7 +16,7 @@ Je kunt kiezen uit verschillende filter opties, selecteer een waarde uit de keuz
 
 Je kunt opslaan naar Shapefile of in een File Geodatabase, die wordt toegevoegd aan de kaart.
 
-<!-- ![](geopuntGIPOD.gif "GIPOD data laden in QGIS") -->
+![](geopuntGIPOD.gif "GIPOD data laden in QGIS") 
 
 ####Wat is GIPOD
 

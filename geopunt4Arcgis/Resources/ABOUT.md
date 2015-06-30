@@ -1,4 +1,4 @@
-Geopunt4Qgis
+Geopunt voor Arcgis
 ============
 
 Functies
@@ -16,8 +16,8 @@ Functies
 Systeem vereisten
 -----------------
 
-- Minimaal: Windows XP, ArcGIS Destkop versie 10.0 sp4 of hoger, .net-framework versie 3.5
-- Aanbevolen: Windows7, ArcGIS Destkop versie 10.2 of hoger, .net-framework versie 4.0
+- Minimaal: Windows XP, ArcGIS Desktop versie 10.0 sp4 of hoger, .net-framework versie 3.5
+- Aanbevolen: Windows7, ArcGIS Desktop versie 10.2 of hoger, .net-framework versie 4.0
 - Een verbinding met het internet, restrictieve firewalls kunnen mogelijk de connectie blokkeren.
 
 Doelstelling
@@ -58,7 +58,7 @@ Over de auteur
 
 [Kay Warrie](http://kgis.be)
 
-Ik ben geodata analyst en programmeur, werkzaam als freelance GIS consultant en bij de Studiedienst van stad Antwerpen. 
+Ik ben geodata analist en programmeur, werkzaam als freelance GIS consultant en bij de Studiedienst van stad Antwerpen. 
 
 Professioneel werk ik op desktop GIS, voornamelijk Arcgis en QGIS en op webmapping met ESRI Arcgis-server of opensource webGIS en Maptiling Systemen. Ik beheer ook mee de centrale geodatabases van het stad en INSPIRE-compliant metadata in kader van GDI, Voor de rest doe ik vooral allerlei GIS analyses op data van het Stad. De meeste analyses zijn gerelateerd aan adressering-geocoding, ruimtelijke relaties, nabijheidsanalyses (routing, service area's ed.) voor onder andere MER studies, ruimtelijke ordening of bouwvergunningen.
 

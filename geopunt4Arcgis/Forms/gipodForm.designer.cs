@@ -84,12 +84,12 @@
             // citylbl
             // 
             this.citylbl.AutoSize = true;
-            this.citylbl.Location = new System.Drawing.Point(53, 126);
+            this.citylbl.Location = new System.Drawing.Point(4, 126);
             this.citylbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.citylbl.Name = "citylbl";
-            this.citylbl.Size = new System.Drawing.Size(78, 17);
+            this.citylbl.Size = new System.Drawing.Size(127, 17);
             this.citylbl.TabIndex = 2;
-            this.citylbl.Text = "Gemeente:";
+            this.citylbl.Text = "Stad of Gemeente:";
             // 
             // provinceLbl
             // 

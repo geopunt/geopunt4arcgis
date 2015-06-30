@@ -11,16 +11,19 @@ namespace geopunt4Arcgis.datacontract
         public string type { get; set; }
         public string value { get; set; }
     }
+    
     public class poiLink : poiValueGroup
     {
         public string href { get; set; }
     }
+    
     public class poiPoint : poiValueGroup
     {
         public geojsonPoint Point { get; set; }
         public poiValueGroup author { get; set; }
         public string pointQuality { get; set; }
     }
+    
     public class poiCategories
     {
         public List<poiValueGroup> categories { get; set; }
@@ -33,6 +36,10 @@ namespace geopunt4Arcgis.datacontract
         public string postalcode { get; set; }
         public string street { get; set; }
         public string streetnumber { get; set; }
+        public string term { get; set; }
+        public DateTime created { get; set; }
+        public DateTime updated { get; set; }
+        public string typedescription { get; set; }
     }
 
     public class poiLocation
@@ -50,21 +57,22 @@ namespace geopunt4Arcgis.datacontract
     public class poiMinModel 
     {
         public int id { get; set; }
-        public List<poiValueGroup> categories { get; set; }
         public List<poiValueGroup> labels { get; set; }
+        public List<poiValueGroup> categories { get; set; }
         public List<poiLink> links { get; set; }
         public poiLocation location { get; set; }
     }
 
     public class poiMaxModel : poiMinModel
     {
-        public List<poiValueGroup> authors { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
+        public poiValueGroup description { get; set; }
+
         public DateTime created { get; set; }
         public DateTime updated { get; set; }
-        public poiValueGroup description { get; set; }
-        public poiValueGroup license { get; set; }
+        public List<poiLink> authors { get; set; }
+        public poiLink license { get; set; }
     }
 
     public class poiMinResponse
@@ -76,8 +84,7 @@ namespace geopunt4Arcgis.datacontract
 
     public class poiMaxResponse
     {
-        public List<cluster> clusters { get; set; }
-        public poiValueGroup label { get; set; }
+        public List<poiValueGroup> labels { get; set; }
         public List<poiMaxModel> pois { get; set; }
     }
 }
